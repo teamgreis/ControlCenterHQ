@@ -1,0 +1,1830 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Atlas AdminSysOP – Benutzerhandbuch</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ─── Reset & Base ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --accent:       #00e5ff;
+      --accent2:      #7c3aed;
+      --accent3:      #10b981;
+      --bg:           #0a0e1a;
+      --bg2:          #0f1629;
+      --bg3:          #1a2240;
+      --card:         rgba(255,255,255,0.04);
+      --card-border:  rgba(255,255,255,0.08);
+      --text:         #e8edf5;
+      --text-muted:   #8892a4;
+      --text-dim:     #4a5568;
+      --danger:       #ef4444;
+      --warning:      #f59e0b;
+      --success:      #10b981;
+      --info:         #3b82f6;
+      --sidebar-w:    280px;
+      --font:         'Inter', system-ui, sans-serif;
+      --mono:         'JetBrains Mono', monospace;
+      --radius:       12px;
+      --radius-sm:    8px;
+      --radius-lg:    20px;
+      --shadow:       0 4px 24px rgba(0,0,0,0.4);
+      --glow:         0 0 20px rgba(0,229,255,0.15);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ─── Sidebar ──────────────────────────────────────────────── */
+    #toc {
+      width: var(--sidebar-w);
+      flex-shrink: 0;
+      position: fixed;
+      top: 0; left: 0; bottom: 0;
+      background: var(--bg2);
+      border-right: 1px solid var(--card-border);
+      overflow-y: auto;
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+    }
+
+    #toc::-webkit-scrollbar { width: 4px; }
+    #toc::-webkit-scrollbar-track { background: transparent; }
+    #toc::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 2px; }
+
+    .toc-logo {
+      padding: 28px 24px 20px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .toc-logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+    .toc-logo h2 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .toc-logo p {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .toc-section-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      padding: 16px 24px 6px;
+    }
+
+    .toc-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 24px;
+      font-size: 13px;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-radius: 0;
+      transition: all 0.15s;
+      position: relative;
+    }
+    .toc-item:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+    }
+    .toc-item.active {
+      color: var(--accent);
+      background: rgba(0,229,255,0.06);
+    }
+    .toc-item.active::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      border-radius: 0 2px 2px 0;
+    }
+    .toc-icon { font-size: 15px; width: 20px; text-align: center; flex-shrink: 0; }
+
+    .toc-sub {
+      padding-left: 54px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    .toc-sub:hover { color: var(--text-muted); }
+
+    .toc-footer {
+      margin-top: auto;
+      padding: 16px 24px;
+      border-top: 1px solid var(--card-border);
+      font-size: 11px;
+      color: var(--text-dim);
+    }
+
+    /* ─── Main Content ─────────────────────────────────────────── */
+    #content {
+      margin-left: var(--sidebar-w);
+      flex: 1;
+      max-width: 900px;
+      padding: 0 60px 100px;
+    }
+
+    /* ─── Hero ─────────────────────────────────────────────────── */
+    .hero {
+      padding: 80px 0 60px;
+      border-bottom: 1px solid var(--card-border);
+      margin-bottom: 60px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,229,255,0.08);
+      border: 1px solid rgba(0,229,255,0.2);
+      color: var(--accent);
+      padding: 6px 14px;
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+    }
+    .hero h1 {
+      font-size: 52px;
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: -2px;
+      margin-bottom: 16px;
+      background: linear-gradient(135deg, #fff 0%, var(--accent) 60%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 580px;
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+    .hero-meta {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .hero-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .hero-meta-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+    }
+    .hero-meta-value {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    /* ─── Sections ─────────────────────────────────────────────── */
+    .section {
+      margin-bottom: 80px;
+      scroll-margin-top: 30px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 32px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    .section-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+    }
+    .section-title h2 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text);
+      margin-bottom: 4px;
+    }
+    .section-title p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    h3 {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+      margin: 28px 0 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    h3::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 16px;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    p { color: var(--text-muted); margin-bottom: 14px; font-size: 14.5px; }
+
+    /* ─── Cards ────────────────────────────────────────────────── */
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .mini-card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .mini-card-icon { font-size: 20px; }
+    .mini-card-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text);
+    }
+    .mini-card-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* ─── Feature List ─────────────────────────────────────────── */
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding: 10px 14px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+    }
+    .feature-list li::before {
+      content: '✓';
+      color: var(--success);
+      font-weight: 700;
+      font-size: 13px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* ─── Steps ────────────────────────────────────────────────── */
+    .steps {
+      counter-reset: step;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .step {
+      display: flex;
+      gap: 20px;
+      position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 19px;
+      top: 44px;
+      bottom: 0;
+      width: 2px;
+      background: var(--card-border);
+    }
+    .step-num {
+      counter-increment: step;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 800;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .step-num::before { content: counter(step); }
+    .step-body {
+      padding: 8px 0 28px;
+    }
+    .step-body h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .step-body p {
+      font-size: 13.5px;
+      margin-bottom: 0;
+    }
+
+    /* ─── Code ─────────────────────────────────────────────────── */
+    code {
+      font-family: var(--mono);
+      font-size: 12.5px;
+      background: rgba(0,229,255,0.08);
+      color: var(--accent);
+      padding: 2px 7px;
+      border-radius: 4px;
+      border: 1px solid rgba(0,229,255,0.15);
+    }
+
+    pre {
+      font-family: var(--mono);
+      font-size: 13px;
+      background: #050810;
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 20px 24px;
+      overflow-x: auto;
+      margin-bottom: 16px;
+      line-height: 1.7;
+      color: #a8b5c8;
+    }
+    pre .cmd { color: #00e5ff; }
+    pre .comment { color: #4a5568; font-style: italic; }
+    pre .string { color: #10b981; }
+    pre .key { color: #f59e0b; }
+
+    /* ─── Tables ───────────────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; margin-bottom: 16px; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+    }
+    th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border-bottom: 1px solid var(--card-border);
+    }
+    td {
+      padding: 11px 14px;
+      color: var(--text-muted);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      vertical-align: top;
+    }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    td:first-child { font-weight: 600; color: var(--text); }
+
+    /* ─── Badges / Pills ───────────────────────────────────────── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 9px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+    .badge-success { background: rgba(16,185,129,0.12); color: #10b981; }
+    .badge-warning { background: rgba(245,158,11,0.12); color: #f59e0b; }
+    .badge-danger  { background: rgba(239,68,68,0.12);  color: #ef4444; }
+    .badge-info    { background: rgba(59,130,246,0.12); color: #60a5fa; }
+    .badge-purple  { background: rgba(124,58,237,0.12); color: #a78bfa; }
+    .badge-cyan    { background: rgba(0,229,255,0.12);  color: #00e5ff; }
+
+    /* ─── Alert boxes ──────────────────────────────────────────── */
+    .alert-box {
+      display: flex;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 13.5px;
+      margin-bottom: 16px;
+      border: 1px solid;
+    }
+    .alert-box-icon { font-size: 16px; flex-shrink: 0; }
+    .alert-box p { margin: 0; }
+    .alert-info    { background: rgba(59,130,246,0.06);  border-color: rgba(59,130,246,0.2);  color: #93c5fd; }
+    .alert-warning { background: rgba(245,158,11,0.06);  border-color: rgba(245,158,11,0.2);  color: #fcd34d; }
+    .alert-tip     { background: rgba(16,185,129,0.06);  border-color: rgba(16,185,129,0.2);  color: #6ee7b7; }
+
+    /* ─── Theme grid ───────────────────────────────────────────── */
+    .theme-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .theme-chip {
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      border: 1px solid transparent;
+    }
+
+    /* ─── Module grid ──────────────────────────────────────────── */
+    .module-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .module-item {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      padding: 16px;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .module-emoji { font-size: 24px; flex-shrink: 0; }
+    .module-info h4 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+    .module-info p  { font-size: 12px; color: var(--text-muted); margin: 0; line-height: 1.4; }
+
+    /* ─── Tone grid ────────────────────────────────────────────── */
+    .tone-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 8px;
+    }
+    .tone-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-sm);
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+    .tone-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text-dim);
+      min-width: 20px;
+    }
+
+    /* ─── Keyboard shortcut ────────────────────────────────────── */
+    kbd {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      background: var(--bg3);
+      border: 1px solid var(--card-border);
+      border-bottom-width: 2px;
+      border-radius: 5px;
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--text);
+    }
+
+    /* ─── Divider ──────────────────────────────────────────────── */
+    .divider {
+      height: 1px;
+      background: var(--card-border);
+      margin: 32px 0;
+    }
+
+    /* ─── Scroll progress ──────────────────────────────────────── */
+    #progress-bar {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent2), var(--accent));
+      transition: width 0.1s;
+      z-index: 999;
+    }
+
+    /* ─── Back to top ──────────────────────────────────────────── */
+    #back-to-top {
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--bg3);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      z-index: 99;
+    }
+    #back-to-top.visible { opacity: 1; }
+    #back-to-top:hover { transform: translateY(-2px); color: var(--text); }
+
+    /* ─── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      #toc { display: none; }
+      #content { margin-left: 0; padding: 0 24px 80px; }
+      .hero h1 { font-size: 36px; }
+    }
+
+    /* ─── Print ────────────────────────────────────────────────── */
+    @media print {
+      #toc, #progress-bar, #back-to-top { display: none !important; }
+      #content { margin-left: 0; }
+      body { background: white; color: black; }
+    }
+
+    /* ─── Scrollbar ────────────────────────────────────────────── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 3px; }
+  </style>
+</head>
+<body>
+
+<div id="progress-bar"></div>
+
+<!-- ══════════════════════════════════════════════════
+     SIDEBAR / TOC
+══════════════════════════════════════════════════ -->
+<nav id="toc">
+  <div class="toc-logo">
+    <div class="toc-logo-badge">📋 Handbuch</div>
+    <h2>Atlas AdminSysOP</h2>
+    <p>v1.0 · © Felix Greis | Atlas GmbH 2026</p>
+  </div>
+
+  <div class="toc-section-label">Einstieg</div>
+  <a class="toc-item active" href="#einleitung"><span class="toc-icon">🏠</span> Einleitung</a>
+  <a class="toc-item" href="#installation"><span class="toc-icon">⚙️</span> Installation</a>
+  <a class="toc-item" href="#login"><span class="toc-icon">🔐</span> Anmeldung</a>
+  <a class="toc-item" href="#oberflaeche"><span class="toc-icon">🖥</span> Benutzeroberfläche</a>
+
+  <div class="toc-section-label">Module</div>
+  <a class="toc-item" href="#dashboard"><span class="toc-icon">📊</span> Dashboard</a>
+  <a class="toc-item" href="#karte"><span class="toc-icon">🗺</span> Karte & Lageführung</a>
+  <a class="toc-item" href="#vorfaelle"><span class="toc-icon">⚠️</span> Vorfälle</a>
+  <a class="toc-item" href="#alarme"><span class="toc-icon">🔔</span> Alarme</a>
+  <a class="toc-item" href="#kommunikation"><span class="toc-icon">💬</span> Kommunikation</a>
+  <a class="toc-item" href="#sensoren"><span class="toc-icon">📡</span> Sensoren</a>
+  <a class="toc-item" href="#flottenmanagement"><span class="toc-icon">🚗</span> Flottenmanagement</a>
+  <a class="toc-item" href="#navigation"><span class="toc-icon">🧭</span> Navigation</a>
+  <a class="toc-item" href="#analytics"><span class="toc-icon">🤖</span> KI-Analytik</a>
+  <a class="toc-item" href="#protokolle"><span class="toc-icon">📋</span> Protokolle</a>
+  <a class="toc-item" href="#benutzer"><span class="toc-icon">👥</span> Benutzerverwaltung</a>
+  <a class="toc-item" href="#pager"><span class="toc-icon">📟</span> Pager Gateway</a>
+  <a class="toc-item" href="#planer"><span class="toc-icon">🕐</span> Planer / Scheduler</a>
+
+  <div class="toc-section-label">Einstellungen</div>
+  <a class="toc-item" href="#push"><span class="toc-icon">📲</span> Push-Benachrichtigungen</a>
+  <a class="toc-item" href="#themes"><span class="toc-icon">🎨</span> Themes & Design</a>
+  <a class="toc-item" href="#sprache"><span class="toc-icon">🌐</span> Sprache</a>
+  <a class="toc-item" href="#toene"><span class="toc-icon">🔊</span> Alarmtöne</a>
+  <a class="toc-item" href="#module-verwaltung"><span class="toc-icon">🧩</span> Modul-Verwaltung</a>
+
+  <div class="toc-section-label">Referenz</div>
+  <a class="toc-item" href="#rollen"><span class="toc-icon">🛡</span> Rollen & Rechte</a>
+  <a class="toc-item" href="#api"><span class="toc-icon">🔌</span> API-Übersicht</a>
+  <a class="toc-item" href="#troubleshooting"><span class="toc-icon">🔧</span> Fehlerbehebung</a>
+
+  <div class="toc-footer">
+    Atlas AdminSysOP Handbuch<br>
+    Erstellt: 2026 · Felix Greis
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════════════ -->
+<main id="content">
+
+  <!-- ── HERO ── -->
+  <div class="hero" id="einleitung">
+    <div class="hero-badge">📋 Benutzerhandbuch · Version 1.0</div>
+    <h1>Atlas AdminSysOP</h1>
+    <p>Die universelle Operations-Management-Plattform für Leitstellen, Logistik, Sicherheit und Flottenmanagement. Professionell, sicher, skalierbar.</p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Version</span>
+        <span class="hero-meta-value">1.0.0</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Ersteller</span>
+        <span class="hero-meta-value">Felix Greis | Atlas GmbH</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Backend</span>
+        <span class="hero-meta-value">FastAPI + SQLite</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="hero-meta-label">Sprachen</span>
+        <span class="hero-meta-value">DE · EN · FR</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ÜBER DAS SYSTEM ── -->
+  <p>Atlas AdminSysOP ist eine webbasierte Echtzeit-Leitstellensoftware. Sie läuft vollständig im Browser ohne Installation – auf Desktop, Tablet und Smartphone. Die Plattform kombiniert Lageführung, Alarmmanagement, Kommunikation, Flottenüberwachung und KI-gestützte Analytik in einer einzigen Oberfläche.</p>
+
+  <div class="card-grid">
+    <div class="mini-card">
+      <div class="mini-card-icon">⚡</div>
+      <div class="mini-card-title">Echtzeit</div>
+      <div class="mini-card-desc">WebSocket-basierte Live-Updates ohne Seiten-Reload</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-icon">📱</div>
+      <div class="mini-card-title">Mobil-fähig</div>
+      <div class="mini-card-desc">PWA – installierbar auf iOS und Android als App</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-icon">🔒</div>
+      <div class="mini-card-title">Sicher</div>
+      <div class="mini-card-desc">Token-Auth, Rollenkonzept, Audit-Log jeder Aktion</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-icon">🌐</div>
+      <div class="mini-card-title">Mehrsprachig</div>
+      <div class="mini-card-desc">Vollständig in Deutsch, Englisch und Französisch</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-icon">🎨</div>
+      <div class="mini-card-title">11 Themes</div>
+      <div class="mini-card-desc">Von Corporate bis Cyberpunk – jederzeit wechselbar</div>
+    </div>
+    <div class="mini-card">
+      <div class="mini-card-icon">📲</div>
+      <div class="mini-card-title">Push-Alerts</div>
+      <div class="mini-card-desc">Benachrichtigungen auch bei geschlossenem Browser</div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════════════════════
+       INSTALLATION
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="installation">
+    <div class="section-header">
+      <div class="section-icon">⚙️</div>
+      <div class="section-title">
+        <h2>Installation & Start</h2>
+        <p>Einmalige Einrichtung über das Setup-Skript</p>
+      </div>
+    </div>
+
+    <p>Das gesamte System wird über eine einzige Datei – <code>setup.sh</code> – eingerichtet und gestartet. Python 3 ist die einzige Voraussetzung.</p>
+
+    <h3>Voraussetzungen</h3>
+    <ul class="feature-list">
+      <li>Python 3.9 oder höher</li>
+      <li>pip (Python Paketmanager)</li>
+      <li>Internetzugang für CDN-Ressourcen (Leaflet, Chart.js)</li>
+      <li>Moderner Browser (Chrome 90+, Firefox 90+, Safari 16+, Edge 90+)</li>
+    </ul>
+
+    <h3>Erster Start</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>Setup-Skript ausführen</h4>
+          <pre><span class="cmd">chmod +x setup.sh && ./setup.sh</span></pre>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>Erstkonfiguration ausfüllen</h4>
+          <p>Beim ersten Start erscheint ein interaktiver Wizard:</p>
+          <pre><span class="comment">  === Atlas AdminSysOP – Erstkonfiguration ===</span>
+<span class="key">Organisationsname:</span>    <span class="string">Meine Leitstelle</span>
+<span class="key">Einrichtungstyp:</span>      <span class="string">security</span>
+<span class="key">Admin-Name:</span>           <span class="string">Max Mustermann</span>
+<span class="key">Admin-Benutzername:</span>   <span class="string">admin</span>
+<span class="key">Admin-Passwort:</span>       <span class="string">••••••••</span>
+<span class="key">Tailscale aktivieren?</span> <span class="string">[j/N]: N</span></pre>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>Server startet automatisch</h4>
+          <p>Nach dem Wizard läuft der Server auf Port <code>8080</code>.</p>
+          <pre><span class="comment">  ═══════════════════════════════════════════════════════
+    Atlas AdminSysOP v1.0.0
+    © Felix Greis | Atlas GmbH 2026
+    Erreichbar unter: http://0.0.0.0:8080
+  ═══════════════════════════════════════════════════════</span></pre>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body">
+          <h4>Browser öffnen</h4>
+          <p>Navigieren Sie zu <code>http://localhost:8080</code> und melden Sie sich mit den konfigurierten Zugangsdaten an.</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>Pip-Pakete</h3>
+    <p>Das Skript installiert folgende Pakete automatisch:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Paket</th><th>Zweck</th><th>Pflicht?</th></tr></thead>
+        <tbody>
+          <tr><td>fastapi</td><td>Web-Framework und API</td><td><span class="badge badge-danger">Ja</span></td></tr>
+          <tr><td>uvicorn[standard]</td><td>ASGI-Server</td><td><span class="badge badge-danger">Ja</span></td></tr>
+          <tr><td>python-multipart</td><td>Formulardaten</td><td><span class="badge badge-danger">Ja</span></td></tr>
+          <tr><td>bcrypt</td><td>Passwort-Hashing</td><td><span class="badge badge-warning">Empfohlen</span></td></tr>
+          <tr><td>pywebpush</td><td>Web Push Notifications</td><td><span class="badge badge-info">Optional</span></td></tr>
+          <tr><td>cryptography</td><td>VAPID-Schlüssel für Push</td><td><span class="badge badge-info">Optional</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert-box alert-tip">
+      <span class="alert-box-icon">💡</span>
+      <p>Für vollständige Push-Notification-Funktionalität (auch bei geschlossenem Browser): <code>pip install pywebpush cryptography</code></p>
+    </div>
+
+    <h3>Tailscale-Integration (optional)</h3>
+    <p>Atlas AdminSysOP kann über Tailscale aus dem gesamten privaten Netzwerk (auch mobil, auch aus der Ferne) erreichbar gemacht werden. Der Server bindet an <code>0.0.0.0:8080</code> und ist dann über die Tailscale-IP direkt zugänglich – ohne VPN-Konfiguration.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       LOGIN
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="login">
+    <div class="section-header">
+      <div class="section-icon">🔐</div>
+      <div class="section-title">
+        <h2>Anmeldung & Sitzung</h2>
+        <p>Token-basierte Authentifizierung</p>
+      </div>
+    </div>
+
+    <p>Die Anmeldung erfolgt mit Benutzername und Passwort. Das System stellt einen sicheren Session-Token aus, der 24 Stunden gültig ist. Beim nächsten Öffnen des Browsers wird die Sitzung automatisch wiederhergestellt.</p>
+
+    <h3>Standard-Zugangsdaten (Erststart)</h3>
+    <div class="card">
+      <div style="display:flex;gap:32px;flex-wrap:wrap;">
+        <div>
+          <div style="font-size:11px;color:var(--text-dim);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Benutzername</div>
+          <code style="font-size:16px;">admin</code>
+        </div>
+        <div>
+          <div style="font-size:11px;color:var(--text-dim);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;">Passwort</div>
+          <code style="font-size:16px;">atlas2026</code>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-box alert-warning">
+      <span class="alert-box-icon">⚠️</span>
+      <p>Ändern Sie das Standard-Passwort sofort nach dem ersten Login unter <strong>Einstellungen → Konto</strong>.</p>
+    </div>
+
+    <h3>Sprache bei der Anmeldung</h3>
+    <p>Auf dem Login-Bildschirm sind die Sprach-Schaltflächen (🇩🇪 DE / 🇬🇧 EN / 🇫🇷 FR) sichtbar. Die gewählte Sprache wird gespeichert und beim nächsten Login vorausgewählt.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       BENUTZEROBERFLÄCHE
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="oberflaeche">
+    <div class="section-header">
+      <div class="section-icon">🖥</div>
+      <div class="section-title">
+        <h2>Benutzeroberfläche</h2>
+        <p>Aufbau und Navigation der Anwendung</p>
+      </div>
+    </div>
+
+    <h3>Hauptbereiche</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Bereich</th><th>Beschreibung</th></tr></thead>
+        <tbody>
+          <tr><td>Seitenleiste (Sidebar)</td><td>Hauptnavigation – Links zu allen Modulen, Benutzer-Karte, Organisations-Name</td></tr>
+          <tr><td>Topbar</td><td>Seitentitel, Online-Zähler, Sprache, Alarm-Glocke, Theme-Auswahl</td></tr>
+          <tr><td>Kritisches Alarm-Banner</td><td>Erscheint rot am oberen Rand, wenn kritische Alarme unquittiert vorliegen – klickbar</td></tr>
+          <tr><td>Hauptinhalt</td><td>Der jeweils aktive Modul-Bereich mit allen Daten und Aktionen</td></tr>
+          <tr><td>Detail-Panel</td><td>Slide-in von rechts bei Detailansichten (z.B. Fahrzeugdetail)</td></tr>
+          <tr><td>Modal-Dialog</td><td>Overlays für Formulare (Fahrzeug anlegen, Alarm quittieren, etc.)</td></tr>
+          <tr><td>Toast-Nachrichten</td><td>Kurze Statusmeldungen unten rechts (Erfolg/Warnung/Fehler)</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Navigation</h3>
+    <p>Alle Module werden über die Seitenleiste aufgerufen. Auf Mobilgeräten wird die Seitenleiste über das ☰-Symbol geöffnet. Deaktivierte Module erscheinen nicht in der Navigation.</p>
+
+    <h3>Online-Indikator</h3>
+    <p>Der grün pulsierende Punkt in der Topbar zeigt die Anzahl aktuell eingeloggter Benutzer. Diese Zahl wird in Echtzeit über WebSocket aktualisiert.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       DASHBOARD
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="dashboard">
+    <div class="section-header">
+      <div class="section-icon">📊</div>
+      <div class="section-title">
+        <h2>Dashboard</h2>
+        <p>Systemübersicht und Live-KPIs</p>
+      </div>
+    </div>
+
+    <p>Das Dashboard ist die Startseite nach dem Login. Es zeigt auf einen Blick alle kritischen Kennzahlen des Systems und eine Live-Aktivitätsliste.</p>
+
+    <h3>KPI-Kacheln</h3>
+    <div class="card-grid">
+      <div class="mini-card"><div class="mini-card-icon">⚠️</div><div class="mini-card-title">Aktive Vorfälle</div><div class="mini-card-desc">Offene und laufende Vorfälle gesamt</div></div>
+      <div class="mini-card"><div class="mini-card-icon">🔔</div><div class="mini-card-title">Unquittierte Alarme</div><div class="mini-card-desc">Alarme, die noch keine Bestätigung haben</div></div>
+      <div class="mini-card"><div class="mini-card-icon">📍</div><div class="mini-card-title">Assets online</div><div class="mini-card-desc">Aktuell aktive, überwachte Objekte</div></div>
+      <div class="mini-card"><div class="mini-card-icon">📡</div><div class="mini-card-title">Sensoren aktiv</div><div class="mini-card-desc">Online-Sensoren mit Live-Messung</div></div>
+    </div>
+
+    <h3>Live-Aktivitätsfeed</h3>
+    <p>Unter den KPI-Kacheln erscheinen in Echtzeit alle System-Ereignisse (neue Alarme, neue Vorfälle, neue Assets). Der Feed zeigt die letzten 50 Ereignisse mit Zeitstempel und Kategorie-Symbol.</p>
+
+    <div class="alert-box alert-info">
+      <span class="alert-box-icon">ℹ️</span>
+      <p>KPI-Kacheln blinken kurz auf (gelb), wenn sich ein Wert durch ein Live-Event ändert.</p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       KARTE
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="karte">
+    <div class="section-header">
+      <div class="section-icon">🗺</div>
+      <div class="section-title">
+        <h2>Karte & Lageführung</h2>
+        <p>Interaktive Live-Lagekarte mit Asset-Tracking</p>
+      </div>
+    </div>
+
+    <p>Die Lagekarte basiert auf <strong>Leaflet.js</strong> mit OpenStreetMap-Kartenmaterial. Sie zeigt alle Assets, Vorfälle und Sensoren in Echtzeit auf einer interaktiven Karte.</p>
+
+    <h3>Kartenelemente</h3>
+    <ul class="feature-list">
+      <li>Farbige Marker für Assets nach Status (aktiv = grün, Wartung = gelb, inaktiv = grau)</li>
+      <li>Vorfalls-Pins mit Schweregrads-Farbe (kritisch = rot, Warnung = orange)</li>
+      <li>Sensor-Symbole mit Alarm-Status-Anzeige</li>
+      <li>Klick auf Marker öffnet ein Info-Popup mit Details und Direktlinks</li>
+      <li>Assets bewegen sich in Echtzeit (Simulator + Live-Updates via WebSocket)</li>
+    </ul>
+
+    <h3>Asset-Verwaltung</h3>
+    <p>Über den Button <strong>+ Neues Asset</strong> können Objekte (Fahrzeuge, Personen, Geräte) angelegt werden. Felder: Name, Typ, GPS-Koordinaten, Status, Beschreibung, Zuweisung.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       VORFÄLLE
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="vorfaelle">
+    <div class="section-header">
+      <div class="section-icon">⚠️</div>
+      <div class="section-title">
+        <h2>Vorfallsmanagement</h2>
+        <p>Erfassung, Verfolgung und Abschluss von Vorfällen</p>
+      </div>
+    </div>
+
+    <h3>Vorfallsarten und Status</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Status</th><th>Bedeutung</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge badge-danger">Offen</span></td><td>Neu erfasst, noch nicht bearbeitet</td></tr>
+          <tr><td><span class="badge badge-warning">In Bearbeitung</span></td><td>Wird aktiv bearbeitet, Ressourcen zugewiesen</td></tr>
+          <tr><td><span class="badge badge-success">Abgeschlossen</span></td><td>Vorfall beendet und dokumentiert</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Schweregrade</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Grad</th><th>Einsatz</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge badge-info">Info</span></td><td>Routineereignisse, keine unmittelbare Gefahr</td></tr>
+          <tr><td><span class="badge badge-warning">Warnung</span></td><td>Beobachtungsbedürftige Situation</td></tr>
+          <tr><td><span class="badge badge-danger">Kritisch</span></td><td>Sofortiger Handlungsbedarf, alle Ressourcen alarmieren</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Neuen Vorfall anlegen</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body"><h4>„+ Neuer Vorfall" klicken</h4><p>Button oben rechts in der Vorfalls-Ansicht.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body"><h4>Formular ausfüllen</h4><p>Titel, Beschreibung, Schweregrad, GPS-Koordinaten, zuständige Person.</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body"><h4>Speichern</h4><p>Der Vorfall erscheint sofort in der Liste und auf der Lagekarte. Alle eingeloggten Benutzer werden via WebSocket informiert.</p></div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       ALARME
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="alarme">
+    <div class="section-header">
+      <div class="section-icon">🔔</div>
+      <div class="section-title">
+        <h2>Alarmsystem</h2>
+        <p>Automatische und manuelle Alarme mit Push-Benachrichtigung</p>
+      </div>
+    </div>
+
+    <p>Alarme können manuell erstellt oder vom System automatisch ausgelöst werden (z.B. bei Sensor-Schwellenwert-Überschreitung oder Flotten-Fälligkeit). Kritische Alarme lösen sofortige Push-Benachrichtigungen auf allen registrierten Geräten aus.</p>
+
+    <h3>Alarm-Eskalation</h3>
+    <p>Das System prüft alle 60 Sekunden unquittierte Alarme. Alarme, die länger als 10 Minuten unbeantwortet bleiben, werden automatisch auf den nächsthöheren Schweregrad eskaliert.</p>
+
+    <h3>Quittierung</h3>
+    <ul class="feature-list">
+      <li>Einzeln quittieren: Klick auf „✓ Quittieren" beim jeweiligen Alarm</li>
+      <li>Alle quittieren: Schaltfläche „Alle quittieren" oben rechts (nur Admin/Operator)</li>
+      <li>Quittierung via Push-Benachrichtigung: Direkt aus dem Benachrichtigungs-Popup (Android)</li>
+    </ul>
+
+    <div class="alert-box alert-warning">
+      <span class="alert-box-icon">🚨</span>
+      <p>Das rote Banner am oberen Rand erscheint, solange kritische Alarme unquittiert sind. Es verschwindet erst, wenn alle kritischen Alarme bestätigt wurden.</p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       KOMMUNIKATION
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="kommunikation">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <div class="section-title">
+        <h2>Kommunikation</h2>
+        <p>Gruppen-Chat und Direktnachrichten</p>
+      </div>
+    </div>
+
+    <p>Das integrierte Chat-System ermöglicht Echtzeit-Kommunikation zwischen allen eingeloggten Benutzern ohne externe Dienste.</p>
+
+    <h3>Chat-Typen</h3>
+    <div class="card-grid">
+      <div class="mini-card">
+        <div class="mini-card-icon">🏠</div>
+        <div class="mini-card-title">Öffentliche Räume</div>
+        <div class="mini-card-desc">Für alle Benutzer sichtbar (z.B. „Allgemein", „Einsatz", „Technik")</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-card-icon">🔒</div>
+        <div class="mini-card-title">Direktnachrichten</div>
+        <div class="mini-card-desc">Private 1:1-Gespräche zwischen Benutzern, ungelesen markiert</div>
+      </div>
+    </div>
+
+    <h3>Nachrichten senden</h3>
+    <p>Nachricht im Textfeld eingeben und mit <kbd>Enter</kbd> senden. Shift+Enter fügt einen Zeilenumbruch ein. Tages-Trennlinien trennen Nachrichten verschiedener Tage optisch.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       SENSOREN
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="sensoren">
+    <div class="section-header">
+      <div class="section-icon">📡</div>
+      <div class="section-title">
+        <h2>Sensoren & Hardware</h2>
+        <p>Live-Sensor-Monitoring mit automatischer Alarm-Auslösung</p>
+      </div>
+    </div>
+
+    <p>Das Sensor-Modul überwacht beliebige Messwerte in Echtzeit. Jeder Sensor hat definierte Min/Max-Schwellenwerte. Bei Überschreitung wird automatisch ein Alarm mit dem entsprechenden Schweregrad ausgelöst.</p>
+
+    <h3>Sensor-Typen</h3>
+    <div class="tone-grid" style="margin-bottom:20px;">
+      <div class="tone-item"><span>🌡</span> Temperatur</div>
+      <div class="tone-item"><span>💧</span> Feuchtigkeit</div>
+      <div class="tone-item"><span>🔥</span> Rauchmelder</div>
+      <div class="tone-item"><span>⚡</span> Strom / Spannung</div>
+      <div class="tone-item"><span>🔊</span> Lärmpegel</div>
+      <div class="tone-item"><span>💨</span> Luftqualität / CO₂</div>
+      <div class="tone-item"><span>📊</span> Druck</div>
+      <div class="tone-item"><span>🌊</span> Füllstand</div>
+    </div>
+
+    <h3>Sensor-Karten</h3>
+    <p>Jeder Sensor wird als Karte mit Live-Messwert, Einheit, Min/Max-Balken und Status-Badge dargestellt. Im Alarm-Zustand pulsiert die Karte rot. Das Diagramm der letzten 24 Stunden zeigt den Verlauf.</p>
+
+    <h3>Sensor anlegen</h3>
+    <p>Über <strong>+ Neuer Sensor</strong>: Name, Typ, Einheit (z.B. °C, %, dB), Standort, GPS-Koordinaten und Schwellenwerte (Min/Max) festlegen. Der Simulator generiert danach automatisch realistische Messwerte.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       FLOTTENMANAGEMENT
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="flottenmanagement">
+    <div class="section-header">
+      <div class="section-icon">🚗</div>
+      <div class="section-title">
+        <h2>Flottenmanagement</h2>
+        <p>Vollständige Fahrzeug-, Fahrer- und Tripverwaltung</p>
+      </div>
+    </div>
+
+    <p>Das Flottenmodul ist ein vollwertiges Fuhrpark-Management-System für alle Fahrzeugtypen. Es verwaltet Fahrzeuge, Fahrer, Trips, Wartungen, Kraftstoff-Logs und Dokumente.</p>
+
+    <h3>Unterstützte Fahrzeugtypen</h3>
+    <div class="module-grid">
+      <div class="module-item"><div class="module-emoji">🚗</div><div class="module-info"><h4>PKW / Van</h4><p>Personenkraftwagen, Transporter</p></div></div>
+      <div class="module-item"><div class="module-emoji">🚌</div><div class="module-info"><h4>Bus</h4><p>Stadt-, Reise- und Schulbusse</p></div></div>
+      <div class="module-item"><div class="module-emoji">✈️</div><div class="module-info"><h4>Flugzeug</h4><p>Propellermaschinen, Hubschrauber</p></div></div>
+      <div class="module-item"><div class="module-emoji">🛩</div><div class="module-info"><h4>Jet</h4><p>Privatjets, Geschäftsreise-Jets</p></div></div>
+      <div class="module-item"><div class="module-emoji">🚢</div><div class="module-info"><h4>Schiff / Boot</h4><p>Motorboote, Fähren, Frachter</p></div></div>
+    </div>
+
+    <h3>Tabs im Flottenmodul</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Tab</th><th>Inhalt</th></tr></thead>
+        <tbody>
+          <tr><td>🚗 Fahrzeuge</td><td>Alle Fahrzeuge mit Status, nächster Wartung, zugewiesenem Fahrer. Klick öffnet Detailansicht.</td></tr>
+          <tr><td>👤 Fahrer</td><td>Fahrerliste mit Führerscheinklasse, Ablaufdatum, Kontakt, Status</td></tr>
+          <tr><td>🛣 Trips</td><td>Geplante, aktive und abgeschlossene Fahrten mit Strecke und Fahrzeugzuweisung</td></tr>
+          <tr><td>🔧 Wartung</td><td>Wartungskalender mit fälligen und abgeschlossenen Wartungsaufgaben</td></tr>
+          <tr><td>⛽ Kraftstoff</td><td>Tankprotokoll mit Kosten, Litern, Kilometerstand pro Fahrzeug</td></tr>
+          <tr><td>🗺 Karte</td><td>Live-Karte aller Flottenfahrzeuge mit GPS-Positionen und Status</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Fahrzeug-Detailansicht</h3>
+    <p>Klick auf ein Fahrzeug öffnet ein Slide-Panel mit:</p>
+    <ul class="feature-list">
+      <li>Vollständige Fahrzeugdaten (Kennzeichen, VIN, Baujahr, Farbe, Kraftstofftyp)</li>
+      <li>Aktuelle Kraftstoff-Kennzahlen (Kosten, Liter, Verbrauch)</li>
+      <li>Fahrerzuweisung per Dropdown</li>
+      <li>Ausstehende Wartungen mit Warnung bei Fälligkeit</li>
+      <li>Dokumente (Versicherung, TÜV, Zulassung) mit Ablaufdatum-Ampel</li>
+      <li>Direktlink zur Navigation (🧭 Navigate)</li>
+    </ul>
+
+    <h3>Flotten-KPIs</h3>
+    <p>Oben in der Flottenansicht erscheinen automatisch berechnete KPI-Kacheln:</p>
+    <div class="card-grid">
+      <div class="mini-card"><div class="mini-card-icon">🚗</div><div class="mini-card-title">Fahrzeuge gesamt</div></div>
+      <div class="mini-card"><div class="mini-card-icon">✅</div><div class="mini-card-title">Verfügbar</div></div>
+      <div class="mini-card"><div class="mini-card-icon">🛣️</div><div class="mini-card-title">Im Einsatz</div></div>
+      <div class="mini-card"><div class="mini-card-icon">🔧</div><div class="mini-card-title">In Wartung</div></div>
+      <div class="mini-card"><div class="mini-card-icon">🗺</div><div class="mini-card-title">Trips gesamt</div></div>
+      <div class="mini-card"><div class="mini-card-icon">💶</div><div class="mini-card-title">Kraftstoffkosten</div></div>
+    </div>
+
+    <h3>Automatische Flotten-Alarme</h3>
+    <p>Das System prüft täglich und sendet Alarme bei:</p>
+    <ul class="feature-list">
+      <li>Versicherung läuft in weniger als 30 Tagen ab</li>
+      <li>TÜV / Hauptuntersuchung fällig in weniger als 14 Tagen</li>
+      <li>Wartung überfällig</li>
+      <li>Führerschein eines Fahrers läuft ab</li>
+    </ul>
+
+    <h3>Daten exportieren</h3>
+    <p>Über den <strong>⬇ Export</strong>-Button wird die vollständige Fahrzeugliste als CSV-Datei heruntergeladen.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       NAVIGATION
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="navigation">
+    <div class="section-header">
+      <div class="section-icon">🧭</div>
+      <div class="section-title">
+        <h2>Navigation</h2>
+        <p>Turn-by-Turn mit Sprachansage</p>
+      </div>
+    </div>
+
+    <p>Das Navigationsmodul bietet Abbiegungsanweisungen Schritt für Schritt – vergleichbar mit Google Maps oder Apple Maps – direkt in der Plattform. Es verwendet <strong>OpenRouteService</strong> (kostenlose, quelloffene API) und GPS des Geräts.</p>
+
+    <h3>Funktionen</h3>
+    <ul class="feature-list">
+      <li>Start per Adresseingabe oder GPS-Knopf 📍 (aktueller Standort)</li>
+      <li>Transportmodi: 🚗 Auto / 🚲 Fahrrad / 🚶 Zu Fuß</li>
+      <li>Animierte Route auf der Karte (gestrichelte Linie)</li>
+      <li>Große Abbiegungsanweisung oben (Pfeil + Text + Entfernung)</li>
+      <li>Scrollbare Schritt-für-Schritt-Liste aller Anweisungen</li>
+      <li>ETA und Gesamtentfernung in der Statusleiste</li>
+      <li>Sprachansagen via <strong>SpeechSynthesis</strong> (DE/EN/FR passend zur Spracheinstellung)</li>
+      <li>Automatisches Nachjustieren bei GPS-Abweichung (Neuberechnung)</li>
+      <li>Integration ins Flottenmodul: Fahrzeugziel direkt als Navigationsziel übernehmen</li>
+    </ul>
+
+    <h3>Route starten</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body"><h4>Start eingeben</h4><p>Adresse eintippen oder 📍 für GPS-Standort klicken</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body"><h4>Ziel eingeben</h4><p>Zieladresse oder Koordinaten im Format „lat, lng"</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body"><h4>Transportmodus wählen</h4><p>Auto, Fahrrad oder Zu Fuß</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body"><h4>▶ Navigation starten</h4><p>Route wird berechnet, GPS-Tracking beginnt, Sprachansagen starten</p></div>
+      </div>
+    </div>
+
+    <div class="alert-box alert-info">
+      <span class="alert-box-icon">ℹ️</span>
+      <p>Bei fehlender Internetverbindung oder API-Timeout wird eine direkte Luftlinie als Notfall-Fallback angezeigt.</p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       ANALYTICS
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="analytics">
+    <div class="section-header">
+      <div class="section-icon">🤖</div>
+      <div class="section-title">
+        <h2>KI-Analytik</h2>
+        <p>Anomalie-Erkennung und Trendanalyse</p>
+      </div>
+    </div>
+
+    <p>Das Analytik-Modul wertet alle Sensordaten, Alarme und Vorfälle statistisch aus und erkennt automatisch Anomalien durch Z-Score-Analyse.</p>
+
+    <h3>Dashboard-Komponenten</h3>
+    <div class="module-grid">
+      <div class="module-item"><div class="module-emoji">📈</div><div class="module-info"><h4>KPI-Übersicht</h4><p>Anomalien, Gesamtlesungen, aktuelle Vorfälle, aktive Alarme</p></div></div>
+      <div class="module-item"><div class="module-emoji">🚨</div><div class="module-info"><h4>Anomalie-Karten</h4><p>Sensoren mit statistischer Abweichung (Z-Score &gt; 2σ)</p></div></div>
+      <div class="module-item"><div class="module-emoji">📊</div><div class="module-info"><h4>Alarm-Trend (24h)</h4><p>Gestapeltes Balkendiagramm: kritische vs. Warnungs-Alarme pro Stunde</p></div></div>
+      <div class="module-item"><div class="module-emoji">🍩</div><div class="module-info"><h4>Sensor-Verteilung</h4><p>Kreisdiagramm der Sensor-Typen mit Alarm-Anzahl</p></div></div>
+      <div class="module-item"><div class="module-emoji">🔥</div><div class="module-info"><h4>Heatmap</h4><p>Aktivitätsmuster der letzten 24 Stunden nach Stunde</p></div></div>
+    </div>
+
+    <h3>Anomalie-Erkennung</h3>
+    <p>Für jeden Sensor berechnet das System den Z-Score der letzten Messung im Vergleich zu historischen Werten. Abweichungen über 2 Sigma werden als Anomalie markiert, über 3 Sigma als kritische Anomalie – mit einem farbigen Fortschrittsbalken in der Karte.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       PROTOKOLLE
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="protokolle">
+    <div class="section-header">
+      <div class="section-icon">📋</div>
+      <div class="section-title">
+        <h2>Protokolle</h2>
+        <p>Unveränderliches Audit-Log aller Aktionen</p>
+      </div>
+    </div>
+
+    <p>Jede schreibende Aktion im System wird automatisch protokolliert – unveränderlich und mit Zeitstempel, Benutzer und IP-Adresse. Das Protokoll dient zur Nachvollziehbarkeit und Compliance.</p>
+
+    <h3>Protokoll-Kategorien</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Kategorie</th><th>Beispiele</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge badge-info">Auth</span></td><td>Login, Logout, fehlgeschlagene Anmeldeversuche</td></tr>
+          <tr><td><span class="badge badge-success">Erstellen</span></td><td>Neues Asset, neuer Vorfall, neuer Sensor, neues Fahrzeug</td></tr>
+          <tr><td><span class="badge badge-warning">Aktualisieren</span></td><td>Status-Änderungen, Benutzer-Updates, Konfigurationsänderungen</td></tr>
+          <tr><td><span class="badge badge-danger">Löschen</span></td><td>Gelöschte Einträge (mit ID im Detail)</td></tr>
+          <tr><td><span class="badge badge-danger">Alarm</span></td><td>Alarm-Erstellung, Quittierung</td></tr>
+          <tr><td><span class="badge badge-purple">Flotte</span></td><td>Fahrzeugverwaltung, Fahrerzuweisung, Trip-Status</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Filtern und Suchen</h3>
+    <p>Die Protokollliste kann nach Benutzer, Aktions-Kategorie und freiem Suchtext gefiltert werden. Seitennavigation für große Protokollmengen (50 Einträge pro Seite).</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       BENUTZER
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="benutzer">
+    <div class="section-header">
+      <div class="section-icon">👥</div>
+      <div class="section-title">
+        <h2>Benutzerverwaltung</h2>
+        <p>Benutzerkonten, Rollen und Online-Status</p>
+      </div>
+    </div>
+
+    <p>Nur Administratoren haben Zugriff auf die Benutzerverwaltung. Hier werden alle Konten verwaltet, Rollen zugewiesen und der Online-Status in Echtzeit angezeigt.</p>
+
+    <h3>Benutzer-Kacheln</h3>
+    <div class="card-grid">
+      <div class="mini-card"><div class="mini-card-icon">👥</div><div class="mini-card-title">Gesamt</div></div>
+      <div class="mini-card"><div class="mini-card-icon">🟢</div><div class="mini-card-title">Gerade online</div></div>
+      <div class="mini-card"><div class="mini-card-icon">🛡</div><div class="mini-card-title">Administratoren</div></div>
+      <div class="mini-card"><div class="mini-card-icon">✅</div><div class="mini-card-title">Aktive Konten</div></div>
+    </div>
+
+    <h3>Neuen Benutzer anlegen</h3>
+    <p>Felder: Vollständiger Name, Benutzername (eindeutig), Passwort, Rolle, Sprache, Theme. Das Passwort wird mit bcrypt gehasht und nie im Klartext gespeichert.</p>
+
+    <h3>Online-Status</h3>
+    <p>In der Benutzerliste zeigt ein grüner Punkt 🟢 aktuell eingeloggte Benutzer. Dieser Status wird in Echtzeit via WebSocket aktualisiert – ohne Seiten-Reload.</p>
+  </section>
+
+
+  <div class="divider"></div>
+  <h2 style="font-size:22px;font-weight:800;margin-bottom:8px;color:var(--text);">⚙️ Einstellungen</h2>
+  <p style="margin-bottom:40px;">Die Einstellungsseite ist über das ⚙-Symbol in der Benutzer-Karte unten links erreichbar.</p>
+
+
+  <!-- ══════════════════════════════════════════════════
+       PUSH
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="push">
+    <div class="section-header">
+      <div class="section-icon">📲</div>
+      <div class="section-title">
+        <h2>Push-Benachrichtigungen</h2>
+        <p>Alarme auch bei geschlossenem Browser – inkl. Stummodus-Bypass</p>
+      </div>
+    </div>
+
+    <p>Atlas AdminSysOP nutzt die <strong>Web Push API</strong> mit Service Worker, um Benachrichtigungen direkt ans Gerät zu senden – auch wenn der Browser geschlossen ist oder die App im Hintergrund läuft.</p>
+
+    <h3>Push aktivieren</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body"><h4>Einstellungen öffnen</h4><p>⚙ unten links → Einstellungen</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body"><h4>„🔔 Push-Benachrichtigungen aktivieren" klicken</h4><p>Browser fragt nach Berechtigung – Zulassen wählen</p></div>
+      </div>
+      <div class="step">
+        <div class="step-num"></div>
+        <div class="step-body"><h4>Bestätigung</h4><p>Status wechselt auf „Aktiv". Test-Benachrichtigung optional versenden.</p></div>
+      </div>
+    </div>
+
+    <h3>Stummodus & DND-Bypass</h3>
+    <div class="card">
+      <p style="margin-bottom:8px;font-weight:600;color:var(--text);">🔊 Wie kritische Alarme den Stummodus umgehen:</p>
+      <ul class="feature-list" style="margin-bottom:0;">
+        <li><strong>Android:</strong> <code>silent: false</code> in der Benachrichtigung erzwingt Ton und Vibration auch bei aktiviertem „Nicht stören". Vibrationsmuster: Kritisch = 3× lang [300ms, 100ms, 300ms, 100ms, 600ms]</li>
+        <li><strong>iOS (PWA):</strong> App als PWA installieren (Safari → „Zum Home-Bildschirm") für beste Ergebnisse. Ab iOS 16.4 unterstützt WebKit Web Push in installierten PWAs.</li>
+        <li><strong>Desktop:</strong> Browser muss zumindest im Hintergrund laufen. Systembenachrichtigungen erscheinen unabhängig vom Browser-Fokus.</li>
+      </ul>
+    </div>
+
+    <h3>Benachrichtigungs-Typen</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Schweregrad</th><th>Verhalten</th><th>Vibration</th></tr></thead>
+        <tbody>
+          <tr><td><span class="badge badge-danger">🚨 Kritisch</span></td><td>Bleibt bis zur Interaktion sichtbar, Erneut-Alarm bei gleicher ID</td><td>3× lang</td></tr>
+          <tr><td><span class="badge badge-warning">⚠️ Warnung</span></td><td>Standard-Benachrichtigung, auto-dismiss nach ~8 Sek.</td><td>2× kurz</td></tr>
+          <tr><td><span class="badge badge-info">ℹ️ Info</span></td><td>Leise Benachrichtigung</td><td>1× kurz</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Test-Benachrichtigung</h3>
+    <p>Über <strong>🧪 Test-Benachrichtigung senden</strong> wird sofort ein Test-Push an alle registrierten Geräte des aktuellen Benutzers gesendet. Bei fehlendem <code>pywebpush</code>-Paket wird stattdessen eine lokale Benachrichtigung angezeigt.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       THEMES
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="themes">
+    <div class="section-header">
+      <div class="section-icon">🎨</div>
+      <div class="section-title">
+        <h2>Themes &amp; Design</h2>
+        <p>11 professionelle Farbschemas</p>
+      </div>
+    </div>
+
+    <p>Das Theme wird über das 🎨-Symbol in der Topbar oder in den Einstellungen gewählt. Die Auswahl wird im Benutzerprofil gespeichert und beim nächsten Login automatisch geladen.</p>
+
+    <div class="theme-grid">
+      <div class="theme-chip" style="background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#00e5ff;border-color:#00e5ff33;">🌊 Liquid Glass</div>
+      <div class="theme-chip" style="background:linear-gradient(135deg,#0d0d0d,#1a0a2e);color:#00ff88;border-color:#00ff8833;">⚡ Cyberpunk</div>
+      <div class="theme-chip" style="background:linear-gradient(135deg,rgba(255,255,255,0.1),rgba(255,255,255,0.05));color:#e2e8f0;border-color:rgba(255,255,255,0.2);">🔮 Glass</div>
+      <div class="theme-chip" style="background:linear-gradient(135deg,#0f172a,#1e3a5f);color:#93c5fd;border-color:#3b82f633;">🏢 Corporate</div>
+      <div class="theme-chip" style="background:linear-gradient(135deg,#0f1a0a,#1a2e10);color:#4ade80;border-color:#16a34a33;">🪖 Military</div>
+      <div class="theme-chip" style="background:linear-gradient(135deg,#1a1300,#2d1f00);color:#fbbf24;border-color:#d97706;">✨ Gold</div>
+      <div class="theme-chip" style="background:linear-gradient(135deg,#f0f9ff,#e0f2fe);color:#0369a1;border-color:#0284c733;">🌨 Arctic</div>
+      <div class="theme-chip" style="background:linear-gradient(135deg,#1a0a00,#2d1500);color:#fb923c;border-color:#ea580c33;">🌅 Sunset</div>
+      <div class="theme-chip" style="background:#000;color:#00ff00;border-color:#00ff0033;font-family:monospace;">💻 Matrix</div>
+      <div class="theme-chip" style="background:linear-gradient(135deg,#1a0a2e,#2d1060);color:#a78bfa;border-color:#7c3aed33;">👑 Royal</div>
+      <div class="theme-chip" style="background:linear-gradient(135deg,#1a0000,#3d0000);color:#f87171;border-color:#dc262633;">🔥 Fire</div>
+    </div>
+
+    <div class="alert-box alert-tip">
+      <span class="alert-box-icon">💡</span>
+      <p>Das <strong>Liquid Glass</strong>-Theme (Standard) ist für optimale Lesbarkeit im Einsatz bei Tageslicht und Kunstlicht ausgelegt. Das <strong>Matrix</strong>-Theme eignet sich für dunkel abgeschirmte Leitstellen.</p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       SPRACHE
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="sprache">
+    <div class="section-header">
+      <div class="section-icon">🌐</div>
+      <div class="section-title">
+        <h2>Mehrsprachigkeit</h2>
+        <p>Vollständig in Deutsch, Englisch und Französisch</p>
+      </div>
+    </div>
+
+    <p>Die Sprache kann jederzeit über die Schaltflächen <kbd>DE</kbd> <kbd>EN</kbd> <kbd>FR</kbd> in der Topbar gewechselt werden. Die Auswahl gilt sofort und wird im Benutzerprofil gespeichert.</p>
+
+    <p>Alle UI-Texte, Statusmeldungen, Fehlertexte und Navigationsanweisungen sind vollständig übersetzt. Die Sprachansagen der Navigation passen sich automatisch der gewählten Sprache an.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       TÖNE
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="toene">
+    <div class="section-header">
+      <div class="section-icon">🔊</div>
+      <div class="section-title">
+        <h2>Alarmtöne</h2>
+        <p>20 synthetisierte Töne – keine Audio-Dateien nötig</p>
+      </div>
+    </div>
+
+    <p>Alle Alarmtöne werden programmatisch via <strong>Web Audio API</strong> direkt im Browser synthetisiert. Keine MP3-Dateien, keine externen Ressourcen. Jeder Ton kann in den Einstellungen getestet und pro Schweregrad (Kritisch / Warnung / Info) zugewiesen werden.</p>
+
+    <div class="tone-grid">
+      <div class="tone-item"><span class="tone-num">01</span> Emergency Siren</div>
+      <div class="tone-item"><span class="tone-num">02</span> Police Horn</div>
+      <div class="tone-item"><span class="tone-num">03</span> Fire Alarm</div>
+      <div class="tone-item"><span class="tone-num">04</span> Air Raid</div>
+      <div class="tone-item"><span class="tone-num">05</span> Nuclear Alert</div>
+      <div class="tone-item"><span class="tone-num">06</span> Digital Beep</div>
+      <div class="tone-item"><span class="tone-num">07</span> Combat Alert</div>
+      <div class="tone-item"><span class="tone-num">08</span> Submarine Dive</div>
+      <div class="tone-item"><span class="tone-num">09</span> Radar Ping</div>
+      <div class="tone-item"><span class="tone-num">10</span> Military Bugle</div>
+      <div class="tone-item"><span class="tone-num">11</span> Morse SOS</div>
+      <div class="tone-item"><span class="tone-num">12</span> Klaxon</div>
+      <div class="tone-item"><span class="tone-num">13</span> Chime</div>
+      <div class="tone-item"><span class="tone-num">14</span> Electronic Warning</div>
+      <div class="tone-item"><span class="tone-num">15</span> Factory Horn</div>
+      <div class="tone-item"><span class="tone-num">16</span> Ship's Bell</div>
+      <div class="tone-item"><span class="tone-num">17</span> Thunder Crack</div>
+      <div class="tone-item"><span class="tone-num">18</span> Helicopter</div>
+      <div class="tone-item"><span class="tone-num">19</span> Laser Alarm</div>
+      <div class="tone-item"><span class="tone-num">20</span> Custom (frei konfigurierbar)</div>
+    </div>
+
+    <p style="margin-top:16px;">Ton Nr. 20 (Custom) erlaubt die freie Einstellung von Frequenz (Hz) und Wellenform (Sinus, Rechteck, Sägezahn, Dreieck) in den Einstellungen.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       MODULE VERWALTUNG
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="module-verwaltung">
+    <div class="section-header">
+      <div class="section-icon">🧩</div>
+      <div class="section-title">
+        <h2>Modul-Verwaltung</h2>
+        <p>Module aktivieren und deaktivieren</p>
+      </div>
+    </div>
+
+    <p>Administratoren können über den Bereich <strong>Module</strong> in der Seitenleiste einzelne Systemmodule aktivieren oder deaktivieren. Deaktivierte Module verschwinden aus der Navigation aller Benutzer in Echtzeit.</p>
+
+    <div class="module-grid">
+      <div class="module-item"><div class="module-emoji">🗺</div><div class="module-info"><h4>Lageführung</h4><p>Interaktive Lagekarte</p></div></div>
+      <div class="module-item"><div class="module-emoji">⚠️</div><div class="module-info"><h4>Vorfälle</h4><p>Vorfalls-Management</p></div></div>
+      <div class="module-item"><div class="module-emoji">🔔</div><div class="module-info"><h4>Alarmsystem</h4><p>Alarm-Verwaltung</p></div></div>
+      <div class="module-item"><div class="module-emoji">💬</div><div class="module-info"><h4>Kommunikation</h4><p>Chat und DMs</p></div></div>
+      <div class="module-item"><div class="module-emoji">📋</div><div class="module-info"><h4>Protokolle</h4><p>Audit-Log</p></div></div>
+      <div class="module-item"><div class="module-emoji">📡</div><div class="module-info"><h4>Sensoren</h4><p>Hardware-Monitoring</p></div></div>
+      <div class="module-item"><div class="module-emoji">🤖</div><div class="module-info"><h4>KI-Analytik</h4><p>Anomalie-Erkennung</p></div></div>
+      <div class="module-item"><div class="module-emoji">👥</div><div class="module-info"><h4>Benutzer</h4><p>Kontoverwaltung</p></div></div>
+      <div class="module-item"><div class="module-emoji">🚗</div><div class="module-info"><h4>Flotte</h4><p>Flottenmanagement</p></div></div>
+      <div class="module-item"><div class="module-emoji">🧭</div><div class="module-info"><h4>Navigation</h4><p>Turn-by-Turn</p></div></div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       PAGER GATEWAY
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="pager">
+    <div class="section-header">
+      <div class="section-icon">📟</div>
+      <div class="section-title">
+        <h2>Pager Gateway</h2>
+        <p class="section-subtitle">Bidirektionales POCSAG-Gateway mit universeller Push-Abdeckung</p>
+      </div>
+    </div>
+
+    <div class="alert-box info">
+      <strong>Voraussetzung:</strong> Amateurfunklizenz erforderlich für DAPNET-Sendebetrieb. Empfang (RX) ist lizenzfrei. Hardware: RTL-SDR V3/V4 USB-Dongle für RX, RPiTX (GPIO4) oder HackRF One für TX.
+    </div>
+
+    <h3 style="margin:24px 0 12px;font-size:16px;">Architektur</h3>
+    <p>Das Pager Gateway verbindet Atlas AdminSysOP mit dem <strong>DAPNET-Netzwerk</strong> (hampager.de) und sorgt dafür, dass Alarme gleichzeitig über alle Kanäle zugestellt werden:</p>
+    <table class="data-table" style="margin-top:12px;">
+      <thead><tr><th>Kanal</th><th>Geräte</th><th>Methode</th></tr></thead>
+      <tbody>
+        <tr><td>🌐 Web Push (VAPID)</td><td>Browser, PWA (alle Geräte)</td><td>Service Worker + Push-API</td></tr>
+        <tr><td>📱 ntfy</td><td>Android &amp; iOS (App Store)</td><td>Self-hosted ntfy + APNs-Relay</td></tr>
+        <tr><td>🔗 Apprise</td><td>Telegram, E-Mail, Discord, Signal, Slack, Matrix u.v.m.</td><td>90+ Dienste via apprise-Bibliothek</td></tr>
+        <tr><td>📟 DAPNET</td><td>Echte Pager-Hardware (BOS, Feuerwehr, Industrie)</td><td>hampager.de REST-API</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin:24px 0 12px;font-size:16px;">Tab 1 – Empfangen (POCSAG RX)</h3>
+    <ul class="feature-list">
+      <li><strong>Receiver starten/stoppen:</strong> Startet den RTL-SDR mit multimon-ng als Hintergrundprozess. Empfängt POCSAG512/1200/2400 automatisch.</li>
+      <li><strong>Live-Feed:</strong> Empfangene Nachrichten erscheinen in Echtzeit im Feed (WebSocket). Jede Nachricht zeigt Capcode, Protokoll, Frequenz und Zeitstempel.</li>
+      <li><strong>Frequenz &amp; Gain:</strong> Standard 439,9875 MHz (DAPNET Deutschland). Gain 0–50 dB einstellbar.</li>
+      <li><strong>Capcode-Filter:</strong> Nur bestimmte Capcodes verarbeiten (kommagetrennt). Leer = alle empfangen.</li>
+      <li><strong>Atlas-Alarme aus RX:</strong> Aktiviert → jede empfangene POCSAG-Nachricht erstellt automatisch einen Atlas-Alarm mit Severity „info".</li>
+    </ul>
+
+    <h3 style="margin:24px 0 12px;font-size:16px;">Tab 2 – Senden (DAPNET TX)</h3>
+    <ul class="feature-list">
+      <li><strong>Nachricht senden:</strong> Max. 80 Zeichen (POCSAG Alpha). Ziel-Rufzeichen kommagetrennt eingeben.</li>
+      <li><strong>DAPNET-Konfiguration:</strong> Eigenes Rufzeichen, Passwort (von hampager.de), Sendergruppe (Standard: dl-all), Schwellenwert für automatischen Versand.</li>
+      <li><strong>Auto-Dispatch:</strong> Wenn aktiviert, werden Alarme mit der konfigurierten Schwere (z.B. critical,warning) automatisch als Pager-Nachricht über DAPNET gesendet.</li>
+      <li><strong>DAPNET Test:</strong> Sendet eine Test-Nachricht an die konfigurierten Rufzeichen zur Verbindungsprüfung.</li>
+    </ul>
+
+    <h3 style="margin:24px 0 12px;font-size:16px;">Tab 3 – Push-Kanäle</h3>
+    <ul class="feature-list">
+      <li><strong>Web Push:</strong> Status des Service Worker. „Enable" aktiviert VAPID-Push für diesen Browser.</li>
+      <li><strong>ntfy-Konfiguration:</strong> URL des ntfy-Servers (z.B. http://pi-hostname:2586), Topic (Standard: atlas-alerts), optionaler Bearer-Token. <em>iOS-Tipp:</em> upstream-base-url: https://ntfy.sh in server.yml setzen → APNs-Relay aktiv.</li>
+      <li><strong>Apprise-URLs:</strong> Eine URL pro Zeile. Beispiele:<br>
+        <code style="font-size:12px;display:block;margin-top:6px;padding:8px;background:rgba(0,0,0,0.3);border-radius:6px;">tgram://BOTTOKEN/CHATID<br>mailto://user:pass@gmail.com<br>discord://WEBHOOK_ID/WEBHOOK_TOKEN<br>slack://tokenA/tokenB/tokenC/channel</code>
+      </li>
+      <li><strong>Aktive Kanäle:</strong> Checkboxen steuern, welche Kanäle beim Alarm-Dispatch aktiv sind (webpush, ntfy, apprise, dapnet).</li>
+    </ul>
+
+    <div class="alert-box" style="background:rgba(124,58,237,0.1);border-color:rgba(124,58,237,0.4);margin-top:20px;">
+      <strong>Raspberry Pi Setup:</strong> Führe <code>sudo bash setup-pager.sh</code> auf dem Pi aus. Das Script installiert RTL-SDR-Treiber, multimon-ng, apprise (pip) und ntfy (systemd-Dienst auf Port 2586) vollautomatisch.
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       PLANER / SCHEDULER
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="planer">
+    <div class="section-header">
+      <div class="section-icon">🕐</div>
+      <div class="section-title">
+        <h2>Planer / Scheduler</h2>
+        <p class="section-subtitle">Geplante Alarme und Vorfälle mit flexiblen Wiederholungsregeln</p>
+      </div>
+    </div>
+
+    <p>Der Planer ermöglicht die zeitgesteuerte Erstellung von Alarmen und Vorfällen. Geplante Elemente werden automatisch vom Hintergrundprozess ausgelöst und über alle aktiven Kanäle verteilt.</p>
+
+    <h3 style="margin:24px 0 12px;font-size:16px;">Elemente erstellen</h3>
+    <p>Über <strong>+ Neues geplantes Element</strong> öffnet sich ein Formular mit folgenden Feldern:</p>
+    <table class="data-table" style="margin-top:12px;">
+      <thead><tr><th>Feld</th><th>Beschreibung</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Typ</strong></td><td>Alarm (alert) oder Vorfall (incident)</td></tr>
+        <tr><td><strong>Titel</strong></td><td>Name des Alarms / Vorfalls</td></tr>
+        <tr><td><strong>Beschreibung</strong></td><td>Optionaler Detailtext</td></tr>
+        <tr><td><strong>Schwere</strong></td><td>Kritisch / Warnung / Info — steuert Push-Versand und Kanalauswahl</td></tr>
+        <tr><td><strong>Wiederholung</strong></td><td>Einmalig, Täglich, Wöchentlich, Stündlich, Alle N Minuten</td></tr>
+        <tr><td><strong>Nächste Ausführung</strong></td><td>Datum und Uhrzeit der ersten (oder nächsten) Ausführung</td></tr>
+        <tr><td><strong>Aktiviert</strong></td><td>Deaktivierte Elemente werden übersprungen</td></tr>
+      </tbody>
+    </table>
+
+    <h3 style="margin:24px 0 12px;font-size:16px;">Aktionen</h3>
+    <ul class="feature-list">
+      <li><strong>▶ Jetzt ausführen:</strong> Löst das Element sofort aus, unabhängig vom geplanten Zeitpunkt.</li>
+      <li><strong>⏸ / ▶ Aktivieren/Deaktivieren:</strong> Schaltet das Element ohne Löschen aus oder ein.</li>
+      <li><strong>✏ Bearbeiten:</strong> Öffnet das Formular zur Anpassung aller Felder.</li>
+      <li><strong>🗑 Löschen:</strong> Löscht das Element nach Bestätigung unwiderruflich.</li>
+    </ul>
+
+    <h3 style="margin:24px 0 12px;font-size:16px;">Automatischer Ablauf</h3>
+    <p>Der Hintergrundprozess <code>scheduled_items_runner</code> prüft alle 30 Sekunden fällige Elemente. Bei Auslösung:</p>
+    <ol style="margin:12px 0 0 20px;line-height:2.2;">
+      <li>Alarm oder Vorfall wird in der Datenbank erstellt</li>
+      <li>WebSocket-Event wird an alle verbundenen Clients gesendet</li>
+      <li>Bei Schwere „Warnung" oder „Kritisch": Web Push + alle aktiven Pager-Kanäle werden ausgelöst</li>
+      <li>Nächste Ausführung wird gemäß Wiederholungsregel berechnet (einmalig → deaktiviert)</li>
+    </ol>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       ROLLEN & RECHTE
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="rollen">
+    <div class="section-header">
+      <div class="section-icon">🛡</div>
+      <div class="section-title">
+        <h2>Rollen &amp; Rechte</h2>
+        <p>Drei-stufiges Rollenkonzept</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Rolle</th><th>Lesen</th><th>Erstellen/Bearbeiten</th><th>Löschen</th><th>Benutzer verwalten</th><th>System-Config</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="badge badge-danger">Admin</span></td>
+            <td>✅ Alles</td><td>✅ Alles</td><td>✅ Alles</td><td>✅ Ja</td><td>✅ Ja</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-warning">Operator</span></td>
+            <td>✅ Alles</td><td>✅ Operativ</td><td>⚠️ Eingeschränkt</td><td>❌ Nein</td><td>❌ Nein</td>
+          </tr>
+          <tr>
+            <td><span class="badge badge-info">Viewer</span></td>
+            <td>✅ Alles</td><td>❌ Nein</td><td>❌ Nein</td><td>❌ Nein</td><td>❌ Nein</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="alert-box alert-info">
+      <span class="alert-box-icon">ℹ️</span>
+      <p>Die Rolle wird beim Anlegen des Benutzers festgelegt. Nur ein Administrator kann Rollen ändern.</p>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       API
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="api">
+    <div class="section-header">
+      <div class="section-icon">🔌</div>
+      <div class="section-title">
+        <h2>API-Übersicht</h2>
+        <p>REST-Endpunkte für externe Integration</p>
+      </div>
+    </div>
+
+    <p>Alle Daten sind über eine dokumentierte REST-API zugänglich. Authentifizierung erfolgt per Bearer-Token im <code>Authorization</code>-Header.</p>
+
+    <pre><span class="comment"># Login – Token holen</span>
+<span class="cmd">POST</span>  /api/auth/login          <span class="comment">{ username, password }</span>
+<span class="cmd">GET</span>   /api/auth/me             <span class="comment">Aktueller Benutzer</span>
+
+<span class="comment"># Kerndaten</span>
+<span class="cmd">GET</span>   /api/assets              <span class="comment">Alle Assets</span>
+<span class="cmd">GET</span>   /api/incidents           <span class="comment">Alle Vorfälle</span>
+<span class="cmd">GET</span>   /api/alerts              <span class="comment">Alle Alarme</span>
+<span class="cmd">GET</span>   /api/sensors             <span class="comment">Alle Sensoren + Messwerte</span>
+
+<span class="comment"># Flotte</span>
+<span class="cmd">GET</span>   /api/fleet/vehicles      <span class="comment">Alle Fahrzeuge</span>
+<span class="cmd">GET</span>   /api/fleet/trips         <span class="comment">Alle Trips</span>
+<span class="cmd">GET</span>   /api/fleet/stats         <span class="comment">Flotten-KPIs</span>
+<span class="cmd">GET</span>   /api/export/fleet        <span class="comment">CSV-Export</span>
+
+<span class="comment"># Push</span>
+<span class="cmd">GET</span>   /api/push/vapid-public-key
+<span class="cmd">POST</span>  /api/push/subscribe
+<span class="cmd">POST</span>  /api/push/test
+
+<span class="comment"># WebSocket</span>
+<span class="cmd">WS</span>    /ws/{token}              <span class="comment">Echtzeit-Event-Bus</span></pre>
+
+    <p>Die vollständige API-Dokumentation ist automatisch unter <code>http://localhost:8080/docs</code> (Swagger UI) verfügbar.</p>
+  </section>
+
+
+  <!-- ══════════════════════════════════════════════════
+       FEHLERBEHEBUNG
+  ══════════════════════════════════════════════════ -->
+  <section class="section" id="troubleshooting">
+    <div class="section-header">
+      <div class="section-icon">🔧</div>
+      <div class="section-title">
+        <h2>Fehlerbehebung</h2>
+        <p>Häufige Probleme und Lösungen</p>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Problem</th><th>Ursache</th><th>Lösung</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Seite lädt nicht / leerer Bildschirm</td>
+            <td>Server nicht gestartet oder falscher Port</td>
+            <td>Server mit <code>./setup.sh</code> starten, <code>http://localhost:8080</code> aufrufen</td>
+          </tr>
+          <tr>
+            <td>Karte zeigt sich nicht</td>
+            <td>Kein Internetzugang für Leaflet CDN</td>
+            <td>Internetzugang prüfen; Leaflet-Skript lokal hosten für Offline-Betrieb</td>
+          </tr>
+          <tr>
+            <td>Push-Benachrichtigungen kommen nicht an</td>
+            <td><code>pywebpush</code> nicht installiert</td>
+            <td><code>pip install pywebpush cryptography</code> und Server neu starten</td>
+          </tr>
+          <tr>
+            <td>Push: „Blocked by browser"</td>
+            <td>Benachrichtigungen im Browser deaktiviert</td>
+            <td>Browser-Einstellungen → Benachrichtigungen → Atlas zulassen</td>
+          </tr>
+          <tr>
+            <td>Keine Alarmtöne</td>
+            <td>AudioContext durch Browser blockiert</td>
+            <td>Einmal auf die Seite klicken (User-Gesture), dann Ton testen</td>
+          </tr>
+          <tr>
+            <td>Navigation berechnet keine Route</td>
+            <td>OpenRouteService-API nicht erreichbar</td>
+            <td>Internetzugang prüfen; Luftlinien-Fallback wird automatisch angezeigt</td>
+          </tr>
+          <tr>
+            <td>Login schlägt fehl</td>
+            <td>Falsches Passwort oder inaktiver Account</td>
+            <td>Admin kann Passwort zurücksetzen oder Konto in der Benutzerverwaltung aktivieren</td>
+          </tr>
+          <tr>
+            <td>Karte: „Map container already initialized"</td>
+            <td>Nur im Dev-Modus bei schnellen Seiten-Wechseln</td>
+            <td>Seite einmal neu laden; im Produktivbetrieb automatisch behoben</td>
+          </tr>
+          <tr>
+            <td>Copyright-Fehler beim Start</td>
+            <td>Copyright-Konstante in main.py wurde verändert</td>
+            <td>Original-Datei wiederherstellen. Die Datei ist Eigentum von Felix Greis | Atlas GmbH 2026.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Log-Ausgabe</h3>
+    <p>Der Server gibt alle Fehler in der Konsole aus. Bei Produktionsproblemen:</p>
+    <pre><span class="cmd">./setup.sh</span>  <span class="comment"># startet mit vollem Log-Output</span>
+
+<span class="comment"># Oder direkt:</span>
+<span class="cmd">python3 main.py</span></pre>
+
+    <h3>Datenbank zurücksetzen</h3>
+    <div class="alert-box alert-warning">
+      <span class="alert-box-icon">⚠️</span>
+      <p>Alle Daten gehen verloren! Nur im Notfall: <code>rm atlas.db</code> und Server neu starten. Die Datenbank wird mit Demo-Daten neu initialisiert.</p>
+    </div>
+  </section>
+
+
+  <!-- ── FOOTER ── -->
+  <div class="divider"></div>
+  <div style="text-align:center;padding:40px 0 20px;color:var(--text-dim);font-size:13px;">
+    <div style="font-size:28px;margin-bottom:12px;">⚡</div>
+    <div style="font-weight:700;color:var(--text-muted);margin-bottom:6px;">Atlas AdminSysOP v1.0</div>
+    <div>© Felix Greis | Atlas GmbH 2026 – Alle Rechte vorbehalten</div>
+    <div style="margin-top:8px;">Dieses Handbuch ist vertraulich und ausschließlich für autorisierte Benutzer bestimmt.</div>
+  </div>
+
+</main>
+
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" title="Nach oben">↑</button>
+
+<script>
+  // ── Progress bar ──
+  const bar = document.getElementById('progress-bar');
+  const btt = document.getElementById('back-to-top');
+  document.addEventListener('scroll', () => {
+    const h = document.documentElement;
+    const pct = (h.scrollTop / (h.scrollHeight - h.clientHeight)) * 100;
+    bar.style.width = pct + '%';
+    btt.classList.toggle('visible', h.scrollTop > 400);
+  });
+
+  // ── Active TOC link ──
+  const sections = document.querySelectorAll('section[id], div[id].hero, div[id]');
+  const tocLinks = document.querySelectorAll('.toc-item');
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        tocLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`.toc-item[href="#${e.target.id}"]`);
+        if (active) {
+          active.classList.add('active');
+          // Scroll TOC so active link is visible
+          active.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+        }
+      }
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+
+  document.querySelectorAll('section[id], [id="einleitung"]').forEach(s => obs.observe(s));
+</script>
+</body>
+</html>

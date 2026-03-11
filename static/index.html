@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="liquid-glass">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Atlas AdminSysOP</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/static/styles.css">
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     LOGIN SCREEN
+════════════════════════════════════════════════════════════ -->
+<div id="login-screen">
+  <div class="login-card">
+    <h1 id="login-app-name">Atlas AdminSysOP</h1>
+    <p class="login-subtitle" id="login-subtitle">Operations Platform – © Felix Greis | Atlas GmbH 2026</p>
+
+    <div class="form-group">
+      <label class="form-label" for="login-user" id="lbl-username">Username</label>
+      <input type="text" id="login-user" class="form-input" autocomplete="username" placeholder="admin">
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="login-pass" id="lbl-password">Password</label>
+      <input type="password" id="login-pass" class="form-input" autocomplete="current-password" placeholder="••••••••">
+    </div>
+
+    <div id="login-error" class="hidden" style="color:var(--danger);font-size:13px;margin-bottom:12px;padding:8px 12px;background:rgba(239,68,68,0.1);border-radius:var(--radius-sm);border:1px solid rgba(239,68,68,0.3);"></div>
+
+    <button id="login-btn" class="btn btn-primary w-full btn-lg" onclick="ATLAS.auth.login()">
+      <span id="login-btn-text">Sign In</span>
+    </button>
+
+    <!-- Language switcher on login -->
+    <div style="display:flex;justify-content:center;gap:8px;margin-top:20px;">
+      <button class="lang-btn" onclick="ATLAS.i18n.setLang('en')">🇬🇧 EN</button>
+      <button class="lang-btn" onclick="ATLAS.i18n.setLang('de')">🇩🇪 DE</button>
+      <button class="lang-btn" onclick="ATLAS.i18n.setLang('fr')">🇫🇷 FR</button>
+    </div>
+
+    <p class="login-hint" id="login-hint"></p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     APP SHELL (shown after login)
+════════════════════════════════════════════════════════════ -->
+<div id="app-shell" class="hidden">
+
+  <!-- Sidebar overlay (mobile) -->
+  <div id="sidebar-overlay" onclick="ATLAS.ui.closeSidebar()"></div>
+
+  <!-- ── SIDEBAR ─────────────────────────────────────────── -->
+  <aside id="sidebar">
+    <div class="sidebar-logo">
+      <div class="app-name" id="sidebar-app-name">Atlas AdminSysOP</div>
+      <div class="org-name" id="sidebar-org-name">Loading...</div>
+      <div class="copyright">© Felix Greis | Atlas GmbH 2026</div>
+    </div>
+
+    <nav id="nav-menu">
+      <!-- Populated by JS -->
+    </nav>
+
+    <div class="sidebar-footer">
+      <!-- Handbook link -->
+      <a href="/static/manual.html" target="_blank" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);text-decoration:none;margin-bottom:4px;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background=''">
+        <span>📋</span> Benutzerhandbuch
+      </a>
+      <!-- User card -->
+      <div class="user-card" onclick="ATLAS.ui.showUserMenu()">
+        <div class="user-avatar" id="user-avatar">?</div>
+        <div class="user-info">
+          <div class="user-name" id="sidebar-user-name">User</div>
+          <div class="user-role" id="sidebar-user-role">operator</div>
+        </div>
+        <span style="color:var(--text-muted);font-size:16px;">⚙</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ── MAIN AREA ────────────────────────────────────────── -->
+  <div id="main-area">
+
+    <!-- Critical alert banner -->
+    <div id="alert-banner" class="hidden" onclick="ATLAS.router.go('alerts')">
+      <span>🚨</span>
+      <span id="alert-banner-text">Critical alerts require attention</span>
+      <span style="margin-left:auto;font-size:11px;opacity:0.8;">Click to view →</span>
+    </div>
+
+    <!-- Topbar -->
+    <header id="topbar">
+      <!-- Hamburger (mobile) -->
+      <button id="hamburger" class="icon-btn" onclick="ATLAS.ui.toggleSidebar()">☰</button>
+
+      <div class="page-title" id="page-title">Dashboard</div>
+
+      <div class="topbar-right">
+        <!-- Online users indicator -->
+        <div style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--text-muted);">
+          <span class="pulse-dot"></span>
+          <span id="online-count">1</span>
+        </div>
+
+        <!-- Language -->
+        <div style="display:flex;gap:4px;">
+          <button class="lang-btn" id="lang-en" onclick="ATLAS.i18n.setLang('en')">EN</button>
+          <button class="lang-btn" id="lang-de" onclick="ATLAS.i18n.setLang('de')">DE</button>
+          <button class="lang-btn" id="lang-fr" onclick="ATLAS.i18n.setLang('fr')">FR</button>
+        </div>
+
+        <!-- Notifications -->
+        <button class="icon-btn" onclick="ATLAS.router.go('alerts')" id="notif-btn" data-tooltip="Alerts">
+          🔔
+          <span class="badge hidden" id="notif-badge">0</span>
+        </button>
+
+        <!-- Theme switcher -->
+        <button class="icon-btn" onclick="ATLAS.ui.showThemePicker()" data-tooltip="Theme">🎨</button>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main id="main-content">
+      <!-- Router renders here -->
+      <div style="display:flex;align-items:center;justify-content:center;height:100%;color:var(--text-muted);">
+        <div style="text-align:center;">
+          <div style="font-size:48px;margin-bottom:16px;">⚡</div>
+          <div style="font-size:16px;">Loading...</div>
+        </div>
+      </div>
+    </main>
+
+  </div><!-- /main-area -->
+
+</div><!-- /app-shell -->
+
+<!-- ═══════════════════════════════════════════════════════════
+     TOAST CONTAINER
+════════════════════════════════════════════════════════════ -->
+<div id="toast-container"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     DETAIL SLIDE PANEL
+════════════════════════════════════════════════════════════ -->
+<div id="detail-panel">
+  <div class="panel-header">
+    <div class="panel-title" id="panel-title">Details</div>
+    <span class="modal-close" onclick="ATLAS.ui.closePanel()">✕</span>
+  </div>
+  <div class="panel-body" id="panel-body"></div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     MODAL CONTAINER
+════════════════════════════════════════════════════════════ -->
+<div id="modal-container"></div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPTS
+     Load order: Leaflet → Chart.js → app.js → sw-register
+     app.js is NOT deferred so ATLAS is defined when init runs.
+     Leaflet + Chart.js load async; app.js waits for 'load' event.
+════════════════════════════════════════════════════════════ -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script src="/static/app.js"></script>
+<script src="/static/sw-register.js" defer></script>
+
+</body>
+</html>
