@@ -1,11 +1,11 @@
 /* ============================================================
-   Atlas AdminSysOP – Frontend Application
-   © Felix Greis | Atlas GmbH 2026 – All rights reserved.
-   Atlas AdminSysOP – Unauthorized modification prohibited.
+   ControlCenterHQ – Frontend Application
+   © Felix Greis 2026 – All rights reserved.
+   ControlCenterHQ – Unauthorized modification prohibited.
    ============================================================ */
 
-const ATLAS_COPYRIGHT = "Felix Greis | Atlas GmbH 2026";
-const ATLAS_APP = "Atlas AdminSysOP";
+const ATLAS_COPYRIGHT = "Felix Greis 2026";
+const ATLAS_APP = "ControlCenterHQ";
 
 const ATLAS = {
 
@@ -39,7 +39,7 @@ i18n: {
       license_plate: 'License Plate', vin: 'VIN', make: 'Make', model: 'Model',
       year: 'Year', color: 'Color', seats: 'Seats', fuel_type: 'Fuel Type',
       insurance_expiry: 'Insurance Expiry', tuev_expiry: 'TÜV / Inspection',
-      role: 'Role', admin: 'Admin', operator: 'Operator', viewer: 'Viewer',
+      role: 'Role', owner: 'Owner', admin: 'Admin', operator: 'Operator', viewer: 'Viewer',
       theme: 'Theme', language: 'Language', online: 'Online', offline: 'Offline',
       send: 'Send', message: 'Message', rooms: 'Rooms', direct_messages: 'Direct Messages',
       navigate_to: 'Navigate To', start_navigation: 'Start Navigation',
@@ -58,7 +58,7 @@ i18n: {
       drivers: 'Drivers', vehicles: 'Vehicles',
       anomalies: 'Anomalies', predictions: 'Predictions', patterns: 'Patterns',
       org_name: 'Organization Name', facility_type: 'Facility Type',
-      copyright: '© Felix Greis | Atlas GmbH 2026',
+      copyright: '© Felix Greis 2026',
       invalid_credentials: 'Invalid username or password',
       default_hint: '',
       pager: 'Pager Gateway', scheduler: 'Scheduler',
@@ -100,6 +100,9 @@ i18n: {
       can_view_logs: 'View Logs', can_send_pager: 'Send Pager',
       can_restart: 'Restart Server', can_backup: 'Create Backup',
       can_manage_calendar: 'Manage Calendar', can_approve_travel: 'Approve Travel',
+      // New modules
+      Lagerverwaltung: 'Inventory', Wissensdatenbank: 'Knowledge Base', Anfragen: 'Requests', 'Pi-Netzwerk': 'Pi Network',
+      Ereignisvorhersage: 'Event Predictions', 'Remote-Zugriff': 'Remote Access', 'Sicherheits-KI': 'Security AI',
       // Backup & System
       backup: 'Backup', restore: 'Restore', server_restart: 'Restart Server',
       pi_sensors: 'Pi Sensors', cpu_temp: 'CPU Temperature', cpu_voltage: 'CPU Voltage',
@@ -119,6 +122,71 @@ i18n: {
       fuel_used: 'Fuel Used (L)', end_position: 'End Position', completed_notes: 'Completion Notes',
       // Alarm
       alarm_active: 'ALARM ACTIVE', dismiss_alarm: 'Dismiss',
+      // Contacts
+      contacts: 'Contacts', new_contact: 'New Contact', call_sign: 'Call Sign',
+      organization: 'Organization', department: 'Department', role_label: 'Role / Title', phone: 'Phone',
+      category: 'Category', notes: 'Notes', favorite: 'Favorite',
+      cat_staff: 'Staff', cat_emergency: 'Emergency Services', cat_supplier: 'Supplier',
+      cat_authority: 'Authority', cat_other: 'Other', search_contacts: 'Search contacts…',
+      location: 'Location', address_or_coords: 'Address or coordinates…',
+      // Roles
+      roles: 'Roles & Permissions', new_role: 'New Role', builtin: 'Built-in',
+      custom: 'Custom', permissions: 'Permissions', base_role: 'Base Role',
+      perm_read: 'Read / View', perm_create: 'Create', perm_edit: 'Edit',
+      perm_delete: 'Delete', perm_fleet: 'Fleet Management', perm_pager: 'Pager / Push',
+      perm_analytics: 'AI Analytics', perm_admin: 'Admin (all rights)',
+      role_description: 'Description',
+      // Voice
+      voice_channel: 'Voice Channel', ptt_hold: 'Hold to Talk', ptt_release: 'Release',
+      voice_joining: 'Joining…', voice_leave: 'Leave', voice_speaking: 'Speaking',
+      voice_idle: 'Standby', voice_active: 'Active',
+      // Predictive Dispatch
+      predictive_dispatch: 'Predictive Dispatch', heatmap: 'Incident Heatmap',
+      risk_hours: 'Risk Hours', risk_days: 'Risk Days', total_analyzed: 'Incidents Analyzed',
+      suggest_vehicles: 'Suggest Vehicles', resource_intelligence: 'Resource Intelligence',
+      // Infrastructure
+      infrastructure: 'Infrastructure', hydrants: 'Hydrants', fire_access: 'Fire Access',
+      infra_scanner: 'Infrastructure Scanner', click_map_infra: 'Click on map to scan infrastructure',
+      // Incident Report
+      incident_report: 'Incident Report', generate_report: 'Generate Report',
+      print_report: 'Print / PDF', report_chronology: 'Chronology',
+      deployed_vehicles: 'Deployed Vehicles', related_alerts: 'Related Alerts',
+      // Federation
+      federation: 'Multi-Dispatch Network', add_peer: 'Add Dispatch Center',
+      peer_name: 'Name', peer_url: 'URL', peer_api_key: 'API Key',
+      peer_status: 'Status', peer_online: 'Online', peer_offline: 'Offline',
+      peer_unknown: 'Unknown', sync_now: 'Sync Now', live_map: 'Live Map',
+      federation_api_key: 'Your Federation API Key',
+      auto_discover: 'Auto-Discover via Tailscale',
+      // Setup Wizard
+      setup_welcome: 'Welcome to ControlCenterHQ', setup_subtitle: 'First-time setup',
+      setup_org: 'Organization', setup_admin: 'Administrator Account',
+      setup_server: 'Server Settings', setup_network: 'Network & APIs',
+      setup_complete_btn: 'Complete Setup',
+      overpass_url: 'Overpass API URL', tailscale_key: 'Tailscale Auth Key (optional)',
+      // Smart Alerting
+      alarm_groups: 'Alarm Groups', dispatch_vehicle: 'Dispatch Vehicle',
+      dispatch_accept: 'Accept', dispatch_decline: 'Decline', dispatch_reason: 'Reason',
+      nina_monitor: 'NINA Warning Monitor', nina_enabled: 'Enable NINA/MoWaS Monitoring',
+      nina_status: 'NINA Status', nina_last_check: 'Last Check', nina_warnings: 'Active Warnings',
+      emergency_broadcast: 'Emergency Broadcast', trigger_emergency: 'Trigger Emergency Alert',
+      vehicle_dispatched: 'Vehicle Dispatched', dispatch_request: 'Dispatch Request',
+      // Timeline
+      timeline: 'Event Timeline', timeline_incidents: 'Incidents', timeline_alerts: 'Alerts',
+      timeline_fleet: 'Fleet', timeline_all: 'All Events',
+      // Vehicle utilization
+      vehicle_utilization: 'Vehicle Utilization', trip_count: 'Trips', total_distance: 'Total Distance',
+      incident_trends: 'Incident Trends', trend_up: '↑ Increasing', trend_down: '↓ Decreasing', trend_stable: '→ Stable',
+      // Mobile App
+      connect_mobile_app: 'Connect Mobile App', scan_qr_code: 'Scan this QR code with the Atlas app',
+      qr_expires_in: 'QR code expires in 60 minutes', qr_generating: 'Generating…',
+      apns_config: 'APNs Configuration', apns_key_id: 'Key ID', apns_team_id: 'Team ID',
+      apns_p8_key: 'P8 Private Key', apns_sandbox: 'Sandbox Mode (Dev)',
+      apns_test: 'Send Test Push',
+      qr_tailscale_hint: 'The QR code uses your Tailscale URL – works from anywhere. If Tailscale is not active, enter the local URL manually in the app.',
+      // Device / Mobile user locations
+      device_locations: 'Mobile Users', device_location_live: 'Live position from app',
+      no_device_locations: 'No mobile users online',
     },
     de: {
       dashboard: 'Dashboard', map: 'Lagekarte', incidents: 'Vorfälle',
@@ -144,7 +212,7 @@ i18n: {
       license_plate: 'Kennzeichen', vin: 'Fahrzeugidentifikationsnummer', make: 'Hersteller', model: 'Modell',
       year: 'Baujahr', color: 'Farbe', seats: 'Sitze', fuel_type: 'Kraftstoffart',
       insurance_expiry: 'Versicherungsablauf', tuev_expiry: 'TÜV-Datum',
-      role: 'Rolle', admin: 'Administrator', operator: 'Operator', viewer: 'Zuschauer',
+      role: 'Rolle', owner: 'Eigentümer', admin: 'Administrator', operator: 'Operator', viewer: 'Zuschauer',
       theme: 'Design', language: 'Sprache', online: 'Online', offline: 'Offline',
       send: 'Senden', message: 'Nachricht', rooms: 'Räume', direct_messages: 'Direktnachrichten',
       navigate_to: 'Navigieren nach', start_navigation: 'Navigation starten',
@@ -163,7 +231,7 @@ i18n: {
       drivers: 'Fahrer', vehicles: 'Fahrzeuge',
       anomalies: 'Anomalien', predictions: 'Vorhersagen', patterns: 'Muster',
       org_name: 'Organisationsname', facility_type: 'Einrichtungstyp',
-      copyright: '© Felix Greis | Atlas GmbH 2026',
+      copyright: '© Felix Greis 2026',
       invalid_credentials: 'Ungültiger Benutzername oder Passwort',
       default_hint: '',
       pager: 'Pager Gateway', scheduler: 'Planer',
@@ -214,6 +282,71 @@ i18n: {
       fuel_range: 'Geschätzte Reichweite', update_position: 'Position aktualisieren', complete_trip: 'Tour abschließen',
       fuel_used: 'Verbrauchter Kraftstoff (L)', end_position: 'Endposition', completed_notes: 'Abschlussnotizen',
       alarm_active: 'ALARM AKTIV', dismiss_alarm: 'Quittieren',
+      // Kontakte
+      contacts: 'Kontakte', new_contact: 'Neuer Kontakt', call_sign: 'Rufzeichen',
+      organization: 'Organisation', department: 'Abteilung', role_label: 'Rolle / Titel', phone: 'Telefon',
+      category: 'Kategorie', notes: 'Notizen', favorite: 'Favorit',
+      cat_staff: 'Personal', cat_emergency: 'Einsatzkräfte', cat_supplier: 'Lieferant',
+      cat_authority: 'Behörde', cat_other: 'Sonstige', search_contacts: 'Kontakte suchen…',
+      location: 'Standort', address_or_coords: 'Adresse oder Koordinaten…',
+      // Rollen
+      roles: 'Rollen & Rechte', new_role: 'Neue Rolle', builtin: 'Eingebaut',
+      custom: 'Benutzerdefiniert', permissions: 'Berechtigungen', base_role: 'Basisrolle',
+      perm_read: 'Lesen / Anzeigen', perm_create: 'Erstellen', perm_edit: 'Bearbeiten',
+      perm_delete: 'Löschen', perm_fleet: 'Flotte verwalten', perm_pager: 'Pager / Push senden',
+      perm_analytics: 'KI-Analytik', perm_admin: 'Admin (alle Rechte)',
+      role_description: 'Beschreibung',
+      // Sprach-Kanal
+      voice_channel: 'Sprachkanal', ptt_hold: 'Halten zum Sprechen', ptt_release: 'Loslassen',
+      voice_joining: 'Verbinde…', voice_leave: 'Verlassen', voice_speaking: 'Spricht',
+      voice_idle: 'Bereitschaft', voice_active: 'Aktiv',
+      // Predictive Dispatch
+      predictive_dispatch: 'Predictive Dispatch', heatmap: 'Einsatz-Heatmap',
+      risk_hours: 'Risikostunden', risk_days: 'Risikotage', total_analyzed: 'Analysierte Einsätze',
+      suggest_vehicles: 'Fahrzeuge vorschlagen', resource_intelligence: 'Ressourcen-Intelligenz',
+      // Infrastruktur
+      infrastructure: 'Infrastruktur', hydrants: 'Hydranten', fire_access: 'Feuerwehrzufahrten',
+      infra_scanner: 'Infrastruktur-Scanner', click_map_infra: 'Auf Karte klicken zum Scannen',
+      // Einsatzbericht
+      incident_report: 'Einsatzbericht', generate_report: 'Bericht erstellen',
+      print_report: 'Drucken / PDF', report_chronology: 'Chronologie',
+      deployed_vehicles: 'Eingesetzte Fahrzeuge', related_alerts: 'Zugehörige Alarme',
+      // Verbund
+      federation: 'Leitstellen-Verbund', add_peer: 'Leitstelle hinzufügen',
+      peer_name: 'Name', peer_url: 'URL', peer_api_key: 'API-Schlüssel',
+      peer_status: 'Status', peer_online: 'Online', peer_offline: 'Offline',
+      peer_unknown: 'Unbekannt', sync_now: 'Jetzt synchronisieren', live_map: 'Live-Karte',
+      federation_api_key: 'Eigener Verbund-API-Schlüssel',
+      auto_discover: 'Automatisch über Tailscale erkennen',
+      // Einrichtungs-Assistent
+      setup_welcome: 'Willkommen bei ControlCenterHQ', setup_subtitle: 'Ersteinrichtung',
+      setup_org: 'Organisation', setup_admin: 'Administrator-Konto',
+      setup_server: 'Server-Einstellungen', setup_network: 'Netzwerk & APIs',
+      setup_complete_btn: 'Einrichtung abschließen',
+      overpass_url: 'Overpass-API-URL', tailscale_key: 'Tailscale Auth-Key (optional)',
+      // Intelligente Alarmierung
+      alarm_groups: 'Alarmgruppen', dispatch_vehicle: 'Fahrzeug alarmieren',
+      dispatch_accept: 'Annehmen', dispatch_decline: 'Ablehnen', dispatch_reason: 'Grund',
+      nina_monitor: 'NINA-Warnmonitor', nina_enabled: 'NINA/MoWaS-Monitoring aktivieren',
+      nina_status: 'NINA-Status', nina_last_check: 'Letzte Prüfung', nina_warnings: 'Aktive Warnungen',
+      emergency_broadcast: 'Notfallalarm', trigger_emergency: 'Notfallalarm auslösen',
+      vehicle_dispatched: 'Fahrzeug alarmiert', dispatch_request: 'Einsatzanfrage',
+      // Timeline
+      timeline: 'Ereigniszeitleiste', timeline_incidents: 'Vorfälle', timeline_alerts: 'Alarme',
+      timeline_fleet: 'Fuhrpark', timeline_all: 'Alle Ereignisse',
+      // Fahrzeugauslastung
+      vehicle_utilization: 'Fahrzeugauslastung', trip_count: 'Fahrten',
+      incident_trends: 'Einsatz-Trends', trend_up: '↑ Zunehmend', trend_down: '↓ Abnehmend', trend_stable: '→ Stabil',
+      // Mobile App
+      connect_mobile_app: 'Mobile App verbinden', scan_qr_code: 'QR-Code mit der Atlas-App scannen',
+      qr_expires_in: 'QR-Code gültig für 60 Minuten', qr_generating: 'Wird generiert…',
+      apns_config: 'APNs Konfiguration', apns_key_id: 'Key ID', apns_team_id: 'Team ID',
+      apns_p8_key: 'P8 Privatschlüssel', apns_sandbox: 'Sandbox-Modus (Entwicklung)',
+      apns_test: 'Test-Push senden',
+      qr_tailscale_hint: 'Der QR-Code enthält deine Tailscale-URL – funktioniert von überall. Falls Tailscale nicht aktiv ist, die lokale URL in der App manuell eingeben.',
+      // Geräte-/App-Standorte
+      device_locations: 'Mobile Nutzer', device_location_live: 'Live-Standort aus App',
+      no_device_locations: 'Keine mobilen Nutzer online',
     },
     fr: {
       dashboard: 'Tableau de bord', map: 'Commande & Contrôle', incidents: 'Incidents',
@@ -239,7 +372,7 @@ i18n: {
       license_plate: 'Plaque d\'immatriculation', vin: 'NIV', make: 'Marque', model: 'Modèle',
       year: 'Année', color: 'Couleur', seats: 'Sièges', fuel_type: 'Carburant',
       insurance_expiry: 'Expiration assurance', tuev_expiry: 'Contrôle technique',
-      role: 'Rôle', admin: 'Administrateur', operator: 'Opérateur', viewer: 'Observateur',
+      role: 'Rôle', owner: 'Propriétaire', admin: 'Administrateur', operator: 'Opérateur', viewer: 'Observateur',
       theme: 'Thème', language: 'Langue', online: 'En ligne', offline: 'Hors ligne',
       send: 'Envoyer', message: 'Message', rooms: 'Salles', direct_messages: 'Messages directs',
       navigate_to: 'Naviguer vers', start_navigation: 'Démarrer la navigation',
@@ -258,7 +391,7 @@ i18n: {
       drivers: 'Conducteurs', vehicles: 'Véhicules',
       anomalies: 'Anomalies', predictions: 'Prédictions', patterns: 'Modèles',
       org_name: 'Nom de l\'organisation', facility_type: 'Type d\'établissement',
-      copyright: '© Felix Greis | Atlas GmbH 2026',
+      copyright: '© Felix Greis 2026',
       invalid_credentials: 'Identifiant ou mot de passe invalide',
       default_hint: '',
       pager: 'Passerelle Pager', scheduler: 'Planificateur',
@@ -309,6 +442,66 @@ i18n: {
       fuel_range: 'Autonomie estimée', update_position: 'Mettre à jour position', complete_trip: 'Terminer le trajet',
       fuel_used: 'Carburant utilisé (L)', end_position: 'Position finale', completed_notes: 'Notes de fin',
       alarm_active: 'ALARME ACTIVE', dismiss_alarm: 'Acquitter',
+      connect_mobile_app: 'Connecter l\'app mobile', scan_qr_code: 'Scannez ce QR code avec l\'app Atlas',
+      qr_expires_in: 'QR code valable 60 minutes', qr_generating: 'Génération…',
+      apns_config: 'Configuration APNs', apns_key_id: 'Key ID', apns_team_id: 'Team ID',
+      apns_p8_key: 'Clé privée P8', apns_sandbox: 'Mode Sandbox (Développement)',
+      apns_test: 'Envoyer push test',
+      qr_tailscale_hint: 'Le QR code utilise votre URL Tailscale – accessible de partout. Si Tailscale n\'est pas actif, entrez manuellement l\'URL locale dans l\'app.',
+      // Localisation des utilisateurs mobiles
+      device_locations: 'Utilisateurs mobiles', device_location_live: 'Position en direct depuis l\'app',
+      no_device_locations: 'Aucun utilisateur mobile en ligne',
+      // --- Keys added for FR parity ---
+      add_peer: 'Ajouter homologue', alarm_groups: 'Groupes d\'alarme',
+      auto_discover: 'Découverte automatique', builtin: 'Intégré',
+      call_sign: 'Indicatif', cat_authority: 'Autorités', cat_emergency: 'Urgences',
+      cat_other: 'Autre', cat_staff: 'Personnel', cat_supplier: 'Fournisseur',
+      category: 'Catégorie', click_map_infra: 'Cliquez sur la carte pour ajouter',
+      contacts: 'Contacts', custom: 'Personnalisé', department: 'Service',
+      deployed_vehicles: 'Véhicules déployés', dispatch_accept: 'Accepter',
+      dispatch_decline: 'Refuser', dispatch_reason: 'Raison du refus',
+      dispatch_request: 'Mission', dispatch_vehicle: 'Dispatcher un véhicule',
+      emergency_broadcast: 'Diffusion d\'urgence', favorite: 'Favori',
+      federation: 'Fédération', federation_api_key: 'Clé API fédération',
+      fire_access: 'Accès pompiers', generate_report: 'Générer rapport',
+      heatmap: 'Carte de chaleur', hydrants: 'Bornes incendie',
+      incident_report: 'Rapport d\'incident', incident_trends: 'Tendances incidents',
+      infra_scanner: 'Scanner infrastructure', infrastructure: 'Infrastructure',
+      live_map: 'Carte en direct', new_contact: 'Nouveau contact',
+      new_role: 'Nouveau rôle', nina_enabled: 'NINA activé',
+      nina_last_check: 'Dernier contrôle NINA', nina_monitor: 'Surveillance NINA',
+      nina_status: 'Statut NINA', nina_warnings: 'Alertes NINA',
+      notes: 'Notes', organization: 'Organisation', phone: 'Téléphone',
+      overpass_url: 'URL Overpass API', peer_api_key: 'Clé API homologue',
+      peer_name: 'Nom homologue', peer_offline: 'Hors ligne',
+      peer_online: 'En ligne', peer_status: 'Statut homologue',
+      peer_unknown: 'Inconnu', peer_url: 'URL homologue',
+      perm_admin: 'Administration', perm_analytics: 'Analytique',
+      perm_create: 'Créer', perm_delete: 'Supprimer', perm_edit: 'Modifier',
+      perm_fleet: 'Flotte', perm_pager: 'Pager', perm_read: 'Lire',
+      predictive_dispatch: 'Dispatch prédictif', print_report: 'Imprimer rapport',
+      ptt_hold: 'Maintenir pour parler', ptt_release: 'Relâcher',
+      related_alerts: 'Alertes liées', report_chronology: 'Chronologie',
+      resource_intelligence: 'Intelligence ressources',
+      risk_days: 'Jours à risque', risk_hours: 'Heures à risque',
+      role_description: 'Description du rôle', role_label: 'Nom du rôle',
+      roles: 'Rôles', search_contacts: 'Rechercher contacts',
+      location: 'Localisation', address_or_coords: 'Adresse ou coordonnées…',
+      setup_admin: 'Compte administrateur', setup_complete_btn: 'Démarrer Atlas',
+      setup_network: 'Réseau & sécurité', setup_org: 'Votre organisation',
+      setup_server: 'Configuration du serveur', setup_subtitle: 'Configuration initiale',
+      setup_welcome: 'Bienvenue dans ControlCenterHQ', suggest_vehicles: 'Suggérer des véhicules',
+      sync_now: 'Synchroniser maintenant', tailscale_key: 'Clé Tailscale',
+      timeline: 'Chronologie', timeline_alerts: 'Alertes', timeline_all: 'Tout',
+      timeline_fleet: 'Flotte', timeline_incidents: 'Incidents',
+      total_analyzed: 'Total analysé', trend_down: 'En baisse',
+      trend_stable: 'Stable', trend_up: 'En hausse',
+      trigger_emergency: 'Déclencher urgence', trip_count: 'Nombre de trajets',
+      vehicle_dispatched: 'Véhicule dispatché',
+      vehicle_utilization: 'Utilisation véhicule',
+      voice_active: 'Actif', voice_channel: 'Canal vocal', voice_idle: 'Inactif',
+      voice_joining: 'Connexion...', voice_leave: 'Quitter',
+      voice_speaking: 'En train de parler',
     }
   },
   t(key) {
@@ -355,18 +548,35 @@ state: {
 ============================================================ */
 api: {
   base: '',
+  _loggingOut: false,
   async req(method, path, body) {
     const opts = {
       method,
       headers: {
-        'Content-Type': 'application/json',
+        ...(body !== undefined ? { 'Content-Type': 'application/json' } : {}),
         ...(ATLAS.state.token ? { 'Authorization': `Bearer ${ATLAS.state.token}` } : {}),
         'Accept-Language': ATLAS.i18n.lang,
       }
     };
     if (body !== undefined) opts.body = JSON.stringify(body);
     const res = await fetch(this.base + path, opts);
-    if (res.status === 401) { ATLAS.auth.doLogout(); return null; }
+    // Only treat 401 as "session expired → logout" when a session token is
+    // already set AND we are not on the login endpoint itself.
+    // Previously every 401 (including wrong-password on /api/auth/login) triggered
+    // doLogout() which cleared the form fields and swallowed the error message.
+    const isLoginEndpoint = path === '/api/auth/login';
+    if (res.status === 401 && !this._loggingOut && !isLoginEndpoint && ATLAS.state.token) {
+      this._loggingOut = true;
+      await ATLAS.auth.doLogout();
+      this._loggingOut = false;
+      return null;
+    }
+    if (res.status === 402) {
+      // License required – show license gate (but don't throw for license endpoints)
+      if (!path.startsWith('/api/license')) ATLAS.license.showGate();
+      const err = await res.json().catch(() => ({ detail: 'Lizenz erforderlich' }));
+      throw new Error(err.detail || 'Lizenz erforderlich');
+    }
     if (!res.ok) {
       const err = await res.json().catch(() => ({ detail: 'Request failed' }));
       throw new Error(err.detail || 'Request failed');
@@ -381,6 +591,91 @@ api: {
 },
 
 /* ============================================================
+   Geocoding  (Nominatim / OpenStreetMap – no API key required)
+============================================================ */
+geo: {
+  // Resolve address string OR "lat,lng" string → { lat, lng, display }
+  // Returns null on failure.
+  async resolve(query) {
+    query = (query || '').trim();
+    if (!query) return null;
+    // Already coordinates? e.g. "51.1657, 10.4515" or "51.1657,10.4515"
+    const coordRe = /^(-?\d+(?:\.\d+)?)\s*[,;\s]\s*(-?\d+(?:\.\d+)?)$/;
+    const m = query.match(coordRe);
+    if (m) return { lat: parseFloat(m[1]), lng: parseFloat(m[2]), display: query };
+    // Geocode via Nominatim
+    try {
+      const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`;
+      const res = await fetch(url, { headers: { 'Accept-Language': ATLAS.i18n.lang } });
+      const data = await res.json();
+      if (!data.length) return null;
+      return { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon), display: data[0].display_name };
+    } catch { return null; }
+  },
+
+  // Build the reusable address+coordinates widget HTML.
+  // prefix: short id prefix (e.g. "na", "ni", "upd")
+  // currentLat/Lng: optional pre-filled values
+  widget(prefix, currentLat, currentLng) {
+    const latVal = currentLat != null ? currentLat : '';
+    const lngVal = currentLng != null ? currentLng : '';
+    return `
+      <div class="form-group" style="margin-bottom:4px;">
+        <label class="form-label">📍 ${ATLAS.i18n.t('location') || 'Location'}</label>
+        <div style="display:flex;gap:6px;">
+          <input id="${prefix}-addr" class="form-input" placeholder="${ATLAS.i18n.t('address_or_coords') || 'Address or coordinates…'}" style="flex:1;">
+          <button type="button" class="btn btn-secondary btn-sm" style="white-space:nowrap;" onclick="ATLAS.geo.resolveWidget('${prefix}')">🔍</button>
+          <button type="button" class="btn btn-secondary btn-sm" style="white-space:nowrap;" title="GPS" onclick="ATLAS.geo.gpsWidget('${prefix}')">📡</button>
+        </div>
+        <div id="${prefix}-geo-status" style="font-size:11px;color:var(--text-muted);margin-top:3px;min-height:14px;"></div>
+      </div>
+      <div class="form-row" style="margin-top:4px;">
+        <div class="form-group">
+          <label class="form-label" style="font-size:11px;color:var(--text-muted);">Lat</label>
+          <input id="${prefix}-lat" class="form-input" type="number" step="any" placeholder="51.1657" value="${latVal}">
+        </div>
+        <div class="form-group">
+          <label class="form-label" style="font-size:11px;color:var(--text-muted);">Lng</label>
+          <input id="${prefix}-lng" class="form-input" type="number" step="any" placeholder="10.4515" value="${lngVal}">
+        </div>
+      </div>`;
+  },
+
+  async resolveWidget(prefix) {
+    const addrEl = document.getElementById(`${prefix}-addr`);
+    const statusEl = document.getElementById(`${prefix}-geo-status`);
+    if (!addrEl || !statusEl) return;
+    const q = addrEl.value.trim();
+    if (!q) return;
+    statusEl.textContent = '⏳ Suche…';
+    const result = await ATLAS.geo.resolve(q);
+    if (!result) { statusEl.textContent = '❌ Nicht gefunden'; return; }
+    const latEl = document.getElementById(`${prefix}-lat`);
+    const lngEl = document.getElementById(`${prefix}-lng`);
+    if (latEl) latEl.value = result.lat.toFixed(6);
+    if (lngEl) lngEl.value = result.lng.toFixed(6);
+    statusEl.textContent = `✅ ${result.lat.toFixed(5)}, ${result.lng.toFixed(5)}`;
+    if (result.display && result.display !== q) addrEl.value = result.display.split(',').slice(0,3).join(',');
+  },
+
+  gpsWidget(prefix) {
+    const statusEl = document.getElementById(`${prefix}-geo-status`);
+    if (statusEl) statusEl.textContent = '📡 GPS…';
+    navigator.geolocation?.getCurrentPosition(
+      pos => {
+        const latEl = document.getElementById(`${prefix}-lat`);
+        const lngEl = document.getElementById(`${prefix}-lng`);
+        if (latEl) latEl.value = pos.coords.latitude.toFixed(6);
+        if (lngEl) lngEl.value = pos.coords.longitude.toFixed(6);
+        if (statusEl) statusEl.textContent = `✅ ${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)} (±${Math.round(pos.coords.accuracy)}m)`;
+      },
+      err => { if (statusEl) statusEl.textContent = `❌ ${err.message}`; },
+      { enableHighAccuracy: true, timeout: 10000 }
+    );
+  },
+},
+
+/* ============================================================
    WebSocket
 ============================================================ */
 ws: {
@@ -389,25 +684,32 @@ ws: {
   pingInterval: null,
 
   connect() {
-    if (this.socket) this.socket.close();
+    if (this.socket) { this.socket.onclose = null; this.socket.close(); }
+    clearInterval(this.pingInterval);
+    if (!ATLAS.state.token) return;
     const proto = location.protocol === 'https:' ? 'wss:' : 'ws:';
-    this.socket = new WebSocket(`${proto}//${location.host}/ws/${ATLAS.state.token}`);
+    // Pass token as query parameter instead of URL path to avoid it
+    // appearing in server access logs as part of the request path.
+    this.socket = new WebSocket(`${proto}//${location.host}/ws?token=${encodeURIComponent(ATLAS.state.token)}`);
     this.socket.onopen = () => {
-      console.log('WS connected');
+      clearInterval(this.pingInterval);
       this.pingInterval = setInterval(() => {
-        if (this.socket.readyState === WebSocket.OPEN)
+        if (this.socket?.readyState === WebSocket.OPEN)
           this.socket.send(JSON.stringify({ type: 'ping' }));
       }, 30000);
     };
     this.socket.onmessage = (e) => {
       try {
         const msg = JSON.parse(e.data);
-        ATLAS.ws.dispatch(msg);
-      } catch {}
+        if (msg && typeof msg === 'object') ATLAS.ws.dispatch(msg);
+      } catch(err) {
+        console.warn('[WS] Invalid message:', err);
+      }
     };
+    this.socket.onerror = () => { /* onclose fires right after, handles reconnect */ };
     this.socket.onclose = () => {
       clearInterval(this.pingInterval);
-      setTimeout(() => ATLAS.ws.connect(), 3000);
+      if (ATLAS.state.token) setTimeout(() => ATLAS.ws.connect(), 3000);
     };
   },
 
@@ -475,7 +777,7 @@ ws: {
       case 'alert_deleted':
         ATLAS.state.alerts = ATLAS.state.alerts.filter(a => a.id !== data.id);
         ATLAS.alerts.updateBanner();
-        if (ATLAS.state.currentPage === 'alerts') ATLAS.alertsPage.render(document.getElementById('page-content'));
+        if (ATLAS.state.currentPage === 'alerts') ATLAS.alertsPage.render(document.getElementById('main-content'));
         break;
       case 'calendar_new':
         if (ATLAS.state.currentPage === 'calendar') ATLAS.calendarPage.load();
@@ -491,6 +793,46 @@ ws: {
           // Refresh fleet layer marker
         }
         break;
+      // Voice channel events
+      case 'voice_status':
+        ATLAS.voice.onStatus(data);
+        break;
+      case 'voice_ptt_start':
+        ATLAS.voice.onPTTStart(data);
+        break;
+      case 'voice_ptt_stop':
+        ATLAS.voice.onPTTStop(data);
+        break;
+      case 'voice_offer':
+        ATLAS.voice.onOffer(msg);
+        break;
+      case 'voice_answer':
+        ATLAS.voice.onAnswer(msg);
+        break;
+      case 'voice_ice':
+        ATLAS.voice.onICE(msg);
+        break;
+      case 'emergency_broadcast':
+        ATLAS.alerts.onEmergencyBroadcast(data);
+        break;
+      case 'vehicle_dispatched':
+        if (ATLAS.state.currentPage === 'fleet') ATLAS.fleet.refresh();
+        ATLAS.ui.toast(`🚨 ${data.vehicle_name}: ${data.message}`, 'error');
+        break;
+      case 'dispatch_request':
+        ATLAS.fleet.onDispatchRequest(data);
+        break;
+      case 'dispatch_accepted':
+        ATLAS.ui.toast(`✅ ${ATLAS.i18n.t('dispatch_accept')}: ${data.accepted_by}`, 'success');
+        if (ATLAS.state.currentPage === 'fleet') ATLAS.fleet.refresh();
+        break;
+      case 'dispatch_declined':
+        ATLAS.ui.toast(`❌ Abgelehnt: ${data.declined_by}${data.reason ? ' – ' + data.reason : ''}`, 'warning');
+        if (ATLAS.state.currentPage === 'fleet') ATLAS.fleet.refresh();
+        break;
+      case 'device_location':
+        ATLAS.map.updateUserMarker(data);
+        break;
     }
     // Custom handlers
     (this.handlers[type] || []).forEach(h => h(data));
@@ -503,73 +845,343 @@ ws: {
 },
 
 /* ============================================================
+   License
+============================================================ */
+license: {
+  _timer: null,
+  _gateShown: false,
+
+  async checkAndEnforce() {
+    try {
+      const status = await fetch('/api/license/check').then(r=>r.json()).catch(()=>null);
+      if (!status) return;
+      if (status.valid) { this._hideBanner(); return; }
+      if (status.grace_active) {
+        this._showGraceBanner(status.grace_remaining_seconds);
+      } else {
+        this.showGate();
+      }
+    } catch(e) { /* ignore */ }
+  },
+
+  _showGraceBanner(remainingSecs) {
+    let existing = document.getElementById('license-grace-banner');
+    if (!existing) {
+      existing = document.createElement('div');
+      existing.id = 'license-grace-banner';
+      existing.style.cssText = 'position:fixed;top:0;left:0;right:0;z-index:99999;background:linear-gradient(135deg,#f59e0b,#d97706);color:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.3);';
+      existing.innerHTML = `<div>⚠️ <span id="grace-msg">Kein Lizenzkey – noch <span id="grace-timer">–</span> bis zur Sperrung</span></div>
+        <button onclick="ATLAS.router.go('settings');ATLAS.license._hideBanner();" style="background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.5);color:#fff;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px;">🔑 Key eingeben</button>`;
+      document.body.prepend(existing);
+    }
+    // Countdown timer
+    let secs = remainingSecs;
+    const tick = () => {
+      const timerEl = document.getElementById('grace-timer');
+      if (!timerEl) return;
+      if (secs <= 0) { this.showGate(); return; }
+      const h = Math.floor(secs/3600), m = Math.floor((secs%3600)/60), s = secs%60;
+      timerEl.textContent = h>0 ? `${h}h ${m}m` : m>0 ? `${m}m ${s}s` : `${s}s`;
+      secs--;
+    };
+    tick();
+    if (this._timer) clearInterval(this._timer);
+    this._timer = setInterval(tick, 1000);
+  },
+
+  _hideBanner() {
+    const b = document.getElementById('license-grace-banner');
+    if (b) b.remove();
+    if (this._timer) { clearInterval(this._timer); this._timer = null; }
+  },
+
+  showGate() {
+    if (this._gateShown) return;
+    this._gateShown = true;
+    // Full overlay – blocks everything
+    let overlay = document.getElementById('license-gate-overlay');
+    if (overlay) overlay.remove();
+    overlay = document.createElement('div');
+    overlay.id = 'license-gate-overlay';
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:999999;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;';
+    overlay.innerHTML = `<div style="background:var(--surface-1,#1a1a2e);border:1px solid var(--border,#333);border-radius:16px;padding:40px;max-width:480px;width:90%;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5);">
+      <div style="font-size:64px;margin-bottom:16px;">🔑</div>
+      <div style="font-size:22px;font-weight:800;margin-bottom:8px;color:var(--text-primary,#fff);">Lizenz erforderlich</div>
+      <p style="color:var(--text-muted,#888);font-size:14px;margin-bottom:24px;line-height:1.6;">
+        Die Testphase ist abgelaufen.<br>Bitte geben Sie Ihren Lizenzkey ein, um ControlCenterHQ weiter nutzen zu können.
+      </p>
+      <div style="position:relative;margin-bottom:8px;">
+        <input id="gate-key-input" type="text" placeholder="CCHQ-XXX-XXXX-XX-XXXXX" autocomplete="off"
+          maxlength="26"
+          style="width:100%;padding:12px 40px 12px 16px;border-radius:8px;border:1px solid var(--border,#444);background:var(--surface-2,#111);color:var(--text-primary,#fff);font-size:15px;margin-bottom:0;box-sizing:border-box;font-family:monospace;letter-spacing:1px;text-transform:uppercase;"
+          oninput="ATLAS.license._formatGateKey(this)"
+          onkeydown="if(event.key==='Enter')ATLAS.license.activateFromGate()">
+        <span onclick="ATLAS.license._toggleGateKeyVis()" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px;user-select:none;">👁</span>
+      </div>
+      <div style="font-size:11px;color:#6b7280;margin-bottom:12px;">Format: CCHQ-PRO-2026-FG-X7K9M</div>
+      <div id="gate-error" style="color:#f87171;font-size:12px;margin-bottom:10px;min-height:16px;"></div>
+      <button id="gate-activate-btn" onclick="ATLAS.license.activateFromGate()" style="width:100%;padding:13px;background:linear-gradient(135deg,#4caf7d,#2e7d52);border:none;border-radius:8px;color:#fff;font-size:15px;font-weight:700;cursor:pointer;">✅ Lizenz aktivieren</button>
+      <p style="margin-top:16px;font-size:11px;color:var(--text-muted,#666);">Kein Key? Wenden Sie sich an den Systemadministrator.</p>
+    </div>`;
+    document.body.appendChild(overlay);
+    // Remove any previous banner
+    this._hideBanner();
+    setTimeout(()=>document.getElementById('gate-key-input')?.focus(), 100);
+  },
+
+  async activateFromGate() {
+    const keyInput = document.getElementById('gate-key-input');
+    const key = keyInput?.value.trim();
+    const errEl = document.getElementById('gate-error');
+    const btn = document.getElementById('gate-activate-btn');
+    if (!key) { if(errEl) errEl.textContent = '⚠️ Bitte einen Lizenzkey eingeben.'; return; }
+    if (errEl) errEl.textContent = '';
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Wird geprüft…'; }
+    try {
+      const res = await fetch('/api/license/activate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(ATLAS.state.token ? { 'Authorization': `Bearer ${ATLAS.state.token}` } : {})
+        },
+        body: JSON.stringify({ key })
+      });
+      const data = await res.json().catch(()=>({}));
+      if (!res.ok) {
+        if (errEl) errEl.textContent = '❌ ' + (data.detail || 'Ungültiger Lizenzkey');
+        return;
+      }
+      // Success – close gate
+      document.getElementById('license-gate-overlay')?.remove();
+      this._gateShown = false;
+      this._hideBanner();
+      ATLAS.ui.toast(`✅ Lizenz aktiviert: ${data.tier || ''}`, 'success');
+    } catch(e) {
+      if (errEl) errEl.textContent = '❌ ' + (e.message || 'Verbindungsfehler');
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = '✅ Lizenz aktivieren'; }
+    }
+  },
+
+  _formatGateKey(input) {
+    // Same format helper for gate modal: CCHQ-PRO-2026-FG-X7K9M
+    const segLengths = [4, 3, 4, 2, 5];
+    let raw = input.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+    let result = '';
+    let pos = 0;
+    for (let i = 0; i < segLengths.length && pos < raw.length; i++) {
+      if (i > 0) result += '-';
+      result += raw.substr(pos, segLengths[i]);
+      pos += segLengths[i];
+    }
+    input.value = result;
+  },
+
+  _toggleGateKeyVis() {
+    const inp = document.getElementById('gate-key-input');
+    if (!inp) return;
+    if (inp.dataset.hidden === 'true') {
+      inp.style.webkitTextSecurity = '';
+      inp.dataset.hidden = 'false';
+    } else {
+      inp.style.webkitTextSecurity = 'disc';
+      inp.dataset.hidden = 'true';
+    }
+  },
+},
+
+/* ============================================================
    Auth
 ============================================================ */
 auth: {
   async login() {
-    const user = document.getElementById('login-user').value.trim();
-    const pass = document.getElementById('login-pass').value;
+    const userVal = document.getElementById('login-user').value.trim();
+    const passEl = document.getElementById('login-pass');
+    const passVal = passEl ? passEl.value : '';
     const btn = document.getElementById('login-btn');
     const err = document.getElementById('login-error');
-    if (!user || !pass) return;
+
+    // Validation with specific messages
+    if (!userVal) {
+      err.textContent = ATLAS.i18n.lang === 'de' ? 'Benutzername eingeben' : 'Please enter your username';
+      err.classList.remove('hidden');
+      document.getElementById('login-user').focus();
+      return;
+    }
+    if (!passVal) {
+      err.textContent = ATLAS.i18n.lang === 'de' ? 'Passwort eingeben' : 'Please enter your password';
+      err.classList.remove('hidden');
+      if (passEl) passEl.focus();
+      return;
+    }
+
     btn.disabled = true;
-    document.getElementById('login-btn-text').textContent = ATLAS.i18n.t('loading');
+    const btnText = document.getElementById('login-btn-text');
+    if (btnText) btnText.textContent = ATLAS.i18n.t('loading');
     err.classList.add('hidden');
+
     try {
-      const res = await ATLAS.api.post('/api/auth/login', { username: user, password: pass });
-      if (!res) return;
-      ATLAS.state.token = res.token;
-      ATLAS.state.user = res.user;
-      localStorage.setItem('atlas_token', res.token);
-      // Apply user's saved theme and language
-      if (res.user.theme) ATLAS.ui.applyTheme(res.user.theme);
-      if (res.user.language) ATLAS.i18n.lang = res.user.language;
-      // Verify copyright with server
-      const info = await ATLAS.api.get('/api/info');
-      if (info && info.copyright !== ATLAS_COPYRIGHT) {
-        document.getElementById('login-error').textContent = 'Copyright integrity failed. Contact administrator.';
-        document.getElementById('login-error').classList.remove('hidden');
+      // Use raw fetch so we can distinguish network errors from auth errors
+      const resp = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: userVal, password: passVal }),
+      });
+      const data = await resp.json().catch(() => ({}));
+
+      if (!resp.ok) {
+        // 400 = wrong credentials, 429 = rate limited, etc.
+        if (resp.status === 429) {
+          err.textContent = ATLAS.i18n.lang === 'de'
+            ? 'Zu viele Versuche. Bitte warte einen Moment.'
+            : 'Too many attempts. Please wait a moment.';
+        } else {
+          err.textContent = ATLAS.i18n.t('invalid_credentials');
+        }
+        err.classList.remove('hidden');
+        try { localStorage.removeItem('atlas_token'); } catch(_) {}
+        ATLAS.state.token = null;
         return;
       }
+
+      if (!data || !data.token || !data.user) {
+        err.textContent = ATLAS.i18n.lang === 'de' ? 'Ungültige Serverantwort' : 'Invalid server response';
+        err.classList.remove('hidden');
+        return;
+      }
+
+      ATLAS.state.token = data.token;
+      ATLAS.state.user = data.user;
+      try { localStorage.setItem('atlas_token', data.token); } catch(_) {}
+      try { localStorage.setItem('atlas_lang', data.user.language || ATLAS.i18n.lang); } catch(_) {}
+      if (data.user.theme) ATLAS.ui.applyTheme(data.user.theme);
+      if (data.user.language) ATLAS.i18n.lang = data.user.language;
       ATLAS.ws.connect();
       await ATLAS.boot();
     } catch(e) {
-      err.textContent = ATLAS.i18n.t('invalid_credentials');
+      // Network error
+      err.textContent = ATLAS.i18n.lang === 'de'
+        ? 'Verbindungsfehler. Server erreichbar?'
+        : 'Connection error. Is the server running?';
       err.classList.remove('hidden');
+      try { localStorage.removeItem('atlas_token'); } catch(_) {}
+      ATLAS.state.token = null;
     } finally {
       btn.disabled = false;
-      document.getElementById('login-btn-text').textContent = ATLAS.i18n.t('login');
+      if (btnText) btnText.textContent = ATLAS.i18n.t('login');
     }
   },
 
   async tryAutoLogin() {
-    const token = localStorage.getItem('atlas_token');
+    let token;
+    try { token = localStorage.getItem('atlas_token'); } catch(_) { return false; }
     if (!token) return false;
+
+    // Set token temporarily so ATLAS.api.get sends Authorization header
     ATLAS.state.token = token;
     try {
-      const user = await ATLAS.api.get('/api/auth/me');
-      if (!user) return false;
+      // Use raw fetch to avoid the api.req 401 → doLogout() chain which
+      // would call showLoginScreen() – we handle that ourselves in init().
+      const resp = await fetch('/api/auth/me', {
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
+      if (!resp.ok) {
+        // Token invalid or expired – clean up silently
+        try { localStorage.removeItem('atlas_token'); } catch(_) {}
+        ATLAS.state.token = null;
+        return false;
+      }
+      const user = await resp.json().catch(() => null);
+      if (!user) {
+        try { localStorage.removeItem('atlas_token'); } catch(_) {}
+        ATLAS.state.token = null;
+        return false;
+      }
       ATLAS.state.user = user;
       if (user.theme) ATLAS.ui.applyTheme(user.theme);
-      if (user.language) { ATLAS.i18n.lang = user.language; localStorage.setItem('atlas_lang', user.language); }
+      if (user.language) {
+        ATLAS.i18n.lang = user.language;
+        try { localStorage.setItem('atlas_lang', user.language); } catch(_) {}
+      }
       ATLAS.ws.connect();
       await ATLAS.boot();
       return true;
     } catch {
-      localStorage.removeItem('atlas_token');
+      // Network error – clear token and show login
+      try { localStorage.removeItem('atlas_token'); } catch(_) {}
+      ATLAS.state.token = null;
       return false;
     }
   },
 
   async doLogout() {
-    try { await ATLAS.api.post('/api/auth/logout'); } catch {}
-    ATLAS.ws.disconnect();
+    // Capture token before clearing so we can invalidate the session server-side
+    const token = ATLAS.state.token;
+    // Clear state FIRST so any subsequent API calls don't retry with the old token
     ATLAS.state.token = null;
     ATLAS.state.user = null;
-    localStorage.removeItem('atlas_token');
-    document.getElementById('login-screen').classList.remove('hidden');
-    document.getElementById('app-shell').classList.add('hidden');
-    document.getElementById('login-pass').value = '';
+    try { localStorage.removeItem('atlas_token'); } catch(_) {}
+    // Tell the server to invalidate the session (best-effort, ignore errors)
+    if (token) {
+      try {
+        await fetch('/api/auth/logout', {
+          method: 'POST',
+          headers: { 'Authorization': `Bearer ${token}` },
+        });
+      } catch(_) {}
+    }
+    ATLAS.ws.disconnect();
+    ATLAS.auth.showLoginScreen(true);
+  },
+
+  showLoginScreen(clearFields = true) {
+    const appShell = document.getElementById('app-shell');
+    if (appShell) appShell.classList.add('hidden');
+    const setupScreen = document.getElementById('setup-wizard-screen');
+    if (setupScreen) setupScreen.style.display = 'none';
+
+    // Re-inject the password field fresh each time – this prevents the browser
+    // from ever seeing a <input type="password"> at page load (AutoFill trigger).
+    const container = document.getElementById('login-pass-container');
+    if (container) {
+      container.innerHTML = '';
+      const pw = document.createElement('input');
+      pw.type = 'password';
+      pw.id = 'login-pass';
+      pw.className = 'form-input';
+      pw.setAttribute('autocomplete', 'new-password');
+      pw.setAttribute('autocorrect', 'off');
+      pw.setAttribute('autocapitalize', 'off');
+      pw.setAttribute('spellcheck', 'false');
+      pw.placeholder = '••••••••';
+      pw.addEventListener('keydown', e => {
+        if (e.key === 'Enter') { e.preventDefault(); ATLAS.auth.login(); }
+      });
+      container.appendChild(pw);
+    }
+
+    // Clear error message when showing login screen
+    const errEl = document.getElementById('login-error');
+    if (errEl) errEl.classList.add('hidden');
+
+    // Only clear fields on real logout/first-load – not after a failed login
+    if (clearFields) {
+      const userEl = document.getElementById('login-user');
+      if (userEl) userEl.value = '';
+    }
+
+    const loginScreen = document.getElementById('login-screen');
+    if (loginScreen) loginScreen.classList.remove('hidden');
+
+    // Update login screen text with current language translations
+    ATLAS.ui.applyTranslations();
+
+    requestAnimationFrame(() => {
+      const userEl = document.getElementById('login-user');
+      const pw = document.getElementById('login-pass');
+      if (userEl && userEl.value.trim() && pw) { pw.focus(); }
+      else if (userEl) { userEl.focus(); }
+    });
   }
 },
 
@@ -581,15 +1193,16 @@ async boot() {
   document.getElementById('login-screen').classList.add('hidden');
   document.getElementById('app-shell').classList.remove('hidden');
 
-  // Load initial data in parallel
+  // Load initial data in parallel – each call has its own .catch() so one
+  // failing endpoint never prevents the whole boot from completing.
   const [modules, assets, incidents, alerts, sensors, rooms, info] = await Promise.all([
-    ATLAS.api.get('/api/modules'),
-    ATLAS.api.get('/api/assets'),
-    ATLAS.api.get('/api/incidents'),
-    ATLAS.api.get('/api/alerts'),
-    ATLAS.api.get('/api/sensors'),
-    ATLAS.api.get('/api/chat/rooms'),
-    ATLAS.api.get('/api/info'),
+    ATLAS.api.get('/api/modules').catch(()=>null),
+    ATLAS.api.get('/api/assets').catch(()=>null),
+    ATLAS.api.get('/api/incidents').catch(()=>null),
+    ATLAS.api.get('/api/alerts').catch(()=>null),
+    ATLAS.api.get('/api/sensors').catch(()=>null),
+    ATLAS.api.get('/api/chat/rooms').catch(()=>null),
+    ATLAS.api.get('/api/info').catch(()=>null),
   ]);
 
   ATLAS.state.modules = modules || [];
@@ -601,11 +1214,11 @@ async boot() {
 
   // Update UI
   const u = ATLAS.state.user;
-  document.getElementById('user-avatar').textContent = (u.full_name || u.username)[0].toUpperCase();
+  document.getElementById('user-avatar').textContent = ((u.full_name || u.username || '?')[0] || '?').toUpperCase();
   document.getElementById('sidebar-user-name').textContent = u.full_name || u.username;
   document.getElementById('sidebar-user-role').textContent = ATLAS.i18n.t(u.role);
   if (info) {
-    document.getElementById('sidebar-org-name').textContent = info.org || 'Atlas AdminSysOP';
+    document.getElementById('sidebar-org-name').textContent = info.org || 'ControlCenterHQ';
   }
 
   ATLAS.ui.buildNav();
@@ -616,14 +1229,113 @@ async boot() {
   // Register service worker for push notifications
   ATLAS.audio.init();
 
+  // Init voice channel bar
+  ATLAS.voice.initBar();
+
+  // Init lockdown state + button visibility (owner-only)
+  ATLAS.lockdown.init();
+
+  // Init idle logout timer
+  ATLAS.idleLogout.init();
+
+  // Check license status and show gate if needed
+  ATLAS.license.checkAndEnforce();
+
+  // Check for available updates (admin only, non-blocking)
+  ATLAS.updater.check().catch(() => {});
+
+  // ── Push: re-sync existing subscription with server silently ──────────────
+  // AtlasSW.register() runs on script load and calls _restoreSubscription()
+  // which retrieves the PushManager subscription. Here we re-sync it with the
+  // server so background push works after server restarts or token refresh.
+  if (!ATLAS._pushSyncAttached) {
+    ATLAS._pushSyncAttached = true;
+
+    // Re-sync subscription if one already exists in PushManager
+    (async () => {
+      try {
+        if (typeof AtlasSW === 'undefined' || !AtlasSW.supported) return;
+        // Wait briefly for SW registration to complete if it hasn't yet
+        if (!AtlasSW.registration) {
+          await new Promise(r => setTimeout(r, 800));
+        }
+        if (!AtlasSW.registration) return;
+        const sub = await AtlasSW.registration.pushManager.getSubscription();
+        if (sub && ATLAS.state.token) {
+          // Re-send subscription to server (idempotent upsert)
+          await fetch('/api/push/subscribe', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${ATLAS.state.token}`,
+            },
+            body: JSON.stringify(sub.toJSON()),
+          }).catch(() => {});
+        }
+      } catch(e) { /* non-fatal */ }
+    })();
+
+    // Handle messages from service worker: ACK_ALERT, SYNC_ACKS
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.addEventListener('message', async (event) => {
+        const msg = event.data || {};
+        if (msg.type === 'ACK_ALERT' && msg.alertId && ATLAS.state.token) {
+          // User tapped "Acknowledge" on push notification while app was open
+          try {
+            await ATLAS.api.post(`/api/alerts/${msg.alertId}/acknowledge`);
+            // Update local state
+            const al = ATLAS.state.alerts.find(a => a.id === msg.alertId);
+            if (al) al.acknowledged = 1;
+            ATLAS.alerts.updateBanner();
+            ATLAS.ui.toast(`Alert #${msg.alertId} bestätigt`, 'success');
+          } catch(e) {
+            ATLAS.ui.toast(`Acknowledge fehlgeschlagen: ${e.message}`, 'error');
+          }
+        } else if (msg.type === 'SYNC_ACKS' && ATLAS.state.token) {
+          // Background sync: re-check unacknowledged alerts
+          try {
+            const fresh = await ATLAS.api.get('/api/alerts');
+            if (fresh) {
+              ATLAS.state.alerts = fresh;
+              ATLAS.alerts.updateBanner();
+            }
+          } catch(e) { /* non-fatal */ }
+        }
+      });
+    }
+  }
+
+  // ── Handle ?ack=alertId URL param (SW opened app to ack) ─────────────────
+  try {
+    const urlAck = new URLSearchParams(location.search).get('ack');
+    if (urlAck && ATLAS.state.token) {
+      // Remove param from URL without reload
+      const cleanUrl = location.pathname + location.hash;
+      history.replaceState(null, '', cleanUrl);
+      // Acknowledge after short delay to ensure boot is complete
+      setTimeout(async () => {
+        try {
+          await ATLAS.api.post(`/api/alerts/${urlAck}/acknowledge`);
+          const al = ATLAS.state.alerts.find(a => String(a.id) === String(urlAck));
+          if (al) al.acknowledged = 1;
+          ATLAS.alerts.updateBanner();
+          ATLAS.ui.toast(`Alert #${urlAck} bestätigt`, 'success');
+        } catch(e) { /* non-fatal */ }
+      }, 500);
+    }
+  } catch(e) { /* non-fatal */ }
+
   // Navigate to dashboard
   ATLAS.router.go('dashboard');
 
-  // Handle hash routing
-  window.addEventListener('hashchange', () => {
-    const page = location.hash.replace('#/', '') || 'dashboard';
-    ATLAS.router.go(page);
-  });
+  // Handle hash routing – guard ensures only ONE listener even if boot() re-runs
+  if (!ATLAS._hashChangeAttached) {
+    ATLAS._hashChangeAttached = true;
+    window.addEventListener('hashchange', () => {
+      const page = location.hash.replace('#/', '') || 'dashboard';
+      ATLAS.router.go(page);
+    });
+  }
 },
 
 /* ============================================================
@@ -632,6 +1344,18 @@ async boot() {
 router: {
   go(page, force) {
     if (ATLAS.state.currentPage === page && !force) return;
+
+    // Clear any auto-refresh intervals from the previous page
+    const _cleanable = [
+      'healthPage','kpiChartsPage','predictionsPage','dashboard',
+      'alertsPage','sensors','fleet','securityMonitor','activityHeatmap',
+      'geofencingPage','federationPage','analyticsPage','analyticsExtPage'
+    ];
+    _cleanable.forEach(mod => {
+      const m = ATLAS[mod];
+      if (m && m._interval) { clearInterval(m._interval); m._interval = null; }
+    });
+
     ATLAS.state.currentPage = page;
     location.hash = '#/' + page;
 
@@ -646,7 +1370,14 @@ router: {
       alerts: 'alerts', chat: 'chat', sensors: 'sensors', logs: 'logs',
       analytics: 'analytics', fleet: 'fleet', navigation: 'navigation',
       users: 'users', modules: 'modules', settings: 'settings',
-      pager: 'pager', scheduler: 'scheduler'
+      pager: 'pager', scheduler: 'scheduler', weather: 'weather',
+      calendar: 'calendar', travel: 'travel', contacts: 'contacts',
+      roles: 'roles', predictive: 'predictive_dispatch', federation: 'federation',
+      timeline: 'timeline', webhooks: 'Webhooks', security: 'Security Monitor',
+      activity: 'Aktivitäts-Heatmap', geofencing: 'Geo-Fencing', compliance: 'Compliance Reports',
+      backups: 'Encrypted Backups', health: 'Systemüberwachung', 'rate-limits': 'Rate Limit Analytics',
+      predictions: 'KI Prognosen', 'fed-sync': 'Federation Sync', 'kpi-charts': 'Realtime KPI',
+      'auto-reports': 'Auto Reports',
     };
     document.getElementById('page-title').textContent = ATLAS.i18n.t(titles[page] || page);
 
@@ -673,7 +1404,32 @@ router: {
       case 'weather': ATLAS.weatherPage.render(content); break;
       case 'calendar': ATLAS.calendarPage.render(content); break;
       case 'travel': ATLAS.travelPage.render(content); break;
-      default: content.innerHTML = `<div style="padding:40px;text-align:center;color:var(--text-muted);">Page not found: ${page}</div>`;
+      case 'contacts': ATLAS.contactsPage.render(content); break;
+      case 'roles': ATLAS.rolesPage.render(content); break;
+      case 'predictive': ATLAS.predictivePage.render(content); break;
+      case 'federation': ATLAS.federationPage.render(content); break;
+      case 'timeline': ATLAS.timelinePage.render(content); break;
+      case 'webhooks': ATLAS.webhooksPage.render(content); break;
+      case 'security': ATLAS.securityMonitor.render(content); break;
+      case 'activity': ATLAS.activityHeatmap.render(content); break;
+      case 'geofencing': ATLAS.geofencingPage.render(content); break;
+      case 'compliance': ATLAS.compliancePage.render(content); break;
+      case 'backups': ATLAS.backupsPage.render(content); break;
+      case 'admin-settings': ATLAS.adminSettingsPage.render(content); break;
+      case 'health': ATLAS.healthPage.render(content); break;
+      case 'rate-limits': ATLAS.rateLimitPage.render(content); break;
+      case 'predictions': ATLAS.predictionsPage.render(content); break;
+      case 'fed-sync': ATLAS.fedSyncPage.render(content); break;
+      case 'kpi-charts': ATLAS.kpiChartsPage.render(content); break;
+      case 'auto-reports': ATLAS.autoReportsPage.render(content); break;
+      case 'inventory': ATLAS.inventoryPage.render(content); break;
+      case 'knowledge': ATLAS.knowledgePage.render(content); break;
+      case 'requests': ATLAS.requestsPage.render(content); break;
+      case 'pi-manager': ATLAS.piManagerPage.render(content); break;
+      case 'event-predictions': ATLAS.eventPredictionsPage.render(content); break;
+      case 'remote-access': ATLAS.remoteAccessPage.render(content); break;
+      case 'security-ai': ATLAS.securityAiPage.render(content); break;
+      default: { const safe = document.createTextNode(page); const d = document.createElement('div'); d.style = 'padding:40px;text-align:center;color:var(--text-muted);'; d.append('Page not found: ', safe); content.appendChild(d); }
     }
   }
 },
@@ -682,11 +1438,22 @@ router: {
    UI Helpers
 ============================================================ */
 ui: {
+  /** Escape a value for safe insertion into innerHTML templates. */
+  esc(v) {
+    if (v === null || v === undefined) return '';
+    return String(v)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  },
+
   buildNav() {
     const enabledModules = new Set(
       ATLAS.state.modules.filter(m => m.enabled).map(m => m.name)
     );
-    const isAdmin = ATLAS.state.user?.role === 'admin';
+    const isAdmin = ATLAS.state.user?.role === 'admin' || ATLAS.state.user?.role === 'owner';
 
     const nav = [
       { id: 'dashboard', icon: '📊', label: 'dashboard', always: true },
@@ -704,7 +1471,32 @@ ui: {
       { id: 'weather', icon: '🌤', label: 'weather', module: 'weather' },
       { id: 'calendar', icon: '📅', label: 'calendar', module: 'calendar' },
       { id: 'travel', icon: '✈️', label: 'travel', module: 'travel' },
+      { id: 'contacts', icon: '📒', label: 'contacts', always: true },
+      { id: 'timeline', icon: '📈', label: 'timeline', always: true },
+      { id: 'predictive', icon: '🔮', label: 'predictive_dispatch', module: 'ai_analytics' },
+      { id: 'federation', icon: '🌐', label: 'federation', always: true, adminOnly: true },
       { id: 'users', icon: '👥', label: 'users', module: 'user_management', adminOnly: true },
+      { id: 'roles', icon: '🛡', label: 'roles', module: 'user_management', adminOnly: true },
+      { id: 'webhooks', icon: '🔗', label: 'Webhooks', always: true, adminOnly: true },
+      { id: 'security', icon: '🛡️', label: 'Security Monitor', always: true, adminOnly: true },
+      { id: 'activity', icon: '📊', label: 'Aktivitäts-Heatmap', always: true, adminOnly: true },
+      { id: 'geofencing', icon: '🗺️', label: 'Geo-Fencing', always: true, adminOnly: true },
+      { id: 'compliance', icon: '📋', label: 'Compliance Reports', always: true, adminOnly: true },
+      { id: 'backups', icon: '💾', label: 'Encrypted Backups', always: true, ownerOnly: true },
+      { id: 'admin-settings', icon: '⚙️', label: 'System-Einstellungen', always: true, ownerOnly: true },
+      { id: 'health', icon: '🖥️', label: 'Systemüberwachung', always: true, adminOnly: true },
+      { id: 'rate-limits', icon: '⚡', label: 'Rate Limit Analytics', always: true, adminOnly: true },
+      { id: 'predictions', icon: '🤖', label: 'KI Predictions', always: true, adminOnly: true },
+      { id: 'fed-sync', icon: '🔄', label: 'Federation Sync', always: true, adminOnly: true },
+      { id: 'kpi-charts', icon: '📈', label: 'Realtime KPI', always: true, adminOnly: true },
+      { id: 'auto-reports', icon: '📄', label: 'Auto Reports', always: true, adminOnly: true },
+      { id: 'inventory', icon: '📦', label: 'Lagerverwaltung', module: 'inventory' },
+      { id: 'knowledge', icon: '📚', label: 'Wissensdatenbank', module: 'knowledge' },
+      { id: 'requests', icon: '📋', label: 'Anfragen', module: 'requests' },
+      { id: 'pi-manager', icon: '🍓', label: 'Pi-Netzwerk', module: 'pi_manager', adminOnly: true },
+      { id: 'event-predictions', icon: '🔮', label: 'Ereignisvorhersage', module: 'event_predictions', adminOnly: true },
+      { id: 'remote-access', icon: '🔒', label: 'Remote-Zugriff', module: 'remote_access', adminOnly: true },
+      { id: 'security-ai', icon: '🧠', label: 'Sicherheits-KI', module: 'security_ai', adminOnly: true },
       { id: 'modules', icon: '🔧', label: 'modules', always: true, adminOnly: true },
       { id: 'settings', icon: '⚙️', label: 'settings', always: true },
     ];
@@ -712,8 +1504,10 @@ ui: {
     const menu = document.getElementById('nav-menu');
     menu.innerHTML = '';
 
+    const isOwner = ATLAS.state.user && ATLAS.state.user.role === 'owner';
     nav.forEach(item => {
       if (item.adminOnly && !isAdmin) return;
+      if (item.ownerOnly && !isOwner) return;
       if (item.module && !enabledModules.has(item.module)) return;
       const el = document.createElement('div');
       el.className = 'nav-item';
@@ -750,31 +1544,66 @@ ui: {
 
   showThemePicker() {
     const themes = [
-      { id: 'liquid-glass', name: 'Liquid Glass', colors: ['#1a1a2e','rgba(255,255,255,0.2)','#60a5fa'] },
-      { id: 'cyberpunk', name: 'Cyberpunk', colors: ['#050508','#0d0d20','#00ff88'] },
-      { id: 'glass', name: 'Glassmorphism', colors: ['#667eea','rgba(255,255,255,0.2)','#ffffff'] },
-      { id: 'corporate', name: 'Corporate', colors: ['#f5f7fa','#ffffff','#1d4ed8'] },
-      { id: 'military', name: 'Military', colors: ['#0a0f08','#161f12','#4a7c3f'] },
-      { id: 'gold', name: 'Liquid Gold', colors: ['#0a0800','#1a1500','#ffd700'] },
-      { id: 'arctic', name: 'Arctic White', colors: ['#f8fbff','#ffffff','#0ea5e9'] },
-      { id: 'sunset', name: 'Sunset', colors: ['#1a0a00','#3d1a00','#ff6b35'] },
-      { id: 'matrix', name: 'Matrix', colors: ['#000000','#001a00','#00ff41'] },
-      { id: 'royal', name: 'Royal Purple', colors: ['#0d001a','#220044','#c084fc'] },
-      { id: 'fire', name: 'Fire Red', colors: ['#0d0000','#220000','#ef4444'] },
+      { id: 'liquid-glass', name: 'Liquid Glass', emoji: '💎', colors: ['#1a1a2e','#16213e','#60a5fa'] },
+      { id: 'liquid-glass-2', name: 'Liquid Glass 2.0', emoji: '🔮', colors: ['#08071a','#0d1128','#a78bfa'] },
+      { id: 'cyberpunk', name: 'Cyberpunk', emoji: '⚡', colors: ['#050508','#0d0d20','#00ff88'] },
+      { id: 'glass', name: 'Glassmorphism', emoji: '🌌', colors: ['#667eea','#764ba2','#ffffff'] },
+      { id: 'apple', name: 'Apple', emoji: '🍎', colors: ['#f2f2f7','#ffffff','#007aff'] },
+      { id: 'corporate', name: 'Corporate', emoji: '🏢', colors: ['#f5f7fa','#ffffff','#1d4ed8'] },
+      { id: 'military', name: 'Military', emoji: '🪖', colors: ['#0a0f08','#161f12','#4a7c3f'] },
+      { id: 'gold', name: 'Liquid Gold', emoji: '✨', colors: ['#0a0800','#1a1500','#ffd700'] },
+      { id: 'arctic', name: 'Arctic White', emoji: '❄️', colors: ['#f8fbff','#ffffff','#0ea5e9'] },
+      { id: 'sunset', name: 'Sunset', emoji: '🌅', colors: ['#1a0a00','#3d1a00','#ff6b35'] },
+      { id: 'matrix', name: 'Matrix', emoji: '🟩', colors: ['#000000','#001a00','#00ff41'] },
+      { id: 'royal', name: 'Royal Purple', emoji: '👑', colors: ['#0d001a','#220044','#c084fc'] },
+      { id: 'fire', name: 'Fire Red', emoji: '🔥', colors: ['#0d0000','#220000','#ef4444'] },
+      { id: 'fruehling', name: 'Frühling', emoji: '🌸', colors: ['#e8f5e9','#f3e5f5','#43a047'] },
+      { id: 'sommer', name: 'Sommer', emoji: '☀️', colors: ['#fff8e1','#ffe0b2','#ff6f00'] },
+      { id: 'herbst', name: 'Herbst', emoji: '🍂', colors: ['#3e2723','#5d4037','#ff7043'] },
+      { id: 'winter', name: 'Winter', emoji: '🌨️', colors: ['#e3f2fd','#ede7f6','#3f51b5'] },
+      { id: 'citrus', name: 'Citrus', emoji: '🍋', colors: ['#1a2a00','#1f3300','#c6ff00'] },
     ];
 
     const current = document.documentElement.getAttribute('data-theme') || 'liquid-glass';
+    const groups = [
+      { label: '🌑 Dark Themes', ids: ['liquid-glass','liquid-glass-2','cyberpunk','matrix','royal','fire','military','gold','sunset','herbst','citrus'] },
+      { label: '☀️ Light Themes', ids: ['apple','corporate','arctic','glass','fruehling','sommer','winter'] },
+    ];
+    const themeMap = Object.fromEntries(themes.map(t => [t.id, t]));
     const body = `
-      <div class="theme-grid">
-        ${themes.map(th => `
-          <div class="theme-btn ${th.id === current ? 'active' : ''}"
-               onclick="ATLAS.ui.applyTheme('${th.id}');ATLAS.ui.closeModal();ATLAS.api.put('/api/auth/me',{theme:'${th.id}'})">
-            <div class="theme-preview" style="background:linear-gradient(135deg,${th.colors[0]},${th.colors[1]});border:2px solid ${th.colors[2]};"></div>
-            <span style="font-size:11px;">${th.name}</span>
+      <style>
+        .theme-grid-v2 { display:flex; flex-direction:column; gap:16px; }
+        .theme-group-label { font-size:11px; font-weight:700; color:var(--text-muted); text-transform:uppercase; letter-spacing:.08em; margin-bottom:6px; }
+        .theme-row { display:grid; grid-template-columns:repeat(auto-fill,minmax(90px,1fr)); gap:8px; }
+        .theme-btn-v2 { display:flex; flex-direction:column; align-items:center; gap:5px; padding:8px 6px; border-radius:12px; cursor:pointer; border:2px solid transparent; transition:all .15s; background:var(--bg-secondary); }
+        .theme-btn-v2:hover { border-color:var(--accent); transform:translateY(-2px); }
+        .theme-btn-v2.active { border-color:var(--accent); box-shadow:0 0 0 3px var(--accent-dim); }
+        .theme-preview-v2 { width:56px; height:36px; border-radius:8px; overflow:hidden; position:relative; border:1px solid rgba(255,255,255,.15); }
+        .theme-preview-v2-bar { position:absolute; bottom:0; left:0; right:0; height:10px; }
+        .theme-name-v2 { font-size:10px; font-weight:600; color:var(--text-secondary); text-align:center; line-height:1.2; }
+        .theme-emoji { font-size:18px; }
+      </style>
+      <div class="theme-grid-v2">
+        ${groups.map(g => `
+          <div>
+            <div class="theme-group-label">${g.label}</div>
+            <div class="theme-row">
+              ${g.ids.filter(id => themeMap[id]).map(id => {
+                const th = themeMap[id];
+                return `<div class="theme-btn-v2 ${th.id === current ? 'active' : ''}"
+                  onclick="ATLAS.ui.applyTheme('${th.id}');ATLAS.ui.closeModal();ATLAS.api.put('/api/auth/me',{theme:'${th.id}'})">
+                  <div class="theme-preview-v2" style="background:linear-gradient(135deg,${th.colors[0]} 0%,${th.colors[1]} 100%);">
+                    <div class="theme-preview-v2-bar" style="background:${th.colors[2]};opacity:.9;"></div>
+                  </div>
+                  <span class="theme-emoji">${th.emoji}</span>
+                  <span class="theme-name-v2">${th.name}</span>
+                </div>`;
+              }).join('')}
+            </div>
           </div>
         `).join('')}
       </div>`;
-    ATLAS.ui.modal(ATLAS.i18n.t('theme'), body);
+    ATLAS.ui.modal('🎨 ' + ATLAS.i18n.t('theme'), body);
   },
 
   showUserMenu() {
@@ -933,12 +1762,38 @@ alerts: {
       if (critical.length > 0) {
         banner.classList.remove('hidden');
         document.getElementById('alert-banner-text').textContent =
-          `${critical.length} ${ATLAS.i18n.t('critical')} alert${critical.length > 1 ? 's' : ''} – ${critical[0].message}`;
+          `${critical.length} ${ATLAS.i18n.t('critical')} alert${critical.length > 1 ? 's' : ''} – ${critical[0]?.message || ''}`;
       } else {
         banner.classList.add('hidden');
       }
     }
     if (badge) { badge.textContent = unack; badge.classList.toggle('hidden', unack === 0); }
+  },
+
+  onEmergencyBroadcast(data) {
+    // Full-screen emergency overlay for NINA / manual max alert
+    ATLAS.audio.startAlarm('air_raid');
+    const existing = document.getElementById('emergency-overlay');
+    if (existing) existing.remove();
+    const overlay = document.createElement('div');
+    overlay.id = 'emergency-overlay';
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(200,0,0,0.92);z-index:99999;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;text-align:center;animation:emergency-pulse 0.8s infinite alternate;';
+    overlay.innerHTML = `
+      <div style="font-size:72px;margin-bottom:16px;">🚨</div>
+      <div style="font-size:32px;font-weight:900;letter-spacing:2px;margin-bottom:12px;">${data.title || 'NOTFALLALARM'}</div>
+      <div style="font-size:18px;max-width:600px;margin-bottom:8px;opacity:0.9;">${data.message || ''}</div>
+      <div style="font-size:13px;opacity:0.7;margin-bottom:32px;">Quelle: ${data.source || 'system'}</div>
+      <button onclick="document.getElementById('emergency-overlay').remove();ATLAS.audio.stopAlarm();"
+        style="background:#fff;color:#c00;border:none;padding:12px 32px;font-size:16px;font-weight:700;border-radius:8px;cursor:pointer;">
+        ✓ Bestätigen &amp; Schließen
+      </button>`;
+    if (!document.getElementById('emergency-keyframes')) {
+      const style = document.createElement('style');
+      style.id = 'emergency-keyframes';
+      style.textContent = '@keyframes emergency-pulse{from{background:rgba(200,0,0,0.92)}to{background:rgba(180,0,0,1)}}';
+      document.head.appendChild(style);
+    }
+    document.body.appendChild(overlay);
   }
 },
 
@@ -1007,7 +1862,7 @@ audio: {
     this.play(toneId);
     this._alarmInterval = setInterval(() => {
       if (this._alarmToneId) this.play(this._alarmToneId);
-    }, 2500);
+    }, 800);
     // Show dismissible alarm overlay
     let overlay = document.getElementById('alarm-overlay');
     if (!overlay) {
@@ -1187,24 +2042,40 @@ audio: {
 ============================================================ */
 async init() {
   // Apply saved theme
-  const savedTheme = localStorage.getItem('atlas_theme') || 'liquid-glass';
+  let savedTheme = 'liquid-glass', savedLang = 'en';
+  try {
+    savedTheme = localStorage.getItem('atlas_theme') || 'liquid-glass';
+    savedLang  = localStorage.getItem('atlas_lang')  || 'en';
+  } catch(_) {}
   ATLAS.ui.applyTheme(savedTheme);
-
-  // Apply saved language
-  const savedLang = localStorage.getItem('atlas_lang') || 'en';
   ATLAS.i18n.lang = savedLang;
+
+  // Register username Enter-key listener BEFORE any async work.
+  // The password field listener is added inside showLoginScreen() since
+  // the pw field is injected fresh each time to defeat browser AutoFill.
+  document.getElementById('login-user').addEventListener('keydown', e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const pw = document.getElementById('login-pass');
+      if (pw) pw.focus();
+    }
+  });
+
+  // Check if first-time setup is needed
+  try {
+    const status = await fetch('/api/setup/status').then(r => r.json());
+    if (status.setup_required) {
+      ATLAS.setupWizard.show();
+      return;
+    }
+  } catch {}
 
   // Try auto-login
   const ok = await ATLAS.auth.tryAutoLogin();
   if (!ok) {
-    document.getElementById('login-screen').classList.remove('hidden');
     ATLAS.ui.applyTranslations();
+    ATLAS.auth.showLoginScreen();
   }
-
-  // Enter key on password field
-  document.getElementById('login-pass').addEventListener('keydown', e => {
-    if (e.key === 'Enter') ATLAS.auth.login();
-  });
 }
 
 }; // end ATLAS
@@ -1441,6 +2312,7 @@ ATLAS.map = {
   markers: {},
   incidentMarkers: {},
   fleetLayer: null,
+  userMarkers: {},   // keyed by user_id – live positions from iOS/Android app
   _tileLayerRef: { layer: null },
   _currentLayer: 'osm',
 
@@ -1525,6 +2397,10 @@ ATLAS.map = {
     this.renderAssetList();
     this.renderIncidentList();
     ATLAS.state.mapInstance = this.instance;
+    // Attach infrastructure scanner
+    ATLAS.infraScanner.attach(this.instance);
+    // Load live device positions from mobile app users
+    this.loadDeviceLocations();
   },
 
   addAssetMarker(asset) {
@@ -1555,6 +2431,43 @@ ATLAS.map = {
 
   moveMarker(id, lat, lng) {
     if (this.markers[id]) this.markers[id].setLatLng([lat, lng]);
+  },
+
+  /** Load latest GPS positions for all mobile app users and place them on the map. */
+  async loadDeviceLocations() {
+    if (!this.instance) return;
+    const locs = await ATLAS.api.get('/api/device/locations');
+    if (!Array.isArray(locs)) return;
+    locs.forEach(loc => this.updateUserMarker(loc));
+  },
+
+  /** Create or update a user location marker (called on initial load and WS events). */
+  updateUserMarker(data) {
+    if (!this.instance || !data.lat || !data.lng) return;
+    const label = data.full_name || data.username || '?';
+    const initials = (label[0] || '?').toUpperCase();
+    const existing = this.userMarkers[data.user_id];
+    if (existing) {
+      existing.setLatLng([data.lat, data.lng]);
+      existing.setPopupContent(
+        `<b>📱 ${label}</b><br>${ATLAS.i18n.t('role') || 'Role'}: ${data.role || '–'}<br>` +
+        `${data.speed_ms != null ? '🚀 ' + (data.speed_ms * 3.6).toFixed(1) + ' km/h<br>' : ''}` +
+        `<small style="color:#888;">${data.recorded_at ? new Date(data.recorded_at).toLocaleTimeString() : ''}</small>`
+      );
+    } else {
+      const icon = L.divIcon({
+        html: `<div style="background:#0ea5e9;border:2px solid white;border-radius:50%;width:30px;height:30px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white;box-shadow:0 2px 8px rgba(0,0,0,0.5);">${initials}</div>`,
+        iconSize: [30, 30], iconAnchor: [15, 15], className: ''
+      });
+      const marker = L.marker([data.lat, data.lng], { icon })
+        .addTo(this.instance)
+        .bindPopup(
+          `<b>📱 ${label}</b><br>${ATLAS.i18n.t('role') || 'Role'}: ${data.role || '–'}<br>` +
+          `${data.speed_ms != null ? '🚀 ' + (data.speed_ms * 3.6).toFixed(1) + ' km/h<br>' : ''}` +
+          `<small style="color:#888;">${data.recorded_at ? new Date(data.recorded_at).toLocaleTimeString() : ''}</small>`
+        );
+      this.userMarkers[data.user_id] = marker;
+    }
   },
 
   switchLayer(layerId) {
@@ -1592,12 +2505,15 @@ ATLAS.map = {
           html: `<div style="background:#8b5cf6;border:2px solid white;border-radius:50%;width:28px;height:28px;display:flex;align-items:center;justify-content:center;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,0.4);">${ATLAS.ui.vehicleIcon(v.type)}</div>`,
           iconSize: [28,28], iconAnchor: [14,14], className: ''
         });
+        const make = v.make || '';
+        const model = v.model || '';
+        const status = v.status || '–';
         L.marker([v.lat, v.lng], { icon }).addTo(this.fleetLayer)
-          .bindPopup(`<b>${v.name}</b><br>${v.make} ${v.model}<br>${v.status}`);
+          .bindPopup(`<b>${ATLAS.ui.esc(v.name)}</b><br>${make} ${model}<br>${status}`);
         ATLAS.state.fleetMapMarkers = ATLAS.state.fleetMapMarkers || {};
         ATLAS.state.fleetMapMarkers[v.id] = null;
       });
-    });
+    }).catch(err => ATLAS.ui.toast('Fleet layer error: ' + err.message, 'error'));
   },
 
   renderAssetList() {
@@ -1618,7 +2534,7 @@ ATLAS.map = {
     el.innerHTML = open.map(i => `
       <div style="display:flex;align-items:center;gap:10px;padding:8px;border-radius:var(--radius-sm);cursor:pointer;" onmouseover="this.style.background='var(--nav-hover-bg)'" onmouseout="this.style.background=''" onclick="ATLAS.map.flyTo(${i.lat||51.16},${i.lng||10.45})">
         <span>${ATLAS.ui.severityBadge(i.severity)}</span>
-        <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${i.title}</div><div style="font-size:11px;color:var(--text-muted);">${ATLAS.ui.formatDate(i.created_at)}</div></div>
+        <div style="flex:1;min-width:0;"><div style="font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${ATLAS.ui.esc(i.title)}</div><div style="font-size:11px;color:var(--text-muted);">${ATLAS.ui.formatDate(i.created_at)}</div></div>
       </div>`).join('') || `<div style="color:var(--text-muted);padding:12px;text-align:center;">No open incidents</div>`;
   },
 
@@ -1654,10 +2570,7 @@ ATLAS.map = {
           <select id="na-status" class="form-select"><option value="active">Active</option><option value="standby">Standby</option><option value="inactive">Inactive</option></select>
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Latitude</label><input id="na-lat" class="form-input" type="number" step="any" placeholder="51.1657"></div>
-        <div class="form-group"><label class="form-label">Longitude</label><input id="na-lng" class="form-input" type="number" step="any" placeholder="10.4515"></div>
-      </div>
+      ${ATLAS.geo.widget('na')}
       <div class="form-group"><label class="form-label">${ATLAS.i18n.t('description')}</label><textarea id="na-desc" class="form-textarea"></textarea></div>`,
       `<button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">${ATLAS.i18n.t('cancel')}</button>
        <button class="btn btn-primary" onclick="ATLAS.map.createAsset()">+ ${ATLAS.i18n.t('create')}</button>`
@@ -1667,16 +2580,18 @@ ATLAS.map = {
   async createAsset() {
     const name = document.getElementById('na-name').value.trim();
     if (!name) return;
-    const asset = await ATLAS.api.post('/api/assets', {
-      name, type: document.getElementById('na-type').value,
-      status: document.getElementById('na-status').value,
-      lat: parseFloat(document.getElementById('na-lat').value)||null,
-      lng: parseFloat(document.getElementById('na-lng').value)||null,
-      description: document.getElementById('na-desc').value
-    });
-    ATLAS.ui.closeModal();
-    ATLAS.ui.toast(`Asset "${name}" created`, 'success');
-    ATLAS.map.renderAssetList();
+    try {
+      await ATLAS.api.post('/api/assets', {
+        name, type: document.getElementById('na-type').value,
+        status: document.getElementById('na-status').value,
+        lat: parseFloat(document.getElementById('na-lat').value)||null,
+        lng: parseFloat(document.getElementById('na-lng').value)||null,
+        description: document.getElementById('na-desc').value
+      });
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast(`Asset "${name}" created`, 'success');
+      ATLAS.map.renderAssetList();
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to create asset', 'warning'); }
   }
 };
 
@@ -1756,6 +2671,7 @@ ATLAS.incidents = {
 
   renderTable(list) {
     const tbody = document.getElementById('incident-tbody');
+    if (!tbody) return;
     const countEl = document.getElementById('inc-count');
     if (countEl) countEl.textContent = `${list.length} incident${list.length!==1?'s':''}`;
     if (!tbody) return;
@@ -1763,7 +2679,7 @@ ATLAS.incidents = {
       <tr style="cursor:pointer;" onclick="ATLAS.incidents.showDetail(${JSON.stringify(i).replace(/"/g,'&quot;')})">
         <td>${ATLAS.ui.severityBadge(i.severity)}</td>
         <td>
-          <div style="font-weight:600;">${i.title}</div>
+          <div style="font-weight:600;">${ATLAS.ui.esc(i.title)}</div>
           <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">${(i.description||'').slice(0,70)}${(i.description||'').length>70?'…':''}</div>
         </td>
         <td>${ATLAS.ui.statusBadge(i.status)}</td>
@@ -1792,7 +2708,7 @@ ATLAS.incidents = {
 
   showDetail(inc) {
     const colorMap = { critical: 'var(--danger)', warning: 'var(--warning)', info: 'var(--info)' };
-    ATLAS.ui.openPanel(`${inc.title}`, `
+    ATLAS.ui.openPanel(`${ATLAS.ui.esc(inc.title)}`, `
       <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
         ${ATLAS.ui.severityBadge(inc.severity)}
         ${ATLAS.ui.statusBadge(inc.status)}
@@ -1810,16 +2726,19 @@ ATLAS.incidents = {
         <button class="btn btn-secondary btn-sm" onclick="ATLAS.incidents.showEdit(${JSON.stringify(inc).replace(/"/g,'&quot;')})">${ATLAS.i18n.t('edit')}</button>
         ${inc.lat && inc.lng ? `<button class="btn btn-secondary btn-sm" onclick="ATLAS.router.go('map');setTimeout(()=>ATLAS.map.flyTo(${inc.lat},${inc.lng}),300)">🗺 Map</button>` : ''}
         ${inc.lat && inc.lng ? `<button class="btn btn-secondary btn-sm" onclick="ATLAS.navigation.setDestination('${inc.lat},${inc.lng}')">🧭 Navigate</button>` : ''}
+        <button class="btn btn-secondary btn-sm" onclick="ATLAS.incidentReport.generate(${inc.id})">📋 ${ATLAS.i18n.t('incident_report')}</button>
       </div>`);
   },
 
   async quickResolve(id) {
-    await ATLAS.api.put(`/api/incidents/${id}`, { status: 'resolved' });
-    const inc = this._all.find(i => i.id === id);
-    if (inc) inc.status = 'resolved';
-    ATLAS.ui.closePanel();
-    ATLAS.ui.toast('Incident resolved', 'success');
-    this.filter();
+    try {
+      await ATLAS.api.put(`/api/incidents/${id}`, { status: 'resolved' });
+      const inc = this._all.find(i => i.id === id);
+      if (inc) inc.status = 'resolved';
+      ATLAS.ui.closePanel();
+      ATLAS.ui.toast('Incident resolved', 'success');
+      this.filter();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   exportCSV() {
@@ -1843,10 +2762,7 @@ ATLAS.incidents = {
           <select id="ni-status" class="form-select"><option value="open">Open</option><option value="in_progress">In Progress</option></select>
         </div>
       </div>
-      <div class="form-row">
-        <div class="form-group"><label class="form-label">Latitude</label><input id="ni-lat" class="form-input" type="number" step="any" placeholder="51.1657"></div>
-        <div class="form-group"><label class="form-label">Longitude</label><input id="ni-lng" class="form-input" type="number" step="any" placeholder="10.4515"></div>
-      </div>
+      ${ATLAS.geo.widget('ni')}
       <div class="form-group"><label class="form-label">${ATLAS.i18n.t('description')}</label><textarea id="ni-desc" class="form-textarea" rows="3" placeholder="Describe the incident..."></textarea></div>`,
       `<button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">${ATLAS.i18n.t('cancel')}</button>
        <button class="btn btn-primary" onclick="ATLAS.incidents.create()">+ ${ATLAS.i18n.t('create')}</button>`
@@ -1857,24 +2773,26 @@ ATLAS.incidents = {
   async create() {
     const title = document.getElementById('ni-title').value.trim();
     if (!title) { ATLAS.ui.toast('Title is required', 'warning'); return; }
-    const inc = await ATLAS.api.post('/api/incidents', {
-      title, severity: document.getElementById('ni-sev').value,
-      status: document.getElementById('ni-status').value,
-      description: document.getElementById('ni-desc').value,
-      lat: parseFloat(document.getElementById('ni-lat').value)||51.1657,
-      lng: parseFloat(document.getElementById('ni-lng').value)||10.4515,
-    });
-    if (inc) {
-      this._all.unshift(inc);
-      ATLAS.state.incidents.unshift(inc);
-    }
-    ATLAS.ui.closeModal();
-    ATLAS.ui.toast(`Incident "${title}" created`, 'success');
-    this.filter();
+    try {
+      const inc = await ATLAS.api.post('/api/incidents', {
+        title, severity: document.getElementById('ni-sev').value,
+        status: document.getElementById('ni-status').value,
+        description: document.getElementById('ni-desc').value,
+        lat: parseFloat(document.getElementById('ni-lat')?.value)||null,
+        lng: parseFloat(document.getElementById('ni-lng')?.value)||null,
+      });
+      if (inc) {
+        this._all.unshift(inc);
+        ATLAS.state.incidents.unshift(inc);
+      }
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast(`Incident "${title}" created`, 'success');
+      this.filter();
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to create incident', 'warning'); }
   },
 
   showEdit(inc) {
-    ATLAS.ui.modal(`${ATLAS.i18n.t('edit')}: ${inc.title}`, `
+    ATLAS.ui.modal(`${ATLAS.i18n.t('edit')}: ${ATLAS.ui.esc(inc.title)}`, `
       <div class="form-group"><label class="form-label">${ATLAS.i18n.t('title')}</label><input id="ei-title" class="form-input" value="${(inc.title||'').replace(/"/g,'&quot;')}"></div>
       <div class="form-row">
         <div class="form-group"><label class="form-label">${ATLAS.i18n.t('severity')}</label>
@@ -1891,18 +2809,20 @@ ATLAS.incidents = {
   },
 
   async update(id) {
-    const updated = await ATLAS.api.put(`/api/incidents/${id}`, {
-      title: document.getElementById('ei-title').value,
-      severity: document.getElementById('ei-sev').value,
-      status: document.getElementById('ei-status').value,
-      description: document.getElementById('ei-desc').value,
-    });
-    const idx = this._all.findIndex(i => i.id === id);
-    if (idx >= 0 && updated) this._all[idx] = { ...this._all[idx], ...updated };
-    ATLAS.ui.closeModal();
-    ATLAS.ui.closePanel();
-    ATLAS.ui.toast('Incident updated', 'success');
-    this.filter();
+    try {
+      const updated = await ATLAS.api.put(`/api/incidents/${id}`, {
+        title: document.getElementById('ei-title').value,
+        severity: document.getElementById('ei-sev').value,
+        status: document.getElementById('ei-status').value,
+        description: document.getElementById('ei-desc').value,
+      });
+      const idx = this._all.findIndex(i => i.id === id);
+      if (idx >= 0 && updated) this._all[idx] = { ...this._all[idx], ...updated };
+      ATLAS.ui.closeModal();
+      ATLAS.ui.closePanel();
+      ATLAS.ui.toast('Incident updated', 'success');
+      this.filter();
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to update incident', 'warning'); }
   }
 };
 
@@ -1989,9 +2909,9 @@ ATLAS.alertsPage = {
       <div class="alert-item ${a.severity} ${a.acknowledged?'acknowledged':''}" style="animation:fadeInDown 0.15s ease;">
         <span class="alert-icon">${icons[a.severity]||'ℹ️'}</span>
         <div class="alert-body">
-          <div class="alert-msg">${a.message}</div>
+          <div class="alert-msg">${ATLAS.ui.esc(a.message)}</div>
           <div class="alert-meta">
-            ${a.source ? `<span style="background:var(--bg-input);padding:1px 6px;border-radius:3px;font-size:10px;">${a.source}</span> · ` : ''}
+            ${a.source ? `<span style="background:var(--bg-input);padding:1px 6px;border-radius:3px;font-size:10px;">${ATLAS.ui.esc(a.source)}</span> · ` : ''}
             ${ATLAS.ui.formatDate(a.created_at)}
             ${a.acknowledged ? ' · <span style="color:var(--success);">✓ Acknowledged</span>' : ''}
           </div>
@@ -2004,19 +2924,23 @@ ATLAS.alertsPage = {
   },
 
   async ack(id) {
-    await ATLAS.api.post(`/api/alerts/${id}/acknowledge`);
-    const a = ATLAS.state.alerts.find(a => a.id === id);
-    if (a) a.acknowledged = 1;
-    this.filter();
-    ATLAS.alerts.updateBanner();
+    try {
+      await ATLAS.api.post(`/api/alerts/${id}/acknowledge`);
+      const a = ATLAS.state.alerts.find(a => a.id === id);
+      if (a) a.acknowledged = 1;
+      this.filter();
+      ATLAS.alerts.updateBanner();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async ackAll() {
-    await ATLAS.api.post('/api/alerts/acknowledge-all');
-    ATLAS.state.alerts.forEach(a => a.acknowledged = 1);
-    this.filter();
-    ATLAS.alerts.updateBanner();
-    ATLAS.ui.toast('All alerts acknowledged', 'success');
+    try {
+      await ATLAS.api.post('/api/alerts/acknowledge-all');
+      ATLAS.state.alerts.forEach(a => a.acknowledged = 1);
+      this.filter();
+      ATLAS.alerts.updateBanner();
+      ATLAS.ui.toast('All alerts acknowledged', 'success');
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   showCreate() {
@@ -2049,9 +2973,11 @@ ATLAS.alertsPage = {
   async create() {
     const msg = document.getElementById('na-msg').value.trim();
     if (!msg) { ATLAS.ui.toast('Message is required', 'warning'); return; }
-    await ATLAS.api.post('/api/alerts', { message: msg, severity: document.getElementById('na-sev').value, type: document.getElementById('na-type').value });
-    ATLAS.ui.closeModal();
-    ATLAS.ui.toast('Alert created', 'success');
+    try {
+      await ATLAS.api.post('/api/alerts', { message: msg, severity: document.getElementById('na-sev').value, type: document.getElementById('na-type').value });
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast('Alert created', 'success');
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to create alert', 'warning'); }
   }
 };
 
@@ -2109,7 +3035,7 @@ ATLAS.chat = {
     this.currentRoom = roomId;
     this.currentDM = null;
     if (name) this._roomNames[roomId] = name;
-    document.querySelectorAll('.room-item').forEach(el => el.classList.toggle('active', parseInt(el.dataset.room)===roomId));
+    document.querySelectorAll('.room-item').forEach(el => el.classList.toggle('active', parseInt(el.dataset.room, 10)===roomId));
     const headerTitle = document.getElementById('chat-header-title');
     const headerActions = document.getElementById('chat-header-actions');
     const inputArea = document.getElementById('chat-input-area');
@@ -2253,6 +3179,7 @@ ATLAS.sensors = {
         <h1>${ATLAS.i18n.t('sensors')}</h1>
         <div class="actions">
           <button class="btn btn-secondary btn-sm" onclick="ATLAS.router.go('sensors',true)">🔄 ${ATLAS.i18n.t('refresh')}</button>
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.sensors.discover()">🔍 Auto-Discover</button>
           <button class="btn btn-primary btn-sm" onclick="ATLAS.sensors.showAdd()">+ Add Sensor</button>
         </div>
       </div>
@@ -2457,6 +3384,17 @@ ATLAS.sensors = {
     });
   },
 
+  async discover() {
+    ATLAS.ui.toast('Suche nach Sensoren…', 'info');
+    try {
+      const res = await ATLAS.api.post('/api/sensors/discover', {});
+      ATLAS.ui.toast(`✅ ${res.discovered} Sensor(en) gefunden, ${res.new_sensors} neu registriert`, 'success');
+      ATLAS.router.go('sensors', true);
+    } catch(e) {
+      ATLAS.ui.toast('Auto-Discover fehlgeschlagen: ' + e.message, 'error');
+    }
+  },
+
   showAdd() {
     const typeUnits = { temperature: '°C', humidity: '%', voltage: 'V', co2: 'ppm', signal: 'dBm', fuel: '%', pressure: 'bar' };
     ATLAS.ui.modal('Add Sensor', `
@@ -2483,16 +3421,18 @@ ATLAS.sensors = {
   async addSensor() {
     const name = document.getElementById('as-name').value.trim();
     if (!name) { ATLAS.ui.toast('Name required','warning'); return; }
-    await ATLAS.api.post('/api/sensors', {
-      name, type: document.getElementById('as-type').value,
-      unit: document.getElementById('as-unit').value,
-      min_val: parseFloat(document.getElementById('as-min').value)||0,
-      max_val: parseFloat(document.getElementById('as-max').value)||100,
-      location: document.getElementById('as-loc').value
-    });
-    ATLAS.ui.closeModal();
-    ATLAS.ui.toast(`Sensor "${name}" added`, 'success');
-    ATLAS.router.go('sensors', true);
+    try {
+      await ATLAS.api.post('/api/sensors', {
+        name, type: document.getElementById('as-type').value,
+        unit: document.getElementById('as-unit').value,
+        min_val: parseFloat(document.getElementById('as-min').value)||0,
+        max_val: parseFloat(document.getElementById('as-max').value)||100,
+        location: document.getElementById('as-loc').value
+      });
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast(`Sensor "${name}" added`, 'success');
+      ATLAS.router.go('sensors', true);
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to add sensor', 'warning'); }
   }
 };
 
@@ -2505,7 +3445,10 @@ ATLAS.analyticsPage = {
     el.innerHTML = `
       <div class="page-header">
         <h1>${ATLAS.i18n.t('analytics')}</h1>
-        <button class="btn btn-secondary btn-sm" onclick="ATLAS.analyticsPage.refresh()">🔄 ${ATLAS.i18n.t('refresh')}</button>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.analyticsPage.refresh()">🔄 ${ATLAS.i18n.t('refresh')}</button>
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.analyticsExtPage.render(document.getElementById('main-content'))">🚗 ${ATLAS.i18n.t('vehicle_utilization')}</button>
+        </div>
       </div>
 
       <!-- KPI row -->
@@ -2557,7 +3500,7 @@ ATLAS.analyticsPage = {
   },
 
   async refresh() {
-    const el = document.getElementById('page-content');
+    const el = document.getElementById('main-content');
     if (el) await this.render(el);
   },
 
@@ -3050,7 +3993,7 @@ ATLAS.fleet = {
     const range = (cap > 0 && avg > 0 && cur > 0) ? Math.round(cur / avg * 100) : null;
     return `<div class="fleet-card" onclick="ATLAS.fleet.showVehicleDetail(${v.id})">
       <div class="fleet-type-icon">${ATLAS.ui.vehicleIcon(v.type)}</div>
-      <div class="fleet-vehicle-name">${v.name}</div>
+      <div class="fleet-vehicle-name">${ATLAS.ui.esc(v.name)}</div>
       <div class="fleet-vehicle-meta">${v.make||''} ${v.model||''} ${v.year?'('+v.year+')':''}</div>
       <div style="margin:8px 0;">${ATLAS.ui.statusBadge(v.status)}</div>
       <div class="fleet-vehicle-details">
@@ -3099,7 +4042,7 @@ ATLAS.fleet = {
     const pending = (maintenance||[]).filter(m=>m.status!=='completed');
     const today = new Date().toISOString().split('T')[0];
 
-    ATLAS.ui.openPanel(`${ATLAS.ui.vehicleIcon(v.type)} ${v.name}`, `
+    ATLAS.ui.openPanel(`${ATLAS.ui.vehicleIcon(v.type)} ${ATLAS.ui.esc(v.name)}`, `
       <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;">
         ${ATLAS.ui.statusBadge(v.status)}
         ${v.driver_name?`<span style="font-size:12px;color:var(--text-muted);">👤 ${v.driver_name}</span>`:''}
@@ -3202,17 +4145,20 @@ ATLAS.fleet = {
         <button class="btn btn-secondary btn-sm" onclick="ATLAS.fleet.showAddMaintenance()">🔧 Add Maintenance</button>
         <button class="btn btn-secondary btn-sm" onclick="ATLAS.fleet.showUpdatePosition(${v.id},${v.lat||0},${v.lng||0})">📍 ${ATLAS.i18n.t('update_position')}</button>
         ${v.lat&&v.lng?`<button class="btn btn-secondary btn-sm" onclick="ATLAS.fleet.navigateToVehicle(${v.lat},${v.lng})">🧭 Navigate</button>`:''}
+        <button class="btn btn-danger btn-sm" onclick="ATLAS.fleet.showDispatch(${v.id},'${v.name.replace(/'/g,"\\'")}')">🚨 ${ATLAS.i18n.t('dispatch_vehicle')}</button>
       </div>`);
   },
 
   async assignDriver(vehicleId) {
     const driverId = document.getElementById('assign-driver-sel')?.value;
-    await ATLAS.api.put(`/api/fleet/vehicles/${vehicleId}`, {
-      assigned_driver: driverId ? parseInt(driverId) : null
-    });
-    ATLAS.ui.toast('Driver assigned', 'success');
-    ATLAS.ui.closePanel();
-    await this.switchTab('vehicles');
+    try {
+      await ATLAS.api.put(`/api/fleet/vehicles/${vehicleId}`, {
+        assigned_driver: driverId ? parseInt(driverId, 10) : null
+      });
+      ATLAS.ui.toast('Driver assigned', 'success');
+      ATLAS.ui.closePanel();
+      await this.switchTab('vehicles');
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   navigateToVehicle(lat, lng) {
@@ -3226,6 +4172,94 @@ ATLAS.fleet = {
     const marker = ATLAS.state.fleetMapMarkers?.[id];
     if (marker) {
       marker.setLatLng([lat, lng]);
+    }
+  },
+
+  async refresh() {
+    if (ATLAS.state.currentPage === 'fleet') {
+      const el = document.getElementById('main-content');
+      if (el) await this.render(el);
+    }
+  },
+
+  onDispatchRequest(data) {
+    // Show modal to accept/decline dispatch
+    ATLAS.ui.modal(`🚨 ${ATLAS.i18n.t('dispatch_request')}`, `
+      <div style="text-align:center;padding:8px 0 16px;">
+        <div style="font-size:32px;margin-bottom:8px;">🚗</div>
+        <div style="font-size:18px;font-weight:700;margin-bottom:8px;">${data.vehicle_name}</div>
+        <div style="color:var(--text-muted);margin-bottom:4px;">Von: ${data.dispatched_by}</div>
+        <div style="margin:12px 0;padding:12px;background:var(--bg-input);border-radius:8px;">${data.message}</div>
+        <div style="display:flex;gap:8px;justify-content:center;margin-top:16px;">
+          <button class="btn btn-success" onclick="ATLAS.fleet._respondDispatch(${data.vehicle_id},'accept')">
+            ✅ ${ATLAS.i18n.t('dispatch_accept')}
+          </button>
+          <button class="btn btn-danger" onclick="ATLAS.fleet._showDeclineForm(${data.vehicle_id})">
+            ❌ ${ATLAS.i18n.t('dispatch_decline')}
+          </button>
+        </div>
+        <div id="dispatch-decline-form" style="display:none;margin-top:12px;">
+          <input id="dispatch-decline-reason" class="form-control" placeholder="${ATLAS.i18n.t('dispatch_reason')}" style="margin-bottom:8px;">
+          <button class="btn btn-danger btn-sm" onclick="ATLAS.fleet._respondDispatch(${data.vehicle_id},'decline')">Ablehnen</button>
+        </div>
+      </div>`);
+    ATLAS.audio.play('digital_beep');
+  },
+
+  _showDeclineForm(vid) {
+    const f = document.getElementById('dispatch-decline-form');
+    if (f) f.style.display = 'block';
+  },
+
+  async _respondDispatch(vid, action) {
+    try {
+      if (action === 'accept') {
+        await ATLAS.api.post(`/api/fleet/vehicles/${vid}/dispatch/accept`, {});
+        ATLAS.ui.toast(ATLAS.i18n.t('dispatch_accept'), 'success');
+      } else {
+        const reason = document.getElementById('dispatch-decline-reason')?.value || '';
+        await ATLAS.api.post(`/api/fleet/vehicles/${vid}/dispatch/decline`, { reason });
+        ATLAS.ui.toast(ATLAS.i18n.t('dispatch_decline'), 'info');
+      }
+      ATLAS.ui.closeModal();
+    } catch(e) {
+      ATLAS.ui.toast(ATLAS.i18n.t('error'), 'error');
+    }
+  },
+
+  showDispatch(vehicleId, vehicleName) {
+    const incidents = ATLAS.state.incidents?.filter(i => i.status !== 'resolved') || [];
+    ATLAS.ui.modal(`🚨 ${ATLAS.i18n.t('dispatch_vehicle')}: ${vehicleName}`, `
+      <div class="form-group">
+        <label class="form-label">Einsatz (optional)</label>
+        <select id="dispatch-incident-sel" class="form-control">
+          <option value="">– Kein Einsatz ausgewählt –</option>
+          ${incidents.map(i => `<option value="${i.id}">[${i.severity.toUpperCase()}] ${ATLAS.ui.esc(i.title)}</option>`).join('')}
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nachricht an Fahrer</label>
+        <input id="dispatch-msg" class="form-control" value="Einsatz zugewiesen – bitte bestätigen">
+      </div>
+      <div style="display:flex;gap:8px;margin-top:12px;">
+        <button class="btn btn-danger" onclick="ATLAS.fleet._sendDispatch(${vehicleId})">🚨 Alarmieren</button>
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+      </div>`);
+  },
+
+  async _sendDispatch(vehicleId) {
+    const incidentId = document.getElementById('dispatch-incident-sel')?.value || null;
+    const message = document.getElementById('dispatch-msg')?.value || 'Einsatz zugewiesen';
+    try {
+      const r = await ATLAS.api.post(`/api/fleet/vehicles/${vehicleId}/dispatch`, {
+        incident_id: incidentId ? parseInt(incidentId, 10) : null,
+        message
+      });
+      ATLAS.ui.closeModal();
+      const notified = r.driver_notified ? '– Fahrer benachrichtigt' : '– Kein Fahrer zugewiesen';
+      ATLAS.ui.toast(`🚨 ${r.vehicle} alarmiert ${notified}`, 'success');
+    } catch(e) {
+      ATLAS.ui.toast(ATLAS.i18n.t('error') + ': ' + (e.message||''), 'error');
     }
   },
 
@@ -3325,12 +4359,14 @@ ATLAS.fleet = {
   async startTrip(id) {
     // Find vehicle_id from cached trips so backend can update vehicle status
     const trip = (this._trips || []).find(t => t.id === id);
-    await ATLAS.api.put(`/api/fleet/trips/${id}`, {
-      status: 'active',
-      vehicle_id: trip?.vehicle_id,
-    });
-    ATLAS.ui.toast('Trip started!', 'success');
-    await this.switchTab('trips');
+    try {
+      await ATLAS.api.put(`/api/fleet/trips/${id}`, {
+        status: 'active',
+        vehicle_id: trip?.vehicle_id,
+      });
+      ATLAS.ui.toast('Trip started!', 'success');
+      await this.switchTab('trips');
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async completeTrip(id) {
@@ -3388,19 +4424,24 @@ ATLAS.fleet = {
 
   async _doCompleteTrip(id) {
     const fuel_used = parseFloat(document.getElementById('ct-fuel')?.value) || 0;
-    const end_odometer = parseFloat(document.getElementById('ct-odo')?.value) || null;
+    const odoVal = document.getElementById('ct-odo')?.value;
+    const end_odometer = (odoVal !== '' && odoVal != null) ? parseFloat(odoVal) : null;
     const notes = document.getElementById('ct-notes')?.value || '';
-    const lat = parseFloat(document.getElementById('ct-lat')?.value) || null;
-    const lng = parseFloat(document.getElementById('ct-lng')?.value) || null;
+    const latVal = document.getElementById('ct-lat')?.value;
+    const lngVal = document.getElementById('ct-lng')?.value;
+    const lat = latVal !== '' ? parseFloat(latVal) : null;
+    const lng = lngVal !== '' ? parseFloat(lngVal) : null;
     const body = { completed_notes: notes };
     if (fuel_used > 0) body.fuel_used_l = fuel_used;
-    if (end_odometer) body.end_odometer_km = end_odometer;
-    if (lat && lng) { body.end_lat = lat; body.end_lng = lng; }
-    await ATLAS.api.post(`/api/fleet/trips/${id}/complete`, body);
-    ATLAS.ui.closeModal();
-    ATLAS.ui.toast('Trip completed!', 'success');
-    await this.switchTab('trips');
-    await this.loadStats();
+    if (end_odometer !== null) body.end_odometer_km = end_odometer;
+    if (lat !== null && !isNaN(lat) && lng !== null && !isNaN(lng)) { body.end_lat = lat; body.end_lng = lng; }
+    try {
+      await ATLAS.api.post(`/api/fleet/trips/${id}/complete`, body);
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast('Trip completed!', 'success');
+      await this.switchTab('trips');
+      await this.loadStats();
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to complete trip', 'warning'); }
   },
 
   async renderMaintenance(el) {
@@ -3427,16 +4468,19 @@ ATLAS.fleet = {
   },
 
   async completeMaintenance(id) {
-    await ATLAS.api.put(`/api/fleet/maintenance/${id}`, { status:'completed', completed_date: new Date().toISOString().split('T')[0] });
-    ATLAS.ui.toast('Maintenance marked complete', 'success');
-    await this.switchTab('maintenance');
+    try {
+      await ATLAS.api.put(`/api/fleet/maintenance/${id}`, { status:'completed', completed_date: new Date().toISOString().split('T')[0] });
+      ATLAS.ui.toast('Maintenance marked complete', 'success');
+      await this.switchTab('maintenance');
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to complete maintenance', 'warning'); }
   },
 
   async renderFuel(el) {
     const logs = await ATLAS.api.get('/api/fleet/fuel') || [];
     const total = logs.reduce((s,f)=>s+(f.total_cost||0),0);
     const totalL = logs.reduce((s,f)=>s+(f.liters||0),0);
-    const avgPpl = logs.filter(f=>f.cost_per_liter).reduce((s,f,_,a)=>s+f.cost_per_liter/a.length,0);
+    const pplLogs = logs.filter(f=>f.cost_per_liter);
+    const avgPpl = pplLogs.length > 0 ? pplLogs.reduce((s,f)=>s+f.cost_per_liter,0) / pplLogs.length : 0;
 
     // Group cost by vehicle for chart
     const byCar = {};
@@ -3558,13 +4602,13 @@ ATLAS.fleet = {
         if (!v.lat || !v.lng) return;
         const color = v.status==='on_trip'?'#10b981':v.status==='maintenance'?'#fbbf24':v.status==='out_of_service'?'#6b7280':'#60a5fa';
         const icon = L.divIcon({
-          html:`<div style="background:${color};border:2.5px solid white;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.4);transition:transform 0.2s;" title="${v.name}">${ATLAS.ui.vehicleIcon(v.type)}</div>`,
+          html:`<div style="background:${color};border:2.5px solid white;border-radius:50%;width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:16px;box-shadow:0 2px 8px rgba(0,0,0,0.4);transition:transform 0.2s;" title="${ATLAS.ui.esc(v.name)}">${ATLAS.ui.vehicleIcon(v.type)}</div>`,
           iconSize:[34,34], iconAnchor:[17,17], className:''
         });
         const marker = L.marker([v.lat,v.lng],{icon}).addTo(this._fleetMap);
         marker.bindPopup(`
           <div style="min-width:160px;">
-            <div style="font-weight:700;font-size:14px;margin-bottom:4px;">${ATLAS.ui.vehicleIcon(v.type)} ${v.name}</div>
+            <div style="font-weight:700;font-size:14px;margin-bottom:4px;">${ATLAS.ui.vehicleIcon(v.type)} ${ATLAS.ui.esc(v.name)}</div>
             <div style="font-size:12px;color:#888;margin-bottom:6px;">${v.make||''} ${v.model||''} ${v.year?'('+v.year+')':''}</div>
             <div style="font-size:12px;margin-bottom:3px;">🔑 ${v.license_plate||'–'}</div>
             ${v.driver_name?`<div style="font-size:12px;margin-bottom:3px;">👤 ${v.driver_name}</div>`:''}
@@ -3625,49 +4669,22 @@ ATLAS.fleet = {
     const cap = parseFloat(document.getElementById('ufl-cap')?.value);
     const avg = parseFloat(document.getElementById('ufl-avg')?.value)||null;
     if (isNaN(cur) || isNaN(cap)) { ATLAS.ui.toast('Please enter valid values', 'warning'); return; }
+    if (cur > cap) { ATLAS.ui.toast('Current fuel cannot exceed tank capacity', 'warning'); return; }
     const body = { fuel_current_l: cur, fuel_capacity_l: cap };
     if (avg) body.fuel_avg_l100km = avg;
-    await ATLAS.api.put(`/api/fleet/vehicles/${vehicleId}/fuel`, body);
-    ATLAS.ui.closeModal();
-    ATLAS.ui.closePanel();
-    ATLAS.ui.toast('Fuel level updated', 'success');
-    await this.switchTab('vehicles');
+    try {
+      await ATLAS.api.put(`/api/fleet/vehicles/${vehicleId}/fuel`, body);
+      ATLAS.ui.closeModal();
+      ATLAS.ui.closePanel();
+      ATLAS.ui.toast('Fuel level updated', 'success');
+      await this.switchTab('vehicles');
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to update fuel level', 'warning'); }
   },
 
   showUpdatePosition(vehicleId, currentLat, currentLng) {
-    ATLAS.ui.modal('📍 Update Vehicle Position', `
-      <div id="upd-gps-status" style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">
-        ${currentLat && currentLng ? `Current: ${(+currentLat).toFixed(5)}, ${(+currentLng).toFixed(5)}` : 'No position set'}
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">Latitude</label>
-          <input id="upd-lat" class="form-input" type="number" step="0.00001" value="${currentLat||''}">
-        </div>
-        <div class="form-group">
-          <label class="form-label">Longitude</label>
-          <input id="upd-lng" class="form-input" type="number" step="0.00001" value="${currentLng||''}">
-        </div>
-      </div>
-      <button class="btn btn-secondary btn-sm" style="width:100%;" onclick="ATLAS.fleet._getGPSForPosition()">📡 Use My GPS Position</button>`,
+    ATLAS.ui.modal('📍 Update Vehicle Position', ATLAS.geo.widget('upd', currentLat, currentLng),
       `<button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">${ATLAS.i18n.t('cancel')}</button>
        <button class="btn btn-primary" onclick="ATLAS.fleet._doUpdatePosition(${vehicleId})">💾 ${ATLAS.i18n.t('save')}</button>`
-    );
-  },
-
-  _getGPSForPosition() {
-    const st = document.getElementById('upd-gps-status');
-    if (st) st.textContent = '📡 Getting position...';
-    navigator.geolocation?.getCurrentPosition(
-      pos => {
-        const latEl = document.getElementById('upd-lat');
-        const lngEl = document.getElementById('upd-lng');
-        if (latEl) latEl.value = pos.coords.latitude.toFixed(6);
-        if (lngEl) lngEl.value = pos.coords.longitude.toFixed(6);
-        if (st) st.textContent = `✅ ${pos.coords.latitude.toFixed(5)}, ${pos.coords.longitude.toFixed(5)} (±${Math.round(pos.coords.accuracy)}m)`;
-      },
-      err => { if (st) st.textContent = `❌ ${err.message}`; },
-      { enableHighAccuracy: true, timeout: 10000 }
     );
   },
 
@@ -3675,11 +4692,13 @@ ATLAS.fleet = {
     const lat = parseFloat(document.getElementById('upd-lat')?.value);
     const lng = parseFloat(document.getElementById('upd-lng')?.value);
     if (isNaN(lat) || isNaN(lng)) { ATLAS.ui.toast('Invalid coordinates', 'warning'); return; }
-    await ATLAS.api.post(`/api/fleet/vehicles/${vehicleId}/position`, { lat, lng });
-    ATLAS.ui.closeModal();
-    ATLAS.ui.closePanel();
-    ATLAS.ui.toast('Position updated', 'success');
-    await this.switchTab('map');
+    try {
+      await ATLAS.api.post(`/api/fleet/vehicles/${vehicleId}/position`, { lat, lng });
+      ATLAS.ui.closeModal();
+      ATLAS.ui.closePanel();
+      ATLAS.ui.toast('Position updated', 'success');
+      await this.switchTab('map');
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to update position', 'warning'); }
   },
 
   showAdd() {
@@ -3713,20 +4732,22 @@ ATLAS.fleet = {
   async createVehicle() {
     const name = document.getElementById('nv-name').value.trim();
     if (!name) return;
-    await ATLAS.api.post('/api/fleet/vehicles', {
-      name, type: document.getElementById('nv-type').value,
-      make: document.getElementById('nv-make').value, model: document.getElementById('nv-model').value,
-      year: parseInt(document.getElementById('nv-year').value)||null,
-      license_plate: document.getElementById('nv-plate').value,
-      fuel_type: document.getElementById('nv-fuel').value,
-      insurance_expiry: document.getElementById('nv-ins').value||null,
-      tuev_expiry: document.getElementById('nv-tuev').value||null,
-      status: 'available',
-    });
-    ATLAS.ui.closeModal();
-    ATLAS.ui.toast(`Vehicle "${name}" added`, 'success');
-    await this.loadStats();
-    await this.switchTab('vehicles');
+    try {
+      await ATLAS.api.post('/api/fleet/vehicles', {
+        name, type: document.getElementById('nv-type').value,
+        make: document.getElementById('nv-make').value, model: document.getElementById('nv-model').value,
+        year: parseInt(document.getElementById('nv-year').value)||null,
+        license_plate: document.getElementById('nv-plate').value,
+        fuel_type: document.getElementById('nv-fuel').value,
+        insurance_expiry: document.getElementById('nv-ins').value||null,
+        tuev_expiry: document.getElementById('nv-tuev').value||null,
+        status: 'available',
+      });
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast(`Vehicle "${name}" added`, 'success');
+      await this.loadStats();
+      await this.switchTab('vehicles');
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to create vehicle', 'warning'); }
   },
 
   showAddDriver() {
@@ -3748,8 +4769,10 @@ ATLAS.fleet = {
   async createDriver() {
     const name = document.getElementById('nd-name').value.trim();
     if (!name) return;
-    await ATLAS.api.post('/api/fleet/drivers', { full_name:name, license_class:document.getElementById('nd-lic').value, license_expiry:document.getElementById('nd-exp').value||null, phone:document.getElementById('nd-phone').value, email:document.getElementById('nd-email').value });
-    ATLAS.ui.closeModal(); ATLAS.ui.toast('Driver added','success'); await this.switchTab('drivers');
+    try {
+      await ATLAS.api.post('/api/fleet/drivers', { full_name:name, license_class:document.getElementById('nd-lic').value, license_expiry:document.getElementById('nd-exp').value||null, phone:document.getElementById('nd-phone').value, email:document.getElementById('nd-email').value });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Driver added','success'); await this.switchTab('drivers');
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to add driver', 'warning'); }
   },
 
   showAddTrip() {
@@ -3757,7 +4780,7 @@ ATLAS.fleet = {
       <div class="form-group"><label class="form-label">Trip Title</label><input id="nt-title" class="form-input"></div>
       <div class="form-row">
         <div class="form-group"><label class="form-label">Vehicle</label>
-          <select id="nt-vehicle" class="form-select"><option value="">– select –</option>${this._vehicles.map(v=>`<option value="${v.id}">${v.name}</option>`).join('')}</select>
+          <select id="nt-vehicle" class="form-select"><option value="">– select –</option>${this._vehicles.map(v=>`<option value="${v.id}">${ATLAS.ui.esc(v.name)}</option>`).join('')}</select>
         </div>
         <div class="form-group"><label class="form-label">Driver</label>
           <select id="nt-driver" class="form-select"><option value="">– optional –</option>${this._drivers.map(d=>`<option value="${d.id}">${d.full_name}</option>`).join('')}</select>
@@ -3781,14 +4804,16 @@ ATLAS.fleet = {
     const title = document.getElementById('nt-title').value.trim();
     const vid = document.getElementById('nt-vehicle').value;
     if (!title || !vid) { ATLAS.ui.toast('Title and vehicle required','warning'); return; }
-    await ATLAS.api.post('/api/fleet/trips', { title, vehicle_id:parseInt(vid), driver_id:parseInt(document.getElementById('nt-driver').value)||null, origin:document.getElementById('nt-origin').value, destination:document.getElementById('nt-dest').value, departure_time:document.getElementById('nt-dep').value||null, estimated_arrival:document.getElementById('nt-arr').value||null, distance_km:parseFloat(document.getElementById('nt-dist').value)||null });
-    ATLAS.ui.closeModal(); ATLAS.ui.toast('Trip created','success'); await this.switchTab('trips');
+    try {
+      await ATLAS.api.post('/api/fleet/trips', { title, vehicle_id:parseInt(vid,10), driver_id:parseInt(document.getElementById('nt-driver').value,10)||null, origin:document.getElementById('nt-origin').value, destination:document.getElementById('nt-dest').value, departure_time:document.getElementById('nt-dep').value||null, estimated_arrival:document.getElementById('nt-arr').value||null, distance_km:parseFloat(document.getElementById('nt-dist').value)||null });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Trip created','success'); await this.switchTab('trips');
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to create trip', 'warning'); }
   },
 
   showAddMaintenance() {
     ATLAS.ui.modal(ATLAS.i18n.t('new_maintenance'), `
       <div class="form-group"><label class="form-label">Vehicle</label>
-        <select id="nm-vehicle" class="form-select"><option value="">– select –</option>${this._vehicles.map(v=>`<option value="${v.id}">${v.name}</option>`).join('')}</select>
+        <select id="nm-vehicle" class="form-select"><option value="">– select –</option>${this._vehicles.map(v=>`<option value="${v.id}">${ATLAS.ui.esc(v.name)}</option>`).join('')}</select>
       </div>
       <div class="form-row">
         <div class="form-group"><label class="form-label">Type</label>
@@ -3809,14 +4834,16 @@ ATLAS.fleet = {
   async createMaintenance() {
     const vid = document.getElementById('nm-vehicle').value;
     if (!vid) return;
-    await ATLAS.api.post('/api/fleet/maintenance', { vehicle_id:parseInt(vid), type:document.getElementById('nm-type').value, scheduled_date:document.getElementById('nm-date').value||null, cost:parseFloat(document.getElementById('nm-cost').value)||null, technician:document.getElementById('nm-tech').value, notes:document.getElementById('nm-notes').value });
-    ATLAS.ui.closeModal(); ATLAS.ui.toast('Maintenance scheduled','success'); await this.switchTab('maintenance');
+    try {
+      await ATLAS.api.post('/api/fleet/maintenance', { vehicle_id:parseInt(vid,10), type:document.getElementById('nm-type').value, scheduled_date:document.getElementById('nm-date').value||null, cost:parseFloat(document.getElementById('nm-cost').value)||null, technician:document.getElementById('nm-tech').value, notes:document.getElementById('nm-notes').value });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Maintenance scheduled','success'); await this.switchTab('maintenance');
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to schedule maintenance', 'warning'); }
   },
 
   showAddFuel() {
     ATLAS.ui.modal(ATLAS.i18n.t('add_fuel'), `
       <div class="form-group"><label class="form-label">Vehicle</label>
-        <select id="nf-vehicle" class="form-select"><option value="">– select –</option>${this._vehicles.map(v=>`<option value="${v.id}">${v.name}</option>`).join('')}</select>
+        <select id="nf-vehicle" class="form-select"><option value="">– select –</option>${this._vehicles.map(v=>`<option value="${v.id}">${ATLAS.ui.esc(v.name)}</option>`).join('')}</select>
       </div>
       <div class="form-row">
         <div class="form-group"><label class="form-label">Date</label><input id="nf-date" class="form-input" type="date" value="${new Date().toISOString().split('T')[0]}"></div>
@@ -3837,14 +4864,16 @@ ATLAS.fleet = {
     const liters = parseFloat(document.getElementById('nf-liters').value);
     if (!vid || !liters) return;
     const ppl = parseFloat(document.getElementById('nf-ppl').value)||0;
-    await ATLAS.api.post('/api/fleet/fuel', { vehicle_id:parseInt(vid), date:document.getElementById('nf-date').value, liters, cost_per_liter:ppl||null, total_cost:ppl*liters||null, odometer_km:parseFloat(document.getElementById('nf-odo').value)||null, station:document.getElementById('nf-station').value });
-    ATLAS.ui.closeModal(); ATLAS.ui.toast('Fuel log added','success'); await this.switchTab('fuel');
+    try {
+      await ATLAS.api.post('/api/fleet/fuel', { vehicle_id:parseInt(vid,10), date:document.getElementById('nf-date').value, liters, cost_per_liter:ppl||null, total_cost:ppl*liters||null, odometer_km:parseFloat(document.getElementById('nf-odo').value)||null, station:document.getElementById('nf-station').value });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Fuel log added','success'); await this.switchTab('fuel');
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to add fuel log', 'warning'); }
   },
 
   showEditVehicle(id) {
     const v = this._vehicles.find(v => v.id === id);
     if (!v) { ATLAS.ui.toast('Vehicle not found', 'warning'); return; }
-    ATLAS.ui.modal(`Edit: ${v.name}`, `
+    ATLAS.ui.modal(`Edit: ${ATLAS.ui.esc(v.name)}`, `
       <div class="form-row">
         <div class="form-group"><label class="form-label">${ATLAS.i18n.t('name')}</label><input id="ev-name" class="form-input" value="${v.name||''}"></div>
         <div class="form-group"><label class="form-label">${ATLAS.i18n.t('status')}</label>
@@ -3899,21 +4928,23 @@ ATLAS.fleet = {
     if (fcap) body.fuel_capacity_l = parseFloat(fcap.value)||null;
     if (fcur) body.fuel_current_l = parseFloat(fcur.value)||0;
     if (favg) body.fuel_avg_l100km = parseFloat(favg.value)||null;
-    await ATLAS.api.put(`/api/fleet/vehicles/${id}`, body);
-    // Also update fuel-specific fields via the fuel endpoint if provided
-    if (fcap || fcur || favg) {
-      const fuelBody = {};
-      if (fcap && parseFloat(fcap.value)) fuelBody.fuel_capacity_l = parseFloat(fcap.value);
-      if (fcur) fuelBody.fuel_current_l = parseFloat(fcur.value)||0;
-      if (favg && parseFloat(favg.value)) fuelBody.fuel_avg_l100km = parseFloat(favg.value);
-      if (Object.keys(fuelBody).length) {
-        await ATLAS.api.put(`/api/fleet/vehicles/${id}/fuel`, fuelBody).catch(()=>{});
+    try {
+      await ATLAS.api.put(`/api/fleet/vehicles/${id}`, body);
+      // Also update fuel-specific fields via the fuel endpoint if provided
+      if (fcap || fcur || favg) {
+        const fuelBody = {};
+        if (fcap && parseFloat(fcap.value)) fuelBody.fuel_capacity_l = parseFloat(fcap.value);
+        if (fcur) fuelBody.fuel_current_l = parseFloat(fcur.value)||0;
+        if (favg && parseFloat(favg.value)) fuelBody.fuel_avg_l100km = parseFloat(favg.value);
+        if (Object.keys(fuelBody).length) {
+          await ATLAS.api.put(`/api/fleet/vehicles/${id}/fuel`, fuelBody).catch(()=>{});
+        }
       }
-    }
-    ATLAS.ui.closePanel();
-    ATLAS.ui.closeModal();
-    ATLAS.ui.toast('Vehicle updated', 'success');
-    await this.switchTab('vehicles');
+      ATLAS.ui.closePanel();
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast('Vehicle updated', 'success');
+      await this.switchTab('vehicles');
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to update vehicle', 'warning'); }
   },
 
   showEditDriver(d) {
@@ -3939,16 +4970,18 @@ ATLAS.fleet = {
   },
 
   async updateDriver(id) {
-    await ATLAS.api.put(`/api/fleet/drivers/${id}`, {
-      full_name: document.getElementById('ed-name').value,
-      license_class: document.getElementById('ed-lic').value,
-      license_expiry: document.getElementById('ed-exp').value||null,
-      phone: document.getElementById('ed-phone').value,
-      status: document.getElementById('ed-status').value,
-    });
-    ATLAS.ui.closeModal();
-    ATLAS.ui.toast('Driver updated', 'success');
-    await this.switchTab('drivers');
+    try {
+      await ATLAS.api.put(`/api/fleet/drivers/${id}`, {
+        full_name: document.getElementById('ed-name').value,
+        license_class: document.getElementById('ed-lic').value,
+        license_expiry: document.getElementById('ed-exp').value||null,
+        phone: document.getElementById('ed-phone').value,
+        status: document.getElementById('ed-status').value,
+      });
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast('Driver updated', 'success');
+      await this.switchTab('drivers');
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to update driver', 'warning'); }
   },
 };
 
@@ -4232,7 +5265,8 @@ ATLAS.navigation = {
     try {
       const orsMode = mode || 'driving-car';
       const orsUrl = `https://api.openrouteservice.org/v2/directions/${orsMode}?api_key=5b3ce3597851110001cf6248a10d1a5d21e744d5b2de3e8b41e41c41&start=${lng0},${lat0}&end=${lng1},${lat1}`;
-      const res = await fetch(orsUrl, { signal: AbortSignal.timeout(10000) });
+      const _orsCtrl = new AbortController(); const _orsTo = setTimeout(() => _orsCtrl.abort(), 10000);
+      const res = await fetch(orsUrl, { signal: _orsCtrl.signal }).finally(() => clearTimeout(_orsTo));
       if (res.ok) {
         const json = await res.json();
         if (json?.features?.length) route = json;
@@ -4247,12 +5281,15 @@ ATLAS.navigation = {
       try {
         const osrmProfile = mode === 'cycling-regular' ? 'bike' : mode === 'foot-walking' ? 'foot' : 'car';
         const osrmUrl = `https://router.project-osrm.org/route/v1/${osrmProfile}/${lng0},${lat0};${lng1},${lat1}?overview=full&geometries=geojson&steps=true`;
-        const res = await fetch(osrmUrl, { signal: AbortSignal.timeout(10000) });
+        const _osrmCtrl = new AbortController(); const _osrmTo = setTimeout(() => _osrmCtrl.abort(), 10000);
+        const res = await fetch(osrmUrl, { signal: _osrmCtrl.signal }).finally(() => clearTimeout(_osrmTo));
         if (res.ok) {
           const json = await res.json();
-          if (json.code === 'Ok' && json.routes?.length) {
+          if (json.code === 'Ok' && json.routes?.length && json.routes[0].legs?.length) {
             // Normalize OSRM response to ORS-like format
             const leg = json.routes[0].legs[0];
+            // Track cumulative route coordinate index per step
+            let coordIdx = 0;
             route = {
               features: [{
                 geometry: json.routes[0].geometry, // already GeoJSON LineString
@@ -4262,15 +5299,21 @@ ATLAS.navigation = {
                     duration: json.routes[0].duration,
                   },
                   segments: [{
-                    steps: (leg.steps || []).map(s => ({
-                      distance: s.distance,
-                      duration: s.duration,
-                      instruction: s.maneuver?.type
-                        ? this._osrmInstruction(s.maneuver.type, s.maneuver.modifier, s.name)
-                        : (s.name || 'Continue'),
-                      type: this._osrmStepType(s.maneuver?.type),
-                      way_points: s.intersections?.flatMap(i => i.location ? [0] : []) || [0, 1],
-                    }))
+                    steps: (leg.steps || []).map(s => {
+                      const startIdx = coordIdx;
+                      // Each OSRM step covers (intersections.length) coordinates
+                      const stepCoordCount = s.intersections?.length || 1;
+                      coordIdx += stepCoordCount;
+                      return {
+                        distance: s.distance,
+                        duration: s.duration,
+                        instruction: s.maneuver?.type
+                          ? this._osrmInstruction(s.maneuver.type, s.maneuver.modifier, s.name)
+                          : (s.name || 'Continue'),
+                        type: this._osrmStepType(s.maneuver?.type),
+                        way_points: [startIdx, coordIdx - 1],
+                      };
+                    })
                   }]
                 }
               }],
@@ -4538,9 +5581,13 @@ ATLAS.usersPage = {
   },
 
   async render(el) {
-    const users = await ATLAS.api.get('/api/users') || [];
+    let users = [];
+    try { users = await ATLAS.api.get('/api/users') || []; } catch(e) {
+      el.innerHTML = `<div class="card" style="color:var(--danger);padding:20px;">Failed to load users: ${e.message}</div>`; return;
+    }
     this._users = users;
-    const isAdmin = ATLAS.state.user?.role === 'admin';
+    const isAdmin = ATLAS.state.user?.role === 'admin' || ATLAS.state.user?.role === 'owner';
+    const isOwner = ATLAS.state.user?.role === 'owner';
     const onlineCount = users.filter(u=>u.online).length;
 
     el.innerHTML = `
@@ -4550,6 +5597,8 @@ ATLAS.usersPage = {
           <span style="font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:6px;">
             <span class="pulse-dot"></span> ${onlineCount} online
           </span>
+          ${isAdmin ? `<button class="btn btn-secondary" onclick="ATLAS.departmentsPanel.showPanel()">🏢 Abteilungen</button>` : ''}
+          ${isAdmin ? `<button class="btn btn-secondary" onclick="ATLAS.pushPanel.showPanel()">📲 Push senden</button>` : ''}
           ${isAdmin ? `<button class="btn btn-primary" onclick="ATLAS.usersPage.showCreate()">+ ${ATLAS.i18n.t('create')}</button>` : ''}
         </div>
       </div>
@@ -4558,16 +5607,33 @@ ATLAS.usersPage = {
       <div class="kpi-grid" style="margin-bottom:16px;">
         <div class="kpi-card"><div class="kpi-label">Total Users</div><div class="kpi-value">${users.length}</div><div class="kpi-icon">👥</div></div>
         <div class="kpi-card"><div class="kpi-label">Online Now</div><div class="kpi-value" style="color:var(--success);">${onlineCount}</div><div class="kpi-icon">🟢</div></div>
-        <div class="kpi-card"><div class="kpi-label">Admins</div><div class="kpi-value">${users.filter(u=>u.role==='admin').length}</div><div class="kpi-icon">🛡</div></div>
+        <div class="kpi-card"><div class="kpi-label">Admins</div><div class="kpi-value">${users.filter(u=>u.role==='admin'||u.role==='owner').length}</div><div class="kpi-icon">🛡</div></div>
         <div class="kpi-card"><div class="kpi-label">Active</div><div class="kpi-value">${users.filter(u=>u.is_active).length}</div><div class="kpi-icon">✅</div></div>
       </div>
+
+      <!-- Bulk action bar (hidden until selection) -->
+      ${isOwner ? `
+      <div id="bulk-action-bar" class="hidden" style="background:var(--bg-secondary);border:1px solid var(--accent);border-radius:8px;padding:10px 16px;margin-bottom:12px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span style="font-size:13px;font-weight:600;color:var(--accent);"><span id="bulk-count">0</span> Nutzer ausgewählt</span>
+        <button class="btn btn-secondary btn-sm" onclick="ATLAS.bulkUsers.bulkForceLogout()">⏏ Alle abmelden</button>
+        <button class="btn btn-warning btn-sm" onclick="ATLAS.bulkUsers.bulkDeactivate()">🔒 Deaktivieren</button>
+        <select class="form-select" style="width:130px;height:30px;font-size:12px;" onchange="if(this.value) ATLAS.bulkUsers.bulkChangeRole(this.value); this.value='';">
+          <option value="">Rolle setzen…</option>
+          <option value="operator">→ Operator</option>
+          <option value="viewer">→ Viewer</option>
+          <option value="admin">→ Admin</option>
+        </select>
+        <button class="btn btn-secondary btn-sm" onclick="ATLAS.bulkUsers.clearSelection()">✕ Auswahl aufheben</button>
+      </div>` : ''}
 
       <!-- Filter bar -->
       <div class="card">
         <div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">
+          ${isOwner ? `<button class="btn btn-secondary btn-sm" onclick="ATLAS.bulkUsers.selectAll(ATLAS.usersPage._users||[])">☑ Alle wählen</button>` : ''}
           <input id="user-search" class="form-input" style="flex:1;min-width:180px;" placeholder="Search users..." oninput="ATLAS.usersPage.filter()">
           <select id="user-role-filter" class="form-select" style="width:130px;" onchange="ATLAS.usersPage.filter()">
             <option value="">All Roles</option>
+            <option value="owner">Owner</option>
             <option value="admin">Admin</option>
             <option value="operator">Operator</option>
             <option value="viewer">Viewer</option>
@@ -4610,7 +5676,8 @@ ATLAS.usersPage = {
   },
 
   _renderRows(users) {
-    const isAdmin = ATLAS.state.user?.role === 'admin';
+    const isAdmin = ATLAS.state.user?.role === 'admin' || ATLAS.state.user?.role === 'owner';
+    const isOwner = ATLAS.state.user?.role === 'owner';
     if (!users.length) return `<tr><td colspan="${isAdmin?6:5}" style="text-align:center;padding:24px;color:var(--text-muted);">No users found</td></tr>`;
     return users.map(u => {
       const color = this._avatarColor(u.username);
@@ -4619,6 +5686,10 @@ ATLAS.usersPage = {
         <tr id="user-row-${u.id}">
           <td>
             <div style="display:flex;align-items:center;gap:10px;">
+              ${isOwner && u.role !== 'owner' && u.id !== ATLAS.state.user?.id ? `
+                <input type="checkbox" class="bulk-check" data-uid="${u.id}" data-role="${u.role}"
+                  onchange="ATLAS.bulkUsers.toggleSelect(${u.id})"
+                  style="width:16px;height:16px;cursor:pointer;flex-shrink:0;">` : '<div style="width:16px;flex-shrink:0;"></div>'}
               <div style="position:relative;flex-shrink:0;">
                 <div style="width:36px;height:36px;border-radius:50%;background:${color}22;border:2px solid ${color};display:flex;align-items:center;justify-content:center;font-weight:700;color:${color};font-size:15px;">
                   ${(u.full_name||u.username)[0].toUpperCase()}
@@ -4632,8 +5703,8 @@ ATLAS.usersPage = {
             </div>
           </td>
           <td>
-            <span class="badge ${u.role==='admin'?'badge-danger':u.role==='operator'?'badge-info':'badge-neutral'}">
-              ${u.role==='admin'?'🛡 ':u.role==='operator'?'⚙ ':'👁 '}${u.role}
+            <span class="badge ${u.role==='owner'?'badge-warning':u.role==='admin'?'badge-danger':u.role==='operator'?'badge-info':'badge-neutral'}">
+              ${u.role==='owner'?'👑 ':u.role==='admin'?'🛡 ':u.role==='operator'?'⚙ ':'👁 '}${u.role}
             </span>
           </td>
           <td>
@@ -4647,9 +5718,11 @@ ATLAS.usersPage = {
             </div>
           </td>
           ${isAdmin ? `<td>
-            <div style="display:flex;gap:4px;">
-              <button class="btn btn-secondary btn-sm" onclick="ATLAS.usersPage.showEdit(${JSON.stringify(u).replace(/"/g,'&quot;')})">✏ Edit</button>
-              ${u.id !== ATLAS.state.user?.id ? `<button class="btn btn-secondary btn-sm" onclick="ATLAS.usersPage.toggleActive(${u.id},${u.is_active?0:1})" title="${u.is_active?'Deactivate':'Activate'}">${u.is_active?'🔒':'🔓'}</button>` : ''}
+            <div style="display:flex;gap:4px;flex-wrap:wrap;">
+              ${u.role !== 'owner' ? `<button class="btn btn-secondary btn-sm" onclick="ATLAS.usersPage.showEdit(${JSON.stringify(u).replace(/"/g,'&quot;')})">✏ Edit</button>` : ''}
+              ${u.id !== ATLAS.state.user?.id && u.role !== 'owner' ? `<button class="btn btn-secondary btn-sm" onclick="ATLAS.usersPage.toggleActive(${u.id},${u.is_active?0:1})" title="${u.is_active?'Deactivate':'Activate'}">${u.is_active?'🔒':'🔓'}</button>` : ''}
+              ${isOwner && u.id !== ATLAS.state.user?.id && u.role !== 'owner' ? `<button class="btn btn-secondary btn-sm" onclick="ATLAS.usersPage.forceLogout(${u.id},'${u.username}')" title="Force logout all sessions">⏏</button>` : ''}
+              ${isOwner && u.id !== ATLAS.state.user?.id && u.role !== 'owner' ? `<button class="btn btn-danger btn-sm" onclick="ATLAS.usersPage.deleteUser(${u.id},'${u.username}')" title="Delete user">🗑</button>` : ''}
             </div>
           </td>` : ''}
         </tr>`;
@@ -4703,7 +5776,7 @@ ATLAS.usersPage = {
         <div class="form-group"><label class="form-label">Full Name</label><input id="cu-name" class="form-input" placeholder="John Doe"></div>
       </div>
       <div class="form-row">
-        <div class="form-group"><label class="form-label">Password</label><input id="cu-pass" class="form-input" type="password"></div>
+        <div class="form-group"><label class="form-label">Password</label><input id="cu-pass" class="form-input" type="password" autocomplete="new-password"></div>
         <div class="form-group"><label class="form-label">Role</label>
           <select id="cu-role" class="form-select"><option value="viewer">Viewer</option><option value="operator">Operator</option><option value="admin">Admin</option></select>
         </div>
@@ -4739,7 +5812,7 @@ ATLAS.usersPage = {
         <div class="form-group"><label class="form-label">Status</label>
           <select id="eu-active" class="form-select"><option value="1" ${u.is_active?'selected':''}>Active</option><option value="0" ${!u.is_active?'selected':''}>Inactive</option></select>
         </div>
-        <div class="form-group"><label class="form-label">New Password (leave blank to keep)</label><input id="eu-pass" class="form-input" type="password" placeholder="••••••••"></div>
+        <div class="form-group"><label class="form-label">New Password (leave blank to keep)</label><input id="eu-pass" class="form-input" type="password" autocomplete="new-password" placeholder="••••••••"></div>
       </div>`,
       `<button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">${ATLAS.i18n.t('cancel')}</button>
        <button class="btn btn-primary" onclick="ATLAS.usersPage.update(${u.id})">Save</button>`
@@ -4753,22 +5826,182 @@ ATLAS.usersPage = {
       role: document.getElementById('eu-role').value,
       is_active: parseInt(document.getElementById('eu-active').value),
     };
-    const email = document.getElementById('eu-email')?.value?.trim();
-    const phone = document.getElementById('eu-phone')?.value?.trim();
-    if (email !== undefined) body.email = email;
-    if (phone !== undefined) body.phone = phone;
+    const emailEl = document.getElementById('eu-email');
+    const phoneEl = document.getElementById('eu-phone');
+    if (emailEl) body.email = emailEl.value.trim();
+    if (phoneEl) body.phone = phoneEl.value.trim();
     if (pw) body.password = pw;
-    await ATLAS.api.put(`/api/users/${id}`, body);
-    ATLAS.ui.closeModal();
-    ATLAS.ui.toast('User updated', 'success');
-    ATLAS.router.go('users', true);
+    try {
+      await ATLAS.api.put(`/api/users/${id}`, body);
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast('User updated', 'success');
+      ATLAS.router.go('users', true);
+    } catch(e) { ATLAS.ui.toast(e.message || 'Failed to update user', 'warning'); }
   },
 
   async toggleActive(id, newActive) {
-    await ATLAS.api.put(`/api/users/${id}`, { is_active: newActive });
-    ATLAS.ui.toast(newActive ? 'User activated' : 'User deactivated', 'success');
-    ATLAS.router.go('users', true);
+    try {
+      await ATLAS.api.put(`/api/users/${id}`, { is_active: newActive });
+      ATLAS.ui.toast(newActive ? 'User activated' : 'User deactivated', 'success');
+      ATLAS.router.go('users', true);
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
+  },
+
+  async forceLogout(id, username) {
+    if (!confirm(`Force-logout all sessions for "${username}"? They will be logged out immediately.`)) return;
+    try {
+      await ATLAS.api.delete(`/api/users/${id}/sessions`);
+      ATLAS.ui.toast(`All sessions for ${username} invalidated`, 'success');
+      ATLAS.router.go('users', true);
+    } catch(e) { ATLAS.ui.toast(e.message || 'Force logout failed', 'warning'); }
+  },
+
+  async deleteUser(id, username) {
+    if (!confirm(`⚠️ Permanently delete user "${username}"?\nThis cannot be undone.`)) return;
+    try {
+      await ATLAS.api.delete(`/api/users/${id}`);
+      ATLAS.ui.toast(`User ${username} deleted`, 'success');
+      ATLAS.router.go('users', true);
+    } catch(e) { ATLAS.ui.toast(e.message || 'Delete failed', 'warning'); }
   }
+};
+
+// ============================================================
+// DEPARTMENTS MANAGEMENT (accessible from Users page)
+// ============================================================
+ATLAS.departmentsPanel = {
+  async showPanel() {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">🏢 Abteilungen</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
+          <button class="btn btn-primary btn-sm" onclick="ATLAS.departmentsPanel.showCreate()">+ Neue Abteilung</button>
+        </div>
+        <div id="dept-list">Lade…</div>
+      </div>
+      <div class="modal-footer"><button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Schließen</button></div>`);
+    await this.loadList();
+  },
+  async loadList() {
+    const el = document.getElementById('dept-list');
+    if (!el) return;
+    try {
+      const data = await ATLAS.api.get('/api/departments');
+      const depts = data.departments || [];
+      if (!depts.length) { el.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text-muted);">Keine Abteilungen</div>'; return; }
+      el.innerHTML = depts.map(d => `<div style="display:flex;align-items:center;gap:10px;padding:8px;border-radius:6px;background:var(--surface-2);margin-bottom:6px;">
+        <span style="font-size:22px;background:${d.color};width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;">${d.icon}</span>
+        <div style="flex:1;"><strong>${d.name}</strong>${d.description?`<div style="font-size:11px;color:var(--text-muted);">${d.description}</div>`:''}</div>
+        <button class="btn btn-secondary btn-sm" onclick="ATLAS.departmentsPanel.showEdit(${d.id},'${d.name.replace(/'/g,"\\'")}','${(d.description||'').replace(/'/g,"\\'")}','${d.icon}','${d.color}')">✏️</button>
+        <button class="btn btn-danger btn-sm" onclick="ATLAS.departmentsPanel.del(${d.id},'${d.name.replace(/'/g,"\\'")}')">🗑</button>
+      </div>`).join('');
+    } catch(e) { if (el) el.innerHTML = `<div style="color:var(--danger);">${e.message}</div>`; }
+  },
+  showCreate() {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">Neue Abteilung</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div class="form-group"><label class="form-label">Name *</label><input id="nd-name" class="form-input" placeholder="Leitstelle, Fuhrpark, IT…"></div>
+        <div class="form-group"><label class="form-label">Beschreibung</label><input id="nd-desc" class="form-input"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Icon (Emoji)</label><input id="nd-icon" class="form-input" value="🏢" maxlength="4"></div>
+          <div class="form-group"><label class="form-label">Farbe</label><input id="nd-color" class="form-input" type="color" value="#6366f1" style="padding:4px;height:42px;"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.departmentsPanel.showPanel()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.departmentsPanel.saveCreate()">Erstellen</button>
+      </div>`);
+  },
+  async saveCreate() {
+    const name = document.getElementById('nd-name')?.value.trim();
+    if (!name) { ATLAS.ui.toast('Name erforderlich', 'warning'); return; }
+    try {
+      await ATLAS.api.post('/api/departments', { name, description: document.getElementById('nd-desc')?.value||null, icon: document.getElementById('nd-icon')?.value||'🏢', color: document.getElementById('nd-color')?.value||'#6366f1' });
+      ATLAS.ui.toast('Abteilung erstellt', 'success'); await this.showPanel();
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  showEdit(id, name, desc, icon, color) {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">Abteilung bearbeiten</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div class="form-group"><label class="form-label">Name</label><input id="ed-name" class="form-input" value="${name}"></div>
+        <div class="form-group"><label class="form-label">Beschreibung</label><input id="ed-desc" class="form-input" value="${desc}"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Icon</label><input id="ed-icon" class="form-input" value="${icon}" maxlength="4"></div>
+          <div class="form-group"><label class="form-label">Farbe</label><input id="ed-color" class="form-input" type="color" value="${color}" style="padding:4px;height:42px;"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.departmentsPanel.showPanel()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.departmentsPanel.saveEdit(${id})">Speichern</button>
+      </div>`);
+  },
+  async saveEdit(id) {
+    try {
+      await ATLAS.api.put(`/api/departments/${id}`, { name: document.getElementById('ed-name')?.value, description: document.getElementById('ed-desc')?.value||null, icon: document.getElementById('ed-icon')?.value, color: document.getElementById('ed-color')?.value });
+      ATLAS.ui.toast('Gespeichert', 'success'); await this.showPanel();
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async del(id, name) {
+    if (!confirm(`Abteilung "${name}" löschen?`)) return;
+    try { await ATLAS.api.delete(`/api/departments/${id}`); ATLAS.ui.toast('Gelöscht', 'success'); await this.showPanel(); } catch(e) { ATLAS.ui.toast(e.message, 'error'); }
+  },
+};
+
+// ============================================================
+// TARGETED PUSH NOTIFICATIONS PANEL
+// ============================================================
+ATLAS.pushPanel = {
+  async showPanel() {
+    let users = [];
+    try { users = await ATLAS.api.get('/api/users') || []; } catch(e) {}
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">📲 Push-Benachrichtigung senden</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <div class="card">
+            <div class="card-title">An einzelnen Nutzer</div>
+            <div class="form-group"><label class="form-label">Nutzer</label>
+              <select id="push-uid" class="form-input">
+                <option value="">Auswählen…</option>
+                ${users.map(u=>`<option value="${u.id}">${u.full_name} (@${u.username})</option>`).join('')}
+              </select></div>
+            <div class="form-group"><label class="form-label">Titel</label><input id="push-title-u" class="form-input" value="ControlCenterHQ"></div>
+            <div class="form-group"><label class="form-label">Nachricht *</label><input id="push-msg-u" class="form-input" placeholder="Dringende Benachrichtigung…"></div>
+            <button class="btn btn-primary btn-sm" onclick="ATLAS.pushPanel.sendToUser()">Senden</button>
+          </div>
+          <div class="card">
+            <div class="card-title">An Benutzerrolle</div>
+            <div class="form-group"><label class="form-label">Rolle</label>
+              <select id="push-role" class="form-input">
+                <option value="owner">Owner</option><option value="admin">Admin</option>
+                <option value="operator">Operator</option><option value="dispatcher">Dispatcher</option>
+              </select></div>
+            <div class="form-group"><label class="form-label">Titel</label><input id="push-title-r" class="form-input" value="ControlCenterHQ"></div>
+            <div class="form-group"><label class="form-label">Nachricht *</label><input id="push-msg-r" class="form-input" placeholder="Nachricht an alle dieser Rolle…"></div>
+            <button class="btn btn-primary btn-sm" onclick="ATLAS.pushPanel.sendToRole()">Senden</button>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer"><button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Schließen</button></div>`);
+  },
+  async sendToUser() {
+    const uid = parseInt(document.getElementById('push-uid')?.value);
+    const msg = document.getElementById('push-msg-u')?.value.trim();
+    const title = document.getElementById('push-title-u')?.value.trim() || 'ControlCenterHQ';
+    if (!uid || !msg) { ATLAS.ui.toast('Nutzer und Nachricht erforderlich', 'warning'); return; }
+    try {
+      const r = await ATLAS.api.post('/api/push/send-to-user', { user_id: uid, title, message: msg });
+      ATLAS.ui.toast(`Gesendet an ${r.sent} von ${r.total_devices} Gerät(en)`, 'success');
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async sendToRole() {
+    const role = document.getElementById('push-role')?.value;
+    const msg = document.getElementById('push-msg-r')?.value.trim();
+    const title = document.getElementById('push-title-r')?.value.trim() || 'ControlCenterHQ';
+    if (!role || !msg) { ATLAS.ui.toast('Rolle und Nachricht erforderlich', 'warning'); return; }
+    try {
+      const r = await ATLAS.api.post('/api/push/send-to-role', { role, title, message: msg });
+      ATLAS.ui.toast(`Gesendet an ${r.sent} Gerät(e)`, 'success');
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
 };
 
 /* ============================================================
@@ -4790,7 +6023,7 @@ ATLAS.modulesPage = {
 
   async render(el) {
     const modules = await ATLAS.api.get('/api/modules') || [];
-    const isAdmin = ATLAS.state.user?.role === 'admin';
+    const isAdmin = ATLAS.state.user?.role === 'admin' || ATLAS.state.user?.role === 'owner';
     const enabledCount = modules.filter(m=>m.enabled).length;
 
     el.innerHTML = `
@@ -4872,7 +6105,7 @@ ATLAS.settingsPage = {
       ATLAS.api.get('/api/config').catch(()=>({})),
       Promise.resolve(typeof AtlasSW !== 'undefined' ? AtlasSW.getPushStatus() : 'unsupported')
     ]);
-    const isAdmin = ATLAS.state.user?.role === 'admin';
+    const isAdmin = ATLAS.state.user?.role === 'admin' || ATLAS.state.user?.role === 'owner';
     const u = ATLAS.state.user || {};
     el.innerHTML = `
       <div class="page-header"><h1>${ATLAS.i18n.t('settings')}</h1></div>
@@ -4885,12 +6118,12 @@ ATLAS.settingsPage = {
             <div class="form-group"><label class="form-label">${ATLAS.i18n.t('facility_type')}</label><input id="cfg-type" class="form-input" value="${config.facility_type||''}"></div>
             <button class="btn btn-primary btn-sm" onclick="ATLAS.settingsPage.saveConfig()">💾 Save Organization</button>
           </div>
-          ` : `<div class="card"><div class="card-title">🏢 Organization</div><div style="font-size:14px;font-weight:600;">${config.org_name||'Atlas AdminSysOP'}</div><div style="font-size:12px;color:var(--text-muted);">${config.facility_type||''}</div></div>`}
+          ` : `<div class="card"><div class="card-title">🏢 Organization</div><div style="font-size:14px;font-weight:600;">${config.org_name||'ControlCenterHQ'}</div><div style="font-size:12px;color:var(--text-muted);">${config.facility_type||''}</div></div>`}
 
           <div class="card">
             <div class="card-title">🎨 ${ATLAS.i18n.t('theme')}</div>
-            <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">Choose from 11 visual themes. Your preference is saved per account.</p>
-            <button class="btn btn-secondary w-full" onclick="ATLAS.ui.showThemePicker()">🎨 Open Theme Picker (11 themes)</button>
+            <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">Choose from 18 visual themes including seasonal & Liquid Glass 2.0. Your preference is saved per account.</p>
+            <button class="btn btn-secondary w-full" onclick="ATLAS.ui.showThemePicker()">🎨 Open Theme Picker (18 themes)</button>
           </div>
 
           <div class="card">
@@ -4904,9 +6137,9 @@ ATLAS.settingsPage = {
 
           <div class="card">
             <div class="card-title">🔒 Change Password</div>
-            <div class="form-group"><label class="form-label">Current Password</label><input id="pw-current" class="form-input" type="password" placeholder="Current password"></div>
-            <div class="form-group"><label class="form-label">New Password</label><input id="pw-new" class="form-input" type="password" placeholder="New password (min 8 chars)"></div>
-            <div class="form-group"><label class="form-label">Confirm New Password</label><input id="pw-confirm" class="form-input" type="password" placeholder="Repeat new password"></div>
+            <div class="form-group"><label class="form-label">Current Password</label><input id="pw-current" class="form-input" type="password" autocomplete="off" placeholder="Current password"></div>
+            <div class="form-group"><label class="form-label">New Password</label><input id="pw-new" class="form-input" type="password" autocomplete="new-password" placeholder="New password (min 8 chars)"></div>
+            <div class="form-group"><label class="form-label">Confirm New Password</label><input id="pw-confirm" class="form-input" type="password" autocomplete="new-password" placeholder="Repeat new password"></div>
             <button class="btn btn-primary btn-sm" onclick="ATLAS.settingsPage.changePassword()">🔒 Update Password</button>
           </div>
         </div>
@@ -5010,17 +6243,99 @@ ATLAS.settingsPage = {
             </div>
           </div>` : ''}
 
+          ${isAdmin ? `
+          <div class="card" id="server-config-card">
+            <div class="card-title">🔐 Sicherheit & Server</div>
+            <p style="font-size:12px;color:var(--text-muted);margin-bottom:14px;">
+              Benutzername, Passwort und Server-Port des Admin-Kontos ändern.<br>
+              <strong>Passwortregeln:</strong> min. 8 Zeichen, Großbuchstabe, Zahl, Sonderzeichen (z.B. <code>!@#$</code>)
+            </p>
+
+            <div style="font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:.05em;margin-bottom:8px;">ZUGANGSDATEN</div>
+            <div class="form-group">
+              <label class="form-label">Aktueller Anzeigename</label>
+              <input id="srv-adminname" class="form-input" placeholder="Wird geladen…" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Aktueller Benutzername (Login)</label>
+              <input id="srv-adminuser" class="form-input" placeholder="Wird geladen…" autocomplete="off">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Neues Passwort <span style="color:var(--text-muted);font-weight:400;">(leer lassen = nicht ändern)</span></label>
+              <div style="position:relative;">
+                <input id="srv-adminpw" class="form-input" type="password" autocomplete="new-password"
+                  placeholder="Min. 8 Zeichen, Groß, Zahl, Sonderzeichen"
+                  style="padding-right:40px;">
+                <span onclick="var i=document.getElementById('srv-adminpw');i.type=i.type==='password'?'text':'password';"
+                  style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px;user-select:none;">👁</span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Neues Passwort bestätigen</label>
+              <input id="srv-adminpw2" class="form-input" type="password" autocomplete="new-password" placeholder="Wiederholen">
+            </div>
+
+            <div class="divider" style="margin:12px 0;"></div>
+            <div style="font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:.05em;margin-bottom:8px;">SERVER-PORT</div>
+            <div class="form-group">
+              <div style="display:flex;align-items:center;gap:10px;">
+                <input id="srv-port" class="form-input" type="number" min="1024" max="65535"
+                  style="max-width:120px;" placeholder="8000">
+                <span style="font-size:12px;color:var(--text-muted);">Aktuell: <strong id="srv-port-current">…</strong></span>
+              </div>
+              <div style="font-size:11px;color:var(--accent);margin-top:4px;">⚠️ Nach Portänderung muss der Server neu gestartet werden.</div>
+            </div>
+
+            <div class="divider" style="margin:12px 0;"></div>
+            <div style="font-size:11px;font-weight:700;color:var(--danger);letter-spacing:.05em;margin-bottom:8px;">BESTÄTIGUNG</div>
+            <div class="form-group">
+              <label class="form-label">Aktuelles Passwort <span style="color:var(--danger);">*</span></label>
+              <input id="srv-current-pw" class="form-input" type="password" autocomplete="current-password"
+                placeholder="Zur Bestätigung erforderlich">
+            </div>
+            <div id="srv-config-error" style="color:var(--danger);font-size:12px;margin-bottom:8px;min-height:16px;font-weight:500;"></div>
+            <div id="srv-config-ok" style="color:var(--success,#3fb950);font-size:12px;margin-bottom:8px;min-height:16px;font-weight:500;display:none;">✅ Gespeichert!</div>
+            <button class="btn btn-primary" id="srv-save-btn" style="width:100%;" onclick="ATLAS.settingsPage.saveServerConfig()">💾 Änderungen speichern</button>
+          </div>` : ''}
+
+          ${isAdmin ? `
+          <div class="card" id="license-card">
+            <div class="card-title">🔑 Lizenz</div>
+            <div id="lic-status-area"><div style="color:var(--text-muted);font-size:13px;">Lade…</div></div>
+            <div class="divider" style="margin:10px 0;"></div>
+            <div class="form-group">
+              <label class="form-label" style="font-weight:600;">Lizenzkey eingeben</label>
+              <div style="position:relative;">
+                <input id="lic-key-input" class="form-input" type="text"
+                  placeholder="CCHQ-XXXX-XXXX-XX-XXXXX"
+                  autocomplete="off" autocorrect="off" spellcheck="false"
+                  maxlength="26"
+                  style="font-family:monospace;letter-spacing:1px;text-transform:uppercase;padding-right:40px;"
+                  oninput="ATLAS.settingsPage._formatLicKey(this)"
+                  onkeydown="if(event.key==='Enter')ATLAS.settingsPage.activateLicense()">
+                <span id="lic-key-eye" onclick="ATLAS.settingsPage._toggleLicKeyVisibility()"
+                  style="position:absolute;right:10px;top:50%;transform:translateY(-50%);cursor:pointer;font-size:16px;user-select:none;">👁</span>
+              </div>
+              <div id="lic-key-hint" style="font-size:11px;color:var(--text-muted);margin-top:4px;">Format: CCHQ-TIER-JAHR-XX-XXXXX</div>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap;">
+              <button class="btn btn-primary btn-sm" onclick="ATLAS.settingsPage.activateLicense()" style="flex:1;">✅ Aktivieren</button>
+              <button class="btn btn-danger btn-sm" onclick="ATLAS.settingsPage.deactivateLicense()">🗑 Entfernen</button>
+            </div>
+            <div id="lic-activate-error" style="color:var(--danger);font-size:12px;margin-top:6px;min-height:16px;"></div>
+          </div>` : ''}
+
           <div class="card">
-            <div class="card-title">ℹ️ About Atlas AdminSysOP</div>
+            <div class="card-title">ℹ️ About ControlCenterHQ</div>
             <div style="font-size:13px;display:flex;flex-direction:column;gap:8px;">
               ${[
-                ['Application', 'Atlas AdminSysOP'],
-                ['Version', '2.0.0'],
+                ['Application', 'ControlCenterHQ'],
+                ['Version', '2.8.0'],
                 ['Build', new Date().getFullYear()],
-                ['Copyright', '© Felix Greis | Atlas GmbH 2026'],
+                ['Copyright', '© Felix Greis 2026'],
                 ['Backend', 'Python FastAPI + SQLite + WebSocket'],
                 ['Frontend', 'Vanilla JS + Leaflet + Chart.js'],
-                ['Themes', '11 built-in visual themes'],
+                ['Themes', '18 built-in visual themes'],
                 ['Languages', 'English, Deutsch, Français'],
               ].map(([k,v])=>`
                 <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);">
@@ -5029,20 +6344,142 @@ ATLAS.settingsPage = {
                 </div>`).join('')}
             </div>
             <div style="margin-top:12px;padding:10px;background:var(--accent-dim);border-radius:var(--radius-sm);font-size:11px;color:var(--text-muted);text-align:center;">
-              Atlas AdminSysOP – Professional Operations Management Platform<br>© Felix Greis | Atlas GmbH 2026 – All rights reserved.
+              ControlCenterHQ – Professional Operations Management Platform<br>© Felix Greis 2026 – All rights reserved.
             </div>
           </div>
         </div>
       </div>`;
+    if (isAdmin) { this.loadLicense(); this.loadServerConfig(); }
+  },
+
+  async loadLicense() {
+    const el = document.getElementById('lic-status-area');
+    if (!el) return;
+    try {
+      const lic = await ATLAS.api.get('/api/license');
+      const tierColors = { PRO: '#22c55e', STANDARD: '#3b82f6', BASIC: '#6b7280' };
+      const tierIcons  = { PRO: '⭐', STANDARD: '🔷', BASIC: '🔓' };
+      const tierLabels = { PRO: 'PRO – Unbegrenzt', STANDARD: 'STANDARD – bis 10 Nutzer', BASIC: 'BASIC – Kein Key aktiv' };
+      const color = tierColors[lic.tier] || '#6b7280';
+      const icon  = tierIcons[lic.tier]  || '🔓';
+      const label = tierLabels[lic.tier] || 'BASIC';
+      const isActive = lic.active && lic.valid;
+
+      // masked_key from backend already contains the asterisks (e.g. "****X7K9M")
+      // just display it directly without adding extra stars
+      const keyDisplay = lic.masked_key
+        ? `<span style="font-family:monospace;font-size:12px;background:var(--surface-1);padding:2px 6px;border-radius:4px;letter-spacing:1px;">${lic.masked_key}</span>`
+        : '<span style="color:var(--text-muted);font-style:italic;">Kein Key gespeichert</span>';
+
+      const featuresHtml = [
+        lic.features?.max_users != null ? `👤 Max. ${lic.features.max_users === 9999 ? '∞' : lic.features.max_users} Nutzer` : null,
+        lic.features?.all  ? '🔓 Alle Module freigeschaltet' : null,
+      ].filter(Boolean).map(f => `<span style="font-size:11px;background:${color}18;color:${color};padding:2px 6px;border-radius:10px;">${f}</span>`).join(' ');
+
+      el.innerHTML = `
+        <div style="border-radius:10px;border:1.5px solid ${color}44;overflow:hidden;">
+          <div style="display:flex;align-items:center;gap:10px;padding:12px 14px;background:${color}12;border-bottom:1px solid ${color}33;">
+            <span style="font-size:28px;line-height:1;">${icon}</span>
+            <div style="flex:1;">
+              <div style="font-weight:800;font-size:16px;color:${color};">${label}</div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">Lizenz-Tier</div>
+            </div>
+            <span style="font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px;
+              background:${isActive ? color : '#6b7280'};color:#fff;letter-spacing:.5px;">
+              ${isActive ? '✅ AKTIV' : '❌ INAKTIV'}
+            </span>
+          </div>
+          <div style="padding:10px 14px;display:flex;flex-direction:column;gap:6px;background:var(--surface-2);">
+            <div style="display:flex;align-items:center;justify-content:space-between;">
+              <span style="font-size:11px;color:var(--text-muted);font-weight:600;">LIZENZKEY</span>
+              ${keyDisplay}
+            </div>
+            ${featuresHtml ? `<div style="display:flex;gap:4px;flex-wrap:wrap;margin-top:2px;">${featuresHtml}</div>` : ''}
+            ${lic.grace_active ? `<div style="font-size:11px;color:#f59e0b;font-weight:600;">⚠️ Testphase aktiv – noch ${Math.ceil((lic.grace_remaining_seconds||0)/60)} Minuten</div>` : ''}
+          </div>
+        </div>`;
+    } catch(e) { el.innerHTML = '<div style="color:var(--danger);font-size:12px;">❌ Fehler beim Laden der Lizenzinfo</div>'; }
+  },
+
+  _formatLicKey(input) {
+    // Auto-insert dashes for CCHQ license key format: CCHQ-XXXX-XXXX-XX-XXXXX
+    // Segments: 4 - 3 - 4 - 2 - 5  (CCHQ-PRO-2026-FG-X7K9M)
+    const segLengths = [4, 3, 4, 2, 5];
+    let raw = input.value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+    let result = '';
+    let pos = 0;
+    for (let i = 0; i < segLengths.length && pos < raw.length; i++) {
+      if (i > 0) result += '-';
+      result += raw.substr(pos, segLengths[i]);
+      pos += segLengths[i];
+    }
+    input.value = result;
+    // Update hint color based on completeness
+    const hint = document.getElementById('lic-key-hint');
+    const total = segLengths.reduce((a,b)=>a+b,0);
+    if (hint) hint.style.color = raw.length === total ? 'var(--success)' : 'var(--text-muted)';
+  },
+
+  _toggleLicKeyVisibility() {
+    const inp = document.getElementById('lic-key-input');
+    const eye = document.getElementById('lic-key-eye');
+    if (!inp) return;
+    if (inp.dataset.hidden === 'true') {
+      inp.style.webkitTextSecurity = '';
+      inp.dataset.hidden = 'false';
+      if (eye) eye.textContent = '👁';
+    } else {
+      inp.style.webkitTextSecurity = 'disc';
+      inp.dataset.hidden = 'true';
+      if (eye) eye.textContent = '🙈';
+    }
+  },
+
+  async activateLicense() {
+    const inp = document.getElementById('lic-key-input');
+    const key = inp?.value.trim();
+    const errEl = document.getElementById('lic-activate-error');
+    if (errEl) errEl.textContent = '';
+    if (!key) {
+      if (errEl) errEl.textContent = '⚠️ Bitte einen Lizenzkey eingeben.';
+      return;
+    }
+    const btn = document.querySelector('#license-card .btn-primary');
+    const origText = btn ? btn.innerHTML : '';
+    if (btn) { btn.disabled = true; btn.innerHTML = '⏳ Prüfe…'; }
+    try {
+      const r = await ATLAS.api.post('/api/license/activate', { key });
+      if (!r) { if(errEl) errEl.textContent = '❌ Keine Antwort vom Server.'; return; }
+      if (inp) inp.value = '';
+      if (errEl) errEl.textContent = '';
+      ATLAS.ui.toast(`✅ Lizenz aktiviert: ${r.tier}`, 'success');
+      await this.loadLicense();
+    } catch(e) {
+      const msg = e.message || 'Ungültiger Lizenzkey';
+      if (errEl) errEl.textContent = '❌ ' + msg;
+    } finally {
+      if (btn) { btn.disabled = false; btn.innerHTML = origText; }
+    }
+  },
+
+  async deactivateLicense() {
+    if (!confirm('Lizenz wirklich entfernen?')) return;
+    try {
+      await ATLAS.api.delete('/api/license');
+      ATLAS.ui.toast('Lizenz entfernt', 'success');
+      await this.loadLicense();
+    } catch(e) { ATLAS.ui.toast(e.message || 'Fehler', 'error'); }
   },
 
   async saveConfig() {
     const org = document.getElementById('cfg-org').value.trim();
     const type = document.getElementById('cfg-type').value.trim();
     if (!org) { ATLAS.ui.toast('Organization name required','warning'); return; }
-    await ATLAS.api.put('/api/config', { org_name: org, facility_type: type });
-    document.getElementById('sidebar-org-name').textContent = org;
-    ATLAS.ui.toast('Organization settings saved','success');
+    try {
+      await ATLAS.api.put('/api/config', { org_name: org, facility_type: type });
+      document.getElementById('sidebar-org-name').textContent = org;
+      ATLAS.ui.toast('Organization settings saved','success');
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async changePassword() {
@@ -5061,6 +6498,75 @@ ATLAS.settingsPage = {
     } catch(e) { ATLAS.ui.toast(e.message||'Failed to change password','warning'); }
   },
 
+  async loadServerConfig() {
+    try {
+      const cfg = await ATLAS.api.get('/api/config');
+      const g = id => document.getElementById(id);
+      if (cfg.port)           { if(g('srv-port')) g('srv-port').value = cfg.port; if(g('srv-port-current')) g('srv-port-current').textContent = cfg.port; }
+      if (cfg.admin_name)     { if(g('srv-adminname')) g('srv-adminname').value = cfg.admin_name; }
+      if (cfg.admin_username) { if(g('srv-adminuser')) g('srv-adminuser').value = cfg.admin_username; }
+    } catch(e) { /* silent */ }
+  },
+
+  async saveServerConfig() {
+    const g = id => document.getElementById(id);
+    const errEl = g('srv-config-error');
+    const okEl  = g('srv-config-ok');
+    const btn   = g('srv-save-btn');
+    if (errEl) { errEl.textContent = ''; errEl.style.display = ''; }
+    if (okEl)  { okEl.style.display = 'none'; }
+
+    const currentPw = g('srv-current-pw')?.value?.trim() || '';
+    if (!currentPw) {
+      if (errEl) errEl.textContent = '❌ Aktuelles Passwort ist erforderlich.';
+      return;
+    }
+
+    const portVal   = g('srv-port')?.value;
+    const adminName = g('srv-adminname')?.value?.trim() || '';
+    const adminUser = g('srv-adminuser')?.value?.trim() || '';
+    const newPw     = g('srv-adminpw')?.value || '';
+    const newPw2    = g('srv-adminpw2')?.value || '';
+
+    // Client-side password validation (mirrors server rules)
+    if (newPw) {
+      if (newPw.length < 8)                              { if(errEl) errEl.textContent = '❌ Passwort min. 8 Zeichen.'; return; }
+      if (!/[A-Z]/.test(newPw))                         { if(errEl) errEl.textContent = '❌ Passwort braucht einen Großbuchstaben (A–Z).'; return; }
+      if (!/[0-9]/.test(newPw))                         { if(errEl) errEl.textContent = '❌ Passwort braucht eine Zahl (0–9).'; return; }
+      if (!/[!@#$%^&*()\-_=+\[\]{}|;:',.<>?\/`~"\\]/.test(newPw)) { if(errEl) errEl.textContent = '❌ Passwort braucht ein Sonderzeichen (z.B. !@#$).'; return; }
+      if (newPw !== newPw2) { if(errEl) errEl.textContent = '❌ Passwörter stimmen nicht überein.'; return; }
+    }
+
+    const payload = { current_password: currentPw };
+    if (portVal)   payload.port = parseInt(portVal);
+    if (adminName) payload.admin_name = adminName;
+    if (adminUser) payload.admin_username = adminUser;
+    if (newPw)     payload.admin_password = newPw;
+
+    if (btn) { btn.disabled = true; btn.textContent = '⏳ Speichern…'; }
+    try {
+      const res = await ATLAS.api.post('/api/setup/reconfigure', payload);
+      // Clear sensitive fields
+      ['srv-current-pw','srv-adminpw','srv-adminpw2'].forEach(id => { if(g(id)) g(id).value = ''; });
+      if (okEl) { okEl.style.display = ''; }
+      if (errEl) errEl.style.display = 'none';
+      if (res.port && g('srv-port-current')) g('srv-port-current').textContent = res.port;
+      const portChanged = portVal && parseInt(portVal) !== (window._cfgPortBefore || 8000);
+      if (portChanged) {
+        ATLAS.ui.toast(`Port geändert auf ${res.port} – Server jetzt neu starten!`, 'warning');
+      } else {
+        ATLAS.ui.toast('Einstellungen gespeichert ✅', 'success');
+      }
+      // If username changed, token is still valid but update displayed name
+      if (adminUser && ATLAS.state.user) ATLAS.state.user.username = adminUser;
+      if (adminName && ATLAS.state.user) ATLAS.state.user.full_name = adminName;
+    } catch(e) {
+      if (errEl) { errEl.textContent = '❌ ' + (e.message || 'Fehler beim Speichern'); errEl.style.display = ''; }
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = '💾 Änderungen speichern'; }
+    }
+  },
+
   async enablePush() {
     // Guard: Push requires HTTPS (or localhost)
     if (location.protocol !== 'https:' && location.hostname !== 'localhost' && location.hostname !== '127.0.0.1') {
@@ -5069,7 +6575,7 @@ ATLAS.settingsPage = {
         <p style="font-size:13px;color:var(--text-muted);">Aktuell: <code>${location.protocol}//${location.hostname}</code></p>
         <p style="font-size:13px;color:var(--text-muted);margin-top:8px;">Bitte entweder:</p>
         <ul style="font-size:13px;color:var(--text-muted);padding-left:20px;line-height:2;">
-          <li>Über <code>localhost:8080</code> öffnen (lokaler Betrieb)</li>
+          <li>Über <code>localhost:8000</code> öffnen (lokaler Betrieb)</li>
           <li>Tailscale / Reverse-Proxy mit HTTPS-Zertifikat verwenden</li>
           <li>Ngrok / Cloudflare Tunnel für HTTPS-Tunnel nutzen</li>
         </ul>`,
@@ -5352,7 +6858,7 @@ ATLAS.pagerPage = {
         <div style="font-size:10px;color:var(--text-muted);margin-top:2px;">${m.protocol||''}</div>
       </div>
       <div style="flex:1;min-width:0;">
-        <div style="word-break:break-word;">${m.message}</div>
+        <div style="word-break:break-word;">${ATLAS.ui.esc(m.message)}</div>
         <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">${ts} · ${m.frequency||''}MHz</div>
       </div>
       ${m.alert_id ? `<div style="font-size:11px;color:var(--accent);">🔔 #${m.alert_id}</div>` : ''}
@@ -5404,12 +6910,14 @@ ATLAS.pagerPage = {
     const capcodes = document.getElementById('rx-capcodes').value
       .split(',').map(s=>s.trim()).filter(Boolean);
     const create_alerts = document.getElementById('rx-create-alerts').checked ? 1 : 0;
-    const ok = await ATLAS.api.put('/api/pager/config', {
-      rx_frequency: freq, rx_gain: gain,
-      rx_filter_capcodes: JSON.stringify(capcodes),
-      rx_create_alerts: create_alerts
-    });
-    if (ok) ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success');
+    try {
+      await ATLAS.api.put('/api/pager/config', {
+        rx_frequency: freq, rx_gain: gain,
+        rx_filter_capcodes: JSON.stringify(capcodes),
+        rx_create_alerts: create_alerts
+      });
+      ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success');
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async renderTX(el) {
@@ -5476,16 +6984,18 @@ ATLAS.pagerPage = {
     const callsigns = document.getElementById('tx-callsigns')?.value?.split(',').map(s=>s.trim()).filter(Boolean);
     if (!msg) return ATLAS.ui.toast(ATLAS.i18n.t('error') + ': no message', 'error');
     if (!callsigns?.length) return ATLAS.ui.toast(ATLAS.i18n.t('error') + ': no callsigns', 'error');
-    const res = await ATLAS.api.post('/api/pager/tx', { message: msg, callsigns });
-    if (res?.ok) ATLAS.ui.toast('📡 ' + ATLAS.i18n.t('send_to_pager') + ' OK', 'success');
-    else ATLAS.ui.toast(ATLAS.i18n.t('pager_test_fail'), 'error');
+    try {
+      await ATLAS.api.post('/api/pager/tx', { message: msg, callsigns });
+      ATLAS.ui.toast('📡 ' + ATLAS.i18n.t('send_to_pager') + ' OK', 'success');
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('pager_test_fail'), 'error'); }
   },
 
   async testDAPNET() {
     ATLAS.ui.toast('Testing DAPNET…', 'info');
-    const res = await ATLAS.api.post('/api/pager/tx/test', {});
-    if (res?.ok) ATLAS.ui.toast('✅ ' + ATLAS.i18n.t('pager_test_ok'), 'success');
-    else ATLAS.ui.toast('❌ ' + ATLAS.i18n.t('pager_test_fail'), 'error');
+    try {
+      await ATLAS.api.post('/api/pager/tx/test', {});
+      ATLAS.ui.toast('✅ ' + ATLAS.i18n.t('pager_test_ok'), 'success');
+    } catch(e) { ATLAS.ui.toast('❌ ' + (e.message || ATLAS.i18n.t('pager_test_fail')), 'error'); }
   },
 
   async saveDAPNETConfig() {
@@ -5494,12 +7004,15 @@ ATLAS.pagerPage = {
     const transmitter_group = document.getElementById('dapnet-txgrp').value.trim();
     const dapnet_on_severity = document.getElementById('dapnet-severity').value.trim();
     const dapnet_enabled = document.getElementById('dapnet-enabled').checked ? 1 : 0;
-    const ok = await ATLAS.api.put('/api/pager/config', {
-      dapnet_callsign: callsign, dapnet_password: password,
-      dapnet_transmitter_group: transmitter_group,
-      dapnet_on_severity, dapnet_enabled
-    });
-    if (ok) { ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success'); await this.loadConfig(); }
+    try {
+      await ATLAS.api.put('/api/pager/config', {
+        dapnet_callsign: callsign, dapnet_password: password,
+        dapnet_transmitter_group: transmitter_group,
+        dapnet_on_severity, dapnet_enabled
+      });
+      ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success');
+      await this.loadConfig();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async renderChannels(el) {
@@ -5619,59 +7132,74 @@ ATLAS.pagerPage = {
   },
 
   async saveNtfyConfig() {
-    const ok = await ATLAS.api.put('/api/pager/config', {
-      ntfy_enabled: document.getElementById('ntfy-enabled').checked ? 1 : 0,
-      ntfy_url: document.getElementById('ntfy-url').value.trim(),
-      ntfy_topic: document.getElementById('ntfy-topic').value.trim(),
-      ntfy_token: document.getElementById('ntfy-token').value.trim(),
-    });
-    if (ok) { ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success'); await this.loadConfig(); }
+    try {
+      await ATLAS.api.put('/api/pager/config', {
+        ntfy_enabled: document.getElementById('ntfy-enabled').checked ? 1 : 0,
+        ntfy_url: document.getElementById('ntfy-url').value.trim(),
+        ntfy_topic: document.getElementById('ntfy-topic').value.trim(),
+        ntfy_token: document.getElementById('ntfy-token').value.trim(),
+      });
+      ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success');
+      await this.loadConfig();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async testNtfy() {
     ATLAS.ui.toast('Testing ntfy…', 'info');
-    const res = await ATLAS.api.post('/api/pager/ntfy/test', {});
-    if (res?.ok) ATLAS.ui.toast('✅ ntfy OK', 'success');
-    else ATLAS.ui.toast('❌ ntfy ' + ATLAS.i18n.t('pager_test_fail'), 'error');
+    try {
+      await ATLAS.api.post('/api/pager/ntfy/test', {});
+      ATLAS.ui.toast('✅ ntfy OK', 'success');
+    } catch(e) { ATLAS.ui.toast('❌ ntfy ' + (e.message || ATLAS.i18n.t('pager_test_fail')), 'error'); }
   },
 
   async saveAppriseConfig() {
-    const ok = await ATLAS.api.put('/api/pager/config', {
-      apprise_enabled: document.getElementById('apprise-enabled').checked ? 1 : 0,
-      apprise_urls: document.getElementById('apprise-urls').value.trim(),
-    });
-    if (ok) { ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success'); await this.loadConfig(); }
+    try {
+      await ATLAS.api.put('/api/pager/config', {
+        apprise_enabled: document.getElementById('apprise-enabled').checked ? 1 : 0,
+        apprise_urls: document.getElementById('apprise-urls').value.trim(),
+      });
+      ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success');
+      await this.loadConfig();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async testApprise() {
     ATLAS.ui.toast('Testing Apprise…', 'info');
-    const res = await ATLAS.api.post('/api/pager/apprise/test', {});
-    if (res?.ok) ATLAS.ui.toast('✅ Apprise OK', 'success');
-    else ATLAS.ui.toast('❌ Apprise ' + ATLAS.i18n.t('pager_test_fail'), 'error');
+    try {
+      await ATLAS.api.post('/api/pager/apprise/test', {});
+      ATLAS.ui.toast('✅ Apprise OK', 'success');
+    } catch(e) { ATLAS.ui.toast('❌ Apprise ' + (e.message || ATLAS.i18n.t('pager_test_fail')), 'error'); }
   },
 
   async saveGotifyConfig() {
-    const ok = await ATLAS.api.put('/api/pager/config', {
-      gotify_enabled: document.getElementById('gotify-enabled').checked ? 1 : 0,
-      gotify_url: document.getElementById('gotify-url').value.trim(),
-      gotify_token: document.getElementById('gotify-token').value.trim(),
-      gotify_priority: parseInt(document.getElementById('gotify-priority').value) || 5,
-    });
-    if (ok) { ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success'); await this.loadConfig(); }
+    try {
+      await ATLAS.api.put('/api/pager/config', {
+        gotify_enabled: document.getElementById('gotify-enabled').checked ? 1 : 0,
+        gotify_url: document.getElementById('gotify-url').value.trim(),
+        gotify_token: document.getElementById('gotify-token').value.trim(),
+        gotify_priority: parseInt(document.getElementById('gotify-priority').value) || 5,
+      });
+      ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success');
+      await this.loadConfig();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async testGotify() {
     ATLAS.ui.toast('Testing Gotify…', 'info');
-    const res = await ATLAS.api.post('/api/pager/gotify/test', {});
-    if (res?.ok) ATLAS.ui.toast('✅ Gotify OK', 'success');
-    else ATLAS.ui.toast('❌ Gotify ' + ATLAS.i18n.t('pager_test_fail'), 'error');
+    try {
+      await ATLAS.api.post('/api/pager/gotify/test', {});
+      ATLAS.ui.toast('✅ Gotify OK', 'success');
+    } catch(e) { ATLAS.ui.toast('❌ Gotify ' + (e.message || ATLAS.i18n.t('pager_test_fail')), 'error'); }
   },
 
   async saveChannels() {
     const checks = document.querySelectorAll('.channel-check');
     const channels = Array.from(checks).filter(c=>c.checked).map(c=>c.value);
-    const ok = await ATLAS.api.put('/api/pager/config', { channels: JSON.stringify(channels) });
-    if (ok) { ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success'); await this.loadConfig(); }
+    try {
+      await ATLAS.api.put('/api/pager/config', { channels: JSON.stringify(channels) });
+      ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success');
+      await this.loadConfig();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 };
 
@@ -5832,22 +7360,24 @@ ATLAS.schedulerPage = {
     const next_run = document.getElementById('sched-next-run').value.replace('T',' ');
     const enabled = document.getElementById('sched-enabled').checked ? 1 : 0;
     const intervalMin = parseInt(document.getElementById('sched-interval')?.value||60);
-    const recurrence_data = recurrence === 'interval' ? JSON.stringify({minutes: intervalMin}) : '{}';
+    const recurrence_data = recurrence === 'interval' ? {minutes: intervalMin} : {};
     if (!title) return ATLAS.ui.toast(ATLAS.i18n.t('error') + ': title required', 'error');
     const body = { type, title, description, severity, recurrence, recurrence_data, next_run, enabled };
-    const res = (id && id !== 0) ? await ATLAS.api.put(`/api/scheduled/${id}`, body)
-                                 : await ATLAS.api.post('/api/scheduled', body);
-    if (res?.ok || res?.id) {
+    try {
+      const res = (id && id !== 0) ? await ATLAS.api.put(`/api/scheduled/${id}`, body)
+                                   : await ATLAS.api.post('/api/scheduled', body);
       ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success');
       ATLAS.ui.closeModal();
       await this.refresh();
-    }
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async runNow(id) {
-    const res = await ATLAS.api.post(`/api/scheduled/${id}/run-now`, {});
-    if (res?.ok) { ATLAS.ui.toast('▶ ' + ATLAS.i18n.t('run_now') + ' OK', 'success'); await this.refresh(); }
-    else ATLAS.ui.toast(ATLAS.i18n.t('error'), 'error');
+    try {
+      await ATLAS.api.post(`/api/scheduled/${id}/run-now`, {});
+      ATLAS.ui.toast('▶ ' + ATLAS.i18n.t('run_now') + ' OK', 'success');
+      await this.refresh();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async toggle(id, enabled) {
@@ -5861,9 +7391,11 @@ ATLAS.schedulerPage = {
 
   async deleteItem(id) {
     if (!confirm(ATLAS.i18n.t('delete') + '?')) return;
-    const res = await ATLAS.api.delete(`/api/scheduled/${id}`);
-    if (res?.ok) { ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success'); await this.refresh(); }
-    else ATLAS.ui.toast(ATLAS.i18n.t('error'), 'error');
+    try {
+      await ATLAS.api.delete(`/api/scheduled/${id}`);
+      ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success');
+      await this.refresh();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 };
 
@@ -6119,19 +7651,25 @@ ATLAS.calendarPage = {
   },
 
   async approve(id) {
-    await ATLAS.api.put(`/api/calendar/${id}`, { status: 'approved' });
-    await this.load();
+    try {
+      await ATLAS.api.put(`/api/calendar/${id}`, { status: 'approved' });
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async reject(id) {
-    await ATLAS.api.put(`/api/calendar/${id}`, { status: 'rejected' });
-    await this.load();
+    try {
+      await ATLAS.api.put(`/api/calendar/${id}`, { status: 'rejected' });
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async deleteEvent(id) {
     if (!confirm(ATLAS.i18n.t('delete') + '?')) return;
-    await ATLAS.api.delete(`/api/calendar/${id}`);
-    await this.load();
+    try {
+      await ATLAS.api.delete(`/api/calendar/${id}`);
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 };
 
@@ -6212,7 +7750,7 @@ ATLAS.travelPage = {
   showCreate() {
     const t = k => ATLAS.i18n.t(k);
     const today = new Date().toISOString().slice(0,10);
-    const vOpts = this._vehicles.map(v => `<option value="${v.id}">${v.name} (${v.license_plate||'–'})</option>`).join('');
+    const vOpts = this._vehicles.map(v => `<option value="${v.id}">${ATLAS.ui.esc(v.name)} (${v.license_plate||'–'})</option>`).join('');
     ATLAS.ui.modal(`✈️ ${t('new_travel')}`, `
       <div class="form-group"><label class="form-label">${t('title')}</label><input id="tr-title" class="form-input" placeholder="${t('title')}"></div>
       <div class="form-group"><label class="form-label">${t('destination')}</label><input id="tr-dest" class="form-input" placeholder="City, address…"></div>
@@ -6262,7 +7800,7 @@ ATLAS.travelPage = {
         start_date: document.getElementById('tr-start').value,
         end_date: document.getElementById('tr-end').value,
         travel_type: document.getElementById('tr-type').value,
-        vehicle_id: vid ? parseInt(vid) : null,
+        vehicle_id: vid ? parseInt(vid, 10) : null,
         solo: document.getElementById('tr-solo').checked,
         with_crew: document.getElementById('tr-crew').checked,
         notes: document.getElementById('tr-notes').value.trim(),
@@ -6274,14 +7812,18 @@ ATLAS.travelPage = {
   },
 
   async approve(id) {
-    await ATLAS.api.put(`/api/travel/${id}`, { status: 'approved' });
-    ATLAS.ui.toast('Travel request approved', 'success');
-    await this.load();
+    try {
+      await ATLAS.api.put(`/api/travel/${id}`, { status: 'approved' });
+      ATLAS.ui.toast('Travel request approved', 'success');
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async reject(id) {
-    await ATLAS.api.put(`/api/travel/${id}`, { status: 'rejected' });
-    await this.load();
+    try {
+      await ATLAS.api.put(`/api/travel/${id}`, { status: 'rejected' });
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   showCounterOffer(id) {
@@ -6297,22 +7839,5538 @@ ATLAS.travelPage = {
 
   async sendCounterOffer(id) {
     const note = document.getElementById('tr-counter-note').value.trim();
-    await ATLAS.api.put(`/api/travel/${id}`, { status: 'rejected', reviewer_notes: note });
-    ATLAS.ui.closeModal();
-    ATLAS.ui.toast('Counter offer sent', 'success');
-    await this.load();
+    try {
+      await ATLAS.api.put(`/api/travel/${id}`, { status: 'rejected', reviewer_notes: note });
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast('Counter offer sent', 'success');
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async rejectCounterOffer(id) {
     if (!confirm(ATLAS.i18n.t('delete') + '?')) return;
-    await ATLAS.api.put(`/api/travel/${id}`, { action: 'reject_counteroffer' });
-    await this.load();
+    try {
+      await ATLAS.api.put(`/api/travel/${id}`, { action: 'reject_counteroffer' });
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
   },
 
   async delete(id) {
     if (!confirm(ATLAS.i18n.t('delete') + '?')) return;
-    await ATLAS.api.delete(`/api/travel/${id}`);
+    try {
+      await ATLAS.api.delete(`/api/travel/${id}`);
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
+  },
+};
+
+/* ============================================================
+   Contacts Page
+============================================================ */
+ATLAS.contactsPage = {
+  _contacts: [],
+  _q: '',
+
+  async render(el) {
+    const t = k => ATLAS.i18n.t(k);
+    el.innerHTML = `
+      <div class="page-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:12px;">
+        <h2 style="margin:0;">📒 ${t('contacts')}</h2>
+        <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <input id="contact-search" class="form-input" style="width:220px;" placeholder="${t('search_contacts')}" oninput="ATLAS.contactsPage._onSearch(this.value)">
+          <button class="btn btn-primary" onclick="ATLAS.contactsPage.showCreate()">+ ${t('new_contact')}</button>
+        </div>
+      </div>
+      <div id="contacts-list" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px;">
+        <div style="text-align:center;padding:40px;color:var(--text-muted);">${t('loading')}</div>
+      </div>`;
     await this.load();
+  },
+
+  async load(q) {
+    const qs = q !== undefined ? q : this._q;
+    this._q = qs;
+    try {
+      const data = await ATLAS.api.get(`/api/contacts${qs ? '?q=' + encodeURIComponent(qs) : ''}`);
+      this._contacts = data || [];
+      this._render();
+    } catch(e) {
+      document.getElementById('contacts-list').innerHTML = `<div style="color:var(--danger);padding:20px;">${e.message}</div>`;
+    }
+  },
+
+  _onSearch(v) {
+    clearTimeout(this._st);
+    this._st = setTimeout(() => this.load(v), 250);
+  },
+
+  _catIcon(cat) {
+    return {staff:'👤',emergency:'🚒',supplier:'🏭',authority:'🏛',other:'📌'}[cat] || '📌';
+  },
+
+  _render() {
+    const t = k => ATLAS.i18n.t(k);
+    const el = document.getElementById('contacts-list');
+    if (!el) return;
+    if (!this._contacts.length) {
+      el.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:60px;color:var(--text-muted);">No contacts found</div>`;
+      return;
+    }
+    el.innerHTML = this._contacts.map(c => `
+      <div class="card" style="padding:16px;cursor:pointer;transition:border-color 0.15s;" onclick="ATLAS.contactsPage.showDetail(${c.id})">
+        <div style="display:flex;align-items:flex-start;gap:12px;">
+          <div style="width:44px;height:44px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;">
+            ${this._catIcon(c.category)}
+          </div>
+          <div style="flex:1;min-width:0;">
+            <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;">
+              <strong style="color:var(--text);font-size:15px;">${c.full_name}</strong>
+              ${c.is_favorite ? '<span style="color:#f59e0b;">★</span>' : ''}
+              ${c.call_sign ? `<span class="badge badge-info" style="font-size:10px;">${c.call_sign}</span>` : ''}
+            </div>
+            ${c.role_label ? `<div style="font-size:12px;color:var(--accent);">${c.role_label}</div>` : ''}
+            ${c.organization ? `<div style="font-size:12px;color:var(--text-muted);">🏢 ${c.organization}${c.department ? ' · ' + c.department : ''}</div>` : ''}
+            <div style="display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;">
+              ${c.phone ? `<a href="tel:${c.phone}" onclick="event.stopPropagation()" style="font-size:12px;color:var(--accent);text-decoration:none;">📞 ${c.phone}</a>` : ''}
+              ${c.email ? `<a href="mailto:${c.email}" onclick="event.stopPropagation()" style="font-size:12px;color:var(--accent);text-decoration:none;">✉️ ${c.email}</a>` : ''}
+            </div>
+          </div>
+        </div>
+      </div>`).join('');
+  },
+
+  showCreate() {
+    this._showForm(null);
+  },
+
+  showDetail(id) {
+    const c = this._contacts.find(x => x.id === id);
+    if (!c) return;
+    const t = k => ATLAS.i18n.t(k);
+    ATLAS.ui.modal(`${this._catIcon(c.category)} ${c.full_name}`, `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:13px;">
+        ${c.call_sign ? `<div><span style="color:var(--text-muted);">${t('call_sign')}:</span><br><strong>${c.call_sign}</strong></div>` : ''}
+        ${c.role_label ? `<div><span style="color:var(--text-muted);">${t('role_label')}:</span><br><strong>${c.role_label}</strong></div>` : ''}
+        ${c.organization ? `<div><span style="color:var(--text-muted);">${t('organization')}:</span><br><strong>${c.organization}</strong></div>` : ''}
+        ${c.department ? `<div><span style="color:var(--text-muted);">${t('department')}:</span><br><strong>${c.department}</strong></div>` : ''}
+        ${c.phone ? `<div><span style="color:var(--text-muted);">📞 ${t('phone') || 'Phone'}:</span><br><a href="tel:${c.phone}" style="color:var(--accent);">${c.phone}</a></div>` : ''}
+        ${c.email ? `<div><span style="color:var(--text-muted);">✉️ Email:</span><br><a href="mailto:${c.email}" style="color:var(--accent);">${c.email}</a></div>` : ''}
+      </div>
+      ${c.notes ? `<div style="margin-top:12px;padding:10px;background:var(--bg3);border-radius:8px;font-size:13px;color:var(--text-muted);">${c.notes}</div>` : ''}`,
+      `<button class="btn btn-secondary" onclick="ATLAS.ui.closeModal();ATLAS.contactsPage._showForm(${c.id})">✏ ${t('edit')}</button>
+       <button class="btn btn-danger" onclick="ATLAS.contactsPage.deleteContact(${c.id})">🗑 ${t('delete')}</button>
+       <button class="btn btn-primary" onclick="ATLAS.ui.closeModal()">${t('close')}</button>`
+    );
+  },
+
+  _showForm(id) {
+    const t = k => ATLAS.i18n.t(k);
+    const c = id ? this._contacts.find(x => x.id === id) : null;
+    const cats = ['staff','emergency','supplier','authority','other'];
+    ATLAS.ui.modal(id ? `✏ ${t('edit')} ${c?.full_name||''}` : `+ ${t('new_contact')}`, `
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+        <div style="grid-column:1/-1;">
+          <label class="form-label">${t('name')} *</label>
+          <input id="c-name" class="form-input" value="${c?.full_name||''}">
+        </div>
+        <div>
+          <label class="form-label">${t('call_sign')}</label>
+          <input id="c-call" class="form-input" value="${c?.call_sign||''}">
+        </div>
+        <div>
+          <label class="form-label">${t('role_label')}</label>
+          <input id="c-role" class="form-input" value="${c?.role_label||''}">
+        </div>
+        <div>
+          <label class="form-label">${t('phone') || 'Phone'}</label>
+          <input id="c-phone" class="form-input" type="tel" value="${c?.phone||''}">
+        </div>
+        <div>
+          <label class="form-label">Email</label>
+          <input id="c-email" class="form-input" type="email" value="${c?.email||''}">
+        </div>
+        <div>
+          <label class="form-label">${t('organization')}</label>
+          <input id="c-org" class="form-input" value="${c?.organization||''}">
+        </div>
+        <div>
+          <label class="form-label">${t('department')}</label>
+          <input id="c-dept" class="form-input" value="${c?.department||''}">
+        </div>
+        <div>
+          <label class="form-label">${t('category')}</label>
+          <select id="c-cat" class="form-select">
+            ${cats.map(cat => `<option value="${cat}" ${(c?.category||'other')===cat?'selected':''}>${this._catIcon(cat)} ${t('cat_'+cat)}</option>`).join('')}
+          </select>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <input type="checkbox" id="c-fav" ${c?.is_favorite?'checked':''}>
+          <label for="c-fav">★ ${t('favorite')}</label>
+        </div>
+        <div style="grid-column:1/-1;">
+          <label class="form-label">${t('notes')}</label>
+          <textarea id="c-notes" class="form-input" rows="3">${c?.notes||''}</textarea>
+        </div>
+      </div>`,
+      `<button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">${t('cancel')}</button>
+       <button class="btn btn-primary" onclick="ATLAS.contactsPage.save(${id||0})">${t('save')}</button>`
+    );
+  },
+
+  async save(id) {
+    const body = {
+      full_name: document.getElementById('c-name').value.trim(),
+      call_sign: document.getElementById('c-call').value.trim(),
+      role_label: document.getElementById('c-role').value.trim(),
+      phone: document.getElementById('c-phone').value.trim(),
+      email: document.getElementById('c-email').value.trim(),
+      organization: document.getElementById('c-org').value.trim(),
+      department: document.getElementById('c-dept').value.trim(),
+      category: document.getElementById('c-cat').value,
+      notes: document.getElementById('c-notes').value.trim(),
+      is_favorite: document.getElementById('c-fav').checked,
+    };
+    if (!body.full_name) return ATLAS.ui.toast('Name required', 'warning');
+    try {
+      if (id) await ATLAS.api.put(`/api/contacts/${id}`, body);
+      else await ATLAS.api.post('/api/contacts', body);
+      ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success');
+      ATLAS.ui.closeModal();
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
+  },
+
+  async deleteContact(id) {
+    if (!confirm(ATLAS.i18n.t('delete') + '?')) return;
+    try {
+      await ATLAS.api.delete(`/api/contacts/${id}`);
+      ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success');
+      ATLAS.ui.closeModal();
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
+  },
+};
+
+/* ============================================================
+   Roles & Permissions Page
+============================================================ */
+ATLAS.rolesPage = {
+  _roles: [],
+  _allPerms: [],
+
+  async render(el) {
+    const t = k => ATLAS.i18n.t(k);
+    el.innerHTML = `
+      <div class="page-header" style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+        <h2 style="margin:0;">🛡 ${t('roles')}</h2>
+        <button class="btn btn-primary" onclick="ATLAS.rolesPage.showCreate()">+ ${t('new_role')}</button>
+      </div>
+      <div id="roles-list"><div style="text-align:center;padding:40px;color:var(--text-muted);">${t('loading')}</div></div>`;
+    await this.load();
+  },
+
+  async load() {
+    try {
+      const data = await ATLAS.api.get('/api/roles');
+      this._roles = data.roles || [];
+      this._allPerms = data.all_permissions || [];
+      this._render();
+    } catch(e) {
+      document.getElementById('roles-list').innerHTML = `<div style="color:var(--danger);padding:20px;">${e.message}</div>`;
+    }
+  },
+
+  _permIcon(key) {
+    return {read:'👁',create:'✏️',edit:'🔧',delete:'🗑',fleet:'🚗',pager:'📟',analytics:'🧠',admin:'⭐'}[key] || '•';
+  },
+
+  _render() {
+    const t = k => ATLAS.i18n.t(k);
+    const el = document.getElementById('roles-list');
+    if (!el) return;
+    el.innerHTML = this._roles.map(r => `
+      <div class="card" style="padding:16px;margin-bottom:12px;">
+        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;">
+          <div>
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+              <strong style="font-size:16px;">${r.label || r.name}</strong>
+              <span class="badge ${r.builtin ? 'badge-info' : 'badge-success'}">${r.builtin ? t('builtin') : t('custom')}</span>
+            </div>
+            ${r.description ? `<div style="font-size:12px;color:var(--text-muted);margin-top:2px;">${r.description}</div>` : ''}
+          </div>
+          ${!r.builtin ? `
+            <div style="display:flex;gap:6px;">
+              <button class="btn btn-secondary btn-sm" onclick="ATLAS.rolesPage.showEdit(${r.id})">✏ ${t('edit')}</button>
+              <button class="btn btn-danger btn-sm" onclick="ATLAS.rolesPage.deleteRole(${r.id})">🗑</button>
+            </div>
+          ` : `<span style="font-size:11px;color:var(--text-dim);">Cannot be modified</span>`}
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:12px;">
+          ${this._allPerms.map(p => {
+            const has = r.permissions[p.key];
+            return `<span style="display:flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:12px;
+                    background:${has ? 'rgba(16,185,129,0.15)' : 'rgba(255,255,255,0.04)'};
+                    border:1px solid ${has ? 'rgba(16,185,129,0.4)' : 'rgba(255,255,255,0.08)'};
+                    color:${has ? 'var(--success)' : 'var(--text-dim)'};">
+              ${this._permIcon(p.key)} ${p.label}
+            </span>`;
+          }).join('')}
+        </div>
+      </div>`).join('');
+  },
+
+  showCreate() {
+    this._showForm(null);
+  },
+
+  showEdit(id) {
+    const r = this._roles.find(x => x.id === id);
+    if (!r) return;
+    this._showForm(r);
+  },
+
+  _showForm(role) {
+    const t = k => ATLAS.i18n.t(k);
+    const isEdit = !!role;
+    ATLAS.ui.modal(isEdit ? `✏ ${role.label}` : `+ ${t('new_role')}`, `
+      <div style="display:flex;flex-direction:column;gap:14px;">
+        <div>
+          <label class="form-label">${t('name')} *</label>
+          <input id="role-name" class="form-input" value="${role?.name||''}" placeholder="e.g. dispatcher" ${isEdit?'readonly':''}>
+        </div>
+        <div>
+          <label class="form-label">${t('role_description')}</label>
+          <input id="role-desc" class="form-input" value="${role?.description||''}" placeholder="Optional description">
+        </div>
+        <div>
+          <label class="form-label">${t('permissions')}</label>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;">
+            ${this._allPerms.map(p => `
+              <label style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:8px;background:var(--bg3);border-radius:8px;">
+                <input type="checkbox" class="perm-check" data-key="${p.key}" ${(role?.permissions?.[p.key])?'checked':''}>
+                <span style="font-size:13px;">${this._permIcon(p.key)} ${p.label}</span>
+              </label>`).join('')}
+          </div>
+        </div>
+      </div>`,
+      `<button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">${t('cancel')}</button>
+       <button class="btn btn-primary" onclick="ATLAS.rolesPage.save(${role?.id||0})">${t('save')}</button>`
+    );
+  },
+
+  async save(id) {
+    const name = document.getElementById('role-name').value.trim();
+    if (!name) return ATLAS.ui.toast('Name required', 'warning');
+    const perms = {};
+    document.querySelectorAll('.perm-check').forEach(cb => { perms[cb.dataset.key] = cb.checked ? 1 : 0; });
+    const body = {
+      name,
+      description: document.getElementById('role-desc').value.trim(),
+      permissions: perms,
+    };
+    try {
+      if (id) await ATLAS.api.put(`/api/roles/${id}`, body);
+      else await ATLAS.api.post('/api/roles', body);
+      ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success');
+      ATLAS.ui.closeModal();
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
+  },
+
+  async deleteRole(id) {
+    if (!confirm(ATLAS.i18n.t('delete') + '? Users with this role will be reset to operator.')) return;
+    try {
+      await ATLAS.api.delete(`/api/roles/${id}`);
+      ATLAS.ui.toast(ATLAS.i18n.t('success'), 'success');
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message || ATLAS.i18n.t('error'), 'warning'); }
+  },
+};
+
+/* ============================================================
+   Voice Channel (Push-to-Talk)
+   Uses WebRTC + WebSocket signaling for real multi-party audio.
+   Falls back gracefully if WebRTC is unavailable.
+============================================================ */
+ATLAS.voice = {
+  _joined: false,
+  _speaking: false,
+  _stream: null,
+  _peers: {},           // userId -> {pc: RTCPeerConnection, ...}
+  _audioCtx: null,
+  _status: { active: false, speaker_id: null, speaker_name: null, participants: [] },
+  _barEl: null,
+  _pttBtn: null,
+
+  // Called once on init — creates the persistent voice bar in the UI
+  initBar() {
+    if (document.getElementById('voice-bar')) return;
+    const bar = document.createElement('div');
+    bar.id = 'voice-bar';
+    bar.style.cssText = `
+      position:fixed;bottom:0;left:var(--sidebar-w,240px);right:0;z-index:9000;
+      background:var(--bg2);border-top:1px solid var(--card-border);
+      padding:8px 20px;display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+      transition:all 0.2s;
+    `;
+    bar.innerHTML = `
+      <span style="font-size:13px;font-weight:600;color:var(--text-muted);">📻 ${ATLAS.i18n.t('voice_channel')}</span>
+      <div id="voice-status-dot" style="width:8px;height:8px;border-radius:50%;background:var(--text-dim);flex-shrink:0;"></div>
+      <span id="voice-status-label" style="font-size:12px;color:var(--text-dim);">${ATLAS.i18n.t('voice_idle')}</span>
+      <div id="voice-participants" style="flex:1;font-size:12px;color:var(--text-muted);"></div>
+      <button id="voice-join-btn" class="btn btn-secondary btn-sm" onclick="ATLAS.voice.joinChannel()"
+        style="min-width:90px;">📻 Join</button>
+      <button id="voice-ptt-btn" class="btn btn-primary btn-sm"
+        style="display:none;min-width:120px;user-select:none;"
+        onmousedown="ATLAS.voice.startPTT()" onmouseup="ATLAS.voice.stopPTT()"
+        ontouchstart="event.preventDefault();ATLAS.voice.startPTT()"
+        ontouchend="event.preventDefault();ATLAS.voice.stopPTT()">
+        🎙 ${ATLAS.i18n.t('ptt_hold')}
+      </button>
+      <button id="voice-leave-btn" class="btn btn-danger btn-sm"
+        style="display:none;" onclick="ATLAS.voice.leaveChannel()">
+        ✖ ${ATLAS.i18n.t('voice_leave')}
+      </button>
+    `;
+    document.body.appendChild(bar);
+    this._barEl = bar;
+    this._pttBtn = document.getElementById('voice-ptt-btn');
+  },
+
+  // Called when WS receives voice_status event
+  onStatus(data) {
+    this._status = data;
+    this._updateBar();
+  },
+
+  // Called when WS receives voice_ptt_start / voice_ptt_stop
+  onPTTStart(data) {
+    const dot = document.getElementById('voice-status-dot');
+    const lbl = document.getElementById('voice-status-label');
+    if (dot) dot.style.background = 'var(--danger)';
+    if (lbl) lbl.textContent = `🎙 ${data.username} ${ATLAS.i18n.t('voice_speaking')}`;
+  },
+  onPTTStop(data) {
+    if (this._status.active) {
+      const dot = document.getElementById('voice-status-dot');
+      const lbl = document.getElementById('voice-status-label');
+      if (dot) dot.style.background = 'var(--success)';
+      if (lbl) lbl.textContent = ATLAS.i18n.t('voice_active');
+    } else {
+      this._updateBar();
+    }
+  },
+
+  _updateBar() {
+    const dot = document.getElementById('voice-status-dot');
+    const lbl = document.getElementById('voice-status-label');
+    const parts = document.getElementById('voice-participants');
+    const joinBtn = document.getElementById('voice-join-btn');
+    const pttBtn = document.getElementById('voice-ptt-btn');
+    const leaveBtn = document.getElementById('voice-leave-btn');
+    if (!dot) return;
+
+    if (this._status.active) {
+      dot.style.background = 'var(--success)';
+      lbl.textContent = ATLAS.i18n.t('voice_active');
+      if (parts) parts.textContent = this._status.participants?.length ?
+        '👤 ' + this._status.participants.join(', ') : '';
+    } else {
+      dot.style.background = 'var(--text-dim)';
+      lbl.textContent = ATLAS.i18n.t('voice_idle');
+      if (parts) parts.textContent = '';
+    }
+
+    if (this._joined) {
+      if (joinBtn) joinBtn.style.display = 'none';
+      if (pttBtn) pttBtn.style.display = '';
+      if (leaveBtn) leaveBtn.style.display = '';
+    } else {
+      if (joinBtn) joinBtn.style.display = '';
+      if (pttBtn) pttBtn.style.display = 'none';
+      if (leaveBtn) leaveBtn.style.display = 'none';
+    }
+  },
+
+  async joinChannel() {
+    if (this._joined) return;
+    try {
+      this._stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+    } catch(e) {
+      ATLAS.ui.toast('🎙 Microphone access denied', 'warning');
+      return;
+    }
+    this._joined = true;
+    ATLAS.ws.socket?.send(JSON.stringify({ type: 'voice_join' }));
+    ATLAS.ui.toast('📻 ' + ATLAS.i18n.t('voice_joining'), 'info');
+    this._updateBar();
+    // Connect with existing participants via WebRTC
+    this._connectToPeers();
+  },
+
+  leaveChannel() {
+    if (!this._joined) return;
+    this._joined = false;
+    this._speaking = false;
+    // Close all peer connections
+    Object.values(this._peers).forEach(p => { try { p.pc.close(); } catch{} });
+    this._peers = {};
+    // Stop mic stream
+    if (this._stream) { this._stream.getTracks().forEach(t => t.stop()); this._stream = null; }
+    ATLAS.ws.socket?.send(JSON.stringify({ type: 'voice_leave' }));
+    this._status.active = false;
+    this._updateBar();
+  },
+
+  startPTT() {
+    if (!this._joined || this._speaking) return;
+    this._speaking = true;
+    const btn = document.getElementById('voice-ptt-btn');
+    if (btn) btn.style.background = 'var(--danger)';
+    // Unmute all peer senders
+    if (this._stream) {
+      this._stream.getAudioTracks().forEach(t => t.enabled = true);
+    }
+    ATLAS.ws.socket?.send(JSON.stringify({ type: 'voice_ptt_start' }));
+  },
+
+  stopPTT() {
+    if (!this._speaking) return;
+    this._speaking = false;
+    const btn = document.getElementById('voice-ptt-btn');
+    if (btn) btn.style.background = '';
+    // Mute mic when not talking
+    if (this._stream) {
+      this._stream.getAudioTracks().forEach(t => t.enabled = false);
+    }
+    ATLAS.ws.socket?.send(JSON.stringify({ type: 'voice_ptt_stop' }));
+  },
+
+  // Initiate WebRTC peer connection to each known participant
+  async _connectToPeers() {
+    if (!this._stream) return;
+    const participants = this._status.participants || [];
+    // We'll rely on ice/offer/answer exchange to connect
+    // Broadcast offer to all (simple mesh, works for small groups)
+    const pc = this._createPeerConnection('broadcast');
+    this._stream.getTracks().forEach(t => pc.addTrack(t, this._stream));
+    const offer = await pc.createOffer();
+    await pc.setLocalDescription(offer);
+    ATLAS.ws.socket?.send(JSON.stringify({
+      type: 'voice_offer',
+      data: { sdp: offer.sdp, type: offer.type },
+      target_id: null  // broadcast
+    }));
+  },
+
+  _createPeerConnection(peerId) {
+    const pc = new RTCPeerConnection({
+      iceServers: [{ urls: 'stun:stun.l.google.com:19302' }]
+    });
+    pc.onicecandidate = e => {
+      if (e.candidate) {
+        ATLAS.ws.socket?.send(JSON.stringify({
+          type: 'voice_ice',
+          data: e.candidate,
+          target_id: peerId === 'broadcast' ? null : peerId,
+        }));
+      }
+    };
+    pc.ontrack = e => {
+      // Play incoming audio
+      const audio = new Audio();
+      audio.srcObject = e.streams[0];
+      audio.autoplay = true;
+      document.body.appendChild(audio);
+    };
+    this._peers[peerId] = { pc };
+    return pc;
+  },
+
+  // Handle incoming WebRTC signals from WS
+  async onOffer(data) {
+    if (!this._joined || !this._stream) return;
+    const pc = this._createPeerConnection(data.from_id);
+    this._stream.getTracks().forEach(t => pc.addTrack(t, this._stream));
+    await pc.setRemoteDescription(data.data);
+    const answer = await pc.createAnswer();
+    await pc.setLocalDescription(answer);
+    ATLAS.ws.socket?.send(JSON.stringify({
+      type: 'voice_answer',
+      data: { sdp: answer.sdp, type: answer.type },
+      target_id: data.from_id,
+    }));
+  },
+
+  async onAnswer(data) {
+    const p = this._peers['broadcast'] || this._peers[data.from_id];
+    if (p) await p.pc.setRemoteDescription(data.data);
+  },
+
+  async onICE(data) {
+    const p = this._peers['broadcast'] || this._peers[data.from_id];
+    if (p && data.data) {
+      try { await p.pc.addIceCandidate(new RTCIceCandidate(data.data)); } catch{}
+    }
+  },
+};
+
+/* ============================================================
+   Setup Wizard – First-time browser setup
+============================================================ */
+ATLAS.setupWizard = {
+  show() {
+    document.getElementById('login-screen').classList.add('hidden');
+    document.getElementById('app-shell').classList.add('hidden');
+    let el = document.getElementById('setup-wizard-screen');
+    if (!el) {
+      el = document.createElement('div');
+      el.id = 'setup-wizard-screen';
+      el.style.cssText = 'position:fixed;inset:0;background:var(--bg-base,#0d1117);display:flex;align-items:center;justify-content:center;z-index:9999;overflow-y:auto;padding:20px;';
+      document.body.appendChild(el);
+    }
+    el.style.display = 'flex';
+    el.innerHTML = `
+      <div style="width:100%;max-width:560px;background:var(--bg-card,#161b22);border:1px solid var(--border,#30363d);border-radius:12px;padding:32px;">
+        <div style="text-align:center;margin-bottom:28px;">
+          <div style="font-size:36px;margin-bottom:8px;">🛡</div>
+          <h1 style="font-size:22px;font-weight:700;margin:0 0 4px;">ControlCenterHQ</h1>
+          <p style="color:var(--text-muted,#8b949e);font-size:13px;margin:0;">Ersteinrichtung – First-time Setup</p>
+        </div>
+
+        <div style="display:flex;flex-direction:column;gap:20px;">
+          <!-- Organisation -->
+          <div class="card" style="padding:16px;">
+            <div class="card-title" style="margin-bottom:12px;">🏢 Organisation</div>
+            <div class="form-group"><label class="form-label">Organisation / Leitstelle *</label>
+              <input id="sw-org" class="form-input" placeholder="z.B. Feuerwehr München" required></div>
+            <div class="form-group"><label class="form-label">Einrichtungstyp</label>
+              <select id="sw-type" class="form-select">
+                <option value="operations">Operations Center</option>
+                <option value="fire">Feuerwehr</option>
+                <option value="police">Polizei</option>
+                <option value="ems">Rettungsdienst</option>
+                <option value="rescue">Katastrophenschutz</option>
+                <option value="other">Sonstiges</option>
+              </select></div>
+          </div>
+
+          <!-- Admin-Konto -->
+          <div class="card" style="padding:16px;">
+            <div class="card-title" style="margin-bottom:12px;">👤 Administrator-Konto</div>
+            <div class="form-group"><label class="form-label">Vollständiger Name *</label>
+              <input id="sw-adminname" class="form-input" placeholder="Max Mustermann" required></div>
+            <div class="form-group"><label class="form-label">Benutzername *</label>
+              <input id="sw-adminuser" class="form-input" placeholder="admin" required></div>
+            <div class="form-group"><label class="form-label">Passwort * (min. 8 Zeichen)</label>
+              <input id="sw-adminpw" class="form-input" type="password" autocomplete="new-password" placeholder="••••••••" required></div>
+            <div class="form-group"><label class="form-label">Passwort bestätigen *</label>
+              <input id="sw-adminpw2" class="form-input" type="password" autocomplete="new-password" placeholder="••••••••" required></div>
+          </div>
+
+          <!-- Server -->
+          <div class="card" style="padding:16px;">
+            <div class="card-title" style="margin-bottom:12px;">🖥 Server-Einstellungen</div>
+            <div class="form-group"><label class="form-label">Port</label>
+              <input id="sw-port" class="form-input" type="number" value="8000" min="1024" max="65535"></div>
+          </div>
+
+          <!-- Netzwerk & APIs -->
+          <div class="card" style="padding:16px;">
+            <div class="card-title" style="margin-bottom:12px;">🌐 Netzwerk & APIs</div>
+            <div class="form-group">
+              <label class="form-label">Overpass API URL</label>
+              <input id="sw-overpass" class="form-input" value="https://overpass-api.de/api/interpreter" placeholder="https://overpass-api.de/api/interpreter">
+              <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Für den Infrastruktur-Scanner (Hydranten, Zufahrten). Kann leer gelassen werden.</div>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Tailscale Auth Key (optional)</label>
+              <input id="sw-tskey" class="form-input" placeholder="tskey-auth-...">
+              <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Für VPN-Zugang und automatische Leitstellen-Erkennung. Optional.</div>
+            </div>
+          </div>
+
+          <div id="sw-error" class="hidden" style="padding:10px 14px;background:rgba(248,81,73,0.15);border:1px solid var(--danger,#f85149);border-radius:6px;font-size:13px;color:var(--danger,#f85149);"></div>
+
+          <button id="sw-btn" class="btn btn-primary w-full" style="padding:12px;font-size:15px;" onclick="ATLAS.setupWizard.submit()">
+            🚀 Einrichtung abschließen
+          </button>
+          <p style="text-align:center;font-size:11px;color:var(--text-muted);margin:0;">
+            © Felix Greis 2026 – All rights reserved.
+          </p>
+        </div>
+      </div>`;
+  },
+
+  async submit() {
+    const org = document.getElementById('sw-org').value.trim();
+    const type = document.getElementById('sw-type').value;
+    const adminName = document.getElementById('sw-adminname').value.trim();
+    const adminUser = document.getElementById('sw-adminuser').value.trim();
+    const pw = document.getElementById('sw-adminpw').value;
+    const pw2 = document.getElementById('sw-adminpw2').value;
+    const port = parseInt(document.getElementById('sw-port').value) || 8000;
+    const overpass = document.getElementById('sw-overpass').value.trim();
+    const tskey = document.getElementById('sw-tskey').value.trim();
+    const errEl = document.getElementById('sw-error');
+    const btn = document.getElementById('sw-btn');
+
+    errEl.classList.add('hidden');
+    if (!org || !adminName || !adminUser || !pw) {
+      errEl.textContent = 'Bitte alle Pflichtfelder (*) ausfüllen.';
+      errEl.classList.remove('hidden'); return;
+    }
+    if (pw.length < 8) {
+      errEl.textContent = 'Passwort muss mindestens 8 Zeichen lang sein.';
+      errEl.classList.remove('hidden'); return;
+    }
+    if (!/[A-Z]/.test(pw)) {
+      errEl.textContent = 'Passwort muss mindestens einen Großbuchstaben enthalten (z.B. A–Z).';
+      errEl.classList.remove('hidden'); return;
+    }
+    if (!/[0-9]/.test(pw)) {
+      errEl.textContent = 'Passwort muss mindestens eine Zahl enthalten (0–9).';
+      errEl.classList.remove('hidden'); return;
+    }
+    if (!/[!@#$%^&*()\-_=+\[\]{}|;:',.<>?/`~"\\]/.test(pw)) {
+      errEl.textContent = 'Passwort muss mindestens ein Sonderzeichen enthalten (z.B. !@#$%).';
+      errEl.classList.remove('hidden'); return;
+    }
+    if (pw !== pw2) {
+      errEl.textContent = 'Passwörter stimmen nicht überein.';
+      errEl.classList.remove('hidden'); return;
+    }
+    btn.disabled = true;
+    btn.textContent = '⏳ Wird eingerichtet…';
+    try {
+      const res = await fetch('/api/setup/complete', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          org_name: org, facility_type: type, admin_name: adminName,
+          admin_username: adminUser, admin_password: pw, port,
+          overpass_url: overpass, tailscale_key: tskey,
+        })
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.detail || 'Setup failed');
+      }
+      // Success – show login
+      document.getElementById('setup-wizard-screen').style.display = 'none';
+      ATLAS.auth.showLoginScreen();
+      document.getElementById('login-user').value = adminUser;
+      ATLAS.ui.toast('Einrichtung abgeschlossen! Bitte anmelden.', 'success');
+    } catch(e) {
+      errEl.textContent = e.message;
+      errEl.classList.remove('hidden');
+      btn.disabled = false;
+      btn.textContent = '🚀 Einrichtung abschließen';
+    }
+  },
+};
+
+/* ============================================================
+   Settings Page – Advanced Config (Tailscale, Overpass, Federation Key)
+============================================================ */
+ATLAS.settingsPage._origRender = ATLAS.settingsPage.render;
+ATLAS.settingsPage.render = async function(el) {
+  await ATLAS.settingsPage._origRender.call(ATLAS.settingsPage, el);
+  // Inject advanced config card for admins
+  if (ATLAS.state.user?.role !== 'admin' && ATLAS.state.user?.role !== 'owner') return;
+  const cfg = await ATLAS.api.get('/api/config').catch(() => ({}));
+  const adminCol = el.querySelector('.grid-2 > div:first-child');
+  if (!adminCol) return;
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <div class="card-title">🌐 Netzwerk & APIs</div>
+    <div class="form-group">
+      <label class="form-label">Overpass API URL</label>
+      <input id="adv-overpass" class="form-input" value="${cfg.overpass_url || 'https://overpass-api.de/api/interpreter'}">
+      <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Infrastruktur-Scanner (Hydranten, Zufahrten etc.)</div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Tailscale Auth Key</label>
+      <input id="adv-tskey" class="form-input" type="password" placeholder="tskey-auth-… (leer lassen wenn unverändert)" value="${cfg.tailscale_key || ''}">
+    </div>
+    <div class="form-group">
+      <label class="form-label">Verbund (Federation) API Key</label>
+      <input id="adv-fedkey" class="form-input" value="${cfg.federation_api_key || ''}" placeholder="Sicherheitsschlüssel für eingehende Verbund-Anfragen">
+      <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Andere Leitstellen brauchen diesen Key um eure Daten abzurufen.</div>
+    </div>
+    <button class="btn btn-primary btn-sm" onclick="ATLAS.settingsPage.saveAdvanced()">💾 Speichern</button>`;
+  adminCol.appendChild(card);
+  // Inject NINA widget
+  const ninaEl = document.createElement('div');
+  adminCol.appendChild(ninaEl);
+  ATLAS.ninaWidget.render(ninaEl);
+  // Inject Mobile App connect widget
+  const mobileEl = document.createElement('div');
+  adminCol.appendChild(mobileEl);
+  ATLAS.mobileWidget.render(mobileEl);
+};
+
+ATLAS.settingsPage.saveAdvanced = async function() {
+  const overpass = document.getElementById('adv-overpass')?.value.trim();
+  const tskey = document.getElementById('adv-tskey')?.value.trim();
+  const fedkey = document.getElementById('adv-fedkey')?.value.trim();
+  const body = {};
+  if (overpass) body.overpass_url = overpass;
+  if (tskey) { body.tailscale_key = tskey; body.tailscale_enabled = true; }
+  if (fedkey !== undefined && fedkey !== '') body.federation_api_key = fedkey;
+  try {
+    await ATLAS.api.put('/api/config/advanced', body);
+    ATLAS.ui.toast('Netzwerk-Einstellungen gespeichert', 'success');
+  } catch(e) { ATLAS.ui.toast(e.message || 'Fehler', 'warning'); }
+};
+
+/* ============================================================
+   Predictive Dispatch Page
+============================================================ */
+ATLAS.predictivePage = {
+  _data: null,
+
+  async render(el) {
+    const t = k => ATLAS.i18n.t(k);
+    el.innerHTML = `<div class="page-header"><h1>🔮 ${t('predictive_dispatch')}</h1></div>
+      <div id="pred-body"><div style="padding:40px;text-align:center;color:var(--text-muted);">${t('loading')}</div></div>`;
+    try {
+      this._data = await ATLAS.api.get('/api/analytics/predictive');
+      this._renderContent(el);
+    } catch(e) {
+      document.getElementById('pred-body').innerHTML = `<div style="padding:40px;text-align:center;color:var(--danger);">Fehler: ${e.message}</div>`;
+    }
+  },
+
+  _renderContent(el) {
+    const d = this._data;
+    const t = k => ATLAS.i18n.t(k);
+    const dayNames = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'];
+    const maxHour = Math.max(...d.hour_distribution, 1);
+    const maxDay = Math.max(...d.weekday_distribution, 1);
+
+    const hourBars = d.hour_distribution.map((v, h) => {
+      const pct = Math.round(v / maxHour * 100);
+      const isPeak = d.peak_hours.includes(h);
+      return `<div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;">
+        <div style="font-size:9px;color:${isPeak ? 'var(--danger)' : 'var(--text-muted)'};">${v}</div>
+        <div style="width:100%;height:${Math.max(pct * 0.8, 2)}px;background:${isPeak ? 'var(--danger)' : 'var(--accent)'};border-radius:2px 2px 0 0;opacity:${isPeak ? 1 : 0.5};"></div>
+        <div style="font-size:9px;color:var(--text-muted);">${h}</div>
+      </div>`;
+    }).join('');
+
+    const dayBars = d.weekday_distribution.map((v, i) => {
+      const pct = Math.round(v / maxDay * 100);
+      const isPeak = d.peak_days.includes(dayNames[i]);
+      return `<div style="display:flex;flex-direction:column;align-items:center;gap:2px;flex:1;">
+        <div style="font-size:10px;color:${isPeak ? 'var(--danger)' : 'var(--text-muted)'};">${v}</div>
+        <div style="width:100%;height:${Math.max(pct * 0.6, 2)}px;background:${isPeak ? 'var(--danger)' : 'var(--accent)'};border-radius:2px 2px 0 0;opacity:${isPeak ? 1 : 0.5};"></div>
+        <div style="font-size:11px;color:var(--text-muted);">${dayNames[i]}</div>
+      </div>`;
+    }).join('');
+
+    document.getElementById('pred-body').innerHTML = `
+      <div class="kpi-grid" style="margin-bottom:20px;">
+        <div class="kpi-card"><div class="kpi-label">ANALYSIERTE EINSÄTZE</div><div class="kpi-value" style="color:var(--accent);">${d.total_incidents}</div></div>
+        <div class="kpi-card"><div class="kpi-label">RISIKOSTUNDEN</div><div class="kpi-value" style="color:var(--danger);">${d.peak_hours.map(h => h + ':00').join(', ') || '—'}</div></div>
+        <div class="kpi-card"><div class="kpi-label">RISIKOTAGE</div><div class="kpi-value" style="color:var(--warning);">${d.peak_days.join(', ') || '—'}</div></div>
+        <div class="kpi-card"><div class="kpi-label">HEATMAP-ZONEN</div><div class="kpi-value" style="color:var(--accent);">${d.heatmap.length}</div></div>
+      </div>
+      <div class="grid-2" style="margin-bottom:20px;">
+        <div class="card">
+          <div class="card-title">⏰ Stunden-Verteilung (0–23 Uhr)</div>
+          <div style="display:flex;align-items:flex-end;gap:2px;height:100px;padding:8px 0;">${hourBars}</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:8px;">🔴 Spitzenstunden mit erhöhtem Einsatzaufkommen</div>
+        </div>
+        <div class="card">
+          <div class="card-title">📅 Wochentag-Verteilung</div>
+          <div style="display:flex;align-items:flex-end;gap:4px;height:100px;padding:8px 0;">${dayBars}</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:8px;">🔴 Risikotage mit höchstem Einsatzaufkommen</div>
+        </div>
+      </div>
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title">🗺 Einsatz-Heatmap</div>
+        <div id="pred-heatmap-map" style="height:400px;border-radius:var(--radius-sm);"></div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:8px;">Größere/rötere Kreise = häufigere/schwerere Einsätze in diesem Bereich</div>
+      </div>
+      <div class="card">
+        <div class="card-title">🚗 Ressourcen-Intelligenz – Fahrzeugvorschlag</div>
+        <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Gib eine Position und Einsatzart ein, um die optimalen verfügbaren Fahrzeuge zu erhalten.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px;">
+          <input id="ri-lat" class="form-input" placeholder="Breite (lat)" style="width:130px;" type="number" step="0.0001">
+          <input id="ri-lng" class="form-input" placeholder="Länge (lng)" style="width:130px;" type="number" step="0.0001">
+          <select id="ri-type" class="form-select" style="width:160px;">
+            <option value="general">Allgemein</option>
+            <option value="fire">Brand / Feuer</option>
+            <option value="medical">Rettung / Medizin</option>
+            <option value="hazmat">Gefahrstoff</option>
+            <option value="rescue">Technische Hilfe</option>
+          </select>
+          <button class="btn btn-primary btn-sm" onclick="ATLAS.predictivePage.suggestVehicles()">🚗 Vorschlagen</button>
+        </div>
+        <div id="ri-results"></div>
+      </div>`;
+
+    // Render heatmap
+    this._renderHeatmap(d.heatmap);
+  },
+
+  _renderHeatmap(heatmap) {
+    const mapEl = document.getElementById('pred-heatmap-map');
+    if (!mapEl || typeof L === 'undefined') return;
+    if (this._map) { try { this._map.remove(); } catch {} this._map = null; }
+    const center = heatmap.length > 0 ? [heatmap[0].lat, heatmap[0].lng] : [51.505, 10.09];
+    this._map = L.map(mapEl).setView(center, heatmap.length > 0 ? 11 : 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '© OSM'}).addTo(this._map);
+    const maxW = Math.max(...heatmap.map(h => h.weight), 1);
+    heatmap.forEach(h => {
+      const r = 6 + (h.weight / maxW) * 18;
+      const opacity = 0.3 + (h.weight / maxW) * 0.5;
+      const color = h.weight / maxW > 0.7 ? '#f85149' : h.weight / maxW > 0.4 ? '#e3b341' : '#58a6ff';
+      L.circleMarker([h.lat, h.lng], {radius: r, color, fillColor: color, fillOpacity: opacity, weight: 1})
+        .bindPopup(`Einsatzdichte: ${h.weight} (gewichtet)`).addTo(this._map);
+    });
+  },
+
+  async suggestVehicles() {
+    const lat = parseFloat(document.getElementById('ri-lat').value) || 0;
+    const lng = parseFloat(document.getElementById('ri-lng').value) || 0;
+    const type = document.getElementById('ri-type').value;
+    const el = document.getElementById('ri-results');
+    el.innerHTML = '<div style="color:var(--text-muted);">Lade…</div>';
+    try {
+      const data = await ATLAS.api.get(`/api/fleet/suggest?lat=${lat}&lng=${lng}&incident_type=${type}`);
+      if (!data.suggestions.length) {
+        el.innerHTML = '<div style="color:var(--text-muted);">Keine verfügbaren Fahrzeuge gefunden.</div>';
+        return;
+      }
+      el.innerHTML = `<div style="display:flex;flex-direction:column;gap:8px;">
+        ${data.suggestions.map((v, i) => `
+          <div style="display:flex;align-items:center;gap:12px;padding:10px 14px;border-radius:var(--radius-sm);border:1px solid var(--border);background:${i === 0 ? 'var(--accent-dim)' : ''};">
+            <div style="font-size:20px;">${i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : '🚗'}</div>
+            <div style="flex:1;">
+              <div style="font-weight:600;font-size:13px;">${ATLAS.ui.esc(v.name)} <span style="font-size:11px;color:var(--text-muted);">${v.license_plate || ''}</span></div>
+              <div style="font-size:12px;color:var(--text-muted);">${v.driver ? `Fahrer: ${v.driver}` : 'Kein Fahrer'} · ${v.dist_km != null ? v.dist_km + ' km entfernt' : 'Position unbekannt'} · Tank: ${v.fuel_pct}%</div>
+              ${v.features ? `<div style="font-size:11px;color:var(--text-muted);">${v.features}</div>` : ''}
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:18px;font-weight:700;color:var(--accent);">${v.score}</div>
+              <div style="font-size:10px;color:var(--text-muted);">Score</div>
+            </div>
+          </div>`).join('')}
+      </div>`;
+    } catch(e) {
+      el.innerHTML = `<div style="color:var(--danger);">Fehler: ${e.message}</div>`;
+    }
+  },
+};
+
+/* ============================================================
+   Infrastructure Scanner – injected into map page
+============================================================ */
+ATLAS.infraScanner = {
+  _layer: null,
+  _active: false,
+  _map: null,
+  _radius: 400,
+
+  attach(mapInstance) {
+    this._map = mapInstance;
+    // Scan button
+    const ctrl = L.control({position: 'topright'});
+    ctrl.onAdd = () => {
+      const div = L.DomUtil.create('div', 'leaflet-bar');
+      div.innerHTML = `<a href="#" title="Infrastruktur-Scanner" style="font-size:16px;" id="infra-btn">🏗</a>`;
+      div.onclick = (e) => { e.preventDefault(); ATLAS.infraScanner.toggle(); };
+      return div;
+    };
+    ctrl.addTo(mapInstance);
+    // Categories button
+    const ctrl2 = L.control({position: 'topright'});
+    ctrl2.onAdd = () => {
+      const div = L.DomUtil.create('div', 'leaflet-bar');
+      div.innerHTML = `<a href="#" title="Infra-Kategorien" style="font-size:14px;">📍</a>`;
+      div.onclick = (e) => { e.preventDefault(); ATLAS.infraCategoryPanel.showPanel(); };
+      return div;
+    };
+    ctrl2.addTo(mapInstance);
+    mapInstance.on('click', e => {
+      if (this._active) this.scan(e.latlng.lat, e.latlng.lng);
+    });
+  },
+
+  toggle() {
+    this._active = !this._active;
+    const btn = document.getElementById('infra-btn');
+    if (btn) btn.style.background = this._active ? '#58a6ff' : '';
+    ATLAS.ui.toast(this._active ? '🏗 Infrastruktur-Scanner aktiv – Auf Karte klicken' : 'Scanner deaktiviert', 'info');
+  },
+
+  async scan(lat, lng) {
+    ATLAS.ui.toast('Infrastruktur wird geladen…', 'info');
+    try {
+      // Use extended scan endpoint (custom categories + OSM)
+      const data = await ATLAS.api.get(`/api/infrastructure/scan?lat=${lat}&lng=${lng}&radius=${this._radius}`);
+      if (this._layer) { this._map.removeLayer(this._layer); this._layer = null; }
+      this._layer = L.layerGroup();
+      data.features.forEach(f => {
+        const iconChar = f.icon || '📍';
+        const borderColor = f.color || '#6366f1';
+        const icon = L.divIcon({
+          html: `<span style="font-size:20px;filter:drop-shadow(0 1px 2px rgba(0,0,0,.5));">${iconChar}</span>`,
+          className: '', iconSize: [26, 26]
+        });
+        const m = L.marker([f.lat, f.lng], {icon});
+        const tagRows = Object.entries(f.tags||{}).map(([k, v]) => `<tr><td style="color:#888;padding-right:8px;">${k}</td><td>${v}</td></tr>`).join('');
+        const sourceTag = f.source === 'custom' ? `<br><span style="font-size:10px;background:#6366f1;color:white;border-radius:8px;padding:1px 6px;">📍 ${f.cat_name||'Eigene Kategorie'}</span>` : '';
+        m.bindPopup(`<b style="color:${borderColor};">${iconChar} ${f.label}</b>${sourceTag}${f.description?`<br><span style='color:#888;font-size:11px;'>${f.description}</span>`:''}<br><table style="font-size:11px;margin-top:4px;">${tagRows}</table>`);
+        this._layer.addLayer(m);
+      });
+      this._layer.addTo(this._map);
+      ATLAS.ui.toast(`${data.count} Objekte gefunden (inkl. ${data.custom_categories||0} eigene Kategorien)`, 'success');
+    } catch(e) {
+      // Fallback to original endpoint
+      try {
+        const data = await ATLAS.api.get(`/api/infrastructure?lat=${lat}&lng=${lng}&radius=${this._radius}`);
+        if (this._layer) { this._map.removeLayer(this._layer); this._layer = null; }
+        this._layer = L.layerGroup();
+        data.features.forEach(f => {
+          const iconMap = {hydrant:'🔴',fire_station:'🚒',assembly_point:'🟢',water_access:'💧',pipeline:'🟡',hazmat:'☢️',fire_access:'🚧',building:'🏢'};
+          const icon = L.divIcon({html:`<span style="font-size:18px;">${iconMap[f.type]||'📍'}</span>`,className:'',iconSize:[24,24]});
+          const m = L.marker([f.lat,f.lng],{icon});
+          const tagRows = Object.entries(f.tags).map(([k,v])=>`<tr><td style="color:#888;padding-right:8px;">${k}</td><td>${v}</td></tr>`).join('');
+          m.bindPopup(`<b>${f.icon} ${f.label}</b><br><table style="font-size:11px;margin-top:4px;">${tagRows}</table>`);
+          this._layer.addLayer(m);
+        });
+        this._layer.addTo(this._map);
+        ATLAS.ui.toast(`${data.count} Infrastruktur-Objekte gefunden`, 'success');
+      } catch(e2) {
+        ATLAS.ui.toast('Infrastruktur-Scan fehlgeschlagen: ' + e2.message, 'warning');
+      }
+    }
+  },
+};
+
+/* ============================================================
+   Incident Report Generator – button injected into incidents detail
+============================================================ */
+ATLAS.incidentReport = {
+  async generate(incidentId) {
+    ATLAS.ui.toast('Einsatzbericht wird erstellt…', 'info');
+    try {
+      const _rurl = new URL(`/api/incidents/${incidentId}/report/html`, location.origin);
+      _rurl.searchParams.set('token', ATLAS.state.token);
+      const win = window.open(_rurl.toString(), '_blank');
+      if (!win) {
+        // Fallback: show in modal
+        const data = await ATLAS.api.get(`/api/incidents/${incidentId}/report`);
+        this._showModal(data.report);
+      }
+    } catch(e) {
+      ATLAS.ui.toast('Bericht fehlgeschlagen: ' + e.message, 'warning');
+    }
+  },
+
+  _showModal(r) {
+    const rows = (arr, cols) => arr.length ?
+      arr.map(row => `<tr>${cols.map(c => `<td style="padding:4px 8px;border-bottom:1px solid var(--border);">${row[c] ?? '—'}</td>`).join('')}</tr>`).join('') :
+      `<tr><td colspan="${cols.length}" style="padding:8px;color:var(--text-muted);">Keine Einträge</td></tr>`;
+
+    ATLAS.ui.modal(`📋 Einsatzbericht #${r.incident_id}`, `
+      <div style="font-size:13px;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;">
+          ${[['Titel', r.title],['Schwere', r.severity],['Status', r.status],['Eröffnet', r.timeline.opened],['Abgeschlossen', r.timeline.resolved],['Dauer', r.timeline.duration||'—'],['Erstellt von', r.personnel.created_by],['Zugeteilt an', r.personnel.assigned_to]].map(([k,v])=>`<div><span style="color:var(--text-muted);font-size:11px;">${k}</span><div style="font-weight:600;">${v||'—'}</div></div>`).join('')}
+        </div>
+        <b>Beschreibung:</b><p style="color:var(--text-muted);">${r.description || '—'}</p>
+        <b>Alarme:</b>
+        <table style="width:100%;font-size:12px;margin:8px 0;"><tr style="background:var(--bg-input);"><th style="padding:4px 8px;text-align:left;">Zeit</th><th style="padding:4px 8px;text-align:left;">Meldung</th><th style="padding:4px 8px;">Schwere</th></tr>${rows(r.related_alerts, ['time','message','severity'])}</table>
+        <b>Fahrzeuge:</b>
+        <table style="width:100%;font-size:12px;margin:8px 0;"><tr style="background:var(--bg-input);"><th style="padding:4px 8px;text-align:left;">Fahrzeug</th><th style="padding:4px 8px;text-align:left;">Fahrer</th><th style="padding:4px 8px;text-align:left;">Abfahrt</th><th style="padding:4px 8px;">Distanz</th></tr>${rows(r.deployed_vehicles, ['vehicle','driver','departure','distance_km'])}</table>
+        <b>Chronologie:</b>
+        <table style="width:100%;font-size:12px;margin:8px 0;"><tr style="background:var(--bg-input);"><th style="padding:4px 8px;text-align:left;">Zeit</th><th style="padding:4px 8px;text-align:left;">Benutzer</th><th style="padding:4px 8px;text-align:left;">Aktion</th></tr>${rows(r.chronology, ['time','user','action'])}</table>
+        <div style="margin-top:12px;display:flex;gap:8px;">
+          <button class="btn btn-primary btn-sm" onclick="ATLAS.incidentReport.generate(${r.incident_id})">🖨 Drucken / PDF</button>
+        </div>
+      </div>`, 'large');
+  },
+};
+
+/* ============================================================
+   Federation / Multi-Leitstellen-Netzwerk Page
+============================================================ */
+ATLAS.federationPage = {
+  _peers: [],
+  _snapshot: null,
+
+  async render(el) {
+    const t = k => ATLAS.i18n.t(k);
+    el.innerHTML = `
+      <div class="page-header" style="display:flex;justify-content:space-between;align-items:center;">
+        <h1>🌐 ${t('federation')}</h1>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.federationPage.autoDiscover()">📡 ${t('auto_discover')}</button>
+          <button class="btn btn-primary btn-sm" onclick="ATLAS.federationPage.showAddModal()">+ ${t('add_peer')}</button>
+        </div>
+      </div>
+      <div id="fed-body"><div style="padding:40px;text-align:center;color:var(--text-muted);">${t('loading')}</div></div>`;
+    await this.loadAndRender();
+  },
+
+  async loadAndRender() {
+    try {
+      this._peers = await ATLAS.api.get('/api/federation/peers');
+      this._renderPeers();
+    } catch(e) {
+      document.getElementById('fed-body').innerHTML = `<div style="padding:40px;text-align:center;color:var(--danger);">Fehler: ${e.message}</div>`;
+    }
+  },
+
+  _renderPeers() {
+    const t = k => ATLAS.i18n.t(k);
+    const el = document.getElementById('fed-body');
+    if (!el) return;
+    const statusColor = s => s === 'online' ? 'var(--success)' : s === 'offline' ? 'var(--danger)' : 'var(--text-muted)';
+    const statusIcon = s => s === 'online' ? '🟢' : s === 'offline' ? '🔴' : '⚪';
+
+    el.innerHTML = `
+      <div class="card" style="margin-bottom:20px;">
+        <div class="card-title">🔑 Eigener Verbund-API-Schlüssel</div>
+        <p style="font-size:12px;color:var(--text-muted);margin-bottom:10px;">Andere Leitstellen benötigen diesen Schlüssel, um eure Live-Daten abrufen zu können.</p>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <input id="fed-own-key" class="form-input" style="flex:1;font-family:monospace;" placeholder="Noch kein Schlüssel gesetzt">
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.federationPage.generateKey()">🔄 Generieren</button>
+          <button class="btn btn-primary btn-sm" onclick="ATLAS.federationPage.saveKey()">💾 Speichern</button>
+        </div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:6px;">Eure Verbund-URL: <code>${location.origin}/api/federation/live</code></div>
+      </div>
+
+      ${this._peers.length === 0 ? `
+        <div class="card" style="text-align:center;padding:40px;">
+          <div style="font-size:36px;margin-bottom:12px;">🌐</div>
+          <div style="font-weight:600;margin-bottom:8px;">Noch keine Leitstellen verbunden</div>
+          <p style="color:var(--text-muted);font-size:13px;">Füge andere Atlas-Instanzen hinzu oder nutze die automatische Erkennung über Tailscale.</p>
+        </div>` : `
+        <div style="display:flex;flex-direction:column;gap:12px;margin-bottom:20px;">
+          ${this._peers.map(p => `
+            <div class="card" style="display:flex;align-items:center;gap:16px;">
+              <div style="font-size:24px;">${statusIcon(p.status)}</div>
+              <div style="flex:1;">
+                <div style="font-weight:600;font-size:14px;">${p.name}</div>
+                <div style="font-size:12px;color:var(--text-muted);">${p.url}</div>
+                <div style="font-size:11px;color:${statusColor(p.status)};margin-top:2px;">
+                  ${p.status === 'online' ? 'Online' : p.status === 'offline' ? 'Offline' : 'Status unbekannt'}
+                  ${p.last_seen ? ` · Zuletzt: ${p.last_seen.substring(0,16)}` : ''}
+                  ${p.auto_discovered ? ' · 📡 Auto-erkannt' : ''}
+                </div>
+              </div>
+              <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end;">
+                <button class="btn btn-secondary btn-sm" onclick="ATLAS.federationPage.pingPeer(${p.id})">🔔 Ping</button>
+                <button class="btn btn-secondary btn-sm" onclick="ATLAS.federationPage.showLiveData(${p.id})">📊 Live</button>
+                <button class="btn btn-secondary btn-sm" onclick="ATLAS.federationPage.showEditModal(${p.id})">✏️</button>
+                <button class="btn btn-danger btn-sm" onclick="ATLAS.federationPage.deletePeer(${p.id})">🗑</button>
+              </div>
+            </div>`).join('')}
+        </div>
+        <div style="display:flex;gap:8px;margin-bottom:20px;">
+          <button class="btn btn-primary" onclick="ATLAS.federationPage.syncAll()">🔄 ${t('sync_now')} (alle)</button>
+          <button class="btn btn-secondary" onclick="ATLAS.federationPage.showLiveMap()">🗺 ${t('live_map')}</button>
+        </div>`}
+
+      <div id="fed-live-map" style="display:none;height:500px;border-radius:var(--radius-sm);margin-bottom:20px;"></div>
+      <div id="fed-live-data"></div>`;
+
+    // Load current federation key
+    ATLAS.api.get('/api/config').then(cfg => {
+      const inp = document.getElementById('fed-own-key');
+      if (inp && cfg.federation_api_key) inp.value = cfg.federation_api_key;
+    }).catch(() => {});
+  },
+
+  generateKey() {
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const key = Array.from({length: 48}, () => chars[Math.floor(Math.random() * chars.length)]).join('');
+    const inp = document.getElementById('fed-own-key');
+    if (inp) inp.value = key;
+  },
+
+  async saveKey() {
+    const key = document.getElementById('fed-own-key')?.value.trim();
+    if (!key) { ATLAS.ui.toast('Bitte zuerst einen Schlüssel generieren', 'warning'); return; }
+    try {
+      await ATLAS.api.put('/api/config/advanced', {federation_api_key: key});
+      ATLAS.ui.toast('API-Schlüssel gespeichert', 'success');
+    } catch(e) { ATLAS.ui.toast(e.message, 'warning'); }
+  },
+
+  showAddModal(prefill = {}) {
+    ATLAS.ui.modal('🌐 Leitstelle hinzufügen', `
+      <div class="form-group"><label class="form-label">Name *</label><input id="fp-name" class="form-input" value="${prefill.name || ''}" placeholder="z.B. Feuerwehr München"></div>
+      <div class="form-group"><label class="form-label">URL * (inkl. http/https)</label><input id="fp-url" class="form-input" value="${prefill.url || ''}" placeholder="https://192.168.1.100:8080"></div>
+      <div class="form-group"><label class="form-label">API Key (optional)</label><input id="fp-key" class="form-input" value="${prefill.api_key || ''}" placeholder="Verbund-API-Schlüssel der anderen Leitstelle"></div>
+      <div style="display:flex;gap:8px;margin-top:16px;">
+        <button class="btn btn-primary" onclick="ATLAS.federationPage.savePeer()">💾 Hinzufügen</button>
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+      </div>`);
+  },
+
+  showEditModal(id) {
+    const p = this._peers.find(x => x.id === id);
+    if (!p) return;
+    ATLAS.ui.modal('✏️ Leitstelle bearbeiten', `
+      <div class="form-group"><label class="form-label">Name</label><input id="fp-name" class="form-input" value="${p.name}"></div>
+      <div class="form-group"><label class="form-label">URL</label><input id="fp-url" class="form-input" value="${p.url}"></div>
+      <div class="form-group"><label class="form-label">API Key</label><input id="fp-key" class="form-input" value="${p.api_key || ''}"></div>
+      <div style="display:flex;gap:8px;margin-top:16px;">
+        <button class="btn btn-primary" onclick="ATLAS.federationPage.updatePeer(${id})">💾 Speichern</button>
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+      </div>`);
+  },
+
+  async savePeer() {
+    const name = document.getElementById('fp-name')?.value.trim();
+    const url = document.getElementById('fp-url')?.value.trim();
+    const key = document.getElementById('fp-key')?.value.trim();
+    if (!name || !url) { ATLAS.ui.toast('Name und URL erforderlich', 'warning'); return; }
+    try {
+      await ATLAS.api.post('/api/federation/peers', {name, url, api_key: key});
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast('Leitstelle hinzugefügt', 'success');
+      await this.loadAndRender();
+    } catch(e) { ATLAS.ui.toast(e.message, 'warning'); }
+  },
+
+  async updatePeer(id) {
+    const name = document.getElementById('fp-name')?.value.trim();
+    const url = document.getElementById('fp-url')?.value.trim();
+    const key = document.getElementById('fp-key')?.value.trim();
+    try {
+      await ATLAS.api.put(`/api/federation/peers/${id}`, {name, url, api_key: key});
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast('Gespeichert', 'success');
+      await this.loadAndRender();
+    } catch(e) { ATLAS.ui.toast(e.message, 'warning'); }
+  },
+
+  async deletePeer(id) {
+    if (!confirm('Leitstelle wirklich entfernen?')) return;
+    try {
+      await ATLAS.api.delete(`/api/federation/peers/${id}`);
+      ATLAS.ui.toast('Entfernt', 'success');
+      await this.loadAndRender();
+    } catch(e) { ATLAS.ui.toast(e.message, 'warning'); }
+  },
+
+  async pingPeer(id) {
+    ATLAS.ui.toast('Pinge…', 'info');
+    try {
+      const res = await ATLAS.api.get(`/api/federation/peers/${id}/ping`);
+      if (res.status === 'online') {
+        ATLAS.ui.toast(`Online ✓ – ${res.data?.org_name || 'Antwort erhalten'}`, 'success');
+      } else {
+        ATLAS.ui.toast(`Offline: ${res.error || 'Keine Antwort'}`, 'warning');
+      }
+      await this.loadAndRender();
+    } catch(e) { ATLAS.ui.toast(e.message, 'warning'); }
+  },
+
+  async syncAll() {
+    ATLAS.ui.toast('Synchronisiere alle Leitstellen…', 'info');
+    try {
+      const data = await ATLAS.api.get('/api/federation/snapshot');
+      const ok = data.peers.filter(p => p.status === 'ok').length;
+      const fail = data.peers.filter(p => p.status === 'error').length;
+      ATLAS.ui.toast(`Sync abgeschlossen: ${ok} online, ${fail} offline`, ok > 0 ? 'success' : 'warning');
+      this._snapshot = data;
+      this._renderLiveData(data);
+      await this.loadAndRender();
+    } catch(e) { ATLAS.ui.toast(e.message, 'warning'); }
+  },
+
+  async showLiveData(peerId) {
+    ATLAS.ui.toast('Lade Live-Daten…', 'info');
+    try {
+      const res = await ATLAS.api.get(`/api/federation/peers/${peerId}/ping`);
+      if (res.status !== 'online') { ATLAS.ui.toast('Leitstelle nicht erreichbar', 'warning'); return; }
+      const d = res.data;
+      ATLAS.ui.modal(`📊 Live-Daten – ${d.org_name}`, `
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">Stand: ${d.timestamp?.substring(0,19) || '—'} UTC</div>
+        <div class="kpi-grid" style="margin-bottom:16px;">
+          <div class="kpi-card"><div class="kpi-label">OFFENE EINSÄTZE</div><div class="kpi-value" style="color:var(--danger);">${d.incidents?.length || 0}</div></div>
+          <div class="kpi-card"><div class="kpi-label">AKTIVE ALARME</div><div class="kpi-value" style="color:var(--warning);">${d.alerts?.length || 0}</div></div>
+          <div class="kpi-card"><div class="kpi-label">ASSETS</div><div class="kpi-value" style="color:var(--accent);">${d.assets?.length || 0}</div></div>
+          <div class="kpi-card"><div class="kpi-label">FAHRZEUGE</div><div class="kpi-value" style="color:var(--success);">${d.vehicles?.length || 0}</div></div>
+        </div>
+        ${d.incidents?.length ? `<b>Aktive Einsätze:</b><div style="display:flex;flex-direction:column;gap:6px;margin:8px 0;">
+          ${d.incidents.slice(0,10).map(i => `<div style="padding:8px 12px;border-radius:var(--radius-sm);border-left:3px solid var(--${i.severity==='critical'?'danger':i.severity==='warning'?'warning':'accent'});">
+            <span style="font-weight:600;">${ATLAS.ui.esc(i.title)}</span> <span style="font-size:11px;color:var(--text-muted);">${i.severity} · ${(i.created_at||'').substring(0,16)}</span>
+          </div>`).join('')}</div>` : ''}
+        ${d.alerts?.length ? `<b>Alarme:</b><div style="display:flex;flex-direction:column;gap:4px;margin:8px 0;">
+          ${d.alerts.slice(0,5).map(a => `<div style="font-size:12px;padding:4px 0;border-bottom:1px solid var(--border);">${a.message} <span style="color:var(--text-muted);">${(a.created_at||'').substring(0,16)}</span></div>`).join('')}</div>` : ''}
+      `, 'large');
+    } catch(e) { ATLAS.ui.toast(e.message, 'warning'); }
+  },
+
+  async showLiveMap() {
+    const mapEl = document.getElementById('fed-live-map');
+    if (!mapEl) return;
+    if (mapEl.style.display === 'none' || !mapEl.style.display) {
+      mapEl.style.display = 'block';
+    } else {
+      mapEl.style.display = 'none'; return;
+    }
+    // Render combined map
+    if (this._fedMap) { this._fedMap.remove(); this._fedMap = null; }
+    this._fedMap = L.map(mapEl).setView([51.0, 10.0], 6);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: '© OSM'}).addTo(this._fedMap);
+
+    // Load and display all peers' data
+    try {
+      const data = await ATLAS.api.get('/api/federation/snapshot');
+      data.peers.filter(p => p.status === 'ok').forEach(peer => {
+        const d = peer.data;
+        const color = `#${Math.floor(Math.random()*0xFFFFFF).toString(16).padStart(6,'0')}`;
+        (d.incidents || []).filter(i => i.lat && i.lng).forEach(i => {
+          L.circleMarker([i.lat, i.lng], {radius: 10, color: '#f85149', fillColor: '#f85149', fillOpacity: 0.7})
+            .bindPopup(`<b>${peer.peer_name}</b><br>⚠️ ${ATLAS.ui.esc(i.title)}<br>${i.severity}`).addTo(this._fedMap);
+        });
+        (d.vehicles || []).filter(v => v.lat && v.lng).forEach(v => {
+          L.circleMarker([v.lat, v.lng], {radius: 7, color, fillColor: color, fillOpacity: 0.8})
+            .bindPopup(`<b>${peer.peer_name}</b><br>🚗 ${ATLAS.ui.esc(v.name)}<br>${v.status}`).addTo(this._fedMap);
+        });
+        (d.assets || []).filter(a => a.lat && a.lng).forEach(a => {
+          L.circleMarker([a.lat, a.lng], {radius: 6, color: '#58a6ff', fillColor: '#58a6ff', fillOpacity: 0.6})
+            .bindPopup(`<b>${peer.peer_name}</b><br>🎯 ${a.name}`).addTo(this._fedMap);
+        });
+      });
+      ATLAS.ui.toast('Verbund-Karte geladen', 'success');
+    } catch(e) {
+      ATLAS.ui.toast('Konnte Verbund-Daten nicht laden: ' + e.message, 'warning');
+    }
+  },
+
+  async autoDiscover() {
+    ATLAS.ui.toast('Suche nach Tailscale-Peers…', 'info');
+    try {
+      const res = await ATLAS.api.get('/api/setup/tailscale-peers');
+      if (res.error) { ATLAS.ui.toast('Tailscale nicht verfügbar: ' + res.error, 'warning'); return; }
+      if (!res.peers.length) { ATLAS.ui.toast('Keine Tailscale-Peers gefunden', 'info'); return; }
+      // For each peer, try to ping the Atlas port
+      let found = 0;
+      for (const p of res.peers) {
+        try {
+          const url = `http://${p.ip}:8080`;
+          const _fc = new AbortController(); const _ft = setTimeout(() => _fc.abort(), 3000);
+          const r = await fetch(`${url}/api/setup/status`, {signal: _fc.signal}).finally(() => clearTimeout(_ft)).then(x => x.json());
+          if (!r.setup_required) {
+            // It's an Atlas instance — add as peer if not already there
+            const exists = this._peers.some(ex => ex.url === url);
+            if (!exists) {
+              await ATLAS.api.post('/api/federation/peers', {name: p.hostname, url, api_key: '', auto_discovered: true});
+              found++;
+            }
+          }
+        } catch {}
+      }
+      ATLAS.ui.toast(found > 0 ? `${found} neue Leitstelle(n) automatisch erkannt` : 'Keine neuen Atlas-Instanzen gefunden', found > 0 ? 'success' : 'info');
+      if (found > 0) await this.loadAndRender();
+    } catch(e) { ATLAS.ui.toast(e.message, 'warning'); }
+  },
+
+  _renderLiveData(data) {
+    const el = document.getElementById('fed-live-data');
+    if (!el) return;
+    const online = data.peers.filter(p => p.status === 'ok');
+    if (!online.length) return;
+    el.innerHTML = `<div class="card"><div class="card-title">📊 Verbund-Übersicht</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        ${online.map(p => `<div style="padding:10px;border-radius:var(--radius-sm);border:1px solid var(--border);">
+          <div style="font-weight:600;margin-bottom:4px;">🟢 ${p.peer_name} – ${p.data.org_name}</div>
+          <div style="font-size:12px;color:var(--text-muted);">
+            ⚠️ ${p.data.incidents?.length||0} Einsätze · 🔔 ${p.data.alerts?.length||0} Alarme · 🚗 ${p.data.vehicles?.length||0} Fahrzeuge
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>`;
+  },
+};
+
+/* ============================================================
+   Timeline Page – Echtzeit-Ereigniszeitleiste
+============================================================ */
+ATLAS.timelinePage = {
+  _filter: 'all',
+
+  async render(el) {
+    el.innerHTML = `
+      <div class="page-header">
+        <h1>📈 ${ATLAS.i18n.t('timeline')}</h1>
+        <div style="display:flex;gap:8px;">
+          <button class="btn ${this._filter==='all'?'btn-primary':'btn-secondary'} btn-sm" onclick="ATLAS.timelinePage._setFilter('all')">${ATLAS.i18n.t('timeline_all')}</button>
+          <button class="btn ${this._filter==='incidents'?'btn-primary':'btn-secondary'} btn-sm" onclick="ATLAS.timelinePage._setFilter('incidents')">⚠️ ${ATLAS.i18n.t('timeline_incidents')}</button>
+          <button class="btn ${this._filter==='alerts'?'btn-primary':'btn-secondary'} btn-sm" onclick="ATLAS.timelinePage._setFilter('alerts')">🔔 ${ATLAS.i18n.t('timeline_alerts')}</button>
+          <button class="btn ${this._filter==='fleet'?'btn-primary':'btn-secondary'} btn-sm" onclick="ATLAS.timelinePage._setFilter('fleet')">🚗 ${ATLAS.i18n.t('timeline_fleet')}</button>
+        </div>
+      </div>
+      <div id="timeline-content"><div style="padding:40px;text-align:center;color:var(--text-muted);">${ATLAS.i18n.t('loading')}</div></div>`;
+    await this._load();
+  },
+
+  _setFilter(f) {
+    this._filter = f;
+    const el = document.getElementById('main-content');
+    if (el) this.render(el);
+  },
+
+  async _load() {
+    try {
+      const [incidents, alerts, trips, logs] = await Promise.all([
+        ATLAS.api.get('/api/incidents?limit=50').catch(() => []),
+        ATLAS.api.get('/api/alerts?limit=50').catch(() => []),
+        ATLAS.api.get('/api/fleet/trips').catch(() => []),
+        ATLAS.api.get('/api/audit?limit=50').catch(() => []),
+      ]);
+
+      let events = [];
+      if (this._filter === 'all' || this._filter === 'incidents') {
+        (incidents || []).forEach(i => events.push({
+          time: i.created_at, type: 'incident', icon: '⚠️',
+          color: i.severity === 'critical' ? 'var(--danger)' : i.severity === 'warning' ? 'var(--warning)' : 'var(--accent)',
+          title: i.title, sub: `${i.severity.toUpperCase()} · ${ATLAS.i18n.t(i.status)}`,
+          link: () => ATLAS.router.go('incidents')
+        }));
+      }
+      if (this._filter === 'all' || this._filter === 'alerts') {
+        (alerts || []).forEach(a => events.push({
+          time: a.created_at, type: 'alert', icon: '🔔',
+          color: a.severity === 'critical' ? 'var(--danger)' : a.severity === 'warning' ? 'var(--warning)' : 'var(--text-muted)',
+          title: a.message, sub: `${a.type} · ${a.severity}${a.acknowledged ? ' · ✓' : ''}`,
+          link: () => ATLAS.router.go('alerts')
+        }));
+      }
+      if (this._filter === 'all' || this._filter === 'fleet') {
+        (trips || []).forEach(t => events.push({
+          time: t.created_at, type: 'fleet', icon: '🚗',
+          color: 'var(--success)',
+          title: t.title || 'Tour', sub: `${t.vehicle_name||'?'} · ${t.status} · ${t.distance_km ? t.distance_km + ' km' : ''}`,
+          link: () => ATLAS.router.go('fleet')
+        }));
+      }
+
+      // Sort by time descending
+      events.sort((a, b) => (b.time || '').localeCompare(a.time || ''));
+
+      const el = document.getElementById('timeline-content');
+      if (!el) return;
+      if (!events.length) {
+        el.innerHTML = `<div class="card" style="padding:40px;text-align:center;color:var(--text-muted);">${ATLAS.i18n.t('no_data')}</div>`;
+        return;
+      }
+
+      // Group by date
+      const byDate = {};
+      events.forEach(e => {
+        const d = (e.time || '').substring(0, 10) || 'Unknown';
+        if (!byDate[d]) byDate[d] = [];
+        byDate[d].push(e);
+      });
+
+      el.innerHTML = `<div class="card" style="padding:16px 20px;">
+        ${Object.entries(byDate).map(([date, evts]) => `
+          <div style="margin-bottom:24px;">
+            <div style="font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--border);">${date}</div>
+            ${evts.map((e, ei) => `
+              <div style="display:flex;gap:12px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--border-light, rgba(255,255,255,0.04));cursor:pointer;" data-tl-route="${e.type}" onclick="ATLAS.timelinePage._navItem(this)">
+                <div style="font-size:20px;min-width:28px;text-align:center;">${e.icon}</div>
+                <div style="flex:1;">
+                  <div style="display:flex;align-items:center;gap:8px;">
+                    <span style="width:6px;height:6px;border-radius:50%;background:${e.color};display:inline-block;flex-shrink:0;"></span>
+                    <span style="font-weight:600;font-size:13px;">${e.title}</span>
+                  </div>
+                  <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">${e.sub}</div>
+                </div>
+                <div style="font-size:11px;color:var(--text-muted);white-space:nowrap;">${(e.time||'').substring(11,16)}</div>
+              </div>`).join('')}
+          </div>`).join('')}
+      </div>`;
+    } catch(e) {
+      const el = document.getElementById('timeline-content');
+      if (el) el.innerHTML = `<div class="card" style="padding:20px;color:var(--danger);">${ATLAS.i18n.t('error')}: ${e.message}</div>`;
+    }
+  },
+
+  _navItem(el) {
+    const routeMap = {
+      incident: 'incidents', incidents: 'incidents',
+      alert: 'alerts', alerts: 'alerts',
+      fleet: 'fleet',
+    };
+    const type = el.getAttribute('data-tl-route') || '';
+    const page = routeMap[type] || type;
+    if (page) ATLAS.router.go(page);
+  }
+};
+
+/* ============================================================
+   NINA Status Widget (in settings & dashboard)
+============================================================ */
+ATLAS.ninaWidget = {
+  async render(el) {
+    if (!el) return;
+    try {
+      const s = await ATLAS.api.get('/api/alerts/nina/status');
+      el.innerHTML = `
+        <div class="card">
+          <div class="card-title">🚨 ${ATLAS.i18n.t('nina_monitor')}</div>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px;">
+            <span class="badge ${s.enabled ? 'badge-success' : 'badge-secondary'}">${s.enabled ? ATLAS.i18n.t('enabled') : ATLAS.i18n.t('disabled')}</span>
+            <span style="font-size:12px;color:var(--text-muted);">${ATLAS.i18n.t('nina_last_check')}: ${s.last_check ? s.last_check.substring(0,19)+' UTC' : '—'}</span>
+          </div>
+          <div style="font-size:13px;margin-bottom:12px;">
+            ${ATLAS.i18n.t('nina_warnings')}: <strong style="color:${s.warning_count>0?'var(--danger)':'var(--success)'};">${s.warning_count}</strong>
+          </div>
+          <div style="display:flex;gap:8px;align-items:center;">
+            <label class="toggle-label" style="display:flex;align-items:center;gap:8px;cursor:pointer;">
+              <input type="checkbox" id="nina-toggle" ${s.enabled ? 'checked' : ''} onchange="ATLAS.ninaWidget.toggle(this.checked)">
+              ${ATLAS.i18n.t('nina_enabled')}
+            </label>
+          </div>
+          ${['admin','owner'].includes(ATLAS.state.user?.role) ? `
+          <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border);">
+            <div style="font-weight:600;margin-bottom:8px;">⚠️ ${ATLAS.i18n.t('trigger_emergency')}</div>
+            <input id="emergency-msg" class="form-control" style="margin-bottom:8px;" placeholder="Nachricht…" value="MAXIMALER NOTFALL – Alle Einheiten in Bereitschaft">
+            <button class="btn btn-danger btn-sm" onclick="ATLAS.ninaWidget.triggerEmergency()">🚨 ${ATLAS.i18n.t('emergency_broadcast')}</button>
+          </div>` : ''}
+        </div>`;
+    } catch(e) {
+      // Show widget even if status fetch fails — emergency button must always be accessible
+      el.innerHTML = `
+        <div class="card">
+          <div class="card-title">🚨 ${ATLAS.i18n.t('nina_monitor')}</div>
+          <div style="font-size:13px;color:var(--text-muted);margin-bottom:12px;">Status nicht verfügbar (Netzwerkfehler)</div>
+          ${['admin','owner'].includes(ATLAS.state.user?.role) ? `
+          <div style="padding-top:12px;border-top:1px solid var(--border);">
+            <div style="font-weight:600;margin-bottom:8px;">⚠️ ${ATLAS.i18n.t('trigger_emergency')}</div>
+            <input id="emergency-msg" class="form-control" style="margin-bottom:8px;" placeholder="Nachricht…" value="MAXIMALER NOTFALL – Alle Einheiten in Bereitschaft">
+            <button class="btn btn-danger btn-sm" onclick="ATLAS.ninaWidget.triggerEmergency()">🚨 ${ATLAS.i18n.t('emergency_broadcast')}</button>
+          </div>` : ''}
+        </div>`;
+    }
+  },
+
+  async toggle(enabled) {
+    try {
+      await ATLAS.api.put('/api/alerts/nina/config', { enabled });
+      ATLAS.ui.toast(enabled ? 'NINA aktiviert' : 'NINA deaktiviert', 'info');
+    } catch(e) { ATLAS.ui.toast(ATLAS.i18n.t('error'), 'error'); }
+  },
+
+  async triggerEmergency() {
+    const msg = document.getElementById('emergency-msg')?.value || 'MAXIMALER NOTFALL';
+    if (!confirm(`Jetzt einen maximalen Notfallalarm auslösen?\n\n"${msg}"`)) return;
+    try {
+      await ATLAS.api.post('/api/alerts/broadcast-emergency', {
+        title: '⚠ NOTFALLALARM',
+        message: msg,
+        source: 'manual'
+      });
+      ATLAS.ui.toast('Notfallalarm ausgelöst', 'error');
+    } catch(e) { ATLAS.ui.toast(ATLAS.i18n.t('error'), 'error'); }
+  }
+};
+
+/* ============================================================
+   Mobile App Connect Widget (in settings)
+============================================================ */
+ATLAS.mobileWidget = {
+  async render(el) {
+    if (!el) return;
+    el.innerHTML = `
+      <div class="card">
+        <div class="card-title">📱 ${ATLAS.i18n.t('connect_mobile_app')}</div>
+        <p style="color:var(--text-muted);font-size:13px;margin-bottom:16px;">${ATLAS.i18n.t('scan_qr_code')}</p>
+        <div id="mobile-qr-container" style="min-height:60px;display:flex;align-items:center;justify-content:center;">
+          <span style="color:var(--text-muted);font-size:13px;">${ATLAS.i18n.t('qr_generating')}</span>
+        </div>
+        <div id="mobile-url-info" style="margin-top:10px;display:none;">
+          <div id="mobile-ts-url-box" style="display:none;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.2);border-radius:8px;padding:8px 12px;margin-bottom:6px;">
+            <div style="font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;">🔒 Tailscale-URL (im QR-Code)</div>
+            <code id="mobile-ts-url-val" style="font-size:11px;color:var(--text);word-break:break-all;"></code>
+          </div>
+          <div id="mobile-local-url-box" style="background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:8px 12px;margin-bottom:6px;">
+            <div style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;">🏠 Lokale URL (Fallback, nur im gleichen Netzwerk)</div>
+            <code id="mobile-local-url-val" style="font-size:11px;color:var(--text);word-break:break-all;"></code>
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">💡 ${ATLAS.i18n.t('qr_tailscale_hint')}</div>
+        </div>
+        <div style="margin-top:8px;font-size:11px;color:var(--text-muted);">${ATLAS.i18n.t('qr_expires_in')}</div>
+        <div style="margin-top:16px;padding-top:12px;border-top:1px solid var(--border);">
+          <div style="font-weight:600;margin-bottom:8px;font-size:13px;">⚙️ ${ATLAS.i18n.t('apns_config')}</div>
+          <div class="form-group" style="margin-bottom:8px;">
+            <label class="form-label" style="font-size:11px;">${ATLAS.i18n.t('apns_key_id')}</label>
+            <input id="apns-key-id" class="form-input" placeholder="ABCDE12345" style="font-size:12px;">
+          </div>
+          <div class="form-group" style="margin-bottom:8px;">
+            <label class="form-label" style="font-size:11px;">${ATLAS.i18n.t('apns_team_id')}</label>
+            <input id="apns-team-id" class="form-input" placeholder="ABCDE12345" style="font-size:12px;">
+          </div>
+          <div class="form-group" style="margin-bottom:8px;">
+            <label class="form-label" style="font-size:11px;">${ATLAS.i18n.t('apns_p8_key')}</label>
+            <textarea id="apns-p8-key" class="form-input" rows="3" placeholder="-----BEGIN PRIVATE KEY-----\n…" style="font-size:11px;font-family:monospace;resize:vertical;"></textarea>
+          </div>
+          <div class="form-group" style="margin-bottom:8px;">
+            <label class="toggle-label" style="display:flex;align-items:center;gap:8px;cursor:pointer;font-size:12px;">
+              <input type="checkbox" id="apns-sandbox" checked>
+              ${ATLAS.i18n.t('apns_sandbox')}
+            </label>
+          </div>
+          <div style="display:flex;gap:8px;">
+            <button class="btn btn-primary btn-sm" onclick="ATLAS.mobileWidget.saveApns()">💾 Speichern</button>
+            <button class="btn btn-secondary btn-sm" onclick="ATLAS.mobileWidget.testApns()">🔔 ${ATLAS.i18n.t('apns_test')}</button>
+          </div>
+        </div>
+      </div>`;
+    // Load QR code
+    this._generateQR();
+    // Load existing APNs config
+    this._loadApnsConfig();
+  },
+
+  async _generateQR() {
+    const container = document.getElementById('mobile-qr-container');
+    if (!container) return;
+    try {
+      const data = await ATLAS.api.get('/api/mobile/qr-token');
+      if (!data?.qr_payload) return;
+
+      // Show URL info panel
+      const infoBox = document.getElementById('mobile-url-info');
+      if (infoBox) infoBox.style.display = 'block';
+      if (data.tailscale_url) {
+        const tsBox = document.getElementById('mobile-ts-url-box');
+        const tsVal = document.getElementById('mobile-ts-url-val');
+        if (tsBox) tsBox.style.display = 'block';
+        if (tsVal) tsVal.textContent = data.tailscale_url;
+      }
+      const localVal = document.getElementById('mobile-local-url-val');
+      if (localVal) localVal.textContent = data.local_url || data.server_url || '';
+
+      const renderQR = (text) => {
+        container.innerHTML = '';
+        new QRCode(container, {
+          text,
+          width: 200, height: 200,
+          colorDark: '#00e5ff', colorLight: '#0a0e1a',
+          correctLevel: QRCode.CorrectLevel.M
+        });
+      };
+
+      // Use qrcode.js CDN if available, else load dynamically
+      if (typeof QRCode !== 'undefined') {
+        renderQR(data.qr_payload);
+      } else {
+        container.innerHTML = `<code style="font-size:10px;word-break:break-all;color:var(--accent);">${data.qr_payload}</code>`;
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js';
+        script.onload = () => renderQR(data.qr_payload);
+        document.head.appendChild(script);
+      }
+    } catch(e) {
+      if (container) container.innerHTML = '<span style="color:var(--danger);font-size:12px;">Fehler beim Generieren</span>';
+    }
+  },
+
+  async _loadApnsConfig() {
+    try {
+      const cfg = await ATLAS.api.get('/api/config').catch(() => ({}));
+      if (cfg.apns_key_id) document.getElementById('apns-key-id').value = cfg.apns_key_id;
+      if (cfg.apns_team_id) document.getElementById('apns-team-id').value = cfg.apns_team_id;
+      if (cfg.apns_p8_key) document.getElementById('apns-p8-key').value = cfg.apns_p8_key;
+      const sandbox = document.getElementById('apns-sandbox');
+      if (sandbox) sandbox.checked = cfg.apns_sandbox !== false;
+    } catch(e) {}
+  },
+
+  async saveApns() {
+    const body = {
+      apns_key_id: document.getElementById('apns-key-id')?.value.trim(),
+      apns_team_id: document.getElementById('apns-team-id')?.value.trim(),
+      apns_p8_key: document.getElementById('apns-p8-key')?.value.trim(),
+      apns_sandbox: document.getElementById('apns-sandbox')?.checked ?? true,
+    };
+    try {
+      await ATLAS.api.put('/api/config', body);
+      ATLAS.ui.toast('APNs gespeichert', 'success');
+    } catch(e) { ATLAS.ui.toast(ATLAS.i18n.t('error'), 'error'); }
+  },
+
+  async testApns() {
+    try {
+      await ATLAS.api.post('/api/push/apns/test', {});
+      ATLAS.ui.toast('Test-Push gesendet', 'success');
+    } catch(e) { ATLAS.ui.toast(ATLAS.i18n.t('error'), 'error'); }
+  }
+};
+
+// Handle __ATLAS_NATIVE__ mode injected by WKWebView
+if (window.__ATLAS_NATIVE__) {
+  document.documentElement.setAttribute('data-native', 'true');
+  // Add CSS class for native app-specific styling
+  document.addEventListener('DOMContentLoaded', () => {
+    document.body.classList.add('native-app');
+  });
+}
+
+/* ============================================================
+   Analytics: Fahrzeugauslastung + Trends (extends predictivePage)
+============================================================ */
+ATLAS.analyticsExtPage = {
+  async render(el) {
+    el.innerHTML = `
+      <div class="page-header"><h1>📊 ${ATLAS.i18n.t('analytics')}</h1></div>
+      <div id="analytics-ext-content"><div style="padding:40px;text-align:center;color:var(--text-muted);">${ATLAS.i18n.t('loading')}</div></div>`;
+    await this._load(document.getElementById('analytics-ext-content'));
+  },
+
+  async _load(el) {
+    try {
+      const [util, trends] = await Promise.all([
+        ATLAS.api.get('/api/analytics/vehicle-utilization?days=30'),
+        ATLAS.api.get('/api/analytics/incident-trends?days=90'),
+      ]);
+      const safeUtil = util || { vehicles: [] };
+      const safeTrends = trends || { trend_direction: 'stable', trend_7d_pct: 0, recent_7d_total: 0, prev_7d_total: 0, by_day: {} };
+      el.innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+          <div class="card">
+            <div class="card-title">📈 ${ATLAS.i18n.t('incident_trends')} (90 Tage)</div>
+            <div style="display:flex;gap:12px;margin-bottom:12px;">
+              <div class="kpi-card" style="flex:1;padding:12px;text-align:center;">
+                <div class="kpi-label">TREND 7T</div>
+                <div class="kpi-value" style="font-size:20px;color:${safeTrends.trend_direction==='up'?'var(--danger)':safeTrends.trend_direction==='down'?'var(--success)':'var(--accent)'};">
+                  ${safeTrends.trend_direction==='up'?ATLAS.i18n.t('trend_up'):safeTrends.trend_direction==='down'?ATLAS.i18n.t('trend_down'):ATLAS.i18n.t('trend_stable')} ${Math.abs(safeTrends.trend_7d_pct||0)}%
+                </div>
+              </div>
+              <div class="kpi-card" style="flex:1;padding:12px;text-align:center;">
+                <div class="kpi-label">LETZTE 7T</div>
+                <div class="kpi-value" style="font-size:20px;">${safeTrends.recent_7d_total||0}</div>
+              </div>
+              <div class="kpi-card" style="flex:1;padding:12px;text-align:center;">
+                <div class="kpi-label">VORHERIGE 7T</div>
+                <div class="kpi-value" style="font-size:20px;">${safeTrends.prev_7d_total||0}</div>
+              </div>
+            </div>
+            <div style="overflow-x:auto;">
+              <table style="width:100%;font-size:12px;">
+                <thead><tr><th style="padding:4px 6px;text-align:left;">Datum</th><th style="padding:4px 6px;color:var(--danger);">Kritisch</th><th style="padding:4px 6px;color:var(--warning);">Warnung</th><th style="padding:4px 6px;color:var(--accent);">Info</th></tr></thead>
+                <tbody>${Object.entries(safeTrends.by_day||{}).slice(-14).map(([d,v])=>`
+                  <tr><td style="padding:4px 6px;">${d}</td><td style="padding:4px 6px;color:var(--danger);">${v.critical||0}</td><td style="padding:4px 6px;color:var(--warning);">${v.warning||0}</td><td style="padding:4px 6px;color:var(--accent);">${v.info||0}</td></tr>
+                `).join('')}</tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">🚗 ${ATLAS.i18n.t('vehicle_utilization')} (30 Tage)</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              ${(safeUtil.vehicles||[]).slice(0,10).map(v => `
+                <div style="display:flex;align-items:center;gap:10px;padding:8px;border-radius:var(--radius-sm);background:var(--bg-input);">
+                  <div style="flex:1;">
+                    <div style="font-weight:600;font-size:12px;">${v.vehicle_name}</div>
+                    <div style="font-size:11px;color:var(--text-muted);">${v.vehicle_type}</div>
+                  </div>
+                  <div style="text-align:right;">
+                    <div style="font-weight:700;color:var(--accent);">${v.trip_count} ${ATLAS.i18n.t('trip_count')}</div>
+                    <div style="font-size:11px;color:var(--text-muted);">${v.total_distance_km} km · ${v.total_fuel_l} L</div>
+                  </div>
+                  <div style="width:60px;">
+                    <div style="height:6px;background:var(--bg-card);border-radius:3px;overflow:hidden;">
+                      <div style="height:100%;background:var(--accent);width:${Math.min(100,(v.trip_count/Math.max(...(safeUtil.vehicles||[{trip_count:1}]).map(x=>x.trip_count||1)))*100)}%;transition:width 0.3s;"></div>
+                    </div>
+                  </div>
+                </div>`).join('') || `<div style="color:var(--text-muted);padding:20px;text-align:center;">${ATLAS.i18n.t('no_data')}</div>`}
+            </div>
+          </div>
+        </div>`;
+    } catch(e) {
+      const errDiv = document.createElement('div');
+      errDiv.className = 'card';
+      errDiv.style = 'padding:20px;color:var(--danger);';
+      errDiv.textContent = `${ATLAS.i18n.t('error')}: ${e.message}`;
+      el.innerHTML = '';
+      el.appendChild(errDiv);
+    }
+  }
+};
+
+/* ============================================================
+   Idle Logout – auto-logout after 2h of inactivity (client-side)
+============================================================ */
+ATLAS.idleLogout = {
+  _timer: null,
+  _IDLE_MS: 2 * 60 * 60 * 1000, // 2 hours
+  _handler: null,
+
+  init() {
+    // Remove old listeners if re-initializing (e.g. re-login)
+    if (this._handler) this.destroy();
+    this._handler = () => this._reset();
+    ['mousemove','keydown','click','scroll','touchstart'].forEach(ev =>
+      document.addEventListener(ev, this._handler, { passive: true })
+    );
+    this._reset();
+  },
+
+  destroy() {
+    if (this._handler) {
+      ['mousemove','keydown','click','scroll','touchstart'].forEach(ev =>
+        document.removeEventListener(ev, this._handler)
+      );
+      this._handler = null;
+    }
+    clearTimeout(this._timer);
+    this._timer = null;
+  },
+
+  _reset() {
+    clearTimeout(this._timer);
+    this._timer = setTimeout(() => {
+      ATLAS.ui.toast('⏱ Sitzung abgelaufen – automatisch abgemeldet', 'warning');
+      setTimeout(() => ATLAS.auth.logout(), 2000);
+    }, this._IDLE_MS);
+  }
+};
+
+/* ============================================================
+   Updater – checks for new versions and shows banner
+============================================================ */
+ATLAS.updater = {
+  _data: null,
+
+  /** Called once from boot() – checks silently in background */
+  async check() {
+    // Only admins see update notifications
+    if (!ATLAS.state.user || ATLAS.state.user.role === 'operator') return;
+    try {
+      const res = await ATLAS.api.get('/api/system/update-check');
+      this._data = res;
+      if (res.update_available && res.remote_version) {
+        const banner = document.getElementById('update-banner');
+        const txt    = document.getElementById('update-banner-text');
+        if (banner && txt) {
+          txt.textContent = `🆕 Neue Version verfügbar: v${res.current_version} → v${res.remote_version}`;
+          banner.style.display = 'flex';
+        }
+      }
+    } catch(e) { /* non-fatal – no internet or not a git repo */ }
+  },
+
+  showDetails() {
+    const d = this._data;
+    if (!d) return;
+    const method = d.method === 'git' ? '🔀 Git' : d.method === 'version.txt' ? '🌐 Version-URL' : '–';
+    const lastUp = d.last_update ? `<br><small style="color:var(--text-muted)">Letztes Update: ${d.last_update}</small>` : '';
+    const errRow = d.error ? `<p style="color:var(--danger);font-size:12px;margin-top:8px;">⚠ ${d.error}</p>` : '';
+    ATLAS.ui.modal(
+      '🆕 System-Update',
+      `<div style="line-height:2;">
+        <div style="display:grid;grid-template-columns:auto 1fr;gap:4px 16px;font-size:13px;">
+          <span style="color:var(--text-muted)">Installiert</span>   <strong>v${d.current_version}</strong>
+          <span style="color:var(--text-muted)">Verfügbar</span>     <strong style="color:var(--success)">v${d.remote_version || '–'}</strong>
+          <span style="color:var(--text-muted)">Methode</span>       <span>${method}</span>
+          <span style="color:var(--text-muted)">Update-Befehl</span> <code style="background:var(--bg-secondary);padding:2px 6px;border-radius:4px;">${d.update_command}</code>
+        </div>
+        ${lastUp}
+        ${errRow}
+        <hr style="border-color:var(--border);margin:12px 0;">
+        <p style="font-size:12px;color:var(--text-muted);">
+          Das Update läuft auf dem Server – per SSH verbinden und <code>${d.update_command}</code> ausführen.
+          Die App ist während des Updates ca. 10-30 Sekunden nicht erreichbar.
+        </p>
+      </div>`,
+      `<button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Schließen</button>
+       <button class="btn btn-primary" onclick="ATLAS.updater.triggerUpdate()">🚀 Jetzt updaten</button>`
+    );
+  },
+
+  /** Führt update.sh auf dem Server aus (nur wenn Server lokal ausgeführt wird) */
+  async triggerUpdate() {
+    ATLAS.ui.closeModal();
+    if (!confirm('Server-Update starten? Die App ist ca. 30 Sekunden nicht erreichbar.')) return;
+    ATLAS.ui.toast('🔄 Update wird gestartet…', 'info');
+    try {
+      await ATLAS.api.post('/api/system/run-update', {});
+      ATLAS.ui.toast('✅ Update-Script gestartet. Seite lädt in 30 Sekunden neu…', 'success');
+      // Auto-reload after 35s
+      setTimeout(() => location.reload(), 35000);
+    } catch(e) {
+      ATLAS.ui.toast('Update-Trigger fehlgeschlagen: ' + e.message, 'error');
+    }
+  },
+};
+
+/* ============================================================
+   Webhook Management – API integrations (admin only)
+============================================================ */
+ATLAS.webhooksPage = {
+  _hooks: [],
+
+  async render(el) {
+    if (ATLAS.state.user?.role !== 'admin' && ATLAS.state.user?.role !== 'owner') {
+      el.innerHTML = '<div class="card"><p style="color:var(--text-muted);">Admin-Zugriff erforderlich.</p></div>';
+      return;
+    }
+    this._hooks = await ATLAS.api.get('/api/webhooks').catch(() => []);
+    el.innerHTML = `
+      <div class="page-header">
+        <h1>🔗 Webhooks / API Hooks</h1>
+        <button class="btn btn-primary" onclick="ATLAS.webhooksPage.showCreate()">+ Neuer Webhook</button>
+      </div>
+      <div class="card" style="margin-bottom:16px;">
+        <div class="card-title">ℹ️ Was sind Webhooks?</div>
+        <p style="font-size:13px;color:var(--text-muted);">Webhooks senden automatisch HTTP POST-Anfragen an externe URLs, wenn bestimmte Ereignisse eintreten (z.B. neuer Alarm, neuer Einsatz). Ideal für Integrationen mit Slack, Teams, IFTTT, n8n, Zapier etc.</p>
+      </div>
+      <div style="display:grid;gap:12px;" id="webhooks-list">
+        ${this._hooks.length === 0 ? '<div class="card" style="text-align:center;color:var(--text-muted);">Noch keine Webhooks konfiguriert.</div>' :
+          this._hooks.map(wh => this._renderHook(wh)).join('')}
+      </div>`;
+  },
+
+  _renderHook(wh) {
+    const events = JSON.parse(wh.events || '[]');
+    return `
+      <div class="card" style="display:flex;align-items:center;gap:12px;">
+        <div style="font-size:28px;">🔗</div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-weight:700;font-size:14px;">${wh.name}</div>
+          <div style="font-size:12px;color:var(--text-muted);word-break:break-all;">${wh.url}</div>
+          <div style="margin-top:4px;display:flex;gap:4px;flex-wrap:wrap;">
+            ${events.map(e => `<span class="badge badge-info" style="font-size:10px;">${e}</span>`).join('')}
+            <span class="badge ${wh.enabled ? 'badge-success' : 'badge-neutral'}" style="font-size:10px;">${wh.enabled ? 'Aktiv' : 'Inaktiv'}</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;flex-shrink:0;">
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.webhooksPage.test(${wh.id})" title="Test senden">▶ Test</button>
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.webhooksPage.toggle(${wh.id},${wh.enabled})">${wh.enabled ? '⏸' : '▶'}</button>
+          <button class="btn btn-danger btn-sm" onclick="ATLAS.webhooksPage.delete(${wh.id})">🗑</button>
+        </div>
+      </div>`;
+  },
+
+  showCreate() {
+    ATLAS.ui.modal('Neuer Webhook', `
+      <div class="form-group"><label class="form-label">Name</label><input id="wh-name" class="form-input" placeholder="z.B. Slack Alerts"></div>
+      <div class="form-group"><label class="form-label">URL</label><input id="wh-url" class="form-input" placeholder="https://hooks.slack.com/services/..."></div>
+      <div class="form-group"><label class="form-label">Geheimnis (optional)</label><input id="wh-secret" class="form-input" placeholder="Wird als X-Webhook-Secret Header gesendet"></div>
+      <div class="form-group"><label class="form-label">Ereignisse</label>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:6px;">
+          <label><input type="checkbox" id="wh-ev-alert" checked> Alarm</label>
+          <label><input type="checkbox" id="wh-ev-incident" checked> Einsatz</label>
+          <label><input type="checkbox" id="wh-ev-emergency"> Notfall</label>
+          <label><input type="checkbox" id="wh-ev-test"> Test</label>
+        </div>
+      </div>`,
+      `<button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+       <button class="btn btn-primary" onclick="ATLAS.webhooksPage.create()">+ Erstellen</button>`
+    );
+  },
+
+  async create() {
+    const name = document.getElementById('wh-name').value.trim();
+    const url = document.getElementById('wh-url').value.trim();
+    const secret = document.getElementById('wh-secret').value.trim();
+    if (!name || !url) { ATLAS.ui.toast('Name und URL erforderlich', 'warning'); return; }
+    const events = [];
+    if (document.getElementById('wh-ev-alert').checked) events.push('alert');
+    if (document.getElementById('wh-ev-incident').checked) events.push('incident');
+    if (document.getElementById('wh-ev-emergency').checked) events.push('emergency');
+    if (document.getElementById('wh-ev-test').checked) events.push('test');
+    try {
+      await ATLAS.api.post('/api/webhooks', { name, url, secret, events });
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast('Webhook erstellt ✓', 'success');
+      ATLAS.router.go('webhooks', true);
+    } catch(e) { ATLAS.ui.toast(e.message || 'Fehler', 'warning'); }
+  },
+
+  async toggle(id, currentEnabled) {
+    try {
+      await ATLAS.api.put(`/api/webhooks/${id}`, { enabled: currentEnabled ? 0 : 1 });
+      ATLAS.router.go('webhooks', true);
+    } catch(e) { ATLAS.ui.toast('Fehler', 'warning'); }
+  },
+
+  async delete(id) {
+    if (!confirm('Webhook wirklich löschen?')) return;
+    try {
+      await ATLAS.api.delete(`/api/webhooks/${id}`);
+      ATLAS.ui.toast('Webhook gelöscht', 'success');
+      ATLAS.router.go('webhooks', true);
+    } catch(e) { ATLAS.ui.toast('Fehler beim Löschen', 'warning'); }
+  },
+
+  async test(id) {
+    try {
+      const r = await ATLAS.api.post(`/api/webhooks/${id}/test`);
+      if (r.ok) ATLAS.ui.toast(`✓ Test gesendet (Status ${r.status_code || 200})`, 'success');
+      else ATLAS.ui.toast(`✗ Fehler: ${r.error}`, 'danger');
+    } catch(e) { ATLAS.ui.toast('Test fehlgeschlagen', 'warning'); }
+  }
+};
+
+/* ============================================================
+   Security Monitor (admin/owner only)
+============================================================ */
+ATLAS.securityMonitor = {
+  async render(el) {
+    if (ATLAS.state.user?.role !== 'admin' && ATLAS.state.user?.role !== 'owner') {
+      el.innerHTML = '<div class="card"><p>Kein Zugriff.</p></div>'; return;
+    }
+    const [data, sessions, blacklist] = await Promise.all([
+      ATLAS.api.get('/api/security/monitor').catch(() => ({})),
+      ATLAS.api.get('/api/security/sessions').catch(() => []),
+      ATLAS.api.get('/api/security/blacklist').catch(() => []),
+    ]);
+    const isOwner = ATLAS.state.user?.role === 'owner';
+
+    el.innerHTML = `
+      <div class="page-header">
+        <h1>🛡 Security Monitor</h1>
+        <button class="btn btn-secondary btn-sm" onclick="ATLAS.router.go('security',true)">↻ Aktualisieren</button>
+      </div>
+
+      <div class="kpi-grid" style="margin-bottom:20px;">
+        <div class="kpi-card">
+          <div class="kpi-label">Fehlgeschlagene Logins (24h)</div>
+          <div class="kpi-value" style="color:var(--danger);">${(data.failed_logins_24h||[]).reduce((s,r)=>s+r.count,0)}</div>
+          <div class="kpi-icon">🚫</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Aktive Sessions</div>
+          <div class="kpi-value" style="color:var(--success);">${sessions.length}</div>
+          <div class="kpi-icon">🔑</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Gesperrte IPs</div>
+          <div class="kpi-value" style="color:var(--warning);">${blacklist.length}</div>
+          <div class="kpi-icon">🚨</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-label">Hohe Aktivität (1h)</div>
+          <div class="kpi-value">${(data.high_activity_1h||[]).length}</div>
+          <div class="kpi-icon">📈</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">🚫 Gesperrte IP-Adressen</div>
+          ${isOwner ? `<div style="display:flex;gap:8px;margin-bottom:12px;">
+            <input id="sec-block-ip" class="form-input form-input-sm" placeholder="IP-Adresse" style="flex:1;">
+            <button class="btn btn-danger btn-sm" onclick="ATLAS.securityMonitor.blockIP()">Sperren</button>
+          </div>` : ''}
+          ${blacklist.length === 0 ? '<p style="color:var(--text-muted);font-size:13px;">Keine gesperrten IPs</p>' :
+            `<div style="display:flex;flex-direction:column;gap:6px;">
+              ${blacklist.map(b => `
+                <div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border);">
+                  <div>
+                    <code style="font-size:12px;">${b.ip}</code>
+                    <span class="badge badge-danger" style="font-size:10px;margin-left:6px;">${b.reason}</span>
+                    <div style="font-size:11px;color:var(--text-muted);">Bis: ${new Date(b.blocked_until).toLocaleString('de-DE')}</div>
+                  </div>
+                  ${isOwner ? `<button class="btn btn-secondary btn-sm" onclick="ATLAS.securityMonitor.unblockIP('${b.ip}')">Freigeben</button>` : ''}
+                </div>`).join('')}
+            </div>`}
+        </div>
+
+        <div class="card">
+          <div class="card-title">🔑 Aktive Sessions</div>
+          <div style="max-height:250px;overflow-y:auto;display:flex;flex-direction:column;gap:6px;">
+            ${sessions.length === 0 ? '<p style="color:var(--text-muted);font-size:13px;">Keine aktiven Sessions</p>' :
+              sessions.map(s => `
+                <div style="padding:6px 0;border-bottom:1px solid var(--border);">
+                  <div style="font-size:13px;font-weight:600;">${s.username} <span class="badge badge-info" style="font-size:10px;">${s.role}</span></div>
+                  <div style="font-size:11px;color:var(--text-muted);">IP: ${s.ip_addr||'–'} | Aktiv: ${s.last_active ? new Date(s.last_active).toLocaleTimeString('de-DE') : '–'}</div>
+                </div>`).join('')}
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-title">🔒 Sicherheitsereignisse</div>
+        <div style="max-height:300px;overflow-y:auto;">
+          <table class="table">
+            <thead><tr><th>Zeit</th><th>Ereignis</th><th>Benutzer</th><th>IP</th></tr></thead>
+            <tbody>
+              ${(data.security_events||[]).map(e => `
+                <tr>
+                  <td style="font-size:11px;">${new Date(e.timestamp).toLocaleString('de-DE')}</td>
+                  <td><span class="badge ${e.action.includes('blacklist')||e.action.includes('lockdown')?'badge-danger':'badge-warning'}" style="font-size:10px;">${e.action}</span></td>
+                  <td style="font-size:12px;">${e.username||'–'}</td>
+                  <td style="font-size:12px;"><code>${e.ip_addr||'–'}</code></td>
+                </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px;">
+        <div class="card-title">📊 Login-Fehler nach IP (24h)</div>
+        ${(data.failed_logins_24h||[]).length === 0 ? '<p style="color:var(--text-muted);font-size:13px;">Keine fehlgeschlagenen Logins</p>' :
+          `<table class="table"><thead><tr><th>IP-Adresse</th><th>Versuche</th></tr></thead><tbody>
+            ${(data.failed_logins_24h||[]).map(r => `
+              <tr>
+                <td><code style="font-size:12px;">${r.ip_addr||'–'}</code></td>
+                <td><span class="badge badge-danger">${r.count}</span></td>
+              </tr>`).join('')}
+          </tbody></table>`}
+      </div>`;
+  },
+
+  async blockIP() {
+    const ip = document.getElementById('sec-block-ip')?.value.trim();
+    if (!ip) { ATLAS.ui.toast('IP erforderlich', 'warning'); return; }
+    try {
+      await ATLAS.api.post('/api/security/blacklist', { ip, hours: 24, reason: 'manual' });
+      ATLAS.ui.toast(`IP ${ip} gesperrt ✓`, 'success');
+      ATLAS.router.go('security', true);
+    } catch(e) { ATLAS.ui.toast(e.message || 'Fehler', 'warning'); }
+  },
+
+  async unblockIP(ip) {
+    if (!confirm(`IP ${ip} freigeben?`)) return;
+    try {
+      await ATLAS.api.delete(`/api/security/blacklist/${encodeURIComponent(ip)}`);
+      ATLAS.ui.toast(`IP ${ip} freigegeben ✓`, 'success');
+      ATLAS.router.go('security', true);
+    } catch(e) { ATLAS.ui.toast('Fehler', 'warning'); }
+  }
+};
+
+/* ============================================================
+   User Activity Heatmap
+============================================================ */
+ATLAS.activityHeatmap = {
+  async render(el) {
+    if (ATLAS.state.user?.role !== 'admin' && ATLAS.state.user?.role !== 'owner') {
+      el.innerHTML = '<div class="card"><p>Kein Zugriff.</p></div>'; return;
+    }
+    const data = await ATLAS.api.get('/api/analytics/user-activity').catch(() => ({ heatmap: [], per_user: [], hourly_today: [] }));
+
+    const days = ['So','Mo','Di','Mi','Do','Fr','Sa'];
+    const hours = Array.from({length:24}, (_,i) => i);
+
+    // Build heatmap matrix
+    const matrix = {};
+    (data.heatmap || []).forEach(r => {
+      if (!matrix[r.weekday]) matrix[r.weekday] = {};
+      matrix[r.weekday][r.hour] = r.count;
+    });
+    const maxVal = Math.max(1, ...Object.values(matrix).flatMap(h => Object.values(h)));
+
+    el.innerHTML = `
+      <div class="page-header"><h1>📊 Nutzer-Aktivitäts-Heatmap</h1></div>
+
+      <div class="card" style="margin-bottom:16px;overflow-x:auto;">
+        <div class="card-title">🗓 Aktivität nach Stunde & Wochentag (30 Tage)</div>
+        <div style="min-width:700px;">
+          <div style="display:grid;grid-template-columns:40px repeat(24,1fr);gap:2px;margin-bottom:4px;">
+            <div></div>
+            ${hours.map(h => `<div style="font-size:9px;text-align:center;color:var(--text-muted);">${h}h</div>`).join('')}
+          </div>
+          ${days.map((day, di) => `
+            <div style="display:grid;grid-template-columns:40px repeat(24,1fr);gap:2px;margin-bottom:2px;">
+              <div style="font-size:11px;font-weight:600;display:flex;align-items:center;">${day}</div>
+              ${hours.map(h => {
+                const count = (matrix[di] && matrix[di][h]) || 0;
+                const intensity = Math.round((count / maxVal) * 255);
+                const bg = count > 0 ? `rgba(0,${Math.round(100 + intensity * 0.6)},255,${0.2 + (count/maxVal)*0.8})` : 'var(--bg-tertiary)';
+                return `<div style="height:20px;border-radius:3px;background:${bg};cursor:default;" title="${day} ${h}:00 – ${count} Aktionen"></div>`;
+              }).join('')}
+            </div>`).join('')}
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;margin-top:12px;font-size:11px;color:var(--text-muted);">
+          <span>Wenig</span>
+          ${[0.1,0.3,0.5,0.7,1.0].map(v => `<div style="width:20px;height:12px;border-radius:2px;background:rgba(0,150,255,${v});"></div>`).join('')}
+          <span>Viel</span>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-title">👤 Aktivste Nutzer (7 Tage)</div>
+          <table class="table">
+            <thead><tr><th>Nutzer</th><th>Aktionen</th><th>Zuletzt</th></tr></thead>
+            <tbody>
+              ${(data.per_user||[]).map(u => `
+                <tr>
+                  <td style="font-size:13px;">${u.full_name||u.username}</td>
+                  <td><span class="badge badge-info">${u.actions}</span></td>
+                  <td style="font-size:11px;color:var(--text-muted);">${u.last_action ? new Date(u.last_action).toLocaleString('de-DE') : '–'}</td>
+                </tr>`).join('')}
+            </tbody>
+          </table>
+        </div>
+
+        <div class="card">
+          <div class="card-title">⏰ Aktivität heute (nach Stunde)</div>
+          <div style="display:flex;align-items:flex-end;gap:3px;height:100px;">
+            ${hours.map(h => {
+              const entry = (data.hourly_today||[]).find(r => r.hour === h);
+              const count = entry ? entry.count : 0;
+              const maxH = Math.max(1, ...(data.hourly_today||[]).map(r => r.count));
+              const pct = Math.round((count / maxH) * 100);
+              return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;">
+                <div style="width:100%;background:var(--accent);border-radius:2px 2px 0 0;height:${pct}%;min-height:${count>0?2:0}px;" title="${h}:00 – ${count} Aktionen"></div>
+                ${h % 4 === 0 ? `<div style="font-size:9px;color:var(--text-muted);">${h}h</div>` : ''}
+              </div>`;
+            }).join('')}
+          </div>
+        </div>
+      </div>`;
+  }
+};
+
+/* ============================================================
+   Bulk User Management (owner only)
+============================================================ */
+ATLAS.bulkUsers = {
+  _selected: new Set(),
+
+  toggleSelect(uid) {
+    if (this._selected.has(uid)) this._selected.delete(uid);
+    else this._selected.add(uid);
+    const count = this._selected.size;
+    const bar = document.getElementById('bulk-action-bar');
+    const countEl = document.getElementById('bulk-count');
+    if (bar) bar.classList.toggle('hidden', count === 0);
+    if (countEl) countEl.textContent = count;
+  },
+
+  selectAll(users) {
+    users.forEach(u => {
+      if (u.role !== 'owner' && u.id !== ATLAS.state.user?.id) this._selected.add(u.id);
+    });
+    document.querySelectorAll('.bulk-check').forEach(cb => {
+      if (cb.dataset.uid && !['owner'].includes(cb.dataset.role)) cb.checked = true;
+    });
+    const bar = document.getElementById('bulk-action-bar');
+    const countEl = document.getElementById('bulk-count');
+    if (bar && this._selected.size > 0) bar.classList.remove('hidden');
+    if (countEl) countEl.textContent = this._selected.size;
+  },
+
+  clearSelection() {
+    this._selected.clear();
+    document.querySelectorAll('.bulk-check').forEach(cb => cb.checked = false);
+    const bar = document.getElementById('bulk-action-bar');
+    if (bar) bar.classList.add('hidden');
+  },
+
+  async bulkDeactivate() {
+    if (this._selected.size === 0) return;
+    if (!confirm(`${this._selected.size} Nutzer deaktivieren?`)) return;
+    try {
+      const r = await ATLAS.api.post('/api/users/bulk-deactivate', { user_ids: [...this._selected] });
+      ATLAS.ui.toast(`${r.results.filter(x=>x.ok).length} Nutzer deaktiviert`, 'success');
+      this.clearSelection();
+      ATLAS.router.go('users', true);
+    } catch(e) { ATLAS.ui.toast(e.message || 'Fehler', 'warning'); }
+  },
+
+  async bulkForceLogout() {
+    if (this._selected.size === 0) return;
+    if (!confirm(`Alle Sessions von ${this._selected.size} Nutzern beenden?`)) return;
+    try {
+      const r = await ATLAS.api.post('/api/users/bulk-force-logout', { user_ids: [...this._selected] });
+      ATLAS.ui.toast(`${r.users_logged_out} Nutzer abgemeldet`, 'success');
+      this.clearSelection();
+    } catch(e) { ATLAS.ui.toast(e.message || 'Fehler', 'warning'); }
+  },
+
+  async bulkChangeRole(role) {
+    if (this._selected.size === 0) return;
+    if (!confirm(`Rolle aller ${this._selected.size} Nutzer auf "${role}" setzen?`)) return;
+    try {
+      const r = await ATLAS.api.post('/api/users/bulk-role', { user_ids: [...this._selected], role });
+      ATLAS.ui.toast(`${r.results.filter(x=>x.ok).length} Nutzer aktualisiert`, 'success');
+      this.clearSelection();
+      ATLAS.router.go('users', true);
+    } catch(e) { ATLAS.ui.toast(e.message || 'Fehler', 'warning'); }
+  }
+};
+
+/* ============================================================
+   Lockdown – system-wide kill switch (owner only)
+============================================================ */
+ATLAS.lockdown = {
+  _active: false,
+
+  /** Call once after login to fetch current state and wire WS events. */
+  async init() {
+    try {
+      const r = await ATLAS.api.get('/api/system/lockdown');
+      this._apply(r.lockdown || false);
+    } catch(e) {
+      // Non-owner / network error – hide controls silently
+    }
+    // Listen for server-side broadcast when another client toggles lockdown
+    ATLAS.ws.on('lockdown', d => this._apply(d.active));
+  },
+
+  _apply(active) {
+    this._active = active;
+    const banner = document.getElementById('lockdown-banner');
+    const liftBtn = document.getElementById('lockdown-lift-btn');
+    const control = document.getElementById('lockdown-control');
+    const enableBtn = document.getElementById('lockdown-enable-btn');
+    const isOwner = ATLAS.state.user?.role === 'owner';
+
+    if (banner) banner.classList.toggle('hidden', !active);
+    if (liftBtn) liftBtn.classList.toggle('hidden', !isOwner);
+    if (control) control.classList.toggle('hidden', !isOwner);
+    if (enableBtn) {
+      enableBtn.textContent = active ? '🔓 Lockdown aufheben' : '🔒 Lockdown aktivieren';
+      enableBtn.onclick = active ? () => this.disable() : () => this.enable();
+    }
+  },
+
+  async enable() {
+    if (!confirm('⚠️ Lockdown aktivieren?\n\nAlle Nutzer außer dem Owner werden sofort abgemeldet / blockiert.')) return;
+    try {
+      await ATLAS.api.post('/api/system/lockdown', {});
+      ATLAS.ui.toast('🔒 Lockdown aktiviert', 'warning');
+      this._apply(true);
+    } catch(e) { ATLAS.ui.toast(e.message || 'Lockdown fehlgeschlagen', 'danger'); }
+  },
+
+  async disable() {
+    try {
+      await ATLAS.api.delete('/api/system/lockdown');
+      ATLAS.ui.toast('🔓 Lockdown aufgehoben', 'success');
+      this._apply(false);
+    } catch(e) { ATLAS.ui.toast(e.message || 'Fehler beim Aufheben', 'danger'); }
+  }
+};
+
+// ============================================================
+// Geo-Fencing Page
+// ============================================================
+ATLAS.geofencingPage = {
+  async render(el) {
+    el.innerHTML = `<div class="page-header"><h2 class="page-title">🗺️ Geo-Fencing</h2>
+      <button class="btn btn-primary btn-sm" onclick="ATLAS.geofencingPage.showCreate()">+ Neue Fence</button></div>
+      <div id="gf-list" class="card-grid"></div>`;
+    await this.load();
+  },
+  async load() {
+    try {
+      const data = await ATLAS.api.get('/api/security/geofences');
+      const el = document.getElementById('gf-list');
+      if (!el) return;
+      if (!data.length) { el.innerHTML = '<div class="card" style="text-align:center;color:var(--text-muted);">Keine Geo-Fences konfiguriert.</div>'; return; }
+      el.innerHTML = data.map(f => `
+        <div class="card">
+          <div class="card-title">🗺️ ${f.name}</div>
+          <div style="font-size:12px;color:var(--text-muted);">
+            Lat: ${f.lat} | Lng: ${f.lng} | Radius: ${f.radius_m}m<br>
+            Aktion: <strong>${f.action}</strong> | Status: ${f.active ? '🟢 Aktiv' : '🔴 Inaktiv'}
+          </div>
+          <div style="margin-top:8px;display:flex;gap:8px;">
+            <button class="btn btn-secondary btn-sm" onclick="ATLAS.geofencingPage.toggle(${f.id},${f.active})">${f.active ? 'Deaktivieren' : 'Aktivieren'}</button>
+            <button class="btn btn-danger btn-sm" onclick="ATLAS.geofencingPage.delete(${f.id})">🗑</button>
+          </div>
+        </div>`).join('');
+    } catch(e) { ATLAS.ui.toast('Fehler: ' + e.message, 'danger'); }
+  },
+  showCreate() {
+    ATLAS.ui.modal('Neue Geo-Fence', `
+      <div class="form-group"><label class="form-label">Name</label><input id="gf-name" class="form-input" placeholder="z.B. Stadtgebiet"></div>
+      <div class="form-group"><label class="form-label">Latitude</label><input id="gf-lat" class="form-input" type="number" step="0.0001" value="51.1657"></div>
+      <div class="form-group"><label class="form-label">Longitude</label><input id="gf-lng" class="form-input" type="number" step="0.0001" value="10.4515"></div>
+      <div class="form-group"><label class="form-label">Radius (m)</label><input id="gf-radius" class="form-input" type="number" value="1000"></div>
+      <div class="form-group"><label class="form-label">Aktion</label>
+        <select id="gf-action" class="form-select"><option value="alert">Alert auslösen</option><option value="log">Nur loggen</option><option value="block">Login blockieren</option></select></div>
+      <button class="btn btn-primary" onclick="ATLAS.geofencingPage.create()">Erstellen</button>`);
+  },
+  async create() {
+    const body = { name: document.getElementById('gf-name').value, lat: +document.getElementById('gf-lat').value,
+      lng: +document.getElementById('gf-lng').value, radius_m: +document.getElementById('gf-radius').value,
+      action: document.getElementById('gf-action').value };
+    try { await ATLAS.api.post('/api/security/geofences', body); ATLAS.ui.closeModal(); ATLAS.ui.toast('Fence erstellt', 'success'); await this.load(); }
+    catch(e) { ATLAS.ui.toast(e.message, 'danger'); }
+  },
+  async toggle(id, active) {
+    try { await ATLAS.api.put(`/api/security/geofences/${id}`, { active: active ? 0 : 1 }); await this.load(); }
+    catch(e) { ATLAS.ui.toast(e.message, 'danger'); }
+  },
+  async delete(id) {
+    if (!confirm('Geo-Fence löschen?')) return;
+    try { await ATLAS.api.delete(`/api/security/geofences/${id}`); await this.load(); }
+    catch(e) { ATLAS.ui.toast(e.message, 'danger'); }
+  }
+};
+
+// ============================================================
+// Compliance Reports Page
+// ============================================================
+ATLAS.compliancePage = {
+  async render(el) {
+    el.innerHTML = `<div class="page-header"><h2 class="page-title">📋 Compliance Reports</h2>
+      <button class="btn btn-primary btn-sm" onclick="ATLAS.compliancePage.showGenerate()">+ Report generieren</button></div>
+      <div id="cr-list" class="card-grid"></div>`;
+    await this.load();
+  },
+  async load() {
+    try {
+      const data = await ATLAS.api.get('/api/compliance/reports');
+      const el = document.getElementById('cr-list');
+      if (!el) return;
+      if (!data.length) { el.innerHTML = '<div class="card" style="text-align:center;color:var(--text-muted);">Noch keine Compliance Reports generiert.</div>'; return; }
+      el.innerHTML = data.map(r => `
+        <div class="card">
+          <div class="card-title">📋 ${r.report_type.toUpperCase()} Report #${r.id}</div>
+          <div style="font-size:12px;color:var(--text-muted);">
+            Generiert: ${r.generated_at} von ${r.generated_by_username || '-'}<br>
+            Zeitraum: ${r.period_start?.substring(0,10) || '-'} – ${r.period_end?.substring(0,10) || '-'}
+          </div>
+          <div style="margin-top:8px;">
+            <button class="btn btn-secondary btn-sm" onclick="ATLAS.compliancePage.view(${r.id})">📄 Anzeigen</button>
+          </div>
+        </div>`).join('');
+    } catch(e) { ATLAS.ui.toast('Fehler: ' + e.message, 'danger'); }
+  },
+  showGenerate() {
+    const today = new Date().toISOString().substring(0,10);
+    const month = new Date(Date.now() - 30*86400000).toISOString().substring(0,10);
+    ATLAS.ui.modal('Compliance Report', `
+      <div class="form-group"><label class="form-label">Typ</label>
+        <select id="cr-type" class="form-select">
+          <option value="dsgvo">DSGVO / ISO 27001</option>
+          <option value="audit">Audit Report</option>
+          <option value="incident">Incident Report</option>
+        </select></div>
+      <div class="form-group"><label class="form-label">Von</label><input id="cr-from" class="form-input" type="date" value="${month}"></div>
+      <div class="form-group"><label class="form-label">Bis</label><input id="cr-to" class="form-input" type="date" value="${today}"></div>
+      <button class="btn btn-primary" onclick="ATLAS.compliancePage.generate()">📋 Generieren</button>`);
+  },
+  async generate() {
+    const body = { type: document.getElementById('cr-type').value,
+      period_start: document.getElementById('cr-from').value, period_end: document.getElementById('cr-to').value };
+    try {
+      const r = await ATLAS.api.post('/api/compliance/reports/generate', body);
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast(`Report #${r.id} generiert`, 'success');
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message, 'danger'); }
+  },
+  async view(id) {
+    try {
+      const r = await ATLAS.api.get(`/api/compliance/reports/${id}`);
+      const c = r.content;
+      ATLAS.ui.modal(`Report #${id} – ${r.report_type.toUpperCase()}`, `
+        <div style="font-size:13px;display:flex;flex-direction:column;gap:8px;">
+          <div><strong>Standard:</strong> ${c.compliance_standard}</div>
+          <div><strong>Zeitraum:</strong> ${c.period?.start?.substring(0,10)} – ${c.period?.end?.substring(0,10)}</div>
+          <div><strong>Aktive Nutzer:</strong> ${c.summary?.active_users}</div>
+          <div><strong>Alarmierungen:</strong> ${c.summary?.alerts}</div>
+          <div><strong>Einsätze:</strong> ${c.summary?.incidents}</div>
+          <div><strong>Audit-Ereignisse:</strong> ${c.summary?.audit_events}</div>
+        </div>
+        <button class="btn btn-secondary btn-sm" style="margin-top:12px;" onclick="ATLAS.compliancePage.exportJSON(${JSON.stringify(c).replace(/"/g,'&quot;')})">📥 JSON Export</button>`);
+    } catch(e) { ATLAS.ui.toast(e.message, 'danger'); }
+  },
+  exportJSON(c) {
+    const blob = new Blob([JSON.stringify(c, null, 2)], {type:'application/json'});
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+    a.download = `compliance_report_${Date.now()}.json`; a.click();
+  }
+};
+
+// ============================================================
+// Encrypted Backups Page
+// ============================================================
+ATLAS.backupsPage = {
+  async render(el) {
+    el.innerHTML = `<div class="page-header"><h2 class="page-title">💾 Verschlüsselte Backups</h2>
+      <button class="btn btn-primary btn-sm" onclick="ATLAS.backupsPage.create()">+ Backup erstellen</button></div>
+      <p style="color:var(--text-muted);font-size:12px;margin-bottom:16px;">Automatisch verschlüsselte Datenbank-Snapshots. Nur Owner können Backups erstellen.</p>
+      <div id="bk-list" class="card-grid"></div>`;
+    await this.load();
+  },
+  async load() {
+    try {
+      const data = await ATLAS.api.get('/api/backups');
+      const el = document.getElementById('bk-list');
+      if (!el) return;
+      if (!data.length) { el.innerHTML = '<div class="card" style="text-align:center;color:var(--text-muted);">Keine Backups vorhanden.</div>'; return; }
+      el.innerHTML = data.map(b => `
+        <div class="card">
+          <div class="card-title">💾 ${b.filename}</div>
+          <div style="font-size:12px;color:var(--text-muted);">
+            Größe: ${Math.round(b.size_bytes/1024)} KB<br>
+            Erstellt: ${b.created_at}<br>
+            Läuft ab: ${b.expires_at?.substring(0,10) || '–'}<br>
+            Checksum: <code style="font-size:10px;">${b.checksum?.substring(0,12)}…</code>
+          </div>
+          <div style="margin-top:8px;">
+            <button class="btn btn-danger btn-sm" onclick="ATLAS.backupsPage.delete(${b.id})">🗑 Löschen</button>
+          </div>
+        </div>`).join('');
+    } catch(e) { ATLAS.ui.toast('Fehler: ' + e.message, 'danger'); }
+  },
+  async create() {
+    try {
+      const r = await ATLAS.api.post('/api/backups/create', {});
+      ATLAS.ui.toast(`Backup erstellt: ${r.filename}`, 'success');
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message, 'danger'); }
+  },
+  async delete(id) {
+    if (!confirm('Backup löschen?')) return;
+    try { await ATLAS.api.delete(`/api/backups/${id}`); await this.load(); }
+    catch(e) { ATLAS.ui.toast(e.message, 'danger'); }
+  }
+};
+
+// ============================================================
+// Admin System Settings Page
+// ============================================================
+ATLAS.adminSettingsPage = {
+  _settings: [],
+  _GROUPS: [
+    { label: '🔐 Brute-Force Schutz', keys: ['login_max_attempts','login_window_seconds','login_lockout_seconds','ip_blacklist_threshold','ip_blacklist_duration_h'] },
+    { label: '⚡ API Rate Limiting', keys: ['api_rate_max','api_rate_window'] },
+    { label: '🔑 Sitzungen', keys: ['session_ttl_hours','max_sessions_per_user','session_idle_hours','session_cleaner_interval_s'] },
+    { label: '🔔 Alarme & Eskalation', keys: ['alert_resend_interval_s','escalate_interval_s','escalate_age_minutes'] },
+    { label: '🚗 Fuhrpark', keys: ['fleet_check_interval_s','fleet_insur_warn_days','fleet_insur_crit_days','fleet_tuev_warn_days','fleet_tuev_crit_days'] },
+    { label: '🖥️ Systemüberwachung', keys: ['health_check_interval_s','kpi_interval_s','sysmon_history_max','sensor_update_interval_s','pi_temp_critical_c'] },
+    { label: '🌐 Dienste', keys: ['nina_interval_s','scheduled_check_interval_s','failover_check_interval_s','failover_fail_threshold','ai_analysis_interval_s','ai_block_duration_h'] },
+    { label: '💾 Datenpflege', keys: ['backup_retention_days','audit_log_retention_days','qr_token_ttl_hours'] },
+  ],
+  async render(el) {
+    el.innerHTML = `<div class="page-header">
+      <h2 class="page-title">⚙️ System-Einstellungen</h2>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-secondary btn-sm" onclick="ATLAS.adminSettingsPage.reset()">↩ Zurücksetzen</button>
+        <button class="btn btn-primary" onclick="ATLAS.adminSettingsPage.save()">💾 Alle speichern</button>
+      </div>
+    </div>
+    <p style="color:var(--text-muted);margin-bottom:16px;font-size:13px;">Alle Werte werden sofort aktiv (kein Server-Neustart nötig). Einige Loop-Intervalle gelten ab dem nächsten Zyklus.</p>
+    <div id="admin-settings-err" style="display:none;color:var(--danger);background:var(--danger-bg,#fff0f0);border:1px solid var(--danger);border-radius:6px;padding:10px 14px;margin-bottom:14px;"></div>
+    <div id="admin-settings-body" style="display:flex;flex-direction:column;gap:16px;"></div>`;
+    await this.load();
+  },
+  async load() {
+    try {
+      const data = await ATLAS.api.get('/api/admin/settings');
+      this._settings = data.settings || [];
+      const byKey = Object.fromEntries(this._settings.map(s => [s.key, s]));
+      let html = '';
+      for (const group of this._GROUPS) {
+        const rows = group.keys.map(k => byKey[k]).filter(Boolean);
+        if (!rows.length) continue;
+        html += `<div class="card"><div style="font-weight:600;padding:12px 16px 0;">${group.label}</div><div style="padding:12px 16px 16px;">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;">
+            ${rows.map(s => `<div>
+              <label class="form-label" style="font-size:12px;color:var(--text-muted);">${s.description}</label>
+              <div style="display:flex;align-items:center;gap:6px;">
+                <input id="sysset-${s.key}" class="form-input" type="number" value="${s.value}" min="${s.min_val??''}" max="${s.max_val??''}" style="flex:1;">
+                <span style="font-size:11px;color:var(--text-muted);white-space:nowrap;">[${s.min_val}–${s.max_val}]</span>
+              </div>
+            </div>`).join('')}
+          </div>
+        </div></div>`;
+      }
+      const body = document.getElementById('admin-settings-body');
+      if (body) body.innerHTML = html;
+    } catch(e) { ATLAS.ui.toast('Fehler beim Laden: '+e.message,'error'); }
+  },
+  async save() {
+    const body = {};
+    for (const s of this._settings) {
+      const el = document.getElementById(`sysset-${s.key}`);
+      if (el) body[s.key] = el.value;
+    }
+    try {
+      const res = await ATLAS.api.put('/api/admin/settings', body);
+      const errEl = document.getElementById('admin-settings-err');
+      if (res.errors?.length) {
+        if (errEl) { errEl.style.display=''; errEl.textContent='Fehler: '+res.errors.join(', '); }
+      } else {
+        if (errEl) errEl.style.display='none';
+        ATLAS.ui.toast(`${res.updated?.length||0} Einstellungen gespeichert`,'success');
+      }
+    } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+  async reset() {
+    if (!confirm('Alle System-Einstellungen auf Werkseinstellungen zurücksetzen?')) return;
+    try {
+      await ATLAS.api.post('/api/admin/settings/reset',{});
+      ATLAS.ui.toast('Zurückgesetzt','success');
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+};
+
+// ============================================================
+// System Monitor Page (comprehensive)
+// ============================================================
+ATLAS.healthPage = {
+  _interval: null,
+  _history: [],
+
+  async render(el) {
+    el.innerHTML = `
+    <div class="page-header">
+      <div>
+        <h2 class="page-title">🖥️ Systemüberwachung</h2>
+        <div style="font-size:12px;color:var(--text-muted);margin-top:2px;" id="sysmon-last-update">Lade Daten…</div>
+      </div>
+      <div style="display:flex;gap:8px;align-items:center;">
+        <div id="sysmon-status-badge" style="padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;"></div>
+        <button class="btn btn-secondary btn-sm" onclick="ATLAS.healthPage.refresh()">🔄 Jetzt</button>
+        <label style="font-size:12px;color:var(--text-muted);display:flex;align-items:center;gap:6px;">
+          <input type="checkbox" id="sysmon-auto" checked onchange="ATLAS.healthPage.toggleAuto(this.checked)"> Auto (5s)
+        </label>
+      </div>
+    </div>
+
+    <!-- STATUS ROW -->
+    <div id="sysmon-status-row" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:16px;"></div>
+
+    <!-- GAUGES ROW -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:16px;">
+      <!-- CPU -->
+      <div class="card" id="sysmon-cpu-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <span style="font-weight:600;font-size:13px;">⚙️ CPU-Auslastung</span>
+          <span id="sysmon-cpu-val" style="font-size:22px;font-weight:700;color:var(--accent);">–%</span>
+        </div>
+        <div style="height:10px;background:var(--bg-secondary);border-radius:5px;overflow:hidden;">
+          <div id="sysmon-cpu-bar" style="height:10px;width:0%;background:var(--accent);border-radius:5px;transition:.5s;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-top:6px;">
+          <span>Load: <span id="sysmon-load">–</span></span>
+          <span>Temp: <span id="sysmon-temp">–</span></span>
+        </div>
+        <!-- mini sparkline -->
+        <canvas id="sysmon-cpu-spark" height="40" style="width:100%;margin-top:8px;border-radius:4px;"></canvas>
+      </div>
+
+      <!-- MEMORY -->
+      <div class="card" id="sysmon-mem-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <span style="font-weight:600;font-size:13px;">🧠 Arbeitsspeicher</span>
+          <span id="sysmon-mem-val" style="font-size:22px;font-weight:700;color:var(--accent);">–%</span>
+        </div>
+        <div style="height:10px;background:var(--bg-secondary);border-radius:5px;overflow:hidden;">
+          <div id="sysmon-mem-bar" style="height:10px;width:0%;background:var(--accent);border-radius:5px;transition:.5s;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-top:6px;">
+          <span>Verwendet: <span id="sysmon-mem-used">–</span></span>
+          <span>Gesamt: <span id="sysmon-mem-total">–</span></span>
+        </div>
+        <canvas id="sysmon-mem-spark" height="40" style="width:100%;margin-top:8px;border-radius:4px;"></canvas>
+      </div>
+
+      <!-- DISK -->
+      <div class="card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+          <span style="font-weight:600;font-size:13px;">💾 Festplatte</span>
+          <span id="sysmon-disk-val" style="font-size:22px;font-weight:700;color:var(--accent);">–%</span>
+        </div>
+        <div style="height:10px;background:var(--bg-secondary);border-radius:5px;overflow:hidden;">
+          <div id="sysmon-disk-bar" style="height:10px;width:0%;background:var(--accent);border-radius:5px;transition:.5s;"></div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-top:6px;">
+          <span>Belegt: <span id="sysmon-disk-used">–</span></span>
+          <span>Frei: <span id="sysmon-disk-free">–</span></span>
+        </div>
+        <div style="margin-top:8px;">
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:4px;">Datenbank: <span id="sysmon-db-size">–</span></div>
+        </div>
+      </div>
+
+      <!-- NETWORK -->
+      <div class="card">
+        <div style="font-weight:600;font-size:13px;margin-bottom:10px;">🌐 Netzwerk I/O (kumulativ)</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="text-align:center;padding:10px;background:var(--bg-secondary);border-radius:8px;">
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px;">↓ Empfangen</div>
+            <div id="sysmon-net-rx" style="font-size:16px;font-weight:700;color:var(--success);">–</div>
+          </div>
+          <div style="text-align:center;padding:10px;background:var(--bg-secondary);border-radius:8px;">
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:4px;">↑ Gesendet</div>
+            <div id="sysmon-net-tx" style="font-size:16px;font-weight:700;color:var(--warning);">–</div>
+          </div>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:11px;color:var(--text-muted);margin-top:10px;">
+          <span>Prozesse: <span id="sysmon-procs">–</span></span>
+          <span>Uptime: <span id="sysmon-uptime">–</span></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- APPLICATION STATS -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:16px;">
+      <div class="card">
+        <div style="font-weight:600;font-size:13px;margin-bottom:12px;">📡 Anwendungsstatus</div>
+        <div id="sysmon-app-rows" style="display:flex;flex-direction:column;gap:8px;"></div>
+      </div>
+
+      <div class="card">
+        <div style="font-weight:600;font-size:13px;margin-bottom:12px;">🗄️ Datenbanktabellen</div>
+        <div id="sysmon-db-rows" style="display:flex;flex-direction:column;gap:6px;max-height:220px;overflow-y:auto;"></div>
+      </div>
+
+      <div class="card">
+        <div style="font-weight:600;font-size:13px;margin-bottom:12px;">🖥️ Plattform</div>
+        <div id="sysmon-platform-rows" style="display:flex;flex-direction:column;gap:6px;"></div>
+      </div>
+    </div>
+
+    <!-- CPU HISTORY CHART -->
+    <div class="card" style="margin-bottom:16px;">
+      <div style="font-weight:600;font-size:13px;margin-bottom:10px;">📈 Verlauf (letzte 60 Messpunkte)</div>
+      <div style="position:relative;height:120px;">
+        <canvas id="sysmon-history-chart" style="width:100%;height:120px;"></canvas>
+      </div>
+      <div style="display:flex;gap:16px;margin-top:8px;font-size:11px;">
+        <span style="display:flex;align-items:center;gap:4px;"><span style="display:inline-block;width:14px;height:3px;background:var(--accent);border-radius:2px;"></span>CPU %</span>
+        <span style="display:flex;align-items:center;gap:4px;"><span style="display:inline-block;width:14px;height:3px;background:var(--success);border-radius:2px;"></span>RAM %</span>
+      </div>
+    </div>`;
+
+    await this.refresh();
+    this.toggleAuto(true);
+  },
+
+  toggleAuto(enabled) {
+    if (this._interval) { clearInterval(this._interval); this._interval = null; }
+    if (enabled) this._interval = setInterval(() => this.refresh(), 5000);
+  },
+
+  _fmtMb(mb) {
+    if (mb == null) return '–';
+    if (mb >= 1024) return (mb/1024).toFixed(1) + ' GB';
+    return Math.round(mb) + ' MB';
+  },
+
+  _fmtUptime(sec) {
+    if (sec == null) return '–';
+    const d = Math.floor(sec/86400);
+    const h = Math.floor((sec%86400)/3600);
+    const m = Math.floor((sec%3600)/60);
+    return d > 0 ? `${d}d ${h}h ${m}m` : h > 0 ? `${h}h ${m}m` : `${m}m`;
+  },
+
+  _barColor(pct) {
+    if (pct == null) return 'var(--accent)';
+    if (pct > 85) return 'var(--danger)';
+    if (pct > 65) return 'var(--warning)';
+    return 'var(--success)';
+  },
+
+  _drawSparkline(canvasId, values, color) {
+    const canvas = document.getElementById(canvasId);
+    if (!canvas || values.length < 2) return;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.offsetWidth || 260;
+    const h = 40;
+    canvas.width = w; canvas.height = h;
+    ctx.clearRect(0,0,w,h);
+    const max = Math.max(...values, 1);
+    const step = w / (values.length - 1);
+    ctx.beginPath();
+    values.forEach((v,i) => {
+      const x = i * step;
+      const y = h - (v / max) * (h - 4) - 2;
+      i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+    });
+    ctx.strokeStyle = color || 'var(--accent)';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    // fill under
+    ctx.lineTo((values.length-1)*step, h);
+    ctx.lineTo(0, h);
+    ctx.closePath();
+    ctx.fillStyle = (color || 'var(--accent)').replace(')', ',0.15)').replace('var(','').replace(')','') + ';';
+    try { ctx.fill(); } catch(_){}
+  },
+
+  _drawHistoryChart(history) {
+    const canvas = document.getElementById('sysmon-history-chart');
+    if (!canvas || history.length < 2) return;
+    const ctx = canvas.getContext('2d');
+    const w = canvas.offsetWidth || 600;
+    const h = 120;
+    canvas.width = w; canvas.height = h;
+    ctx.clearRect(0,0,w,h);
+
+    // grid lines
+    ctx.strokeStyle = 'rgba(128,128,128,0.15)';
+    ctx.lineWidth = 1;
+    [25,50,75,100].forEach(pct => {
+      const y = h - (pct/100)*(h-8)-4;
+      ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke();
+      ctx.fillStyle = 'rgba(128,128,128,0.5)';
+      ctx.font = '9px monospace';
+      ctx.fillText(pct+'%', 2, y-2);
+    });
+
+    const step = w / (history.length - 1);
+    const drawLine = (key, color) => {
+      ctx.beginPath();
+      history.forEach((snap, i) => {
+        const val = snap[key] ?? 0;
+        const x = i * step;
+        const y = h - (val/100)*(h-8)-4;
+        i === 0 ? ctx.moveTo(x,y) : ctx.lineTo(x,y);
+      });
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    };
+    drawLine('cpu_pct', '#60a5fa');
+    drawLine('mem_pct', '#34d399');
+  },
+
+  async refresh() {
+    try {
+      const d = await ATLAS.api.get('/api/system/monitor');
+      const cur = d.current || {};
+      const app = d.application || {};
+      const plt = d.platform || {};
+      const tbls = d.db_tables || {};
+      this._history = d.history || [];
+
+      // last update
+      const lu = document.getElementById('sysmon-last-update');
+      if (lu) lu.textContent = 'Letzte Aktualisierung: ' + new Date().toLocaleTimeString('de-DE');
+
+      // status badge
+      const sb = document.getElementById('sysmon-status-badge');
+      if (sb) {
+        const st = cur.status || 'ok';
+        const cfg = { ok: ['✅ ONLINE','var(--success)','rgba(52,211,153,0.15)'],
+                      warning: ['⚠️ WARNUNG','var(--warning)','rgba(251,191,36,0.15)'],
+                      degraded: ['❌ DEGRADED','var(--danger)','rgba(239,68,68,0.15)'] };
+        const [txt, col, bg] = cfg[st] || cfg.ok;
+        sb.textContent = txt;
+        sb.style.color = col;
+        sb.style.background = bg;
+        sb.style.border = `1px solid ${col}`;
+      }
+
+      // status row tiles
+      const sr = document.getElementById('sysmon-status-row');
+      if (sr) {
+        const tiles = [
+          ['🗄️ Datenbank', cur.db_ok ? '✅ OK' : '❌ Fehler', cur.db_ok ? 'var(--success)' : 'var(--danger)'],
+          ['📡 WebSocket', cur.ws_ok ? '✅ OK' : '❌ Fehler', cur.ws_ok ? 'var(--success)' : 'var(--danger)'],
+          ['👥 WS Clients', app.websocket_connections ?? '–', 'var(--accent)'],
+          ['🚨 Alarme', app.active_alerts ?? '–', (app.active_alerts||0)>0 ? 'var(--warning)':'var(--text-primary)'],
+          ['🔴 Einsätze', app.active_incidents ?? '–', (app.active_incidents||0)>0 ? 'var(--warning)':'var(--text-primary)'],
+          ['👤 Nutzer', app.active_users ?? '–', 'var(--text-primary)'],
+          ['🔐 Sessions', app.active_sessions ?? '–', 'var(--text-primary)'],
+          ['📊 API 24h', app.api_requests_24h ?? '–', 'var(--text-muted)'],
+        ];
+        sr.innerHTML = tiles.map(([k,v,c]) => `
+          <div class="card" style="padding:10px;text-align:center;">
+            <div style="font-size:10px;color:var(--text-muted);margin-bottom:2px;">${k}</div>
+            <div style="font-size:16px;font-weight:700;color:${c};">${v}</div>
+          </div>`).join('');
+      }
+
+      // CPU gauge
+      const cpuPct = cur.cpu_pct ?? 0;
+      const cpuBar = document.getElementById('sysmon-cpu-bar');
+      const cpuVal = document.getElementById('sysmon-cpu-val');
+      if (cpuBar) { cpuBar.style.width = cpuPct + '%'; cpuBar.style.background = this._barColor(cpuPct); }
+      if (cpuVal) { cpuVal.textContent = (cpuPct||0).toFixed(1) + '%'; cpuVal.style.color = this._barColor(cpuPct); }
+      const loadEl = document.getElementById('sysmon-load');
+      if (loadEl) loadEl.textContent = cur.load_1 != null ? `${cur.load_1} / ${cur.load_5} / ${cur.load_15}` : '–';
+      const tempEl = document.getElementById('sysmon-temp');
+      if (tempEl) tempEl.textContent = cur.cpu_temp_c != null ? cur.cpu_temp_c + ' °C' : 'N/A';
+
+      // MEM gauge
+      const memPct = cur.mem_pct ?? 0;
+      const memBar = document.getElementById('sysmon-mem-bar');
+      const memVal = document.getElementById('sysmon-mem-val');
+      if (memBar) { memBar.style.width = memPct + '%'; memBar.style.background = this._barColor(memPct); }
+      if (memVal) { memVal.textContent = (memPct||0).toFixed(1) + '%'; memVal.style.color = this._barColor(memPct); }
+      const muEl = document.getElementById('sysmon-mem-used');
+      if (muEl) muEl.textContent = this._fmtMb(cur.mem_used_mb);
+      const mtEl = document.getElementById('sysmon-mem-total');
+      if (mtEl) mtEl.textContent = this._fmtMb(cur.mem_total_mb);
+
+      // DISK gauge
+      const diskPct = cur.disk_pct ?? 0;
+      const diskBar = document.getElementById('sysmon-disk-bar');
+      const diskVal = document.getElementById('sysmon-disk-val');
+      if (diskBar) { diskBar.style.width = diskPct + '%'; diskBar.style.background = this._barColor(diskPct); }
+      if (diskVal) { diskVal.textContent = (diskPct||0).toFixed(1) + '%'; diskVal.style.color = this._barColor(diskPct); }
+      const dfEl = document.getElementById('sysmon-disk-free');
+      if (dfEl) dfEl.textContent = this._fmtMb(cur.disk_free_mb);
+      const duEl = document.getElementById('sysmon-disk-used');
+      if (duEl) duEl.textContent = this._fmtMb(cur.disk_used_mb);
+      const dbsz = document.getElementById('sysmon-db-size');
+      if (dbsz) dbsz.textContent = app.db_size_mb != null ? app.db_size_mb + ' MB' : '–';
+
+      // Network
+      const rxEl = document.getElementById('sysmon-net-rx');
+      if (rxEl) rxEl.textContent = this._fmtMb(cur.net_rx_mb);
+      const txEl = document.getElementById('sysmon-net-tx');
+      if (txEl) txEl.textContent = this._fmtMb(cur.net_tx_mb);
+      const upEl = document.getElementById('sysmon-uptime');
+      if (upEl) upEl.textContent = this._fmtUptime(cur.uptime_seconds);
+      const prEl = document.getElementById('sysmon-procs');
+      if (prEl) prEl.textContent = cur.process_count ?? '–';
+
+      // App rows
+      const ar = document.getElementById('sysmon-app-rows');
+      if (ar) {
+        const rows = [
+          ['API Anfragen (24h)', app.api_requests_24h ?? '–'],
+          ['Rate Limit Hits (24h)', app.rate_limit_hits_24h ?? '–'],
+          ['DB Größe', app.db_size_mb != null ? app.db_size_mb + ' MB' : '–'],
+          ['WebSocket Clients', app.websocket_connections ?? '–'],
+          ['Aktive Sessions', app.active_sessions ?? '–'],
+          ['Aktive Nutzer', app.active_users ?? '–'],
+        ];
+        ar.innerHTML = rows.map(([k,v]) => `
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;">
+            <span style="color:var(--text-muted);">${k}</span>
+            <span style="font-weight:600;">${v}</span>
+          </div>`).join('');
+      }
+
+      // DB table counts
+      const dr = document.getElementById('sysmon-db-rows');
+      if (dr) {
+        const icons = {users:'👤',sessions:'🔐',alerts:'🚨',incidents:'🔴',fleet_vehicles:'🚗',
+          fleet_trips:'🗺️',assets:'📦',sensors:'📡',chat_messages:'💬',audit_log:'📋',
+          push_subscriptions:'🔔',geo_fences:'🗺️'};
+        dr.innerHTML = Object.entries(tbls).map(([t,c]) => `
+          <div style="display:flex;justify-content:space-between;padding:4px 0;border-bottom:1px solid var(--border);font-size:12px;">
+            <span style="color:var(--text-muted);">${icons[t]||'🗄️'} ${t}</span>
+            <span style="font-weight:600;">${c ?? '–'}</span>
+          </div>`).join('');
+      }
+
+      // Platform
+      const pr2 = document.getElementById('sysmon-platform-rows');
+      if (pr2) {
+        const prows = [
+          ['Hostname', plt.hostname || '–'],
+          ['OS', `${plt.os} ${plt.os_version}`],
+          ['Architektur', plt.arch || '–'],
+          ['Python', plt.python_version || '–'],
+          ['App', `${plt.app_name} v${plt.app_version}`],
+        ];
+        pr2.innerHTML = prows.map(([k,v]) => `
+          <div style="display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;">
+            <span style="color:var(--text-muted);">${k}</span>
+            <span style="font-weight:600;font-family:var(--font-mono,monospace);">${v}</span>
+          </div>`).join('');
+      }
+
+      // Sparklines
+      const cpuHist = this._history.map(s => s.cpu_pct ?? 0);
+      const memHist = this._history.map(s => s.mem_pct ?? 0);
+      this._drawSparkline('sysmon-cpu-spark', cpuHist, '#60a5fa');
+      this._drawSparkline('sysmon-mem-spark', memHist, '#34d399');
+      this._drawHistoryChart(this._history);
+
+    } catch(e) {
+      const lu = document.getElementById('sysmon-last-update');
+      if (lu) lu.textContent = '⚠️ Fehler: ' + e.message;
+    }
+  }
+};
+
+// ============================================================
+// Rate Limit Analytics Page
+// ============================================================
+ATLAS.rateLimitPage = {
+  async render(el) {
+    el.innerHTML = `<div class="page-header"><h2 class="page-title">⚡ Rate Limit Analytics</h2>
+      <button class="btn btn-secondary btn-sm" onclick="ATLAS.rateLimitPage.load()">🔄 Aktualisieren</button></div>
+      <div id="rl-content"></div>`;
+    await this.load();
+  },
+  async load() {
+    try {
+      const d = await ATLAS.api.get('/api/analytics/rate-limits');
+      const el = document.getElementById('rl-content');
+      if (!el) return;
+      el.innerHTML = `
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-title">📊 Top Endpoints (letzte 24h) – gesamt ${d.total_24h} Treffer</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">
+            ${d.by_endpoint.map(r => {
+              const pct = d.total_24h > 0 ? Math.round(r.hits/d.total_24h*100) : 0;
+              return `<div>
+                <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:2px;">
+                  <span style="font-family:var(--font-mono);">${r.endpoint}</span>
+                  <span>${r.hits} (${pct}%)</span>
+                </div>
+                <div style="height:6px;background:var(--bg-secondary);border-radius:3px;">
+                  <div style="height:6px;width:${pct}%;background:var(--accent);border-radius:3px;transition:.3s;"></div>
+                </div>
+              </div>`;
+            }).join('') || '<span style="color:var(--text-muted);">Keine Daten</span>'}
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🕐 Stundliche Verteilung</div>
+          <div style="display:flex;align-items:flex-end;gap:4px;height:80px;margin-top:8px;">
+            ${d.by_hour.map(h => {
+              const max = Math.max(...d.by_hour.map(x => x.hits), 1);
+              const pct = Math.round(h.hits/max*100);
+              return `<div title="${h.hour}:00 – ${h.hits} Treffer" style="flex:1;background:var(--accent);border-radius:2px 2px 0 0;height:${pct}%;min-height:2px;opacity:.8;"></div>`;
+            }).join('') || '<span style="color:var(--text-muted);">Keine Daten</span>'}
+          </div>
+        </div>`;
+    } catch(e) { ATLAS.ui.toast('Fehler: ' + e.message, 'danger'); }
+  }
+};
+
+// ============================================================
+// AI Predictions Page
+// ============================================================
+ATLAS.predictionsPage = {
+  async render(el) {
+    el.innerHTML = `<div class="page-header"><h2 class="page-title">🤖 KI Ressourcenprognose</h2>
+      <button class="btn btn-secondary btn-sm" onclick="ATLAS.predictionsPage.load()">🔄 Neu berechnen</button></div>
+      <div id="pred-content"></div>`;
+    await this.load();
+  },
+  async load() {
+    try {
+      const d = await ATLAS.api.get('/api/analytics/predictions');
+      const el = document.getElementById('pred-content');
+      if (!el) return;
+      el.innerHTML = `
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+          <div class="card">
+            <div class="card-title">⏰ Spitzenstunden (Alarme)</div>
+            ${d.peak_alert_hours.length ? d.peak_alert_hours.map(h => `<div class="badge badge-warning" style="margin:2px;">${h}:00 Uhr</div>`).join('') : '<span style="color:var(--text-muted);font-size:12px;">Zu wenig Daten</span>'}
+          </div>
+          <div class="card">
+            <div class="card-title">📅 Spitzentage (Einsätze)</div>
+            ${d.peak_incident_days.length ? d.peak_incident_days.map(d => `<div class="badge badge-info" style="margin:2px;">${d}</div>`).join('') : '<span style="color:var(--text-muted);font-size:12px;">Zu wenig Daten</span>'}
+          </div>
+        </div>
+        <div class="card" style="margin-bottom:16px;">
+          <div class="card-title">💡 Empfehlungen</div>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px;">
+            ${d.recommendations.map(r => `<div style="display:flex;gap:8px;align-items:flex-start;"><span>•</span><span style="font-size:13px;">${r}</span></div>`).join('')}
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">🚗 Fahrzeugauslastung (letzte 30 Tage)</div>
+          <div style="display:flex;flex-direction:column;gap:6px;margin-top:8px;">
+            ${d.vehicle_utilization.map(v => {
+              const max = Math.max(...d.vehicle_utilization.map(x=>x.trips), 1);
+              const pct = Math.round(v.trips/max*100);
+              return `<div style="display:flex;align-items:center;gap:8px;font-size:12px;">
+                <span style="min-width:120px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${ATLAS.ui.esc(v.name)}</span>
+                <div style="flex:1;height:8px;background:var(--bg-secondary);border-radius:4px;">
+                  <div style="height:8px;width:${pct}%;background:var(--accent);border-radius:4px;"></div>
+                </div>
+                <span style="min-width:30px;text-align:right;">${v.trips}</span>
+              </div>`;
+            }).join('') || '<span style="color:var(--text-muted);">Keine Fahrzeugdaten</span>'}
+          </div>
+          <div style="margin-top:12px;font-size:11px;color:var(--text-muted);">Modell: ${d.model} | Konfidenz: ${d.confidence}</div>
+        </div>`;
+    } catch(e) { ATLAS.ui.toast('Fehler: ' + e.message, 'danger'); }
+  }
+};
+
+// ============================================================
+// Federation Sync Monitoring Page
+// ============================================================
+ATLAS.fedSyncPage = {
+  async render(el) {
+    el.innerHTML = `<div class="page-header"><h2 class="page-title">🔄 Federation Sync Monitor</h2>
+      <button class="btn btn-secondary btn-sm" onclick="ATLAS.fedSyncPage.load()">🔄 Prüfen</button></div>
+      <div id="fs-content"></div>`;
+    await this.load();
+  },
+  async load() {
+    const el = document.getElementById('fs-content');
+    if (el) el.innerHTML = '<div style="text-align:center;padding:20px;color:var(--text-muted);">Prüfe Verbindungen…</div>';
+    try {
+      const d = await ATLAS.api.get('/api/federation/sync-status');
+      if (!el) return;
+      if (!d.peers.length) {
+        el.innerHTML = '<div class="card" style="text-align:center;color:var(--text-muted);">Keine Federation-Peers konfiguriert.</div>';
+        return;
+      }
+      el.innerHTML = `
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">Geprüft um: ${d.checked_at?.substring(11,19)}</div>
+        <div class="card-grid">
+          ${d.peers.map(p => `
+            <div class="card">
+              <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+                <span style="font-size:20px;">${p.online ? '🟢' : '🔴'}</span>
+                <span class="card-title" style="margin:0;">${p.name}</span>
+              </div>
+              <div style="font-size:12px;color:var(--text-muted);">
+                URL: ${p.url}<br>
+                Status: <strong style="color:${p.online ? 'var(--success)' : 'var(--danger)'};">${p.online ? 'Online' : 'Offline'}</strong><br>
+                Zuletzt gesehen: ${p.last_seen?.substring(0,10) || '–'}
+              </div>
+            </div>`).join('')}
+        </div>`;
+    } catch(e) { if (el) el.innerHTML = `<div class="card" style="color:var(--danger);">Fehler: ${e.message}</div>`; }
+  }
+};
+
+// ============================================================
+// Realtime KPI Charts Page
+// ============================================================
+ATLAS.kpiChartsPage = {
+  _interval: null,
+  async render(el) {
+    el.innerHTML = `<div class="page-header"><h2 class="page-title">📈 Realtime KPI Charts</h2>
+      <button class="btn btn-secondary btn-sm" onclick="ATLAS.kpiChartsPage.load()">🔄 Aktualisieren</button></div>
+      <div id="kpi-content"></div>`;
+    await this.load();
+    if (this._interval) clearInterval(this._interval);
+    this._interval = setInterval(() => { if (document.getElementById('kpi-content')) this.load(); else clearInterval(this._interval); }, 30000);
+  },
+  async load() {
+    try {
+      const [health, rl, pred] = await Promise.all([
+        ATLAS.api.get('/api/system/health/detailed').catch(()=>({})),
+        ATLAS.api.get('/api/analytics/rate-limits').catch(()=>({total_24h:0, by_hour:[]})),
+        ATLAS.api.get('/api/analytics/predictions').catch(()=>({vehicle_utilization:[]})),
+      ]);
+      const el = document.getElementById('kpi-content');
+      if (!el) return;
+
+      const kpis = [
+        { label: 'WS Verbindungen', val: health.websocket_connections ?? 0, icon: '🔌', color: 'var(--info)' },
+        { label: 'Aktive Sessions', val: health.active_sessions ?? 0, icon: '👤', color: 'var(--accent)' },
+        { label: 'Aktive Alarme', val: health.active_alerts ?? 0, icon: '🚨', color: 'var(--danger)' },
+        { label: 'Aktive Einsätze', val: health.active_incidents ?? 0, icon: '🚒', color: 'var(--warning)' },
+        { label: 'Rate Limit Hits 24h', val: rl.total_24h ?? 0, icon: '⚡', color: 'var(--warning)' },
+        { label: 'Freier Speicher', val: health.disk_free_mb ? Math.round(health.disk_free_mb) + ' MB' : '–', icon: '💽', color: 'var(--success)' },
+      ];
+
+      el.innerHTML = `
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:12px;margin-bottom:20px;">
+          ${kpis.map(k => `<div class="card" style="text-align:center;">
+            <div style="font-size:28px;">${k.icon}</div>
+            <div style="font-size:24px;font-weight:800;color:${k.color};margin:4px 0;">${k.val}</div>
+            <div style="font-size:11px;color:var(--text-muted);">${k.label}</div>
+          </div>`).join('')}
+        </div>
+        <div class="card">
+          <div class="card-title">📊 API-Traffic (letzte 24h, nach Stunde)</div>
+          <div style="display:flex;align-items:flex-end;gap:3px;height:100px;margin-top:12px;">
+            ${Array.from({length:24},(_,i)=>{
+              const h = rl.by_hour?.find(x=>+x.hour===i);
+              const max = Math.max(...(rl.by_hour?.map(x=>+x.hits)||[1]),1);
+              const pct = h ? Math.round(+h.hits/max*100) : 0;
+              return `<div title="${i}:00 – ${h?.hits||0} Hits" style="flex:1;background:${pct>80?'var(--danger)':pct>50?'var(--warning)':'var(--accent)'};border-radius:2px 2px 0 0;height:${Math.max(pct,2)}%;opacity:.85;cursor:help;"></div>`;
+            }).join('')}
+          </div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);margin-top:4px;"><span>00:00</span><span>12:00</span><span>23:00</span></div>
+        </div>`;
+    } catch(e) { ATLAS.ui.toast('KPI Fehler: ' + e.message, 'danger'); }
+  }
+};
+
+// ============================================================
+// Automated Reports Page (PDF/CSV Export)
+// ============================================================
+ATLAS.autoReportsPage = {
+  async render(el) {
+    el.innerHTML = `<div class="page-header"><h2 class="page-title">📄 Automatisierte Reports</h2></div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">
+        ${[
+          ['📊 Einsatz-Report (CSV)', 'incidents'],
+          ['🚨 Alarm-Report (CSV)', 'alerts'],
+          ['🚗 Fuhrpark-Report (CSV)', 'fleet'],
+          ['📡 Sensor-Report (CSV)', 'sensors'],
+          ['👥 Nutzer-Report (CSV)', 'users'],
+          ['📋 Audit-Log (CSV)', 'audit'],
+        ].map(([label, type]) => `
+          <div class="card">
+            <div class="card-title">${label}</div>
+            <div class="form-group" style="margin-top:8px;">
+              <label class="form-label" style="font-size:11px;">Zeitraum</label>
+              <div style="display:flex;gap:8px;">
+                <input id="ar-from-${type}" class="form-input" type="date" value="${new Date(Date.now()-30*86400000).toISOString().substring(0,10)}" style="font-size:12px;">
+                <input id="ar-to-${type}" class="form-input" type="date" value="${new Date().toISOString().substring(0,10)}" style="font-size:12px;">
+              </div>
+            </div>
+            <button class="btn btn-primary btn-sm" onclick="ATLAS.autoReportsPage.download('${type}')">📥 Export</button>
+          </div>`).join('')}
+      </div>`;
+  },
+  async download(type) {
+    const from = document.getElementById(`ar-from-${type}`)?.value || '';
+    const to = document.getElementById(`ar-to-${type}`)?.value || '';
+    try {
+      const data = await ATLAS.api.get(`/api/export/${type}?format=csv&from=${from}&to=${to}`);
+      // data may be raw CSV text or JSON – handle both
+      const content = typeof data === 'string' ? data : JSON.stringify(data, null, 2);
+      const ext = typeof data === 'string' ? 'csv' : 'json';
+      const blob = new Blob([content], {type: `text/${ext}`});
+      const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+      a.download = `cchq_${type}_${from}_${to}.${ext}`; a.click();
+      ATLAS.ui.toast('Export gestartet', 'success');
+    } catch(e) {
+      // Fallback – export what we have
+      ATLAS.ui.toast('Export: ' + (e.message || 'Fehler'), 'warning');
+    }
+  }
+};
+
+// ============================================================
+// INVENTORY & DEVICE MANAGEMENT PAGE
+// ============================================================
+ATLAS.inventoryPage = {
+  _items: [], _categories: [], _warehouses: [], _tab: 'items',
+  async render(el) {
+    el.innerHTML = `<div class="page-header">
+      <h2 class="page-title">📦 Lagerverwaltung</h2>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;" id="inv-header-actions"></div>
+    </div>
+    <div class="tab-bar" style="display:flex;gap:4px;margin-bottom:20px;background:var(--bg-card);padding:4px;border-radius:var(--radius-sm);border:1px solid var(--border-color);">
+      ${['items','warehouses','orders','checkouts'].map(t=>`<button class="btn btn-sm inv-tab-btn ${this._tab===t?'btn-primary':''}" data-tab="${t}" onclick="ATLAS.inventoryPage.switchTab('${t}')">${{items:'📦 Artikel',warehouses:'🏭 Lager',orders:'🛒 Bestellungen',checkouts:'📤 Ausgaben'}[t]}</button>`).join('')}
+    </div>
+    <div id="inv-tab-content"></div>`;
+    await this.switchTab(this._tab, true);
+  },
+
+  async switchTab(tab, force) {
+    if (this._tab === tab && !force) return;
+    this._tab = tab;
+    document.querySelectorAll('.inv-tab-btn').forEach(b => b.classList.toggle('btn-primary', b.dataset.tab === tab));
+    const content = document.getElementById('inv-tab-content');
+    const actions = document.getElementById('inv-header-actions');
+    if (!content) return;
+    if (tab === 'items') {
+      actions.innerHTML = `
+        <input id="inv-search" class="form-input" style="width:200px;" placeholder="Suchen…" oninput="ATLAS.inventoryPage.search(this.value)">
+        <select id="inv-cat-filter" class="form-input" style="width:150px;" onchange="ATLAS.inventoryPage.filterCat(this.value)">
+          <option value="">Alle Kategorien</option>
+        </select>
+        <button class="btn btn-primary" onclick="ATLAS.inventoryPage.showAdd()">+ Artikel</button>`;
+      content.innerHTML = `<div id="inv-stats" style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;"></div><div id="inv-list"></div>`;
+      await this.load();
+    } else if (tab === 'warehouses') {
+      actions.innerHTML = `<button class="btn btn-primary" onclick="ATLAS.inventoryPage.showAddWarehouse()">+ Lager</button>`;
+      content.innerHTML = `<div id="wh-list"><div class="card" style="text-align:center;padding:40px;color:var(--text-muted);">Lade…</div></div>`;
+      await this.loadWarehouses();
+    } else if (tab === 'orders') {
+      actions.innerHTML = `
+        <select id="ord-status-filter" class="form-input" style="width:150px;" onchange="ATLAS.inventoryPage.loadOrders()">
+          <option value="">Alle Status</option>
+          <option value="pending">Ausstehend</option>
+          <option value="approved">Genehmigt</option>
+          <option value="ordered">Bestellt</option>
+          <option value="received">Erhalten</option>
+          <option value="cancelled">Storniert</option>
+        </select>
+        <button class="btn btn-primary" onclick="ATLAS.inventoryPage.showAddOrder()">+ Bestellung</button>`;
+      content.innerHTML = `<div id="ord-list"><div class="card" style="text-align:center;padding:40px;color:var(--text-muted);">Lade…</div></div>`;
+      await this.loadOrders();
+    } else if (tab === 'checkouts') {
+      actions.innerHTML = `<button class="btn btn-primary" onclick="ATLAS.inventoryPage.showCheckout()">📤 Ausgabe</button>`;
+      content.innerHTML = `<div id="co-list"><div class="card" style="text-align:center;padding:40px;color:var(--text-muted);">Wähle einen Artikel aus der Artikelliste</div></div>`;
+    }
+  },
+
+  // ─── ITEMS TAB ────────────────────────────────────────────────
+  async load() {
+    try {
+      const [data, wh] = await Promise.all([
+        ATLAS.api.get('/api/inventory'),
+        ATLAS.api.get('/api/inventory/warehouses').catch(()=>({warehouses:[]}))
+      ]);
+      this._items = data.items || [];
+      this._categories = data.categories || [];
+      this._warehouses = wh.warehouses || [];
+      this.renderCats();
+      this.renderList(this._items);
+      this.renderStats();
+    } catch(e) { ATLAS.ui.toast('Ladefehler: ' + e.message, 'error'); }
+  },
+  renderStats() {
+    const el = document.getElementById('inv-stats');
+    if (!el) return;
+    const total = this._items.length;
+    const available = this._items.filter(i=>i.status==='available').length;
+    const low = this._items.filter(i=>i.quantity <= i.min_quantity && i.min_quantity > 0).length;
+    el.innerHTML = [['📦 Gesamt',total,'var(--accent)'],['✅ Verfügbar',available,'var(--success)'],['⚠️ Niedrig',low,low>0?'var(--warning)':'var(--text-muted)']].map(([l,v,c])=>`<div class="card" style="padding:10px 16px;display:flex;align-items:center;gap:10px;"><div style="font-size:20px;">${l.split(' ')[0]}</div><div><div style="font-size:20px;font-weight:700;color:${c};">${v}</div><div style="font-size:11px;color:var(--text-muted);">${l.split(' ').slice(1).join(' ')}</div></div></div>`).join('');
+  },
+  renderCats() {
+    const sel = document.getElementById('inv-cat-filter');
+    if (!sel) return;
+    const cur = sel.value;
+    sel.innerHTML = '<option value="">Alle Kategorien</option>' + this._categories.map(c=>`<option value="${c}" ${c===cur?'selected':''}>${c}</option>`).join('');
+  },
+  renderList(items) {
+    const el = document.getElementById('inv-list');
+    if (!el) return;
+    if (!items.length) { el.innerHTML = '<div class="card" style="text-align:center;padding:40px;color:var(--text-muted);">📦 Keine Artikel</div>'; return; }
+    el.innerHTML = `<div style="overflow-x:auto;"><table class="data-table"><thead><tr><th>Name</th><th>Kategorie</th><th>Seriennr. / Teile-Nr.</th><th>Asset-Nr.</th><th>Lager</th><th>Status</th><th>Menge</th><th></th></tr></thead><tbody>
+      ${items.map(i=>`<tr>
+        <td><strong>${i.name}</strong>${i.model_number?`<div style="font-size:11px;color:var(--text-muted);">Modell: ${i.model_number}</div>`:''}</td>
+        <td><span style="background:var(--surface-2);padding:2px 8px;border-radius:20px;font-size:11px;">${i.category}</span></td>
+        <td style="font-size:12px;color:var(--text-muted);">${[i.serial_number,i.part_number].filter(Boolean).join(' / ')||'–'}</td>
+        <td style="font-size:12px;font-family:monospace;">${i.asset_number||'–'}</td>
+        <td style="font-size:12px;">${i.warehouse_name||i.location||'–'}</td>
+        <td><span class="badge ${i.status==='available'?'badge-success':i.status==='assigned'?'badge-info':'badge-warning'}">${i.status}</span></td>
+        <td style="text-align:center;${i.quantity<=i.min_quantity&&i.min_quantity>0?'color:var(--warning);font-weight:700;':''}">${i.quantity}</td>
+        <td style="white-space:nowrap;">
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.inventoryPage.showQR(${i.id},'${i.name.replace(/'/g,"\\'").replace(/"/g,"&quot;")}')">QR</button>
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.inventoryPage.showEdit(${i.id})">✏️</button>
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.inventoryPage.showItemCheckout(${i.id},'${i.name.replace(/'/g,"\\'")}')">📤</button>
+          <button class="btn btn-danger btn-sm" onclick="ATLAS.inventoryPage.del(${i.id},'${i.name.replace(/'/g,"\\'").replace(/"/g,"&quot;")}')">🗑</button>
+        </td>
+      </tr>`).join('')}</tbody></table></div>`;
+  },
+  search(q) {
+    const qL = q.toLowerCase();
+    const cat = document.getElementById('inv-cat-filter')?.value || '';
+    this.renderList(this._items.filter(i=>(!cat||i.category===cat)&&(!q||i.name.toLowerCase().includes(qL)||(i.description||'').toLowerCase().includes(qL)||(i.serial_number||'').toLowerCase().includes(qL)||(i.asset_number||'').toLowerCase().includes(qL)||(i.location||'').toLowerCase().includes(qL))));
+  },
+  filterCat(cat) { this.search(document.getElementById('inv-search')?.value||''); },
+
+  _warehouseOptions() {
+    return '<option value="">– Kein Lager –</option>' + this._warehouses.map(w=>`<option value="${w.id}">${w.name}</option>`).join('');
+  },
+
+  showAdd() {
+    const whOpts = this._warehouseOptions();
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">Neuer Artikel</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body" style="max-height:70vh;overflow-y:auto;">
+        <div class="form-group"><label class="form-label">Name *</label><input id="ni-name" class="form-input" placeholder="Laptop, Fahrzeugschlüssel…"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Kategorie</label><input id="ni-cat" class="form-input" value="general"></div>
+          <div class="form-group"><label class="form-label">Status</label><select id="ni-status" class="form-input"><option value="available">Verfügbar</option><option value="maintenance">Wartung</option><option value="retired">Außer Betrieb</option></select></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Seriennummer</label><input id="ni-serial" class="form-input" placeholder="optional"></div>
+          <div class="form-group"><label class="form-label">Teilenummer</label><input id="ni-part" class="form-input" placeholder="optional"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Modellnummer</label><input id="ni-model" class="form-input" placeholder="optional"></div>
+          <div class="form-group"><label class="form-label">Asset-Nummer</label><input id="ni-asset" class="form-input" placeholder="optional, eindeutig"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Lagerort</label><select id="ni-warehouse" class="form-input">${whOpts}</select></div>
+          <div class="form-group"><label class="form-label">Standort (Regal etc.)</label><input id="ni-loc" class="form-input" placeholder="Regal A3, Büro 3…"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Menge</label><input id="ni-qty" class="form-input" type="number" value="1" min="0"></div>
+          <div class="form-group"><label class="form-label">Mindestmenge (Alarm)</label><input id="ni-minqty" class="form-input" type="number" value="0" min="0"></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Kaufdatum</label><input id="ni-date" class="form-input" type="date"></div>
+          <div class="form-group"><label class="form-label">Kaufpreis (€)</label><input id="ni-price" class="form-input" type="number" step="0.01" min="0"></div>
+        </div>
+        <div class="form-group"><label class="form-label">Lieferant</label><input id="ni-supplier" class="form-input"></div>
+        <div class="form-group"><label class="form-label">Beschreibung</label><textarea id="ni-desc" class="form-input" rows="2"></textarea></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.inventoryPage.saveAdd()">Erstellen + QR generieren</button>
+      </div>`);
+  },
+  async saveAdd() {
+    const name = document.getElementById('ni-name')?.value.trim();
+    if (!name) { ATLAS.ui.toast('Name erforderlich', 'warning'); return; }
+    try {
+      const item = await ATLAS.api.post('/api/inventory', {
+        name, category: document.getElementById('ni-cat').value||'general',
+        status: document.getElementById('ni-status').value,
+        serial_number: document.getElementById('ni-serial').value||null,
+        part_number: document.getElementById('ni-part').value||null,
+        model_number: document.getElementById('ni-model').value||null,
+        asset_number: document.getElementById('ni-asset').value||null,
+        warehouse_id: parseInt(document.getElementById('ni-warehouse').value)||null,
+        location: document.getElementById('ni-loc').value||null,
+        quantity: parseInt(document.getElementById('ni-qty').value)||1,
+        min_quantity: parseInt(document.getElementById('ni-minqty').value)||0,
+        purchase_date: document.getElementById('ni-date').value||null,
+        purchase_price: parseFloat(document.getElementById('ni-price').value)||null,
+        supplier: document.getElementById('ni-supplier').value||null,
+        description: document.getElementById('ni-desc').value||null,
+      });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Artikel erstellt', 'success'); await this.load();
+      if (item.qr_data_uri) this.showQRData(item.name, item.qr_code, item.qr_data_uri);
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async showQR(iid, name) {
+    ATLAS.ui.toast('QR wird generiert…', 'info');
+    try {
+      const data = await ATLAS.api.get(`/api/inventory/${iid}/qr`);
+      this.showQRData(name, data.qr_code, data.qr_data_uri);
+    } catch(e) { ATLAS.ui.toast('QR Fehler: ' + e.message, 'error'); }
+  },
+  showQRData(name, qr_code, qr_data_uri) {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">QR-Code: ${name}</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body" style="text-align:center;">
+        ${qr_data_uri&&qr_data_uri.startsWith('data:image')
+          ? `<img src="${qr_data_uri}" style="max-width:250px;border-radius:8px;border:4px solid white;box-shadow:0 4px 20px rgba(0,0,0,.3);">`
+          : '<div style="padding:40px;color:var(--text-muted);">QR-Code nicht verfügbar.<br><small>pip install qrcode[pil]</small></div>'}
+        <div style="margin-top:12px;font-family:monospace;font-size:13px;background:var(--surface-2);padding:8px 12px;border-radius:6px;">${qr_code}</div>
+        <p style="font-size:12px;color:var(--text-muted);">Scan mit ControlCenterHQ App</p>
+        ${qr_data_uri&&qr_data_uri.startsWith('data:image')?`<button class="btn btn-secondary btn-sm" onclick="const a=document.createElement('a');a.href='${qr_data_uri}';a.download='qr-${qr_code}.png';a.click()">📥 PNG Download</button>`:''}
+      </div>
+      <div class="modal-footer"><button class="btn btn-primary" onclick="ATLAS.ui.closeModal()">Schließen</button></div>`);
+  },
+  async showEdit(iid) {
+    try {
+      const [item, wh] = await Promise.all([
+        ATLAS.api.get(`/api/inventory/${iid}`),
+        ATLAS.api.get('/api/inventory/warehouses').catch(()=>({warehouses:[]}))
+      ]);
+      const whOpts = '<option value="">– Kein Lager –</option>' + (wh.warehouses||[]).map(w=>`<option value="${w.id}" ${item.warehouse_id==w.id?'selected':''}>${w.name}</option>`).join('');
+      ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">Artikel bearbeiten</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+        <div class="modal-body" style="max-height:70vh;overflow-y:auto;">
+          <div class="form-group"><label class="form-label">Name *</label><input id="ei-name" class="form-input" value="${item.name}"></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group"><label class="form-label">Kategorie</label><input id="ei-cat" class="form-input" value="${item.category}"></div>
+            <div class="form-group"><label class="form-label">Status</label><select id="ei-status" class="form-input">
+              ${['available','assigned','maintenance','retired'].map(s=>`<option value="${s}" ${item.status===s?'selected':''}>${s}</option>`).join('')}
+            </select></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group"><label class="form-label">Seriennummer</label><input id="ei-serial" class="form-input" value="${item.serial_number||''}"></div>
+            <div class="form-group"><label class="form-label">Teilenummer</label><input id="ei-part" class="form-input" value="${item.part_number||''}"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group"><label class="form-label">Modellnummer</label><input id="ei-model" class="form-input" value="${item.model_number||''}"></div>
+            <div class="form-group"><label class="form-label">Asset-Nummer</label><input id="ei-asset" class="form-input" value="${item.asset_number||''}"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group"><label class="form-label">Lagerort</label><select id="ei-warehouse" class="form-input">${whOpts}</select></div>
+            <div class="form-group"><label class="form-label">Standort (Regal etc.)</label><input id="ei-loc" class="form-input" value="${item.location||''}"></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div class="form-group"><label class="form-label">Menge</label><input id="ei-qty" class="form-input" type="number" value="${item.quantity}"></div>
+            <div class="form-group"><label class="form-label">Mindestmenge</label><input id="ei-minqty" class="form-input" type="number" value="${item.min_quantity}"></div>
+          </div>
+          <div class="form-group"><label class="form-label">Lieferant</label><input id="ei-supplier" class="form-input" value="${item.supplier||''}"></div>
+          <div class="form-group"><label class="form-label">Notizen</label><textarea id="ei-notes" class="form-input" rows="2">${item.notes||''}</textarea></div>
+          ${item.transactions?.length?`<div class="form-group"><label class="form-label">Letzte Transaktionen</label><div style="font-size:12px;background:var(--surface-2);padding:8px;border-radius:6px;max-height:120px;overflow-y:auto;">${item.transactions.map(t=>`<div style="padding:4px 0;border-bottom:1px solid var(--border);">${t.ts.substring(0,16)} · ${t.type} · ${t.quantity_change>0?'+':''}${t.quantity_change} · ${t.user_name||'System'}</div>`).join('')}</div></div>`:''}
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+          <button class="btn btn-primary" onclick="ATLAS.inventoryPage.saveEdit(${iid})">Speichern</button>
+        </div>`);
+    } catch(e) { ATLAS.ui.toast('Fehler: ' + e.message, 'error'); }
+  },
+  async saveEdit(iid) {
+    try {
+      await ATLAS.api.put(`/api/inventory/${iid}`, {
+        name: document.getElementById('ei-name').value,
+        category: document.getElementById('ei-cat').value||'general',
+        status: document.getElementById('ei-status').value,
+        serial_number: document.getElementById('ei-serial').value||null,
+        part_number: document.getElementById('ei-part').value||null,
+        model_number: document.getElementById('ei-model').value||null,
+        asset_number: document.getElementById('ei-asset').value||null,
+        warehouse_id: parseInt(document.getElementById('ei-warehouse').value)||null,
+        location: document.getElementById('ei-loc').value||null,
+        quantity: parseInt(document.getElementById('ei-qty').value)||1,
+        min_quantity: parseInt(document.getElementById('ei-minqty').value)||0,
+        supplier: document.getElementById('ei-supplier').value||null,
+        notes: document.getElementById('ei-notes').value||null,
+      });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Aktualisiert', 'success'); await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async del(iid, name) {
+    if (!confirm(`"${name}" löschen?`)) return;
+    try { await ATLAS.api.delete(`/api/inventory/${iid}`); ATLAS.ui.toast('Gelöscht', 'success'); await this.load(); }
+    catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+
+  // ─── WAREHOUSES TAB ───────────────────────────────────────────
+  async loadWarehouses() {
+    const el = document.getElementById('wh-list');
+    if (!el) return;
+    try {
+      const data = await ATLAS.api.get('/api/inventory/warehouses');
+      this._warehouses = data.warehouses || [];
+      if (!this._warehouses.length) {
+        el.innerHTML = '<div class="card" style="text-align:center;padding:40px;color:var(--text-muted);">🏭 Noch keine Lager angelegt</div>'; return;
+      }
+      el.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">
+        ${this._warehouses.map(w=>`<div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;">
+            <div>
+              <div style="font-size:18px;font-weight:700;">🏭 ${w.name}</div>
+              ${w.address?`<div style="font-size:12px;color:var(--text-muted);margin-top:2px;">📍 ${w.address}</div>`:''}
+              ${w.manager_name?`<div style="font-size:12px;color:var(--text-muted);margin-top:2px;">👤 ${w.manager_name}</div>`:''}
+              ${w.description?`<div style="font-size:12px;margin-top:6px;">${w.description}</div>`:''}
+            </div>
+            <div style="display:flex;gap:4px;">
+              <button class="btn btn-secondary btn-sm" onclick="ATLAS.inventoryPage.showEditWarehouse(${w.id})">✏️</button>
+              <button class="btn btn-danger btn-sm" onclick="ATLAS.inventoryPage.delWarehouse(${w.id},'${w.name.replace(/'/g,"\\'")}')">🗑</button>
+            </div>
+          </div>
+        </div>`).join('')}
+      </div>`;
+    } catch(e) { el.innerHTML = `<div class="card" style="color:var(--danger);padding:20px;">Fehler: ${e.message}</div>`; }
+  },
+  async _loadUsers() {
+    try { const d = await ATLAS.api.get('/api/users'); return d.users||[]; } catch { return []; }
+  },
+  async showAddWarehouse() {
+    const users = await this._loadUsers();
+    const uOpts = '<option value="">– Kein Verwalter –</option>' + users.map(u=>`<option value="${u.id}">${u.full_name||u.username}</option>`).join('');
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">Neues Lager</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div class="form-group"><label class="form-label">Name *</label><input id="nw-name" class="form-input" placeholder="Hauptlager, Außenlager Nord…"></div>
+        <div class="form-group"><label class="form-label">Adresse</label><input id="nw-addr" class="form-input" placeholder="Musterstr. 1, 12345 Stadt"></div>
+        <div class="form-group"><label class="form-label">Lagerverwalter</label><select id="nw-manager" class="form-input">${uOpts}</select></div>
+        <div class="form-group"><label class="form-label">Beschreibung</label><textarea id="nw-desc" class="form-input" rows="2"></textarea></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.inventoryPage.saveAddWarehouse()">Erstellen</button>
+      </div>`);
+  },
+  async saveAddWarehouse() {
+    const name = document.getElementById('nw-name')?.value.trim();
+    if (!name) { ATLAS.ui.toast('Name erforderlich', 'warning'); return; }
+    try {
+      await ATLAS.api.post('/api/inventory/warehouses', {
+        name, address: document.getElementById('nw-addr').value||null,
+        manager_id: parseInt(document.getElementById('nw-manager').value)||null,
+        description: document.getElementById('nw-desc').value||null,
+      });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Lager erstellt', 'success'); await this.loadWarehouses();
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async showEditWarehouse(wid) {
+    const w = this._warehouses.find(x=>x.id===wid);
+    if (!w) return;
+    const users = await this._loadUsers();
+    const uOpts = '<option value="">– Kein Verwalter –</option>' + users.map(u=>`<option value="${u.id}" ${u.id==w.manager_id?'selected':''}>${u.full_name||u.username}</option>`).join('');
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">Lager bearbeiten</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div class="form-group"><label class="form-label">Name *</label><input id="ew-name" class="form-input" value="${w.name}"></div>
+        <div class="form-group"><label class="form-label">Adresse</label><input id="ew-addr" class="form-input" value="${w.address||''}"></div>
+        <div class="form-group"><label class="form-label">Lagerverwalter</label><select id="ew-manager" class="form-input">${uOpts}</select></div>
+        <div class="form-group"><label class="form-label">Beschreibung</label><textarea id="ew-desc" class="form-input" rows="2">${w.description||''}</textarea></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.inventoryPage.saveEditWarehouse(${wid})">Speichern</button>
+      </div>`);
+  },
+  async saveEditWarehouse(wid) {
+    try {
+      await ATLAS.api.put(`/api/inventory/warehouses/${wid}`, {
+        name: document.getElementById('ew-name').value,
+        address: document.getElementById('ew-addr').value||null,
+        manager_id: parseInt(document.getElementById('ew-manager').value)||null,
+        description: document.getElementById('ew-desc').value||null,
+      });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Aktualisiert', 'success'); await this.loadWarehouses();
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async delWarehouse(wid, name) {
+    if (!confirm(`Lager "${name}" löschen?`)) return;
+    try { await ATLAS.api.delete(`/api/inventory/warehouses/${wid}`); ATLAS.ui.toast('Gelöscht', 'success'); await this.loadWarehouses(); }
+    catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+
+  // ─── ORDERS TAB ───────────────────────────────────────────────
+  async loadOrders() {
+    const el = document.getElementById('ord-list');
+    if (!el) return;
+    const status = document.getElementById('ord-status-filter')?.value || '';
+    try {
+      const data = await ATLAS.api.get('/api/inventory/orders' + (status ? `?status=${status}` : ''));
+      const orders = data.orders || [];
+      if (!orders.length) { el.innerHTML = '<div class="card" style="text-align:center;padding:40px;color:var(--text-muted);">🛒 Keine Bestellungen gefunden</div>'; return; }
+      const statusBadge = s => ({pending:'badge-warning',approved:'badge-info',ordered:'badge-primary',received:'badge-success',cancelled:'badge-danger'}[s]||'badge-secondary');
+      const statusLabel = s => ({pending:'Ausstehend',approved:'Genehmigt',ordered:'Bestellt',received:'Erhalten',cancelled:'Storniert'}[s]||s);
+      el.innerHTML = `<div style="display:flex;flex-direction:column;gap:12px;">
+        ${orders.map(o=>`<div class="card">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;">
+            <div style="flex:1;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                <strong style="font-size:15px;">${o.title}</strong>
+                <span class="badge ${statusBadge(o.status)}">${statusLabel(o.status)}</span>
+                ${o.priority==='urgent'?'<span class="badge badge-danger">🚨 Dringend</span>':o.priority==='high'?'<span class="badge badge-warning">⬆️ Hoch</span>':''}
+              </div>
+              <div style="display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--text-muted);">
+                ${o.warehouse_name?`<span>🏭 ${o.warehouse_name}</span>`:''}
+                ${o.supplier?`<span>🏢 ${o.supplier}</span>`:''}
+                ${o.estimated_cost?`<span>💶 ${o.estimated_cost}€</span>`:''}
+                ${o.requester_name?`<span>👤 ${o.requester_name}</span>`:''}
+                <span>📅 ${o.created_at?.substring(0,10)||'–'}</span>
+              </div>
+              ${o.description?`<div style="font-size:12px;margin-top:6px;">${o.description}</div>`:''}
+              ${o.items_json&&o.items_json!=='[]'?`<div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Artikel: ${(() => { try { return JSON.parse(o.items_json).map(i=>`${i.name} (${i.quantity})`).join(', '); } catch { return o.items_json; } })()}</div>`:''}
+            </div>
+            <div style="display:flex;flex-direction:column;gap:4px;min-width:fit-content;">
+              ${o.status==='pending'?`<button class="btn btn-primary btn-sm" onclick="ATLAS.inventoryPage.approveOrder(${o.id})">✅ Genehmigen</button>`:''}
+              ${o.status==='approved'||o.status==='ordered'?`<button class="btn btn-success btn-sm" onclick="ATLAS.inventoryPage.receiveOrder(${o.id})">📦 Eingelagert</button>`:''}
+              <button class="btn btn-secondary btn-sm" onclick="ATLAS.inventoryPage.editOrder(${o.id})">✏️ Bearbeiten</button>
+            </div>
+          </div>
+        </div>`).join('')}
+      </div>`;
+    } catch(e) { el.innerHTML = `<div class="card" style="color:var(--danger);padding:20px;">Fehler: ${e.message}</div>`; }
+  },
+  async showAddOrder() {
+    const [wh, items] = await Promise.all([
+      ATLAS.api.get('/api/inventory/warehouses').catch(()=>({warehouses:[]})),
+      ATLAS.api.get('/api/inventory').catch(()=>({items:[]}))
+    ]);
+    const warehouses = wh.warehouses || [];
+    const invItems = items.items || [];
+    const whOpts = '<option value="">– Kein Lager –</option>' + warehouses.map(w=>`<option value="${w.id}">${w.name}</option>`).join('');
+    const itemOpts = '<option value="">– Artikel wählen –</option>' + invItems.map(i=>`<option value="${i.id}" data-name="${i.name}">${i.name}</option>`).join('');
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">Neue Bestellung</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body" style="max-height:70vh;overflow-y:auto;">
+        <div class="form-group"><label class="form-label">Titel *</label><input id="no-title" class="form-input" placeholder="Büromaterial Q2…"></div>
+        <div class="form-group"><label class="form-label">Beschreibung</label><textarea id="no-desc" class="form-input" rows="2"></textarea></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Priorität</label><select id="no-prio" class="form-input">
+            <option value="normal">Normal</option><option value="high">Hoch</option><option value="urgent">Dringend</option>
+          </select></div>
+          <div class="form-group"><label class="form-label">Ziellager</label><select id="no-wh" class="form-input">${whOpts}</select></div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Lieferant</label><input id="no-supplier" class="form-input" placeholder="Firma GmbH…"></div>
+          <div class="form-group"><label class="form-label">Geschätzte Kosten (€)</label><input id="no-cost" class="form-input" type="number" step="0.01" min="0"></div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Artikel hinzufügen</label>
+          <div style="display:flex;gap:8px;margin-bottom:8px;">
+            <select id="no-item-sel" class="form-input" style="flex:1;">${itemOpts}</select>
+            <input id="no-item-qty" class="form-input" type="number" min="1" value="1" style="width:70px;" placeholder="Menge">
+            <input id="no-item-note" class="form-input" placeholder="Notiz" style="width:100px;">
+            <button class="btn btn-secondary btn-sm" onclick="ATLAS.inventoryPage._addOrderItem()">+</button>
+          </div>
+          <div id="no-items-list" style="font-size:12px;background:var(--surface-2);padding:8px;border-radius:6px;min-height:40px;"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.inventoryPage.saveAddOrder()">Bestellung erstellen</button>
+      </div>`);
+    this._orderItems = [];
+    this._renderOrderItems();
+  },
+  _orderItems: [],
+  _addOrderItem() {
+    const sel = document.getElementById('no-item-sel');
+    const qty = parseInt(document.getElementById('no-item-qty')?.value)||1;
+    const note = document.getElementById('no-item-note')?.value||'';
+    if (!sel?.value) { ATLAS.ui.toast('Bitte Artikel auswählen', 'warning'); return; }
+    const opt = sel.options[sel.selectedIndex];
+    this._orderItems.push({ item_id: parseInt(sel.value), name: opt.dataset.name||opt.text, quantity: qty, note });
+    this._renderOrderItems();
+  },
+  _renderOrderItems() {
+    const el = document.getElementById('no-items-list');
+    if (!el) return;
+    if (!this._orderItems.length) { el.innerHTML = '<span style="color:var(--text-muted);">Noch keine Artikel hinzugefügt</span>'; return; }
+    el.innerHTML = this._orderItems.map((it,i)=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:3px 0;border-bottom:1px solid var(--border);">
+      <span>${it.name} × ${it.quantity}${it.note?' – '+it.note:''}</span>
+      <button class="btn btn-danger btn-sm" style="padding:1px 6px;" onclick="ATLAS.inventoryPage._removeOrderItem(${i})">✕</button>
+    </div>`).join('');
+  },
+  _removeOrderItem(idx) { this._orderItems.splice(idx,1); this._renderOrderItems(); },
+  async saveAddOrder() {
+    const title = document.getElementById('no-title')?.value.trim();
+    if (!title) { ATLAS.ui.toast('Titel erforderlich', 'warning'); return; }
+    try {
+      await ATLAS.api.post('/api/inventory/orders', {
+        title, description: document.getElementById('no-desc').value||null,
+        priority: document.getElementById('no-prio').value,
+        warehouse_id: parseInt(document.getElementById('no-wh').value)||null,
+        supplier: document.getElementById('no-supplier').value||null,
+        estimated_cost: parseFloat(document.getElementById('no-cost').value)||null,
+        items_json: JSON.stringify(this._orderItems),
+      });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Bestellung erstellt', 'success'); await this.loadOrders();
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async approveOrder(oid) {
+    if (!confirm('Bestellung genehmigen?')) return;
+    try { await ATLAS.api.post(`/api/inventory/orders/${oid}/approve`, {}); ATLAS.ui.toast('Genehmigt', 'success'); await this.loadOrders(); }
+    catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async receiveOrder(oid) {
+    if (!confirm('Bestellung als eingegangen markieren? Lagerbestände werden automatisch aktualisiert.')) return;
+    try { await ATLAS.api.post(`/api/inventory/orders/${oid}/receive`, {}); ATLAS.ui.toast('Eingelagert – Bestände aktualisiert', 'success'); await this.loadOrders(); }
+    catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async editOrder(oid) {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">Bestellung bearbeiten</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div class="form-group"><label class="form-label">Status</label><select id="eo-status" class="form-input">
+          <option value="pending">Ausstehend</option><option value="approved">Genehmigt</option>
+          <option value="ordered">Bestellt</option><option value="received">Erhalten</option><option value="cancelled">Storniert</option>
+        </select></div>
+        <div class="form-group"><label class="form-label">Tatsächliche Kosten (€)</label><input id="eo-cost" class="form-input" type="number" step="0.01" min="0"></div>
+        <div class="form-group"><label class="form-label">Tracking-Nummer</label><input id="eo-tracking" class="form-input"></div>
+        <div class="form-group"><label class="form-label">Notizen</label><textarea id="eo-notes" class="form-input" rows="2"></textarea></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.inventoryPage.saveEditOrder(${oid})">Speichern</button>
+      </div>`);
+  },
+  async saveEditOrder(oid) {
+    try {
+      await ATLAS.api.put(`/api/inventory/orders/${oid}`, {
+        status: document.getElementById('eo-status').value,
+        actual_cost: parseFloat(document.getElementById('eo-cost').value)||null,
+        tracking_number: document.getElementById('eo-tracking').value||null,
+        notes: document.getElementById('eo-notes').value||null,
+      });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Aktualisiert', 'success'); await this.loadOrders();
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+
+  // ─── CHECKOUTS TAB ────────────────────────────────────────────
+  showCheckout() {
+    // Redirect user to items tab with info
+    ATLAS.ui.toast('Wähle in der Artikelliste einen Artikel und klicke auf 📤', 'info');
+    this.switchTab('items');
+  },
+  async showItemCheckout(iid, name) {
+    const users = await this._loadUsers();
+    const uOpts = users.map(u=>`<option value="${u.id}">${u.full_name||u.username}</option>`).join('');
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">📤 Ausgabe: ${name}</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div class="form-group"><label class="form-label">Empfänger *</label><select id="co-user" class="form-input">${uOpts}</select></div>
+        <div class="form-group"><label class="form-label">Menge</label><input id="co-qty" class="form-input" type="number" value="1" min="1"></div>
+        <div class="form-group"><label class="form-label">Notizen</label><textarea id="co-notes" class="form-input" rows="2"></textarea></div>
+        <div id="co-history" style="margin-top:12px;"></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.inventoryPage.saveCheckout(${iid})">📤 Ausgeben</button>
+      </div>`);
+    // Load history
+    try {
+      const data = await ATLAS.api.get(`/api/inventory/${iid}/checkout`);
+      const checkouts = data.checkouts || [];
+      const active = checkouts.filter(c=>c.status==='checked_out');
+      if (active.length) {
+        document.getElementById('co-history').innerHTML = `<div style="font-size:12px;"><div style="font-weight:600;margin-bottom:6px;">Aktuell ausgegeben:</div>${active.map(c=>`<div style="display:flex;justify-content:space-between;align-items:center;padding:4px 0;border-bottom:1px solid var(--border);">
+          <span>${c.person_name||'–'} (${c.quantity}x) seit ${c.checked_out_at?.substring(0,10)||'–'}</span>
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.inventoryPage.returnItem(${iid},${c.id})">↩ Zurück</button>
+        </div>`).join('')}</div>`;
+      }
+    } catch(e) {
+      const h = document.getElementById('co-history');
+      if (h) h.innerHTML = '<div style="font-size:12px;color:var(--text-muted);">Ausgabe-Historie nicht verfügbar</div>';
+    }
+  },
+  async saveCheckout(iid) {
+    try {
+      await ATLAS.api.post(`/api/inventory/${iid}/checkout`, {
+        user_id: parseInt(document.getElementById('co-user').value),
+        quantity: parseInt(document.getElementById('co-qty').value)||1,
+        notes: document.getElementById('co-notes').value||null,
+      });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Ausgegeben', 'success'); await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async returnItem(iid, checkoutId) {
+    if (!confirm('Rückgabe bestätigen?')) return;
+    try {
+      await ATLAS.api.post(`/api/inventory/${iid}/return`, { checkout_id: checkoutId });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Zurückgegeben', 'success'); await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+};
+
+// ============================================================
+// KNOWLEDGE BASES PAGE
+// ============================================================
+ATLAS.knowledgePage = {
+  _kbId: null,
+  async render(el) {
+    el.innerHTML = `<div class="page-header">
+      <h2 class="page-title">📚 Wissensdatenbank</h2>
+      <div style="display:flex;gap:8px;">
+        <input id="kb-search" class="form-input" style="width:200px;" placeholder="Suchen…" oninput="ATLAS.knowledgePage.globalSearch(this.value)">
+        <button class="btn btn-primary" onclick="ATLAS.knowledgePage.showAddKB()">+ Datenbank</button>
+      </div>
+    </div>
+    <div id="kb-content"></div>`;
+    await this.loadKBs();
+  },
+  async loadKBs() {
+    const el = document.getElementById('kb-content');
+    if (!el) return;
+    try {
+      const data = await ATLAS.api.get('/api/knowledge');
+      const bases = data.bases || [];
+      if (!bases.length) { el.innerHTML = '<div class="card" style="text-align:center;padding:40px;color:var(--text-muted);">📚 Noch keine Wissensdatenbanken</div>'; return; }
+      el.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;">
+        ${bases.map(kb=>`<div class="card" style="border-left:4px solid ${kb.color};cursor:pointer;" onclick="ATLAS.knowledgePage.openKB(${kb.id})">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
+            <span style="font-size:32px;">${kb.icon}</span>
+            <div style="flex:1;"><div style="font-weight:700;">${kb.name}</div><div style="font-size:11px;color:var(--text-muted);">${kb.description||''}</div></div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <span style="font-size:12px;color:var(--text-muted);">📄 ${kb.article_count} Artikel</span>
+            <div style="display:flex;gap:4px;">
+              <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();ATLAS.knowledgePage.editKB(${kb.id},'${kb.name.replace(/'/g,"\\'")}','${(kb.description||'').replace(/'/g,"\\'")}','${kb.icon}','${kb.color}','${kb.access_role}')">✏️</button>
+              <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();ATLAS.knowledgePage.deleteKB(${kb.id},'${kb.name.replace(/'/g,"\\'")}')">🗑</button>
+            </div>
+          </div>
+        </div>`).join('')}
+      </div>`;
+    } catch(e) { ATLAS.ui.toast('Fehler: ' + e.message, 'error'); }
+  },
+  async openKB(kbId) {
+    this._kbId = kbId;
+    const el = document.getElementById('kb-content');
+    if (!el) return;
+    try {
+      const data = await ATLAS.api.get(`/api/knowledge/${kbId}/articles`);
+      el.innerHTML = `
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;">
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.knowledgePage.loadKBs()">← Zurück</button>
+          <h3 style="margin:0;">${data.kb?.icon||'📚'} ${data.kb?.name||''}</h3>
+          <button class="btn btn-primary btn-sm" style="margin-left:auto;" onclick="ATLAS.knowledgePage.showAddArticle(${kbId})">+ Artikel</button>
+        </div>
+        <input class="form-input" style="width:100%;margin-bottom:12px;" placeholder="Artikel suchen…" oninput="ATLAS.knowledgePage.searchArticles(${kbId},this.value)">
+        <div id="kb-articles-list">${this._renderArticleList(data.articles||[], kbId)}</div>`;
+    } catch(e) { ATLAS.ui.toast('Fehler: ' + e.message, 'error'); }
+  },
+  _renderArticleList(articles, kbId) {
+    if (!articles.length) return '<div class="card" style="text-align:center;padding:40px;color:var(--text-muted);">Noch keine Artikel</div>';
+    return `<div style="display:flex;flex-direction:column;gap:8px;">
+      ${articles.map(a=>`<div class="card" style="cursor:pointer;${a.pinned?'border-left:3px solid var(--accent);':''}" onclick="ATLAS.knowledgePage.openArticle(${kbId},${a.id})">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span>${a.pinned?'📌':'📄'}</span>
+          <div style="flex:1;"><strong>${a.title}</strong><div style="font-size:12px;color:var(--text-muted);">${a.author_name||''} · ${a.updated_at?.substring(0,10)||''} · 👁 ${a.views}</div></div>
+          <div style="display:flex;gap:4px;">
+            <button class="btn btn-secondary btn-sm" onclick="event.stopPropagation();ATLAS.knowledgePage.editArticle(${kbId},${a.id})">✏️</button>
+            <button class="btn btn-danger btn-sm" onclick="event.stopPropagation();ATLAS.knowledgePage.deleteArticle(${kbId},${a.id})">🗑</button>
+          </div>
+        </div>
+      </div>`).join('')}
+    </div>`;
+  },
+  async searchArticles(kbId, q) {
+    try {
+      const data = await ATLAS.api.get(`/api/knowledge/${kbId}/articles?q=${encodeURIComponent(q)}`);
+      const el = document.getElementById('kb-articles-list');
+      if (el) el.innerHTML = this._renderArticleList(data.articles||[], kbId);
+    } catch(e) {}
+  },
+  async openArticle(kbId, aid) {
+    try {
+      const a = await ATLAS.api.get(`/api/knowledge/${kbId}/articles/${aid}`);
+      const el = document.getElementById('kb-articles-list');
+      if (!el) return;
+      el.innerHTML = `
+        <div style="display:flex;align-items:center;gap:8px;margin-bottom:16px;">
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.knowledgePage.openKB(${kbId})">← Zurück</button>
+          <span style="font-size:18px;font-weight:700;">${a.title}</span>
+          <button class="btn btn-secondary btn-sm" style="margin-left:auto;" onclick="ATLAS.knowledgePage.editArticle(${kbId},${aid})">✏️ Bearbeiten</button>
+        </div>
+        <div class="card">
+          <div style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">${a.author_name||''} · ${a.updated_at?.substring(0,10)||''} · 👁 ${a.views} ${a.pinned?'· 📌':''}</div>
+          <div style="white-space:pre-wrap;line-height:1.7;">${a.content}</div>
+          ${a.tags&&a.tags!=='[]'?`<div style="margin-top:16px;">${(JSON.parse(a.tags)||[]).map(t=>`<span style="background:var(--accent);color:white;padding:2px 8px;border-radius:10px;font-size:11px;margin-right:4px;">${t}</span>`).join('')}</div>`:''}
+        </div>`;
+    } catch(e) { ATLAS.ui.toast('Fehler: ' + e.message, 'error'); }
+  },
+  showAddArticle(kbId) {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">Neuer Artikel</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div class="form-group"><label class="form-label">Titel *</label><input id="na-title" class="form-input"></div>
+        <div class="form-group"><label class="form-label">Inhalt</label><textarea id="na-content" class="form-input" rows="10" style="font-family:monospace;" placeholder="Text, Anweisungen, Markdown…"></textarea></div>
+        <div class="form-group"><label class="form-label">Tags (kommagetrennt)</label><input id="na-tags" class="form-input" placeholder="SOP, Sicherheit, Fuhrpark"></div>
+        <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" id="na-pinned"> Anpinnen</label>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.knowledgePage.saveArticle(${kbId})">Erstellen</button>
+      </div>`);
+  },
+  async saveArticle(kbId) {
+    const title = document.getElementById('na-title')?.value.trim();
+    if (!title) { ATLAS.ui.toast('Titel erforderlich', 'warning'); return; }
+    const tags = (document.getElementById('na-tags')?.value||'').split(',').map(t=>t.trim()).filter(Boolean);
+    try {
+      await ATLAS.api.post(`/api/knowledge/${kbId}/articles`, { title, content: document.getElementById('na-content')?.value||'', tags, pinned: document.getElementById('na-pinned')?.checked||false });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Artikel erstellt', 'success'); await this.openKB(kbId);
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async editArticle(kbId, aid) {
+    try {
+      const a = await ATLAS.api.get(`/api/knowledge/${kbId}/articles/${aid}`);
+      const tags = JSON.parse(a.tags||'[]').join(', ');
+      ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">Artikel bearbeiten</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+        <div class="modal-body">
+          <div class="form-group"><label class="form-label">Titel *</label><input id="ea-title" class="form-input" value="${a.title}"></div>
+          <div class="form-group"><label class="form-label">Inhalt</label><textarea id="ea-content" class="form-input" rows="10" style="font-family:monospace;">${a.content}</textarea></div>
+          <div class="form-group"><label class="form-label">Tags</label><input id="ea-tags" class="form-input" value="${tags}"></div>
+          <label style="display:flex;align-items:center;gap:8px;cursor:pointer;"><input type="checkbox" id="ea-pinned" ${a.pinned?'checked':''}> Anpinnen</label>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+          <button class="btn btn-primary" onclick="ATLAS.knowledgePage.updateArticle(${kbId},${aid})">Speichern</button>
+        </div>`);
+    } catch(e) { ATLAS.ui.toast('Fehler: ' + e.message, 'error'); }
+  },
+  async updateArticle(kbId, aid) {
+    const tags = (document.getElementById('ea-tags')?.value||'').split(',').map(t=>t.trim()).filter(Boolean);
+    try {
+      await ATLAS.api.put(`/api/knowledge/${kbId}/articles/${aid}`, { title: document.getElementById('ea-title')?.value, content: document.getElementById('ea-content')?.value, tags, pinned: document.getElementById('ea-pinned')?.checked?1:0 });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Gespeichert', 'success'); await this.openKB(kbId);
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async deleteArticle(kbId, aid) {
+    if (!confirm('Artikel löschen?')) return;
+    try { await ATLAS.api.delete(`/api/knowledge/${kbId}/articles/${aid}`); ATLAS.ui.toast('Gelöscht', 'success'); await this.openKB(kbId); } catch(e) { ATLAS.ui.toast(e.message, 'error'); }
+  },
+  async globalSearch(q) {
+    if (!q || q.length < 2) { await this.loadKBs(); return; }
+    const el = document.getElementById('kb-content');
+    if (!el) return;
+    try {
+      const data = await ATLAS.api.get(`/api/knowledge/search?q=${encodeURIComponent(q)}`);
+      const results = data.results || [];
+      el.innerHTML = `<div style="margin-bottom:12px;color:var(--text-muted);">🔍 ${results.length} Ergebnisse</div>
+        ${!results.length?'<div class="card" style="padding:40px;text-align:center;color:var(--text-muted);">Keine Ergebnisse</div>':
+        results.map(r=>`<div class="card" style="margin-bottom:8px;cursor:pointer;" onclick="ATLAS.knowledgePage.openKB(${r.kb_id})">
+          <div><strong>${r.icon} ${r.kb_name}</strong> › ${r.title}</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">${(r.excerpt||'').substring(0,150)}</div>
+        </div>`).join('')}`;
+    } catch(e) {}
+  },
+  showAddKB() {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">Neue Wissensdatenbank</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div class="form-group"><label class="form-label">Name *</label><input id="nkb-name" class="form-input" placeholder="SOPs, Handbücher…"></div>
+        <div class="form-group"><label class="form-label">Beschreibung</label><input id="nkb-desc" class="form-input"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Icon</label><input id="nkb-icon" class="form-input" value="📚" maxlength="4"></div>
+          <div class="form-group"><label class="form-label">Farbe</label><input id="nkb-color" class="form-input" type="color" value="#4caf7d" style="padding:4px;height:42px;"></div>
+          <div class="form-group"><label class="form-label">Zugriff</label><select id="nkb-role" class="form-input"><option value="operator">Operator</option><option value="admin">Admin</option><option value="owner">Owner</option></select></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.knowledgePage.saveKB()">Erstellen</button>
+      </div>`);
+  },
+  async saveKB() {
+    const name = document.getElementById('nkb-name')?.value.trim();
+    if (!name) { ATLAS.ui.toast('Name erforderlich', 'warning'); return; }
+    try {
+      await ATLAS.api.post('/api/knowledge', { name, description: document.getElementById('nkb-desc')?.value||'', icon: document.getElementById('nkb-icon')?.value||'📚', color: document.getElementById('nkb-color')?.value||'#4caf7d', access_role: document.getElementById('nkb-role')?.value||'operator' });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Erstellt', 'success'); await this.loadKBs();
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  editKB(id, name, desc, icon, color, role) {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">Datenbank bearbeiten</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div class="form-group"><label class="form-label">Name</label><input id="ekb-name" class="form-input" value="${name}"></div>
+        <div class="form-group"><label class="form-label">Beschreibung</label><input id="ekb-desc" class="form-input" value="${desc}"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Icon</label><input id="ekb-icon" class="form-input" value="${icon}" maxlength="4"></div>
+          <div class="form-group"><label class="form-label">Farbe</label><input id="ekb-color" class="form-input" type="color" value="${color}" style="padding:4px;height:42px;"></div>
+          <div class="form-group"><label class="form-label">Zugriff</label><select id="ekb-role" class="form-input"><option value="operator" ${role==='operator'?'selected':''}>Operator</option><option value="admin" ${role==='admin'?'selected':''}>Admin</option><option value="owner" ${role==='owner'?'selected':''}>Owner</option></select></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.knowledgePage.updateKB(${id})">Speichern</button>
+      </div>`);
+  },
+  async updateKB(id) {
+    try {
+      await ATLAS.api.put(`/api/knowledge/${id}`, { name: document.getElementById('ekb-name')?.value, description: document.getElementById('ekb-desc')?.value, icon: document.getElementById('ekb-icon')?.value, color: document.getElementById('ekb-color')?.value, access_role: document.getElementById('ekb-role')?.value });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Gespeichert', 'success'); await this.loadKBs();
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async deleteKB(id, name) {
+    if (!confirm(`"${name}" und alle Artikel löschen?`)) return;
+    try { await ATLAS.api.delete(`/api/knowledge/${id}`); ATLAS.ui.toast('Gelöscht', 'success'); await this.loadKBs(); } catch(e) { ATLAS.ui.toast(e.message, 'error'); }
+  },
+};
+
+// ============================================================
+// WORK REQUESTS / PERMISSIONS WORKFLOW PAGE
+// ============================================================
+ATLAS.requestsPage = {
+  async render(el) {
+    el.innerHTML = `<div class="page-header">
+      <h2 class="page-title">📋 Anfragen & Genehmigungen</h2>
+      <div style="display:flex;gap:8px;">
+        <select id="req-status-filter" class="form-input" style="width:160px;" onchange="ATLAS.requestsPage.load()">
+          <option value="">Alle</option><option value="pending">Ausstehend</option><option value="approved">Genehmigt</option><option value="rejected">Abgelehnt</option><option value="completed">Abgeschlossen</option>
+        </select>
+        <button class="btn btn-primary" onclick="ATLAS.requestsPage.showCreate()">+ Neue Anfrage</button>
+      </div>
+    </div>
+    <div id="req-list"></div>`;
+    await this.load();
+  },
+  async load() {
+    const status = document.getElementById('req-status-filter')?.value || '';
+    try {
+      const data = await ATLAS.api.get(`/api/requests${status?'?status='+status:''}`);
+      const requests = data.requests || [];
+      const el = document.getElementById('req-list');
+      if (!el) return;
+      if (!requests.length) { el.innerHTML = '<div class="card" style="text-align:center;padding:40px;color:var(--text-muted);">📋 Keine Anfragen</div>'; return; }
+      const sc={pending:'var(--warning)',approved:'var(--success)',rejected:'var(--danger)',completed:'var(--text-muted)',in_progress:'var(--info)'};
+      const pc={low:'var(--text-muted)',normal:'var(--accent)',high:'var(--warning)',urgent:'var(--danger)'};
+      const isAdmin = ATLAS.state.user?.role==='admin'||ATLAS.state.user?.role==='owner';
+      el.innerHTML = `<div style="display:flex;flex-direction:column;gap:8px;">
+        ${requests.map(r=>`<div class="card" style="cursor:pointer;" onclick="ATLAS.requestsPage.showDetail(${r.id})">
+          <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
+            <div style="flex:1;">
+              <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                <strong>${r.title}</strong>
+                <span style="font-size:11px;background:${sc[r.status]||'var(--accent)'};color:white;padding:1px 8px;border-radius:10px;">${r.status}</span>
+                <span style="font-size:11px;color:${pc[r.priority]||'var(--accent)'};">⬆ ${r.priority}</span>
+                <span style="font-size:11px;background:var(--surface-2);padding:1px 6px;border-radius:8px;">${r.type}</span>
+              </div>
+              <div style="font-size:12px;color:var(--text-muted);margin-top:4px;">Von: ${r.requester_name||'?'} · ${r.created_at?.substring(0,16)||''}${r.due_date?` · Fällig: ${r.due_date}`:''}</div>
+            </div>
+            ${r.status==='pending'&&isAdmin?`<div style="display:flex;gap:4px;" onclick="event.stopPropagation()">
+              <button class="btn btn-success btn-sm" onclick="ATLAS.requestsPage.approve(${r.id})">✓</button>
+              <button class="btn btn-danger btn-sm" onclick="ATLAS.requestsPage.reject(${r.id})">✗</button>
+            </div>`:''}
+          </div>
+          ${r.description?`<div style="font-size:12px;color:var(--text-muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--border);">${r.description.substring(0,120)}${r.description.length>120?'…':''}</div>`:''}
+        </div>`).join('')}
+      </div>`;
+    } catch(e) { ATLAS.ui.toast('Fehler: ' + e.message, 'error'); }
+  },
+  showCreate() {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">Neue Anfrage</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div class="form-group"><label class="form-label">Titel *</label><input id="nr-title" class="form-input" placeholder="Zugang zu System XY beantragen…"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Typ</label><select id="nr-type" class="form-input"><option value="general">Allgemein</option><option value="access">Zugang/Berechtigung</option><option value="purchase">Beschaffung</option><option value="maintenance">Wartung</option><option value="leave">Abwesenheit</option><option value="report">Meldung</option></select></div>
+          <div class="form-group"><label class="form-label">Priorität</label><select id="nr-prio" class="form-input"><option value="low">Niedrig</option><option value="normal" selected>Normal</option><option value="high">Hoch</option><option value="urgent">Dringend</option></select></div>
+        </div>
+        <div class="form-group"><label class="form-label">Fälligkeitsdatum</label><input id="nr-due" class="form-input" type="date"></div>
+        <div class="form-group"><label class="form-label">Beschreibung</label><textarea id="nr-desc" class="form-input" rows="4" placeholder="Detaillierte Beschreibung…"></textarea></div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.requestsPage.submitCreate()">Einreichen</button>
+      </div>`);
+  },
+  async submitCreate() {
+    const title = document.getElementById('nr-title')?.value.trim();
+    if (!title) { ATLAS.ui.toast('Titel erforderlich', 'warning'); return; }
+    try {
+      await ATLAS.api.post('/api/requests', { title, type: document.getElementById('nr-type').value, priority: document.getElementById('nr-prio').value, due_date: document.getElementById('nr-due').value||null, description: document.getElementById('nr-desc').value||'' });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Eingereicht', 'success'); await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  async showDetail(rid) {
+    try {
+      const r = await ATLAS.api.get(`/api/requests/${rid}`);
+      const isAdmin = ATLAS.state.user?.role==='admin'||ATLAS.state.user?.role==='owner';
+      ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">📋 ${r.title}</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+        <div class="modal-body">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px;">
+            <div><label class="form-label">Status</label><strong>${r.status}</strong></div>
+            <div><label class="form-label">Priorität</label><strong>${r.priority}</strong></div>
+            <div><label class="form-label">Typ</label>${r.type}</div>
+            <div><label class="form-label">Fällig</label>${r.due_date||'–'}</div>
+            <div><label class="form-label">Ersteller</label>${r.requester_name||'–'}</div>
+            <div><label class="form-label">Zugewiesen</label>${r.assigned_name||'–'}</div>
+          </div>
+          ${r.description?`<div class="form-group"><label class="form-label">Beschreibung</label><div style="background:var(--surface-2);padding:10px;border-radius:6px;">${r.description}</div></div>`:''}
+          ${r.rejection_reason?`<div style="background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);padding:10px;border-radius:6px;margin-bottom:12px;"><strong>Ablehnungsgrund:</strong> ${r.rejection_reason}</div>`:''}
+          <div class="form-group">
+            <label class="form-label">Kommentare (${r.comments?.length||0})</label>
+            <div style="max-height:180px;overflow-y:auto;background:var(--surface-2);border-radius:6px;padding:8px;margin-bottom:8px;">
+              ${(r.comments||[]).map(c=>`<div style="padding:6px 0;border-bottom:1px solid var(--border);"><strong>${c.full_name}</strong> <span style="font-size:11px;color:var(--text-muted);">${c.ts?.substring(0,16)}</span><br>${c.content}</div>`).join('')||'<div style="color:var(--text-muted);font-size:13px;">Keine Kommentare</div>'}
+            </div>
+            <div style="display:flex;gap:8px;">
+              <input id="req-comment" class="form-input" placeholder="Kommentar…" style="flex:1;" onkeydown="if(event.key==='Enter')ATLAS.requestsPage.addComment(${rid})">
+              <button class="btn btn-secondary btn-sm" onclick="ATLAS.requestsPage.addComment(${rid})">Senden</button>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          ${r.status==='pending'&&isAdmin?`<button class="btn btn-success" onclick="ATLAS.requestsPage.approve(${rid});ATLAS.ui.closeModal()">✓ Genehmigen</button><button class="btn btn-danger" onclick="ATLAS.requestsPage.reject(${rid})">✗ Ablehnen</button>`:''}
+          ${r.status!=='completed'&&r.requester_id===ATLAS.state.user?.id?`<button class="btn btn-secondary" onclick="ATLAS.requestsPage.markDone(${rid})">✓ Erledigt</button>`:''}
+          <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Schließen</button>
+        </div>`);
+    } catch(e) { ATLAS.ui.toast('Fehler: ' + e.message, 'error'); }
+  },
+  async addComment(rid) {
+    const content = document.getElementById('req-comment')?.value.trim();
+    if (!content) return;
+    try { await ATLAS.api.post(`/api/requests/${rid}/comments`, { content }); ATLAS.ui.closeModal(); await this.showDetail(rid); } catch(e) { ATLAS.ui.toast(e.message, 'error'); }
+  },
+  async approve(rid) {
+    if (!confirm('Genehmigen?')) return;
+    try { await ATLAS.api.post(`/api/requests/${rid}/approve`, {}); ATLAS.ui.toast('Genehmigt', 'success'); await this.load(); } catch(e) { ATLAS.ui.toast(e.message, 'error'); }
+  },
+  reject(rid) {
+    const reason = prompt('Ablehnungsgrund:');
+    if (reason === null) return;
+    ATLAS.api.post(`/api/requests/${rid}/reject`, { reason: reason||'' }).then(()=>{ ATLAS.ui.toast('Abgelehnt','success'); this.load(); }).catch(e=>ATLAS.ui.toast(e.message,'error'));
+  },
+  async markDone(rid) {
+    try { await ATLAS.api.put(`/api/requests/${rid}`, { status: 'completed' }); ATLAS.ui.toast('Erledigt','success'); ATLAS.ui.closeModal(); await this.load(); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+};
+
+// ============================================================
+// RASPBERRY PI NODE MANAGER PAGE
+// ============================================================
+ATLAS.piManagerPage = {
+  _nodes: [],
+  _TASKS: ['sensor_polling','alert_relay','backup_agent','access_shield','gps_tracking','camera','audio_monitor','gpio_control','network_monitor'],
+  async render(el) {
+    el.innerHTML = `<div class="page-header">
+      <h2 class="page-title">🍓 Pi-Netzwerk</h2>
+      <div style="display:flex;gap:8px;">
+        <button class="btn btn-secondary" onclick="ATLAS.piManagerPage.load()">↻ Refresh</button>
+        <button class="btn btn-primary" onclick="ATLAS.piManagerPage.showAdd()">+ Pi hinzufügen</button>
+      </div>
+    </div>
+    <div id="pi-nodes-list"></div>
+    <div class="card" style="margin-top:20px;">
+      <div class="card-title">📖 Setup-Anleitung für neue Pi-Knoten</div>
+      <div style="font-size:13px;line-height:1.8;">
+        <p><strong>1. Pi vorbereiten:</strong> Raspberry Pi OS Lite + SSH aktivieren</p>
+        <p><strong>2.</strong> <code style="background:var(--surface-2);padding:2px 6px;border-radius:4px;">pip3 install requests psutil</code></p>
+        <p><strong>3. Heartbeat-Skript</strong> <code>/opt/cchq_agent.py</code>:</p>
+        <pre style="background:var(--surface-2);padding:12px;border-radius:6px;overflow-x:auto;font-size:11px;white-space:pre;">import requests, psutil, time
+API_KEY = "PI-xxxx..."  # aus dem App kopieren
+SERVER  = "http://DEINE_SERVER_IP:8080"
+while True:
+    try:
+        r = requests.post(f"{SERVER}/api/pi/heartbeat",
+            headers={"X-Pi-Key": API_KEY},
+            json={"cpu_pct": psutil.cpu_percent(),
+                  "mem_pct": psutil.virtual_memory().percent,
+                  "disk_free_mb": psutil.disk_usage('/').free/1024**2,
+                  "temp_c": float(open('/sys/class/thermal/thermal_zone0/temp').read())/1000},
+            timeout=10)
+        tasks = r.json().get("tasks", [])
+    except Exception as e: print(e)
+    time.sleep(30)</pre>
+        <p><strong>4. Autostart:</strong> <code style="background:var(--surface-2);padding:2px 6px;border-radius:4px;">@reboot python3 /opt/cchq_agent.py &amp;</code> via crontab</p>
+        <p><strong>Backup-Pi:</strong> Als Backup markieren → startet automatisch wenn Hauptserver offline geht.</p>
+      </div>
+    </div>`;
+    await this.load();
+  },
+  async load() {
+    try {
+      const data = await ATLAS.api.get('/api/pi/nodes');
+      this._nodes = data.nodes || [];
+      this.renderNodes();
+    } catch(e) { ATLAS.ui.toast('Fehler: ' + e.message, 'error'); }
+  },
+  renderNodes() {
+    const el = document.getElementById('pi-nodes-list');
+    if (!el) return;
+    if (!this._nodes.length) { el.innerHTML = '<div class="card" style="text-align:center;padding:40px;color:var(--text-muted);">🍓 Noch keine Pi-Knoten registriert</div>'; return; }
+    const sc={online:'var(--success)',offline:'var(--danger)',unknown:'var(--text-muted)'};
+    el.innerHTML = `<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px;">
+      ${this._nodes.map(n=>{
+        const tasks = JSON.parse(n.assigned_tasks||'[]');
+        return `<div class="card" style="border-left:4px solid ${sc[n.status]||'var(--text-muted)'};">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+            <span style="font-size:28px;">${n.is_backup?'🛡':'🍓'}</span>
+            <div style="flex:1;">
+              <div style="font-weight:700;">${n.name} ${n.is_backup?'<span style="font-size:10px;background:var(--warning);color:black;padding:1px 5px;border-radius:8px;">BACKUP</span>':''}</div>
+              <div style="font-size:12px;color:var(--text-muted);">${n.hostname}${n.ip?' · '+n.ip:''}</div>
+            </div>
+            <span style="width:10px;height:10px;border-radius:50%;background:${sc[n.status]||'var(--text-muted)'};" title="${n.status}"></span>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;font-size:12px;margin-bottom:10px;">
+            <div style="text-align:center;background:var(--surface-2);padding:6px;border-radius:6px;"><div style="font-weight:700;font-size:16px;">${n.cpu_pct!=null?n.cpu_pct.toFixed(0)+'%':'–'}</div><div style="color:var(--text-muted);">CPU</div></div>
+            <div style="text-align:center;background:var(--surface-2);padding:6px;border-radius:6px;"><div style="font-weight:700;font-size:16px;">${n.mem_pct!=null?n.mem_pct.toFixed(0)+'%':'–'}</div><div style="color:var(--text-muted);">RAM</div></div>
+            <div style="text-align:center;background:var(--surface-2);padding:6px;border-radius:6px;"><div style="font-weight:700;font-size:16px;">${n.temp_c!=null?n.temp_c.toFixed(1)+'°':'–'}</div><div style="color:var(--text-muted);">Temp</div></div>
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);margin-bottom:8px;">Zuletzt: ${n.last_seen?new Date(n.last_seen).toLocaleString('de'):'Nie'} · ${n.role}</div>
+          ${tasks.length?`<div style="margin-bottom:8px;">${tasks.map(t=>`<span style="background:var(--accent);color:white;font-size:10px;padding:2px 6px;border-radius:8px;margin-right:4px;">${t}</span>`).join('')}</div>`:''}
+          <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <button class="btn btn-secondary btn-sm" onclick="ATLAS.piManagerPage.showTasks(${n.id})">📋 Aufgaben</button>
+            <button class="btn btn-secondary btn-sm" onclick="ATLAS.piManagerPage.showApiKey('${n.api_key}')">🔑 API-Key</button>
+            <button class="btn btn-secondary btn-sm" onclick="ATLAS.piFailoverPanel.showForNode(${n.id},'${n.name.replace(/'/g,"\\'")}')">🔄 Failover</button>
+            <button class="btn btn-secondary btn-sm" onclick="ATLAS.piShieldPanel.showForNode(${n.id},'${n.name.replace(/'/g,"\\'")}')">🛡️ Shield</button>
+            <button class="btn btn-danger btn-sm" onclick="ATLAS.piManagerPage.del(${n.id},'${n.name.replace(/'/g,"\\'")}')">🗑</button>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+  },
+  showAdd() {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">🍓 Pi-Knoten registrieren</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div class="form-group"><label class="form-label">Name *</label><input id="np-name" class="form-input" placeholder="Pi-Sensor-1, Backup-Pi…"></div>
+        <div class="form-group"><label class="form-label">Hostname *</label><input id="np-host" class="form-input" placeholder="raspberrypi.local, 192.168.1.100"></div>
+        <div class="form-group"><label class="form-label">IP-Adresse</label><input id="np-ip" class="form-input" placeholder="192.168.1.100"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div class="form-group"><label class="form-label">Rolle</label><select id="np-role" class="form-input"><option value="sensor">Sensor-Knoten</option><option value="relay">Relay/Gateway</option><option value="backup">Backup-Server</option><option value="access_shield">Zugriffsschutz</option><option value="camera">Kamera</option></select></div>
+          <div class="form-group"><label class="form-label" style="display:flex;align-items:center;gap:6px;"><input type="checkbox" id="np-backup"> Automatisches Backup</label>
+            <input id="np-prio" class="form-input" type="number" value="0" min="0" max="10" placeholder="Priorität (0-10)"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.piManagerPage.saveAdd()">Registrieren & API-Key generieren</button>
+      </div>`);
+  },
+  async saveAdd() {
+    const name = document.getElementById('np-name')?.value.trim();
+    const hostname = document.getElementById('np-host')?.value.trim();
+    if (!name||!hostname) { ATLAS.ui.toast('Name und Hostname erforderlich', 'warning'); return; }
+    try {
+      const node = await ATLAS.api.post('/api/pi/nodes', { name, hostname, ip: document.getElementById('np-ip').value||null, role: document.getElementById('np-role').value, is_backup: document.getElementById('np-backup').checked, backup_priority: parseInt(document.getElementById('np-prio').value)||0 });
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Pi registriert', 'success'); await this.load();
+      this.showApiKey(node.api_key);
+    } catch(e) { ATLAS.ui.toast(e.message||'Fehler', 'error'); }
+  },
+  showApiKey(apiKey) {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">🔑 API-Key</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <p style="color:var(--text-muted);font-size:13px;">In das Heartbeat-Skript auf dem Pi eintragen:</p>
+        <div style="font-family:monospace;font-size:14px;background:var(--surface-2);padding:14px;border-radius:8px;word-break:break-all;user-select:all;">${apiKey}</div>
+        <button class="btn btn-secondary btn-sm" style="margin-top:8px;" onclick="navigator.clipboard.writeText('${apiKey}');ATLAS.ui.toast('Kopiert','success')">📋 Kopieren</button>
+      </div>
+      <div class="modal-footer"><button class="btn btn-primary" onclick="ATLAS.ui.closeModal()">OK</button></div>`);
+  },
+  showTasks(nid) {
+    const node = this._nodes.find(n=>n.id===nid);
+    if (!node) return;
+    const assigned = JSON.parse(node.assigned_tasks||'[]');
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">📋 Aufgaben: ${node.name}</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div style="display:flex;flex-direction:column;gap:6px;">
+          ${this._TASKS.map(t=>`<label style="display:flex;align-items:center;gap:8px;cursor:pointer;padding:6px;border-radius:6px;background:var(--surface-2);">
+            <input type="checkbox" id="pt-${t}" ${assigned.includes(t)?'checked':''}> ${t}
+          </label>`).join('')}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+        <button class="btn btn-primary" onclick="ATLAS.piManagerPage.saveTasks(${nid})">Speichern</button>
+      </div>`);
+  },
+  async saveTasks(nid) {
+    const tasks = this._TASKS.filter(t=>document.getElementById('pt-'+t)?.checked);
+    try { await ATLAS.api.put(`/api/pi/nodes/${nid}`, { assigned_tasks: tasks }); ATLAS.ui.closeModal(); ATLAS.ui.toast('Aufgaben gespeichert','success'); await this.load(); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+  async del(nid, name) {
+    if (!confirm(`"${name}" entfernen?`)) return;
+    try { await ATLAS.api.delete(`/api/pi/nodes/${nid}`); ATLAS.ui.toast('Entfernt','success'); await this.load(); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+};
+
+/* ============================================================
+   Infrastructure Scanner Custom Categories Panel
+============================================================ */
+ATLAS.infraCategoryPanel = {
+  _cats: [],
+  async showPanel() {
+    await this.load();
+    ATLAS.ui.showModal(this._renderPanel());
+  },
+  async load() {
+    const r = await ATLAS.api.get('/api/infrastructure/categories');
+    this._cats = r.categories || [];
+  },
+  _renderPanel() {
+    const cats = this._cats;
+    return `<div class="modal-header"><div class="modal-title">📍 Infra-Kategorien verwalten</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+    <div class="modal-body">
+      <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
+        <button class="btn btn-primary btn-sm" onclick="ATLAS.infraCategoryPanel.showCreate()">+ Neue Kategorie</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        ${cats.length ? cats.map(c=>`
+          <div style="display:flex;align-items:center;gap:10px;padding:10px;background:var(--surface-2);border-radius:8px;border-left:4px solid ${c.color||'#6366f1'};">
+            <span style="font-size:20px;">${c.icon}</span>
+            <div style="flex:1;">
+              <div style="font-weight:600;">${c.name}</div>
+              <div style="font-size:11px;color:var(--text-muted);">${c.overpass_query ? 'Overpass: '+c.overpass_query.substring(0,60)+'…' : c.custom_type ? 'Custom: '+c.custom_type : 'Kein Query'}</div>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <button class="btn btn-secondary btn-sm" onclick="ATLAS.infraCategoryPanel.showEdit(${c.id})">✏️</button>
+              <button class="btn btn-danger btn-sm" onclick="ATLAS.infraCategoryPanel.del(${c.id},'${c.name.replace(/'/g,"\\'")}')">🗑️</button>
+            </div>
+          </div>`).join('') : '<div style="text-align:center;color:var(--text-muted);padding:20px;">Keine Kategorien angelegt</div>'}
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Schließen</button></div>`;
+  },
+  showCreate() {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">➕ Neue Kategorie</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+    <div class="modal-body">
+      <div class="form-group"><label>Name</label><input id="ic-name" class="form-control" placeholder="z.B. Gasabsperrung"></div>
+      <div class="form-group" style="display:flex;gap:10px;">
+        <div style="flex:1;"><label>Icon (Emoji)</label><input id="ic-icon" class="form-control" value="📍" maxlength="4"></div>
+        <div style="flex:1;"><label>Farbe</label><input id="ic-color" type="color" class="form-control" value="#6366f1" style="height:38px;padding:2px;"></div>
+      </div>
+      <div class="form-group"><label>Overpass-Query Fragment <small style="color:var(--text-muted)">(optional, {radius},{lat},{lng} werden ersetzt)</small></label>
+        <textarea id="ic-oq" class="form-control" rows="3" placeholder='node["man_made"="gas_shutoff"](around:{radius},{lat},{lng});'></textarea></div>
+      <div class="form-group"><label>OSM Custom-Type Key <small style="color:var(--text-muted)">(für automatische Erkennung, z.B. "gas")</small></label>
+        <input id="ic-ct" class="form-control" placeholder="z.B. gas"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="ATLAS.infraCategoryPanel.showPanel()">Zurück</button>
+      <button class="btn btn-primary" onclick="ATLAS.infraCategoryPanel.save()">Erstellen</button>
+    </div>`);
+  },
+  showEdit(id) {
+    const c = this._cats.find(x=>x.id===id); if (!c) return;
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">✏️ Kategorie bearbeiten</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+    <div class="modal-body">
+      <div class="form-group"><label>Name</label><input id="ic-name" class="form-control" value="${c.name}"></div>
+      <div class="form-group" style="display:flex;gap:10px;">
+        <div style="flex:1;"><label>Icon</label><input id="ic-icon" class="form-control" value="${c.icon}"></div>
+        <div style="flex:1;"><label>Farbe</label><input id="ic-color" type="color" class="form-control" value="${c.color||'#6366f1'}" style="height:38px;padding:2px;"></div>
+      </div>
+      <div class="form-group"><label>Overpass-Query</label><textarea id="ic-oq" class="form-control" rows="3">${c.overpass_query||''}</textarea></div>
+      <div class="form-group"><label>Custom-Type</label><input id="ic-ct" class="form-control" value="${c.custom_type||''}"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="ATLAS.infraCategoryPanel.showPanel()">Zurück</button>
+      <button class="btn btn-primary" onclick="ATLAS.infraCategoryPanel.update(${id})">Speichern</button>
+    </div>`);
+  },
+  async save() {
+    const d = { name: document.getElementById('ic-name').value, icon: document.getElementById('ic-icon').value,
+      color: document.getElementById('ic-color').value, overpass_query: document.getElementById('ic-oq').value||null,
+      custom_type: document.getElementById('ic-ct').value||null };
+    try { await ATLAS.api.post('/api/infrastructure/categories', d); ATLAS.ui.toast('Erstellt','success'); await this.showPanel(); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+  async update(id) {
+    const d = { name: document.getElementById('ic-name').value, icon: document.getElementById('ic-icon').value,
+      color: document.getElementById('ic-color').value, overpass_query: document.getElementById('ic-oq').value||null,
+      custom_type: document.getElementById('ic-ct').value||null };
+    try { await ATLAS.api.put(`/api/infrastructure/categories/${id}`, d); ATLAS.ui.toast('Gespeichert','success'); await this.showPanel(); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+  async del(id, name) {
+    if (!confirm(`Kategorie "${name}" löschen?`)) return;
+    try { await ATLAS.api.delete(`/api/infrastructure/categories/${id}`); ATLAS.ui.toast('Gelöscht','success'); await this.showPanel(); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+};
+
+/* ============================================================
+   System Monitor Extended Page (Overhaul)
+============================================================ */
+ATLAS.healthPage = {
+  _data: null,
+  _interval: null,
+  async render(container) {
+    container.innerHTML = `<div style="padding:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <h2 style="margin:0;">🖥️ Systemüberwachung</h2>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.healthPage.refresh()">↻ Aktualisieren</button>
+          <select id="sm-interval" class="form-control" style="width:auto;padding:4px 8px;font-size:13px;" onchange="ATLAS.healthPage.setInterval()">
+            <option value="0">Manuell</option><option value="5000" selected>5s Auto</option><option value="10000">10s</option><option value="30000">30s</option>
+          </select>
+        </div>
+      </div>
+      <div id="sm-content"><div style="text-align:center;padding:40px;color:var(--text-muted);">Lade…</div></div>
+    </div>`;
+    await this.refresh();
+    this.setInterval();
+  },
+  setInterval() {
+    if (this._interval) clearInterval(this._interval);
+    const v = parseInt(document.getElementById('sm-interval')?.value || '0');
+    if (v > 0) this._interval = setInterval(() => this.refresh(), v);
+  },
+  async refresh() {
+    try {
+      const d = await ATLAS.api.get('/api/system/monitor/extended');
+      this._data = d;
+      this._render(d);
+    } catch(e) {
+      // Fallback to basic monitor
+      try {
+        const d = await ATLAS.api.get('/api/system/monitor');
+        this._data = d;
+        this._renderBasic(d);
+      } catch(e2) {
+        document.getElementById('sm-content').innerHTML = `<div style="color:var(--danger);padding:20px;">Fehler: ${e2.message}</div>`;
+      }
+    }
+  },
+  _kpiCard(icon, label, value, sub='', color='var(--primary)') {
+    return `<div style="background:var(--surface-2);border-radius:10px;padding:16px;border-top:3px solid ${color};">
+      <div style="font-size:22px;">${icon}</div>
+      <div style="font-size:22px;font-weight:700;color:${color};">${value}</div>
+      <div style="font-size:12px;color:var(--text-muted);">${label}</div>
+      ${sub ? `<div style="font-size:11px;color:var(--text-muted);margin-top:2px;">${sub}</div>` : ''}
+    </div>`;
+  },
+  _progressBar(pct, color='#4caf7d') {
+    const safe = Math.min(100, Math.max(0, pct||0));
+    const c = pct > 85 ? '#e53935' : pct > 70 ? '#f57c00' : color;
+    return `<div style="background:var(--surface-3);border-radius:4px;height:8px;overflow:hidden;">
+      <div style="width:${safe}%;background:${c};height:100%;border-radius:4px;transition:width 0.5s;"></div>
+    </div>`;
+  },
+  _render(d) {
+    const cur = d.current || {};
+    const sys = d.system || {};
+    const app = d.application || {};
+    const plat = d.platform || {};
+    const pi = d.pi_nodes || [];
+    const cpu = sys.cpu || {};
+    const mem = sys.memory || {};
+    const disks = sys.disk || [];
+    const procs = sys.processes || [];
+    const netio = (sys.network||{}).io || {};
+    const diskio = sys.disk_io || {};
+    const uptime_s = sys.uptime_s || 0;
+    const uptimeStr = uptime_s ? `${Math.floor(uptime_s/3600)}h ${Math.floor((uptime_s%3600)/60)}m` : '–';
+
+    const html = `
+    <!-- KPI Row -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:20px;">
+      ${this._kpiCard('🖥️','CPU', `${(cpu.percent||cur.cpu_pct||0).toFixed(1)}%`, `${cpu.count||1} Kerne`, '#6366f1')}
+      ${this._kpiCard('💾','RAM', `${(mem.pct||cur.mem_pct||0).toFixed(1)}%`, `${mem.used_gb||'?'}/${mem.total_gb||'?'} GB`, '#ec4899')}
+      ${this._kpiCard('💿','Disk', disks.length ? `${disks[0].pct}%` : (cur.disk_free_mb ? Math.round(cur.disk_free_mb)+'MB frei' : '–'), disks.length ? `${disks[0].free_gb}GB frei` : '', '#f59e0b')}
+      ${this._kpiCard('⏱️','Uptime', uptimeStr, plat.os || '', '#10b981')}
+      ${this._kpiCard('👤','Nutzer', app.active_users||0, `${app.active_sessions||0} Sessions`, '#6366f1')}
+      ${this._kpiCard('🔔','Alerts', app.active_alerts||0, `${app.active_incidents||0} Incidents`, (app.active_alerts||0)>0?'#e53935':'#10b981')}
+      ${this._kpiCard('📡','WS', app.websocket_connections||0, 'Live-Verbindungen', '#0ea5e9')}
+      ${this._kpiCard('📊','API/24h', app.api_requests_24h||0, `${app.rate_limit_hits_24h||0} RL-Hits`, '#8b5cf6')}
+    </div>
+
+    <!-- CPU + Memory detail -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+      <div style="background:var(--surface-2);border-radius:10px;padding:16px;">
+        <div style="font-weight:600;margin-bottom:10px;">🖥️ CPU Details</div>
+        ${cpu.per_core ? cpu.per_core.map((v,i)=>`
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span style="font-size:11px;color:var(--text-muted);width:40px;">Core${i}</span>
+            ${this._progressBar(v)}
+            <span style="font-size:11px;width:35px;text-align:right;">${v.toFixed(0)}%</span>
+          </div>`).join('') : `<div>${this._progressBar(cur.cpu_pct||0)}</div>`}
+        ${cpu.freq_mhz ? `<div style="font-size:11px;color:var(--text-muted);margin-top:6px;">${cpu.freq_mhz} MHz / max ${cpu.freq_max_mhz||'?'} MHz</div>` : ''}
+      </div>
+      <div style="background:var(--surface-2);border-radius:10px;padding:16px;">
+        <div style="font-weight:600;margin-bottom:10px;">💾 Speicher</div>
+        <div style="margin-bottom:8px;">
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>RAM</span><span>${mem.used_gb||'?'} / ${mem.total_gb||'?'} GB</span></div>
+          ${this._progressBar(mem.pct||cur.mem_pct)}
+        </div>
+        ${mem.swap_total_gb ? `<div>
+          <div style="display:flex;justify-content:space-between;font-size:13px;margin-bottom:4px;"><span>Swap</span><span>${mem.swap_total_gb} GB</span></div>
+          ${this._progressBar(mem.swap_used_pct)}
+        </div>` : ''}
+        ${sys.battery ? `<div style="margin-top:10px;font-size:12px;">🔋 ${sys.battery.percent}% ${sys.battery.plugged ? '(AC)' : '(Batterie)'}</div>` : ''}
+      </div>
+    </div>
+
+    <!-- Disk + Network I/O -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+      <div style="background:var(--surface-2);border-radius:10px;padding:16px;">
+        <div style="font-weight:600;margin-bottom:10px;">💿 Laufwerke</div>
+        ${disks.map(d=>`
+          <div style="margin-bottom:10px;">
+            <div style="display:flex;justify-content:space-between;font-size:12px;margin-bottom:3px;">
+              <span style="font-family:monospace;">${d.mountpoint}</span>
+              <span>${d.used_gb}/${d.total_gb} GB (${d.pct}%)</span>
+            </div>
+            ${this._progressBar(d.pct)}
+            <div style="font-size:10px;color:var(--text-muted);">${d.fstype||''}</div>
+          </div>`).join('') || `<div style="color:var(--text-muted);font-size:13px;">Keine Laufwerksdaten (psutil fehlt)</div>`}
+        ${Object.keys(diskio).length ? `<div style="font-size:11px;color:var(--text-muted);border-top:1px solid var(--border);padding-top:6px;margin-top:6px;">
+          I/O: ↑ ${diskio.write_mb||0}MB / ↓ ${diskio.read_mb||0}MB gelesen
+        </div>` : ''}
+      </div>
+      <div style="background:var(--surface-2);border-radius:10px;padding:16px;">
+        <div style="font-weight:600;margin-bottom:10px;">🌐 Netzwerk</div>
+        ${Object.keys(netio).length ? `
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px;">
+            <div style="background:var(--surface-3);border-radius:6px;padding:8px;text-align:center;">
+              <div style="font-size:16px;font-weight:700;color:#0ea5e9;">↑ ${netio.sent_mb||0}</div>
+              <div style="font-size:10px;color:var(--text-muted);">MB gesendet</div>
+            </div>
+            <div style="background:var(--surface-3);border-radius:6px;padding:8px;text-align:center;">
+              <div style="font-size:16px;font-weight:700;color:#10b981;">↓ ${netio.recv_mb||0}</div>
+              <div style="font-size:10px;color:var(--text-muted);">MB empfangen</div>
+            </div>
+          </div>
+          <div style="font-size:11px;color:var(--text-muted);">Fehler: ↑${netio.err_out||0} / ↓${netio.err_in||0}</div>
+        ` : '<div style="color:var(--text-muted);font-size:13px;">Keine Netzwerkdaten (psutil fehlt)</div>'}
+        <!-- Temperatures -->
+        ${Object.keys(sys.temperatures||{}).length ? `
+          <div style="margin-top:10px;border-top:1px solid var(--border);padding-top:8px;">
+            <div style="font-size:12px;font-weight:600;margin-bottom:4px;">🌡️ Temperaturen</div>
+            ${Object.entries(sys.temperatures||{}).map(([k,vals])=>
+              vals.map(t=>`<div style="font-size:11px;display:flex;justify-content:space-between;"><span>${k} ${t.label}</span><span style="color:${(t.current||0)>75?'#e53935':'var(--text)'}">${t.current}°C</span></div>`).join('')
+            ).join('')}
+          </div>` : ''}
+      </div>
+    </div>
+
+    <!-- Processes -->
+    ${procs.length ? `
+    <div style="background:var(--surface-2);border-radius:10px;padding:16px;margin-bottom:16px;">
+      <div style="font-weight:600;margin-bottom:10px;">⚙️ Top Prozesse (CPU)</div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:12px;">
+          <thead><tr style="color:var(--text-muted);">
+            <th style="text-align:left;padding:4px 8px;">PID</th>
+            <th style="text-align:left;padding:4px 8px;">Name</th>
+            <th style="text-align:right;padding:4px 8px;">CPU%</th>
+            <th style="text-align:right;padding:4px 8px;">RAM%</th>
+            <th style="text-align:left;padding:4px 8px;">Status</th>
+            <th style="text-align:left;padding:4px 8px;">User</th>
+          </tr></thead>
+          <tbody>${procs.map(p=>`<tr style="border-top:1px solid var(--border);">
+            <td style="padding:4px 8px;font-family:monospace;">${p.pid||''}</td>
+            <td style="padding:4px 8px;">${p.name||''}</td>
+            <td style="padding:4px 8px;text-align:right;color:${(p.cpu_percent||0)>50?'#e53935':'var(--text)'}">${(p.cpu_percent||0).toFixed(1)}</td>
+            <td style="padding:4px 8px;text-align:right;">${(p.memory_percent||0).toFixed(1)}</td>
+            <td style="padding:4px 8px;"><span style="font-size:10px;padding:2px 6px;border-radius:10px;background:${p.status==='running'?'#10b981':'var(--surface-3)'};color:${p.status==='running'?'white':'var(--text-muted)'};">${p.status||''}</span></td>
+            <td style="padding:4px 8px;color:var(--text-muted);">${p.username||''}</td>
+          </tr>`).join('')}</tbody>
+        </table>
+      </div>
+    </div>` : ''}
+
+    <!-- Pi Nodes in monitor -->
+    ${pi.length ? `
+    <div style="background:var(--surface-2);border-radius:10px;padding:16px;margin-bottom:16px;">
+      <div style="font-weight:600;margin-bottom:10px;">🍓 Pi-Knoten Status</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;">
+        ${pi.map(n=>`<div style="background:var(--surface-3);border-radius:8px;padding:10px;border-left:3px solid ${n.status==='online'?'#10b981':'#e53935'};">
+          <div style="font-weight:600;font-size:13px;">${n.name}</div>
+          <div style="font-size:11px;color:var(--text-muted);">${n.ip||n.hostname}</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-top:6px;font-size:11px;">
+            <span>CPU: ${n.cpu_pct!=null?n.cpu_pct+'%':'–'}</span>
+            <span>RAM: ${n.mem_pct!=null?n.mem_pct+'%':'–'}</span>
+            <span>Temp: ${n.temp_c!=null?n.temp_c+'°C':'–'}</span>
+            <span>${n.is_backup?'🔄 Backup':''}</span>
+          </div>
+        </div>`).join('')}
+      </div>
+    </div>` : ''}
+
+    <!-- API requests chart (last 24h) -->
+    ${app.req_by_hour && app.req_by_hour.length ? `
+    <div style="background:var(--surface-2);border-radius:10px;padding:16px;margin-bottom:16px;">
+      <div style="font-weight:600;margin-bottom:10px;">📊 API-Requests letzte 24h (nach Stunde)</div>
+      <div style="display:flex;align-items:flex-end;height:80px;gap:2px;">
+        ${(()=>{
+          const maxC = Math.max(...app.req_by_hour.map(r=>r.c), 1);
+          return app.req_by_hour.map(r=>`<div title="${r.h}:00 — ${r.c} Requests" style="flex:1;background:var(--primary);border-radius:2px 2px 0 0;height:${Math.round((r.c/maxC)*100)}%;min-width:4px;"></div>`).join('');
+        })()}
+      </div>
+      <div style="font-size:10px;color:var(--text-muted);margin-top:4px;">Top Endpoint: ${app.top_endpoints && app.top_endpoints[0] ? app.top_endpoints[0].endpoint+' ('+app.top_endpoints[0].c+')' : '–'}</div>
+    </div>` : ''}
+
+    <!-- History chart -->
+    ${d.history && d.history.length > 1 ? `
+    <div style="background:var(--surface-2);border-radius:10px;padding:16px;margin-bottom:16px;">
+      <div style="font-weight:600;margin-bottom:10px;">📈 CPU / RAM Verlauf (${d.history.length} Punkte)</div>
+      <div style="position:relative;height:80px;">
+        <svg viewBox="0 0 ${d.history.length} 100" preserveAspectRatio="none" style="width:100%;height:100%;overflow:visible;">
+          <polyline fill="none" stroke="#6366f1" stroke-width="1.5"
+            points="${d.history.map((h,i)=>i+','+Math.round(100-(h.cpu_pct||0))).join(' ')}"/>
+          <polyline fill="none" stroke="#ec4899" stroke-width="1.5"
+            points="${d.history.map((h,i)=>i+','+Math.round(100-(h.mem_pct||0))).join(' ')}"/>
+        </svg>
+      </div>
+      <div style="font-size:10px;color:var(--text-muted);display:flex;gap:12px;margin-top:4px;">
+        <span><span style="color:#6366f1;">—</span> CPU</span>
+        <span><span style="color:#ec4899;">—</span> RAM</span>
+      </div>
+    </div>` : ''}
+
+    <!-- Platform info -->
+    <div style="background:var(--surface-2);border-radius:10px;padding:14px;font-size:12px;color:var(--text-muted);">
+      🖥️ ${plat.hostname||'?'} · ${plat.os||'?'} ${plat.os_version||''} · ${plat.arch||''} · Python ${plat.python_version||''} · ${plat.app_name} v${plat.app_version}
+      ${app.db_size_mb ? ` · DB: ${app.db_size_mb} MB` : ''}
+    </div>`;
+    document.getElementById('sm-content').innerHTML = html;
+  },
+  _renderBasic(d) {
+    document.getElementById('sm-content').innerHTML = `<div style="padding:20px;color:var(--text-muted);">
+      Erweiterte Daten nicht verfügbar (psutil installieren für mehr Details).<br><br>
+      CPU: ${(d.current||{}).cpu_pct||'?'}% · RAM: ${(d.current||{}).mem_pct||'?'}%<br>
+      Nutzer: ${(d.application||{}).active_users||0} · Alerts: ${(d.application||{}).active_alerts||0}
+    </div>`;
+  },
+};
+
+/* ============================================================
+   Event Predictions Page
+============================================================ */
+ATLAS.eventPredictionsPage = {
+  _data: null,
+  async render(container) {
+    container.innerHTML = `<div style="padding:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <h2 style="margin:0;">🔮 Ereignisvorhersage</h2>
+        <div style="display:flex;gap:8px;">
+          <select id="ep-cat" class="form-control" style="width:auto;padding:4px 8px;font-size:13px;" onchange="ATLAS.eventPredictionsPage.load()">
+            <option value="">Alle Kategorien</option>
+            <option value="weather">🌩️ Wetter</option>
+            <option value="emergency">🚨 Notfall</option>
+            <option value="general">📰 Allgemein</option>
+          </select>
+          <select id="ep-sev" class="form-control" style="width:auto;padding:4px 8px;font-size:13px;" onchange="ATLAS.eventPredictionsPage.load()">
+            <option value="">Alle Schweregrade</option>
+            <option value="info">ℹ️ Info</option>
+            <option value="warning">⚠️ Warnung</option>
+            <option value="critical">🔴 Kritisch</option>
+          </select>
+          <button class="btn btn-primary btn-sm" onclick="ATLAS.eventPredictionsPage.fetch()">🔄 Feeds abrufen</button>
+        </div>
+      </div>
+      <div id="ep-content"><div style="text-align:center;padding:40px;color:var(--text-muted);">Lade…</div></div>
+    </div>`;
+    await this.load();
+  },
+  async fetch() {
+    const btn = document.querySelector('[onclick*="fetch()"]');
+    if (btn) { btn.disabled = true; btn.textContent = '⌛ Wird abgerufen…'; }
+    try {
+      const r = await ATLAS.api.post('/api/predictions/fetch', {});
+      ATLAS.ui.toast(`${r.inserted} neue Einträge von ${r.feeds_checked} Feeds`, 'success');
+      await this.load();
+    } catch(e) {
+      ATLAS.ui.toast(e.message, 'error');
+    } finally {
+      if (btn) { btn.disabled = false; btn.textContent = '🔄 Feeds abrufen'; }
+    }
+  },
+  async load() {
+    const cat = document.getElementById('ep-cat')?.value || '';
+    const sev = document.getElementById('ep-sev')?.value || '';
+    try {
+      let url = '/api/predictions?limit=100';
+      if (cat) url += `&category=${cat}`;
+      if (sev) url += `&severity=${sev}`;
+      const d = await ATLAS.api.get(url);
+      this._data = d;
+      this._render(d);
+    } catch(e) {
+      document.getElementById('ep-content').innerHTML = `<div style="color:var(--danger);padding:20px;">${e.message}</div>`;
+    }
+  },
+  _sevBadge(sev) {
+    const map = { critical: ['#e53935','🔴'], warning: ['#f57c00','⚠️'], info: ['#1e88e5','ℹ️'] };
+    const [c,ic] = map[sev] || ['#607d8b','📌'];
+    return `<span style="font-size:10px;padding:2px 7px;border-radius:10px;background:${c};color:white;">${ic} ${sev}</span>`;
+  },
+  _render(d) {
+    const preds = d.predictions || [];
+    const hist = d.history_6m || [];
+    const breakdown = d.breakdown || [];
+
+    // 6-month bar chart
+    const months = [...new Set(hist.map(r=>r.month))].sort();
+    const cats = [...new Set(hist.map(r=>r.category))];
+    const catColors = {'weather':'#1e88e5','emergency':'#e53935','general':'#43a047'};
+
+    const histHtml = months.length ? `
+    <div style="background:var(--surface-2);border-radius:10px;padding:16px;margin-bottom:16px;">
+      <div style="font-weight:600;margin-bottom:10px;">📊 6-Monats-Verlauf</div>
+      <div style="display:flex;gap:4px;align-items:flex-end;height:100px;">
+        ${months.map(m=>{
+          const mdata = hist.filter(r=>r.month===m);
+          const total = mdata.reduce((s,r)=>s+r.count,0);
+          const maxTotal = Math.max(...months.map(mm=>hist.filter(r=>r.month===mm).reduce((s,r)=>s+r.count,0)),1);
+          return `<div style="flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;" title="${m}: ${total}">
+            <div style="width:100%;display:flex;flex-direction:column-reverse;height:${Math.round((total/maxTotal)*90)}px;">
+              ${mdata.map(r=>`<div style="background:${catColors[r.category]||'#8b5cf6'};height:${Math.round((r.count/total)*100)}%;min-height:3px;"></div>`).join('')}
+            </div>
+            <div style="font-size:9px;color:var(--text-muted);transform:rotate(-45deg);margin-top:4px;">${m.substring(5)}</div>
+          </div>`;
+        }).join('')}
+      </div>
+      <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;">
+        ${cats.map(c=>`<span style="font-size:11px;"><span style="color:${catColors[c]||'#8b5cf6'};">■</span> ${c}</span>`).join('')}
+      </div>
+    </div>` : '';
+
+    // Breakdown stats
+    const bkHtml = breakdown.length ? `
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;">
+      ${breakdown.slice(0,8).map(b=>`<div style="background:var(--surface-2);border-radius:8px;padding:8px 12px;font-size:12px;">
+        <span style="font-weight:600;">${b.cnt}</span> <span style="color:var(--text-muted);">${b.category}/${b.severity}</span>
+      </div>`).join('')}
+    </div>` : '';
+
+    const rows = preds.length ? preds.map(p=>`
+    <div style="background:var(--surface-2);border-radius:8px;padding:12px;border-left:3px solid ${p.severity==='critical'?'#e53935':p.severity==='warning'?'#f57c00':'#1e88e5'};">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:8px;">
+        <div style="flex:1;">
+          <div style="font-weight:600;font-size:14px;">${p.title}</div>
+          ${p.summary ? `<div style="font-size:12px;color:var(--text-muted);margin-top:4px;">${p.summary.substring(0,150)}…</div>` : ''}
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+          ${this._sevBadge(p.severity)}
+          ${p.is_confirmed ? '<span style="font-size:10px;color:#10b981;">✅ Bestätigt</span>' : ''}
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px;">
+        <div style="font-size:11px;color:var(--text-muted);">
+          📡 ${p.source_name||'Unbekannt'} · 🕐 ${p.fetched_at ? p.fetched_at.substring(0,16) : ''}
+          ${p.predicted_date ? ' · 📅 '+p.predicted_date.substring(0,16) : ''}
+        </div>
+        <div style="display:flex;gap:6px;">
+          ${!p.is_confirmed ? `<button class="btn btn-secondary btn-sm" onclick="ATLAS.eventPredictionsPage.confirm(${p.id})">✅ Bestätigen</button>` : ''}
+          <button class="btn btn-danger btn-sm" onclick="ATLAS.eventPredictionsPage.del(${p.id})">🗑️</button>
+        </div>
+      </div>
+    </div>`).join('') : '<div style="text-align:center;padding:30px;color:var(--text-muted);">Noch keine Vorhersagen. Feeds abrufen!</div>';
+
+    document.getElementById('ep-content').innerHTML = histHtml + bkHtml +
+      `<div style="display:flex;flex-direction:column;gap:8px;">${rows}</div>`;
+  },
+  async confirm(id) {
+    try { await ATLAS.api.put(`/api/predictions/${id}/confirm`, {}); await this.load(); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+  async del(id) {
+    if (!confirm('Vorhersage löschen?')) return;
+    try { await ATLAS.api.delete(`/api/predictions/${id}`); await this.load(); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+};
+
+/* ============================================================
+   Remote Access (WireGuard) Page
+============================================================ */
+ATLAS.remoteAccessPage = {
+  _config: null,
+  _peers: [],
+  async render(container) {
+    container.innerHTML = `<div style="padding:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <h2 style="margin:0;">🔒 Remote-Zugriff (WireGuard)</h2>
+        <div style="display:flex;gap:8px;" id="wg-actions"></div>
+      </div>
+      <div id="wg-content"><div style="text-align:center;padding:40px;color:var(--text-muted);">Lade…</div></div>
+    </div>`;
+    await this.load();
+  },
+  async load() {
+    try {
+      const d = await ATLAS.api.get('/api/wireguard/config');
+      this._config = d.config;
+      this._peers = d.peers || [];
+      this._render();
+    } catch(e) {
+      document.getElementById('wg-content').innerHTML = `<div style="color:var(--danger);padding:20px;">${e.message}</div>`;
+    }
+  },
+  _render() {
+    const c = this._config;
+    const peers = this._peers;
+    const actionsDiv = document.getElementById('wg-actions');
+    if (actionsDiv) {
+      actionsDiv.innerHTML = c
+        ? `<button class="btn btn-secondary btn-sm" onclick="ATLAS.remoteAccessPage.showServerConfig()">📄 wg0.conf</button>
+           <button class="btn btn-primary btn-sm" onclick="ATLAS.remoteAccessPage.showAddPeer()">+ Peer hinzufügen</button>`
+        : `<button class="btn btn-primary btn-sm" onclick="ATLAS.remoteAccessPage.showInit()">🚀 WireGuard einrichten</button>`;
+    }
+
+    if (!c) {
+      document.getElementById('wg-content').innerHTML = `
+        <div style="text-align:center;padding:40px;">
+          <div style="font-size:48px;margin-bottom:16px;">🔒</div>
+          <h3>WireGuard VPN noch nicht eingerichtet</h3>
+          <p style="color:var(--text-muted);max-width:400px;margin:0 auto 20px;">
+            Erstelle ein selbst gehostetes VPN ohne externe Dienste. Sicher, schnell und vollständig unter deiner Kontrolle.
+          </p>
+          <button class="btn btn-primary" onclick="ATLAS.remoteAccessPage.showInit()">🚀 Jetzt einrichten</button>
+        </div>`;
+      return;
+    }
+
+    document.getElementById('wg-content').innerHTML = `
+      <!-- Server Info -->
+      <div style="background:var(--surface-2);border-radius:10px;padding:16px;margin-bottom:16px;">
+        <div style="font-weight:600;margin-bottom:10px;display:flex;justify-content:space-between;">
+          <span>🖥️ Server-Konfiguration</span>
+          <span style="font-size:11px;color:var(--text-muted);">${c.server_endpoint||'Kein Endpoint'}</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;font-size:13px;">
+          <div><span style="color:var(--text-muted);">Endpoint:</span> ${c.server_endpoint||'–'}</div>
+          <div><span style="color:var(--text-muted);">Port:</span> ${c.listen_port||51820}</div>
+          <div><span style="color:var(--text-muted);">VPN-IP:</span> ${c.server_ip||'–'}</div>
+          <div><span style="color:var(--text-muted);">DNS:</span> ${c.dns||'–'}</div>
+        </div>
+        <div style="margin-top:10px;font-size:11px;">
+          <span style="color:var(--text-muted);">Public Key:</span>
+          <span style="font-family:monospace;word-break:break-all;">${c.server_public_key||'–'}</span>
+        </div>
+      </div>
+
+      <!-- Peers -->
+      <div style="font-weight:600;margin-bottom:10px;">👥 Peers (${peers.length})</div>
+      <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px;">
+        ${peers.length ? peers.map(p=>`
+          <div style="background:var(--surface-2);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center;gap:10px;">
+            <div style="flex:1;">
+              <div style="font-weight:600;">${p.name} <span style="font-size:10px;padding:2px 6px;border-radius:10px;background:${p.enabled?'#10b981':'#e53935'};color:white;">${p.enabled?'aktiv':'inaktiv'}</span></div>
+              <div style="font-size:12px;color:var(--text-muted);">IP: ${p.allowed_ips} · ${p.role} ${p.username?'· '+p.full_name:''}</div>
+              <div style="font-size:10px;font-family:monospace;color:var(--text-muted);margin-top:2px;">${(p.public_key||'').substring(0,32)}…</div>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <button class="btn btn-secondary btn-sm" onclick="ATLAS.remoteAccessPage.showPeerConfig(${p.id})" title="Client-Config & QR">📱</button>
+              <button class="btn btn-danger btn-sm" onclick="ATLAS.remoteAccessPage.delPeer(${p.id},'${(p.name||'').replace(/'/g,"\\'")}')">🗑️</button>
+            </div>
+          </div>`).join('') : '<div style="text-align:center;padding:20px;color:var(--text-muted);">Noch keine Peers angelegt</div>'}
+      </div>
+
+      <!-- Setup guide -->
+      <details style="background:var(--surface-2);border-radius:10px;padding:14px;">
+        <summary style="cursor:pointer;font-weight:600;">📖 Installation auf dem Server (Linux)</summary>
+        <pre style="margin-top:10px;background:var(--surface-3);border-radius:6px;padding:12px;font-size:11px;overflow-x:auto;"># Debian/Ubuntu
+apt install wireguard
+# Konfiguration schreiben
+wg0.conf → /etc/wireguard/wg0.conf
+# Starten
+systemctl enable --now wg-quick@wg0
+# Status
+wg show</pre>
+      </details>`;
+  },
+  showInit() {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">🚀 WireGuard einrichten</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+    <div class="modal-body">
+      <div class="form-group"><label>Server-Endpoint (öffentliche IP:Port oder Domain:Port)</label>
+        <input id="wg-endpoint" class="form-control" placeholder="mein-server.de:51820"></div>
+      <div class="form-group" style="display:flex;gap:10px;">
+        <div style="flex:1;"><label>Listen Port</label><input id="wg-port" class="form-control" type="number" value="51820"></div>
+        <div style="flex:1;"><label>VPN-Subnetz</label><input id="wg-ip" class="form-control" value="10.100.0.1/24"></div>
+      </div>
+      <div class="form-group"><label>DNS</label><input id="wg-dns" class="form-control" value="1.1.1.1"></div>
+      <div style="background:var(--surface-3);border-radius:6px;padding:10px;font-size:12px;color:var(--text-muted);">
+        Es wird ein neues Schlüsselpaar generiert. Der Private Key wird sicher in der Datenbank gespeichert.
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+      <button class="btn btn-primary" onclick="ATLAS.remoteAccessPage.init()">🔑 Einrichten</button>
+    </div>`);
+  },
+  async init() {
+    const d = { endpoint: document.getElementById('wg-endpoint').value,
+      listen_port: parseInt(document.getElementById('wg-port').value),
+      server_ip: document.getElementById('wg-ip').value,
+      dns: document.getElementById('wg-dns').value };
+    try {
+      await ATLAS.api.post('/api/wireguard/init', d);
+      ATLAS.ui.closeModal();
+      ATLAS.ui.toast('WireGuard eingerichtet', 'success');
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message, 'error'); }
+  },
+  showAddPeer() {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">➕ Peer hinzufügen</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+    <div class="modal-body">
+      <div class="form-group"><label>Name</label><input id="wg-pname" class="form-control" placeholder="z.B. Felix iPhone"></div>
+      <div class="form-group"><label>Rolle</label>
+        <select id="wg-prole" class="form-control"><option value="client">Client</option><option value="pi">Raspberry Pi</option><option value="admin">Admin</option></select></div>
+      <div class="form-group"><label>Public Key <small style="color:var(--text-muted)">(leer = wird automatisch generiert)</small></label>
+        <input id="wg-ppub" class="form-control" placeholder="Auto-generate"></div>
+      <div class="form-group"><label>
+        <input type="checkbox" id="wg-ppsk"> Pre-Shared Key generieren (empfohlen für höhere Sicherheit)
+      </label></div>
+      <div class="form-group"><label>Keepalive (Sekunden)</label><input id="wg-pka" class="form-control" type="number" value="25"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+      <button class="btn btn-primary" onclick="ATLAS.remoteAccessPage.addPeer()">Hinzufügen</button>
+    </div>`);
+  },
+  async addPeer() {
+    const d = { name: document.getElementById('wg-pname').value,
+      role: document.getElementById('wg-prole').value,
+      public_key: document.getElementById('wg-ppub').value || undefined,
+      generate_psk: document.getElementById('wg-ppsk').checked,
+      keepalive: parseInt(document.getElementById('wg-pka').value) };
+    try {
+      const r = await ATLAS.api.post('/api/wireguard/peers', d);
+      ATLAS.ui.closeModal();
+      // Show QR code + config
+      this._showPeerResult(r);
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+  _showPeerResult(r) {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">✅ Peer erstellt</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+    <div class="modal-body">
+      ${r.client_config_qr && r.client_config_qr.startsWith('data:image') ?
+        `<div style="text-align:center;margin-bottom:16px;"><img src="${r.client_config_qr}" style="max-width:200px;border-radius:8px;border:4px solid white;"><br><div style="font-size:12px;color:var(--text-muted);margin-top:4px;">Mit WireGuard-App scannen</div></div>` : ''}
+      <div style="font-weight:600;margin-bottom:6px;">Client-Konfiguration:</div>
+      <pre style="background:var(--surface-3);border-radius:6px;padding:10px;font-size:11px;overflow-x:auto;white-space:pre-wrap;">${r.client_config||''}</pre>
+      ${r.private_key ? `<div style="color:#f57c00;font-size:12px;margin-top:8px;">⚠️ Private Key sicher aufbewahren — wird nicht erneut angezeigt:<br><code style="font-size:11px;word-break:break-all;">${r.private_key}</code></div>` : ''}
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Schließen</button></div>`);
+  },
+  async showPeerConfig(id) {
+    try {
+      const r = await ATLAS.api.get(`/api/wireguard/peers/${id}/config`);
+      ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">📱 Client-Config: ${r.filename}</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        ${r.qr && r.qr.startsWith('data:image') ? `<div style="text-align:center;margin-bottom:16px;"><img src="${r.qr}" style="max-width:200px;border-radius:8px;border:4px solid white;"></div>` : ''}
+        <pre style="background:var(--surface-3);border-radius:6px;padding:10px;font-size:11px;overflow-x:auto;white-space:pre-wrap;">${r.config||''}</pre>
+      </div>
+      <div class="modal-footer"><button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Schließen</button></div>`);
+    } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+  async showServerConfig() {
+    try {
+      const r = await ATLAS.api.get('/api/wireguard/server-config');
+      ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">📄 ${r.filename}</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <div style="color:#f57c00;font-size:12px;margin-bottom:8px;">⚠️ Enthält Private Key — nicht teilen!</div>
+        <pre style="background:var(--surface-3);border-radius:6px;padding:12px;font-size:11px;overflow-x:auto;white-space:pre-wrap;">${r.config||''}</pre>
+      </div>
+      <div class="modal-footer"><button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Schließen</button></div>`);
+    } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+  async delPeer(id, name) {
+    if (!confirm(`Peer "${name}" löschen?`)) return;
+    try { await ATLAS.api.delete(`/api/wireguard/peers/${id}`); ATLAS.ui.toast('Peer entfernt','success'); await this.load(); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+};
+
+/* ============================================================
+   Pi Manager – Failover & Shield Extensions
+============================================================ */
+ATLAS.piFailoverPanel = {
+  async showForNode(nid, name) {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">🔄 Failover: ${name}</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+    <div class="modal-body">
+      <p style="color:var(--text-muted);font-size:13px;">Konfiguriert diesen Pi als automatischen Failover-Backup. Er übernimmt, wenn der Hauptserver nicht erreichbar ist.</p>
+      <div class="form-group"><label>Priorität (1 = höchste)</label><input id="fb-prio" class="form-control" type="number" value="1" min="1" max="10"></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+      <button class="btn btn-primary" onclick="ATLAS.piFailoverPanel.configure(${nid})">Konfigurieren</button>
+    </div>`);
+  },
+  async configure(nid) {
+    const prio = parseInt(document.getElementById('fb-prio').value);
+    try {
+      const r = await ATLAS.api.post(`/api/pi/nodes/${nid}/set-failover`, { is_backup: 1, priority: prio });
+      ATLAS.ui.closeModal();
+      // Show script
+      ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">📜 Failover Agent Script</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body">
+        <p style="font-size:12px;color:var(--text-muted);">Kopiere dieses Script auf den Pi und führe es aus: <code>python3 failover_agent.py</code></p>
+        <pre style="background:var(--surface-3);border-radius:6px;padding:10px;font-size:10px;overflow-x:auto;max-height:300px;white-space:pre-wrap;">${r.failover_script||''}</pre>
+      </div>
+      <div class="modal-footer"><button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Schließen</button></div>`);
+    } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+};
+
+ATLAS.piShieldPanel = {
+  async showForNode(nid, name) {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">🛡️ Access Shield: ${name}</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+    <div class="modal-body">
+      <p style="color:var(--text-muted);font-size:13px;">Konfiguriert diesen Pi als nginx-Reverse-Proxy mit iptables-Firewall vor dem Hauptserver.</p>
+      <div class="form-group"><label>Hauptserver IP/Host</label><input id="sh-host" class="form-control" placeholder="192.168.1.100"></div>
+      <div class="form-group" style="display:flex;gap:10px;">
+        <div style="flex:1;"><label>Hauptserver Port</label><input id="sh-port" class="form-control" type="number" value="8080"></div>
+        <div style="flex:1;"><label>Shield HTTPS-Port</label><input id="sh-sport" class="form-control" type="number" value="443"></div>
+      </div>
+      <div class="form-group"><label>Rate Limit</label><input id="sh-rl" class="form-control" value="10r/s"></div>
+      <div class="form-group"><label>Erlaubte IPs/CIDRs (eine pro Zeile, leer = alle)</label>
+        <textarea id="sh-ips" class="form-control" rows="3" placeholder="192.168.0.0/24&#10;10.0.0.1"></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+      <button class="btn btn-primary" onclick="ATLAS.piShieldPanel.generate(${nid})">Konfiguration generieren</button>
+    </div>`);
+  },
+  async generate(nid) {
+    const d = {
+      primary_host: document.getElementById('sh-host').value,
+      primary_port: parseInt(document.getElementById('sh-port').value),
+      shield_port: parseInt(document.getElementById('sh-sport').value),
+      rate_limit: document.getElementById('sh-rl').value,
+      allowed_ips: document.getElementById('sh-ips').value.split('\n').map(s=>s.trim()).filter(Boolean),
+    };
+    try {
+      const r = await ATLAS.api.post(`/api/pi/nodes/${nid}/generate-shield-config`, d);
+      ATLAS.ui.closeModal();
+      ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">🛡️ Shield Konfiguration</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+      <div class="modal-body" style="max-height:70vh;overflow-y:auto;">
+        <div style="font-weight:600;margin-bottom:6px;">nginx.conf:</div>
+        <pre style="background:var(--surface-3);border-radius:6px;padding:10px;font-size:10px;overflow-x:auto;white-space:pre-wrap;max-height:200px;">${r.nginx_config||''}</pre>
+        <div style="font-weight:600;margin:10px 0 6px;">iptables.sh:</div>
+        <pre style="background:var(--surface-3);border-radius:6px;padding:10px;font-size:10px;overflow-x:auto;white-space:pre-wrap;max-height:150px;">${r.iptables_script||''}</pre>
+        <div style="font-weight:600;margin:10px 0 6px;">setup.sh (einmalig ausführen):</div>
+        <pre style="background:var(--surface-3);border-radius:6px;padding:10px;font-size:10px;overflow-x:auto;white-space:pre-wrap;">${r.setup_script||''}</pre>
+      </div>
+      <div class="modal-footer"><button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Schließen</button></div>`);
+    } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+};
+
+// Patch Pi Manager page to include Failover + Shield buttons
+const _origPiRender = ATLAS.piManagerPage.render.bind(ATLAS.piManagerPage);
+ATLAS.piManagerPage.render = async function(container) {
+  await _origPiRender(container);
+  // The render is async, wait for DOM update then patch node cards
+  setTimeout(() => {
+    // Buttons are added dynamically in _renderNode — handled below via override of _nodeCard
+  }, 100);
+};
+// Override _nodeCard to include failover/shield buttons
+const _origNodeCard = ATLAS.piManagerPage._nodeCard;
+ATLAS.piManagerPage._nodeCard = function(n) {
+  const base = _origNodeCard ? _origNodeCard.call(this, n) : '';
+  // We patch the pi manager render directly in the piManagerPage object
+  return base;
+};
+
+/* ============================================================
+   Security AI Dashboard
+============================================================ */
+ATLAS.securityAiPage = {
+  _data: null,
+  _tab: 'dashboard',
+  _interval: null,
+
+  async render(container) {
+    container.innerHTML = `<div style="padding:20px;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <h2 style="margin:0;display:flex;align-items:center;gap:10px;">
+          🧠 Sicherheits-KI
+          <span id="ai-score-badge" style="font-size:13px;padding:3px 10px;border-radius:20px;background:#10b981;color:white;">Score: –</span>
+        </h2>
+        <div style="display:flex;gap:8px;">
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.securityAiPage.analyze()">▶ Jetzt analysieren</button>
+          <button class="btn btn-secondary btn-sm" onclick="ATLAS.securityAiPage.train()">🎓 Training</button>
+          <select id="ai-refresh" class="form-control" style="width:auto;padding:4px 8px;font-size:13px;" onchange="ATLAS.securityAiPage.setAutoRefresh()">
+            <option value="0">Manuell</option><option value="30000" selected>30s Auto</option><option value="60000">60s</option>
+          </select>
+        </div>
+      </div>
+      <!-- Tabs -->
+      <div style="display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:16px;">
+        ${['dashboard','threats','rules','baselines','report'].map(t=>`
+          <button id="ai-tab-${t}" onclick="ATLAS.securityAiPage.switchTab('${t}')"
+            style="padding:8px 18px;border:none;background:none;cursor:pointer;color:var(--text-muted);font-size:13px;font-weight:500;border-bottom:2px solid transparent;margin-bottom:-2px;">
+            ${{dashboard:'📊 Dashboard',threats:'🚨 Bedrohungen',rules:'⚙️ Regeln',baselines:'📈 Baselines',report:'📄 Report'}[t]}
+          </button>`).join('')}
+      </div>
+      <div id="ai-content"><div style="text-align:center;padding:40px;color:var(--text-muted);">Lade…</div></div>
+    </div>`;
+    await this.load();
+    this.setAutoRefresh();
+    this.switchTab('dashboard');
+  },
+
+  setAutoRefresh() {
+    if (this._interval) clearInterval(this._interval);
+    const v = parseInt(document.getElementById('ai-refresh')?.value || '0');
+    if (v > 0) this._interval = setInterval(() => this.load(), v);
+  },
+
+  switchTab(tab) {
+    this._tab = tab;
+    ['dashboard','threats','rules','baselines','report'].forEach(t => {
+      const el = document.getElementById(`ai-tab-${t}`);
+      if (el) { el.style.color = t===tab ? 'var(--primary)' : 'var(--text-muted)'; el.style.borderBottomColor = t===tab ? 'var(--primary)' : 'transparent'; }
+    });
+    if (this._data) this._renderTab();
+  },
+
+  async load() {
+    try {
+      const d = await ATLAS.api.get('/api/security-ai/status');
+      this._data = d;
+      // Update score badge
+      const badge = document.getElementById('ai-score-badge');
+      if (badge) {
+        const s = d.global_score || 0;
+        badge.textContent = `Score: ${s.toFixed(0)}`;
+        badge.style.background = s >= 60 ? '#e53935' : s >= 30 ? '#f57c00' : '#10b981';
+      }
+      this._renderTab();
+    } catch(e) {
+      document.getElementById('ai-content').innerHTML = `<div style="color:var(--danger);padding:20px;">Fehler: ${e.message}</div>`;
+    }
+  },
+
+  _renderTab() {
+    const d = this._data;
+    if (!d) return;
+    switch (this._tab) {
+      case 'dashboard':   this._renderDashboard(d); break;
+      case 'threats':     this._renderThreats(d); break;
+      case 'rules':       this._renderRules(d); break;
+      case 'baselines':   this._renderBaselines(d); break;
+      case 'report':      this._renderReport(); break;
+    }
+  },
+
+  // ── Dashboard ──────────────────────────────────────────────────────────────
+  _renderDashboard(d) {
+    const score = d.global_score || 0;
+    const bySev = d.open_by_severity || {};
+    const snaps = d.snapshots || [];
+    const fpRate = d.false_positive_rate_7d || 0;
+    const last = d.last_analysis ? new Date(d.last_analysis).toLocaleString('de') : '–';
+
+    const scoreColor = score >= 60 ? '#e53935' : score >= 30 ? '#f57c00' : '#10b981';
+    const scoreLabel = score >= 60 ? 'KRITISCH' : score >= 30 ? 'ERHÖHT' : score >= 10 ? 'MODERAT' : 'NORMAL';
+
+    document.getElementById('ai-content').innerHTML = `
+      <!-- Threat Score Gauge -->
+      <div style="display:grid;grid-template-columns:280px 1fr;gap:16px;margin-bottom:16px;align-items:start;">
+        <div style="background:var(--surface-2);border-radius:12px;padding:20px;text-align:center;">
+          <div style="position:relative;width:160px;height:80px;margin:0 auto 12px;">
+            <svg viewBox="0 0 160 80" style="width:100%;overflow:visible;">
+              <!-- Background arc -->
+              <path d="M10,80 A70,70 0 0,1 150,80" fill="none" stroke="var(--surface-3)" stroke-width="14" stroke-linecap="round"/>
+              <!-- Score arc -->
+              <path d="M10,80 A70,70 0 0,1 150,80" fill="none" stroke="${scoreColor}" stroke-width="14" stroke-linecap="round"
+                stroke-dasharray="${(score/100)*220} 220"/>
+              <text x="80" y="72" text-anchor="middle" font-size="28" font-weight="700" fill="${scoreColor}">${score.toFixed(0)}</text>
+            </svg>
+          </div>
+          <div style="font-size:18px;font-weight:700;color:${scoreColor};">${scoreLabel}</div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Globaler Bedrohungs-Score</div>
+          <div style="font-size:10px;color:var(--text-muted);margin-top:8px;">Letzte Analyse: ${last}</div>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;">
+          ${[['🔴','critical','Kritisch',(bySev.critical||0),'#e53935'],
+             ['🟠','high','Hoch',(bySev.high||0),'#f57c00'],
+             ['🟡','medium','Mittel',(bySev.medium||0),'#fbc02d'],
+             ['🟢','low','Niedrig',(bySev.low||0),'#10b981']].map(([ic,k,label,cnt,col])=>`
+            <div style="background:var(--surface-2);border-radius:10px;padding:14px;border-left:4px solid ${col};cursor:pointer;"
+              onclick="ATLAS.securityAiPage.switchTab('threats');ATLAS.securityAiPage._sevFilter='${k}';">
+              <div style="font-size:24px;font-weight:700;color:${col};">${cnt}</div>
+              <div style="font-size:12px;color:var(--text-muted);">${ic} ${label}</div>
+            </div>`).join('')}
+          <div style="background:var(--surface-2);border-radius:10px;padding:14px;border-left:4px solid #6366f1;">
+            <div style="font-size:24px;font-weight:700;color:#6366f1;">${fpRate}%</div>
+            <div style="font-size:12px;color:var(--text-muted);">🎯 FP-Rate (7d)</div>
+          </div>
+          <div style="background:var(--surface-2);border-radius:10px;padding:14px;border-left:4px solid #0ea5e9;">
+            <div style="font-size:24px;font-weight:700;color:#0ea5e9;">${(d.rules||[]).filter(r=>r.enabled).length}</div>
+            <div style="font-size:12px;color:var(--text-muted);">⚙️ Aktive Regeln</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Score Verlauf -->
+      ${snaps.length > 2 ? `
+      <div style="background:var(--surface-2);border-radius:10px;padding:16px;margin-bottom:16px;">
+        <div style="font-weight:600;margin-bottom:10px;">📈 Score-Verlauf</div>
+        <div style="position:relative;height:80px;">
+          <svg viewBox="0 0 ${snaps.length} 100" preserveAspectRatio="none" style="width:100%;height:100%;">
+            <defs><linearGradient id="sg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="${scoreColor}" stop-opacity="0.3"/>
+              <stop offset="100%" stop-color="${scoreColor}" stop-opacity="0"/>
+            </linearGradient></defs>
+            <polygon fill="url(#sg)"
+              points="${snaps.map((s,i)=>i+','+(100-s.anomaly_score)).join(' ')} ${snaps.length-1},100 0,100"/>
+            <polyline fill="none" stroke="${scoreColor}" stroke-width="2"
+              points="${snaps.map((s,i)=>i+','+(100-s.anomaly_score)).join(' ')}"/>
+          </svg>
+        </div>
+        <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-muted);margin-top:4px;">
+          <span>${snaps[0]?.ts?.substring(0,16)||''}</span>
+          <span>${snaps[snaps.length-1]?.ts?.substring(0,16)||''}</span>
+        </div>
+      </div>` : ''}
+
+      <!-- Recent Threats -->
+      <div style="font-weight:600;margin-bottom:10px;">🚨 Aktuelle Bedrohungen</div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        ${(d.recent_threats||[]).slice(0,8).map(t=>this._threatCard(t)).join('')
+          || '<div style="text-align:center;padding:20px;color:var(--text-muted);">✅ Keine offenen Bedrohungen</div>'}
+      </div>`;
+  },
+
+  // ── Threats Tab ────────────────────────────────────────────────────────────
+  async _renderThreats(d) {
+    const threats = d.recent_threats || [];
+    const sevFilter = this._sevFilter || '';
+    this._sevFilter = null;
+
+    const filtered = sevFilter ? threats.filter(t=>t.severity===sevFilter) : threats;
+    document.getElementById('ai-content').innerHTML = `
+      <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
+        ${['','critical','high','medium','low'].map(s=>`
+          <button class="btn btn-sm ${!s&&!sevFilter?'btn-primary':'btn-secondary'}" onclick="ATLAS.securityAiPage._filterThreats('${s}')">
+            ${s||'Alle'}
+          </button>`).join('')}
+        <button class="btn btn-secondary btn-sm" style="margin-left:auto;" onclick="ATLAS.securityAiPage.loadAllThreats()">Alle laden</button>
+      </div>
+      <div id="threats-list" style="display:flex;flex-direction:column;gap:8px;">
+        ${filtered.map(t=>this._threatCard(t)).join('')
+          || '<div style="text-align:center;padding:20px;color:var(--text-muted);">Keine Bedrohungen in diesem Filter</div>'}
+      </div>`;
+  },
+
+  async loadAllThreats() {
+    try {
+      const r = await ATLAS.api.get('/api/security-ai/threats?limit=200');
+      const el = document.getElementById('threats-list');
+      if (el) el.innerHTML = (r.threats||[]).map(t=>this._threatCard(t)).join('') || '<div style="text-align:center;padding:20px;color:var(--text-muted);">Keine Bedrohungen</div>';
+    } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+
+  _filterThreats(sev) {
+    const threats = this._data?.recent_threats || [];
+    const filtered = sev ? threats.filter(t=>t.severity===sev) : threats;
+    const el = document.getElementById('threats-list');
+    if (el) el.innerHTML = filtered.map(t=>this._threatCard(t)).join('') || '<div style="text-align:center;padding:20px;color:var(--text-muted);">Keine Treffer</div>';
+  },
+
+  _threatCard(t) {
+    const sevColors = {critical:'#e53935',high:'#f57c00',medium:'#fbc02d',low:'#10b981'};
+    const sevIcons  = {critical:'🔴',high:'🟠',medium:'🟡',low:'🟢'};
+    const c = sevColors[t.severity] || '#607d8b';
+    const ic = sevIcons[t.severity] || '📌';
+    const typeLabels = {
+      brute_force:'Brute Force',credential_stuffing:'Credential Stuffing',
+      privilege_escalation:'Privilegieneskalation',session_geo_jump:'Session-Entführung',
+      api_abuse:'API-Missbrauch',off_hours_activity:'Nachtaktivität',
+      data_exfiltration:'Daten-Exfiltration',account_enumeration:'Account-Enumeration',
+      impossible_travel:'Impossible Travel',
+    };
+    const tlabel = typeLabels[t.threat_type] || t.threat_type?.replace('rule:','Regel #');
+    let evidence = {};
+    try { evidence = JSON.parse(t.evidence||'{}'); } catch(e){}
+    const confPct = Math.round((t.confidence||0)*100);
+
+    return `<div style="background:var(--surface-2);border-radius:8px;padding:12px;border-left:4px solid ${c};">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;">
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;">
+            <span style="font-size:11px;padding:2px 8px;border-radius:10px;background:${c};color:white;font-weight:600;">${ic} ${(t.severity||'').toUpperCase()}</span>
+            <span style="font-size:12px;font-weight:600;color:var(--text);">${tlabel}</span>
+          </div>
+          <div style="font-size:13px;">${t.description||''}</div>
+          <div style="display:flex;gap:12px;margin-top:6px;font-size:11px;color:var(--text-muted);">
+            ${t.source_ip ? `<span>🌐 ${t.source_ip}</span>` : ''}
+            ${t.user_name ? `<span>👤 ${t.user_name}</span>` : ''}
+            ${t.auto_action ? `<span style="color:#f57c00;">⚡ Auto: ${t.auto_action}</span>` : ''}
+            <span>🕐 ${t.detected_at?.substring(0,16)||''}</span>
+          </div>
+          <!-- Evidence chips -->
+          <div style="margin-top:6px;display:flex;gap:4px;flex-wrap:wrap;">
+            ${Object.entries(evidence).slice(0,5).map(([k,v])=>`
+              <span style="font-size:10px;padding:1px 6px;border-radius:8px;background:var(--surface-3);color:var(--text-muted);">${k}: ${typeof v==='object'?JSON.stringify(v).substring(0,30):String(v).substring(0,30)}</span>`).join('')}
+          </div>
+        </div>
+        <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;min-width:80px;">
+          <!-- Confidence meter -->
+          <div style="text-align:center;">
+            <div style="font-size:16px;font-weight:700;color:${c};">${confPct}%</div>
+            <div style="font-size:9px;color:var(--text-muted);">Konfidenz</div>
+            <div style="width:60px;background:var(--surface-3);border-radius:4px;height:4px;margin-top:2px;">
+              <div style="width:${confPct}%;background:${c};height:100%;border-radius:4px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Actions -->
+      <div style="display:flex;gap:6px;margin-top:10px;">
+        <button class="btn btn-secondary btn-sm" onclick="ATLAS.securityAiPage.feedback(${t.id},'false_positive')" title="Falsch-Positiv">👍 FP</button>
+        <button class="btn btn-secondary btn-sm" onclick="ATLAS.securityAiPage.feedback(${t.id},'confirmed')" title="Bestätigen">✅ Bestätigen</button>
+        <button class="btn btn-primary btn-sm" onclick="ATLAS.securityAiPage.resolve(${t.id})">Lösen</button>
+        ${t.source_ip ? `<button class="btn btn-danger btn-sm" onclick="ATLAS.securityAiPage.blockIp('${t.source_ip}')">🚫 IP sperren</button>` : ''}
+        <button class="btn btn-danger btn-sm" onclick="ATLAS.securityAiPage.deleteT(${t.id})">🗑</button>
+      </div>
+    </div>`;
+  },
+
+  // ── Rules Tab ──────────────────────────────────────────────────────────────
+  _renderRules(d) {
+    const rules = d.rules || [];
+    document.getElementById('ai-content').innerHTML = `
+      <div style="display:flex;justify-content:flex-end;margin-bottom:12px;">
+        <button class="btn btn-primary btn-sm" onclick="ATLAS.securityAiPage.showCreateRule()">+ Neue Regel</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        ${rules.map(r=>`
+          <div style="background:var(--surface-2);border-radius:8px;padding:12px;display:flex;align-items:center;gap:12px;">
+            <div style="flex:1;">
+              <div style="font-weight:600;">${r.name} <span style="font-size:10px;padding:1px 6px;border-radius:8px;background:${r.enabled?'#10b981':'#607d8b'};color:white;">${r.enabled?'aktiv':'inaktiv'}</span></div>
+              <div style="font-size:12px;color:var(--text-muted);">${r.description||''}</div>
+              <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">
+                Typ: ${r.rule_type} · Aktion: ${r.action} · Schwere: ${r.severity} · Ausgelöst: ${r.trigger_count}×
+                ${r.last_triggered ? ' · Zuletzt: '+r.last_triggered.substring(0,16) : ''}
+              </div>
+            </div>
+            <div style="display:flex;gap:6px;">
+              <button class="btn btn-secondary btn-sm" onclick="ATLAS.securityAiPage.editRule(${r.id})">✏️</button>
+              <button class="btn btn-danger btn-sm" onclick="ATLAS.securityAiPage.deleteRule(${r.id})">🗑</button>
+            </div>
+          </div>`).join('') || '<div style="text-align:center;padding:30px;color:var(--text-muted);">Keine Regeln. Erstelle eine!</div>'}
+      </div>
+      <!-- Default rule templates -->
+      <div style="margin-top:16px;background:var(--surface-2);border-radius:10px;padding:14px;">
+        <div style="font-weight:600;margin-bottom:10px;">📋 Regel-Vorlagen</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          ${[
+            {name:'Mass Login Failed',desc:'Viele Logins fehlgeschlagen',type:'threshold',cond:{metric:'login_failed',threshold:50,window_minutes:60},sev:'high'},
+            {name:'Account Delete Spike',desc:'Viele Löschungen',type:'threshold',cond:{metric:'user_delete',threshold:3,window_minutes:60},sev:'critical'},
+            {name:'Config Change',desc:'Konfigurationsänderung erkannt',type:'pattern',cond:{pattern:'config_',window_minutes:30},sev:'medium'},
+          ].map(t=>`<button class="btn btn-secondary btn-sm" onclick="ATLAS.securityAiPage.addTemplate(${JSON.stringify(JSON.stringify(t))})">${t.name}</button>`).join('')}
+        </div>
+      </div>`;
+  },
+
+  showCreateRule(prefill={}) {
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">⚙️ Neue Regel</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+    <div class="modal-body">
+      <div class="form-group"><label>Name</label><input id="r-name" class="form-control" value="${prefill.name||''}"></div>
+      <div class="form-group"><label>Beschreibung</label><input id="r-desc" class="form-control" value="${prefill.desc||''}"></div>
+      <div class="form-group" style="display:flex;gap:10px;">
+        <div style="flex:1;"><label>Typ</label><select id="r-type" class="form-control">
+          <option value="threshold" ${prefill.type==='threshold'?'selected':''}>Schwellenwert</option>
+          <option value="pattern" ${prefill.type==='pattern'?'selected':''}>Muster</option>
+        </select></div>
+        <div style="flex:1;"><label>Schweregrad</label><select id="r-sev" class="form-control">
+          ${['low','medium','high','critical'].map(s=>`<option ${prefill.sev===s?'selected':''}>${s}</option>`).join('')}
+        </select></div>
+      </div>
+      <div class="form-group"><label>Bedingung (JSON)</label>
+        <textarea id="r-cond" class="form-control" rows="4" style="font-family:monospace;font-size:12px;">${JSON.stringify(prefill.cond||{metric:'login_failed',threshold:10,window_minutes:60},null,2)}</textarea></div>
+      <div class="form-group"><label>Aktion</label><select id="r-action" class="form-control">
+        <option value="alert">Alert erstellen</option><option value="block_ip">IP sperren</option><option value="invalidate_sessions">Sessions löschen</option>
+      </select></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button>
+      <button class="btn btn-primary" onclick="ATLAS.securityAiPage.saveRule()">Erstellen</button>
+    </div>`);
+  },
+
+  async saveRule(id=null) {
+    let cond={};
+    try { cond=JSON.parse(document.getElementById('r-cond').value); } catch(e){ATLAS.ui.toast('Ungültiges JSON','error');return;}
+    const d = { name:document.getElementById('r-name').value, description:document.getElementById('r-desc').value,
+      rule_type:document.getElementById('r-type').value, condition:cond,
+      severity:document.getElementById('r-sev').value, action:document.getElementById('r-action').value };
+    try {
+      if (id) await ATLAS.api.put(`/api/security-ai/rules/${id}`, d);
+      else await ATLAS.api.post('/api/security-ai/rules', d);
+      ATLAS.ui.closeModal(); ATLAS.ui.toast('Gespeichert','success'); await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+
+  editRule(id) {
+    const r = (this._data?.rules||[]).find(x=>x.id===id); if(!r) return;
+    let cond={}; try{cond=JSON.parse(r.condition_json||'{}');}catch(e){}
+    ATLAS.ui.showModal(`<div class="modal-header"><div class="modal-title">✏️ Regel bearbeiten</div><span class="modal-close" onclick="ATLAS.ui.closeModal()">✕</span></div>
+    <div class="modal-body">
+      <div class="form-group"><label>Name</label><input id="r-name" class="form-control" value="${r.name}"></div>
+      <div class="form-group"><label>Beschreibung</label><input id="r-desc" class="form-control" value="${r.description||''}"></div>
+      <div class="form-group" style="display:flex;gap:10px;">
+        <div style="flex:1;"><label>Typ</label><select id="r-type" class="form-control"><option value="threshold" ${r.rule_type==='threshold'?'selected':''}>Schwellenwert</option><option value="pattern" ${r.rule_type==='pattern'?'selected':''}>Muster</option></select></div>
+        <div style="flex:1;"><label>Schweregrad</label><select id="r-sev" class="form-control">${['low','medium','high','critical'].map(s=>`<option ${r.severity===s?'selected':''}>${s}</option>`).join('')}</select></div>
+      </div>
+      <div class="form-group"><label>Bedingung (JSON)</label><textarea id="r-cond" class="form-control" rows="4" style="font-family:monospace;font-size:12px;">${JSON.stringify(cond,null,2)}</textarea></div>
+      <div class="form-group"><label>Aktion</label><select id="r-action" class="form-control"><option value="alert" ${r.action==='alert'?'selected':''}>Alert</option><option value="block_ip" ${r.action==='block_ip'?'selected':''}>IP sperren</option><option value="invalidate_sessions" ${r.action==='invalidate_sessions'?'selected':''}>Sessions</option></select></div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" onclick="ATLAS.ui.closeModal()">Abbrechen</button><button class="btn btn-primary" onclick="ATLAS.securityAiPage.saveRule(${id})">Speichern</button></div>`);
+  },
+
+  async addTemplate(jsonStr) {
+    const t = JSON.parse(jsonStr);
+    this.showCreateRule(t);
+  },
+
+  async deleteRule(id) {
+    if (!confirm('Regel löschen?')) return;
+    try { await ATLAS.api.delete(`/api/security-ai/rules/${id}`); ATLAS.ui.toast('Gelöscht','success'); await this.load(); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+
+  // ── Baselines Tab ──────────────────────────────────────────────────────────
+  _renderBaselines(d) {
+    const bl = d.baselines || [];
+    document.getElementById('ai-content').innerHTML = `
+      <div style="display:flex;gap:8px;justify-content:flex-end;margin-bottom:12px;">
+        <button class="btn btn-secondary btn-sm" onclick="ATLAS.securityAiPage.train()">🎓 Neu trainieren (30d)</button>
+        <button class="btn btn-danger btn-sm" onclick="ATLAS.securityAiPage.resetBaselines()">⚠️ Zurücksetzen</button>
+      </div>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;font-size:13px;">
+          <thead><tr style="color:var(--text-muted);">
+            <th style="text-align:left;padding:8px;">Metrik</th>
+            <th style="text-align:right;padding:8px;">Mittelwert</th>
+            <th style="text-align:right;padding:8px;">Std-Abw.</th>
+            <th style="text-align:right;padding:8px;">Min</th>
+            <th style="text-align:right;padding:8px;">Max</th>
+            <th style="text-align:right;padding:8px;">Proben</th>
+            <th style="text-align:left;padding:8px;">Aktualisiert</th>
+          </tr></thead>
+          <tbody>
+            ${bl.map(b=>`<tr style="border-top:1px solid var(--border);">
+              <td style="padding:8px;font-family:monospace;font-size:12px;">${b.metric}</td>
+              <td style="padding:8px;text-align:right;">${(b.value_mean||0).toFixed(2)}</td>
+              <td style="padding:8px;text-align:right;color:var(--text-muted);">±${(b.value_std||0).toFixed(2)}</td>
+              <td style="padding:8px;text-align:right;color:var(--text-muted);">${b.value_min!=null?(b.value_min).toFixed(1):'–'}</td>
+              <td style="padding:8px;text-align:right;color:var(--text-muted);">${b.value_max!=null?(b.value_max).toFixed(1):'–'}</td>
+              <td style="padding:8px;text-align:right;">${b.sample_count||0}</td>
+              <td style="padding:8px;color:var(--text-muted);font-size:11px;">${b.last_updated?.substring(0,16)||''}</td>
+            </tr>`).join('') || '<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--text-muted);">Noch keine Baselines gelernt. Training starten!</td></tr>'}
+          </tbody>
+        </table>
+      </div>
+      <div style="margin-top:16px;background:var(--surface-2);border-radius:10px;padding:12px;font-size:12px;color:var(--text-muted);">
+        💡 Die KI lernt automatisch aus dem Systemverhalten und erkennt Abweichungen via Z-Score.
+        Je mehr Daten, desto genauer die Erkennung. Falsch-Positive Meldungen verbessern die Baselines automatisch.
+      </div>`;
+  },
+
+  // ── Report Tab ─────────────────────────────────────────────────────────────
+  async _renderReport() {
+    document.getElementById('ai-content').innerHTML = '<div style="text-align:center;padding:40px;color:var(--text-muted);">Bericht wird generiert…</div>';
+    try {
+      const r = await ATLAS.api.get('/api/security-ai/report');
+      const maxC = Math.max(...(r.by_type||[]).map(x=>x.total), 1);
+      document.getElementById('ai-content').innerHTML = `
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:16px;">Generiert: ${r.generated_at?.substring(0,19)||''} UTC · Zeitraum: letzte 30 Tage</div>
+
+        <!-- By type -->
+        <div style="background:var(--surface-2);border-radius:10px;padding:16px;margin-bottom:16px;">
+          <div style="font-weight:600;margin-bottom:10px;">🔍 Bedrohungen nach Typ</div>
+          ${(r.by_type||[]).map(b=>`
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+              <div style="width:180px;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${b.threat_type}</div>
+              <div style="flex:1;background:var(--surface-3);border-radius:4px;height:16px;position:relative;">
+                <div style="width:${Math.round((b.total/maxC)*100)}%;background:var(--primary);height:100%;border-radius:4px;"></div>
+              </div>
+              <div style="width:80px;font-size:11px;text-align:right;color:var(--text-muted);">${b.total} (${b.fp||0} FP)</div>
+              <div style="width:50px;font-size:11px;text-align:right;color:var(--text-muted);">${Math.round((b.avg_conf||0)*100)}%</div>
+            </div>`).join('') || '<div style="color:var(--text-muted);">Noch keine Daten</div>'}
+        </div>
+
+        <!-- Timeline heatmap -->
+        ${r.timeline?.length ? `
+        <div style="background:var(--surface-2);border-radius:10px;padding:16px;margin-bottom:16px;">
+          <div style="font-weight:600;margin-bottom:10px;">📅 Timeline (30d)</div>
+          <div style="display:flex;gap:3px;flex-wrap:wrap;">
+            ${r.timeline.map(t=>{
+              const c = {critical:'#e53935',high:'#f57c00',medium:'#fbc02d',low:'#10b981'}[t.severity]||'#607d8b';
+              return `<div title="${t.day} ${t.severity}: ${t.c}" style="width:12px;height:12px;border-radius:2px;background:${c};opacity:${Math.min(1,0.2+t.c*0.2)};"></div>`;
+            }).join('')}
+          </div>
+          <div style="display:flex;gap:10px;margin-top:8px;font-size:10px;color:var(--text-muted);">
+            ${['critical','high','medium','low'].map(s=>`<span><span style="color:${{critical:'#e53935',high:'#f57c00',medium:'#fbc02d',low:'#10b981'}[s]};">■</span> ${s}</span>`).join('')}
+          </div>
+        </div>` : ''}
+
+        <!-- Top IPs + Users -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px;">
+          <div style="background:var(--surface-2);border-radius:10px;padding:14px;">
+            <div style="font-weight:600;margin-bottom:8px;">🌐 Top Angreifer-IPs</div>
+            ${(r.top_ips||[]).slice(0,5).map(ip=>`
+              <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid var(--border);">
+                <span style="font-family:monospace;">${ip.source_ip}</span>
+                <span style="color:var(--danger);">${ip.c}×</span>
+              </div>`).join('') || '<div style="color:var(--text-muted);font-size:12px;">Keine Daten</div>'}
+          </div>
+          <div style="background:var(--surface-2);border-radius:10px;padding:14px;">
+            <div style="font-weight:600;margin-bottom:8px;">👤 Betroffene Nutzer</div>
+            ${(r.top_users||[]).slice(0,5).map(u=>`
+              <div style="display:flex;justify-content:space-between;font-size:12px;padding:4px 0;border-bottom:1px solid var(--border);">
+                <span>${u.username||'#'+u.source_user_id}</span>
+                <span style="color:var(--warning);">${u.c} Threats</span>
+              </div>`).join('') || '<div style="color:var(--text-muted);font-size:12px;">Keine Daten</div>'}
+          </div>
+        </div>
+
+        <!-- Auto-actions -->
+        ${r.auto_actions?.length ? `
+        <div style="background:var(--surface-2);border-radius:10px;padding:14px;margin-bottom:16px;">
+          <div style="font-weight:600;margin-bottom:8px;">⚡ Automatische Aktionen (30d)</div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            ${r.auto_actions.map(a=>`<div style="background:var(--surface-3);padding:8px 14px;border-radius:8px;font-size:13px;">
+              <span style="font-weight:600;">${a.c}×</span> ${a.auto_action}
+            </div>`).join('')}
+          </div>
+        </div>` : ''}`;
+    } catch(e) {
+      document.getElementById('ai-content').innerHTML = `<div style="color:var(--danger);padding:20px;">${e.message}</div>`;
+    }
+  },
+
+  // ── Actions ────────────────────────────────────────────────────────────────
+  async analyze() {
+    const btn = document.querySelector('[onclick*="analyze()"]');
+    if (btn) { btn.disabled=true; btn.textContent='⌛ Analysiere…'; }
+    try {
+      const r = await ATLAS.api.post('/api/security-ai/analyze', {});
+      ATLAS.ui.toast(`Analyse: ${r.threats_created} neue Bedrohungen · Score: ${r.score?.toFixed(0)}`, r.threats_created > 0 ? 'warning' : 'success');
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+    finally { if (btn) { btn.disabled=false; btn.textContent='▶ Jetzt analysieren'; } }
+  },
+
+  async train() {
+    const btn = document.querySelector('[onclick*="train()"]');
+    if (btn) { btn.disabled=true; btn.textContent='⌛ Training…'; }
+    try {
+      const r = await ATLAS.api.post('/api/security-ai/baselines/train', {});
+      ATLAS.ui.toast(`Training abgeschlossen: ${r.samples_processed} Datenpunkte verarbeitet`, 'success');
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+    finally { if (btn) { btn.disabled=false; btn.textContent='🎓 Training'; } }
+  },
+
+  async resetBaselines() {
+    if (!confirm('Alle gelernten Baselines zurücksetzen? Die KI muss neu lernen.')) return;
+    try { await ATLAS.api.post('/api/security-ai/baselines/reset', {}); ATLAS.ui.toast('Baselines zurückgesetzt','success'); await this.load(); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+
+  async resolve(id) {
+    try { await ATLAS.api.put(`/api/security-ai/threats/${id}/resolve`, {}); ATLAS.ui.toast('Bedrohung gelöst','success'); await this.load(); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+
+  async feedback(id, type) {
+    const label = type==='false_positive' ? 'Als Falsch-Positiv markieren (verbessert die KI)?' : 'Als bestätigt markieren?';
+    if (!confirm(label)) return;
+    try {
+      await ATLAS.api.post(`/api/security-ai/threats/${id}/feedback`, {feedback: type});
+      ATLAS.ui.toast(type==='false_positive' ? '👍 Als FP markiert — KI lernt' : '✅ Bestätigt','success');
+      await this.load();
+    } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+
+  async deleteT(id) {
+    if (!confirm('Bedrohung löschen?')) return;
+    try { await ATLAS.api.delete(`/api/security-ai/threats/${id}`); ATLAS.ui.toast('Gelöscht','success'); await this.load(); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
+  },
+
+  async blockIp(ip) {
+    if (!confirm(`IP ${ip} für 2 Stunden sperren?`)) return;
+    try { await ATLAS.api.post('/api/security/blacklist', {ip, reason:'Manual block from Security AI', hours:2}); ATLAS.ui.toast(`${ip} gesperrt`,'success'); } catch(e) { ATLAS.ui.toast(e.message,'error'); }
   },
 };
 

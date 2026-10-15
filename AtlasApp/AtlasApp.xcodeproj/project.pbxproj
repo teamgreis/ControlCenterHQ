@@ -1,0 +1,585 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AA000001 /* AtlasApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100001 /* AtlasApp.swift */; };
+		AA000002 /* AtlasModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100002 /* AtlasModels.swift */; };
+		AA000003 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100003 /* AuthService.swift */; };
+		AA000004 /* WebSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100004 /* WebSocketService.swift */; };
+		AA000005 /* PushService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100005 /* PushService.swift */; };
+		AA000006 /* QRScanService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100006 /* QRScanService.swift */; };
+		AA000007 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100007 /* OnboardingView.swift */; };
+		AA000008 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100008 /* LoginView.swift */; };
+		AA000009 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100009 /* MainView.swift */; };
+		AA000010 /* WebContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100010 /* WebContainerView.swift */; };
+		AA000011 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100011 /* SettingsView.swift */; };
+		AA000012 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA100012 /* Assets.xcassets */; };
+		AA000013 /* PermissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100014 /* PermissionService.swift */; };
+		AA000014 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100015 /* LocationService.swift */; };
+		AA000018 /* AlertPollingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100019 /* AlertPollingService.swift */; };
+		AA000020 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100020 /* NetworkService.swift */; };
+		AA000021 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100021 /* DashboardView.swift */; };
+		AA000022 /* AlertsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100022 /* AlertsView.swift */; };
+		AA000023 /* IncidentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100023 /* IncidentsView.swift */; };
+		AA000024 /* FleetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100024 /* FleetView.swift */; };
+		AA000025 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100025 /* ChatView.swift */; };
+		AA000026 /* WeatherView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100026 /* WeatherView.swift */; };
+		AA000027 /* AnalyticsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100027 /* AnalyticsView.swift */; };
+		AA000028 /* EmergencyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100028 /* EmergencyView.swift */; };
+		AA000029 /* SensorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100029 /* SensorsView.swift */; };
+		AA000030 /* ContactsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100030 /* ContactsView.swift */; };
+		AA000031 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100031 /* CalendarView.swift */; };
+		AA000032 /* TravelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100032 /* TravelView.swift */; };
+		AA000033 /* AssetsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100033 /* AssetsView.swift */; };
+		AA000034 /* InfrastructureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100034 /* InfrastructureView.swift */; };
+		AA000035 /* PagerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100035 /* PagerView.swift */; };
+		AA000036 /* FederationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100036 /* FederationView.swift */; };
+		AA000037 /* AdminView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100037 /* AdminView.swift */; };
+		AA000038 /* ExportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100038 /* ExportView.swift */; };
+		AA000039 /* SystemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100039 /* SystemView.swift */; };
+		AA000045 /* SystemSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100045 /* SystemSettingsView.swift */; };
+		AA000040 /* AlarmGroupsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100040 /* AlarmGroupsView.swift */; };
+		AA000041 /* FCMService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100041 /* FCMService.swift */; };
+		AA000042 /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100042 /* ThemeManager.swift */; };
+		AA000043 /* VoiceChannelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100043 /* VoiceChannelService.swift */; };
+		AA000044 /* VoiceChannelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA100044 /* VoiceChannelView.swift */; };
+		FE4077F32F6D87F900D866B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE4077F22F6D87F900D866B9 /* GoogleService-Info.plist */; };
+		FE4077FB2F6D8AA900D866B9 /* FirebaseCore in Frameworks */ = {isa = PBXBuildFile; productRef = FE4077FA2F6D8AA900D866B9 /* FirebaseCore */; };
+		FE4077FD2F6D8AB000D866B9 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = FE4077FC2F6D8AB000D866B9 /* FirebaseMessaging */; };
+		FEBA0A192F68912A00D5C116 /* emergency_siren.caf in Resources */ = {isa = PBXBuildFile; fileRef = FEBA0A182F68912A00D5C116 /* emergency_siren.caf */; };
+		FEBA0A1F2F6891CD00D5C116 /* dispatch_tone.caf in Resources */ = {isa = PBXBuildFile; fileRef = FEBA0A1E2F6891CD00D5C116 /* dispatch_tone.caf */; };
+		FED10CF72F699C7D00AD6571 /* alert_tone.caf in Resources */ = {isa = PBXBuildFile; fileRef = FED10CF62F699C7D00AD6571 /* alert_tone.caf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AA100001 /* AtlasApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtlasApp.swift; sourceTree = "<group>"; };
+		AA100002 /* AtlasModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtlasModels.swift; sourceTree = "<group>"; };
+		AA100003 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
+		AA100004 /* WebSocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketService.swift; sourceTree = "<group>"; };
+		AA100005 /* PushService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushService.swift; sourceTree = "<group>"; };
+		AA100006 /* QRScanService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRScanService.swift; sourceTree = "<group>"; };
+		AA100007 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		AA100008 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		AA100009 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		AA100010 /* WebContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebContainerView.swift; sourceTree = "<group>"; };
+		AA100011 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AA100012 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AA100013 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AA100014 /* PermissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionService.swift; sourceTree = "<group>"; };
+		AA100015 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		AA100019 /* AlertPollingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertPollingService.swift; sourceTree = "<group>"; };
+		AA100020 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		AA100021 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		AA100022 /* AlertsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsView.swift; sourceTree = "<group>"; };
+		AA100023 /* IncidentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncidentsView.swift; sourceTree = "<group>"; };
+		AA100024 /* FleetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FleetView.swift; sourceTree = "<group>"; };
+		AA100025 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		AA100026 /* WeatherView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherView.swift; sourceTree = "<group>"; };
+		AA100027 /* AnalyticsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsView.swift; sourceTree = "<group>"; };
+		AA100028 /* EmergencyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyView.swift; sourceTree = "<group>"; };
+		AA100029 /* SensorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorsView.swift; sourceTree = "<group>"; };
+		AA100030 /* ContactsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsView.swift; sourceTree = "<group>"; };
+		AA100031 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
+		AA100032 /* TravelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TravelView.swift; sourceTree = "<group>"; };
+		AA100033 /* AssetsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsView.swift; sourceTree = "<group>"; };
+		AA100034 /* InfrastructureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfrastructureView.swift; sourceTree = "<group>"; };
+		AA100035 /* PagerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagerView.swift; sourceTree = "<group>"; };
+		AA100036 /* FederationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FederationView.swift; sourceTree = "<group>"; };
+		AA100037 /* AdminView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminView.swift; sourceTree = "<group>"; };
+		AA100038 /* ExportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExportView.swift; sourceTree = "<group>"; };
+		AA100039 /* SystemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemView.swift; sourceTree = "<group>"; };
+		AA100045 /* SystemSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSettingsView.swift; sourceTree = "<group>"; };
+		AA100040 /* AlarmGroupsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlarmGroupsView.swift; sourceTree = "<group>"; };
+		AA100041 /* FCMService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMService.swift; sourceTree = "<group>"; };
+		AA100042 /* ThemeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
+		AA100043 /* VoiceChannelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceChannelService.swift; sourceTree = "<group>"; };
+		AA100044 /* VoiceChannelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceChannelView.swift; sourceTree = "<group>"; };
+		AA200001 /* AtlasApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AtlasApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE4077F22F6D87F900D866B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FEBA0A182F68912A00D5C116 /* emergency_siren.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = emergency_siren.caf; sourceTree = "<group>"; };
+		FEBA0A1E2F6891CD00D5C116 /* dispatch_tone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dispatch_tone.caf; sourceTree = "<group>"; };
+		FED10CF62F699C7D00AD6571 /* alert_tone.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = alert_tone.caf; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FE4077F82F6D8A9F00D866B9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE4077FD2F6D8AB000D866B9 /* FirebaseMessaging in Frameworks */,
+				FE4077FB2F6D8AA900D866B9 /* FirebaseCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AA300001 = {
+			isa = PBXGroup;
+			children = (
+				AA300002 /* AtlasApp */,
+				FE4077F92F6D8AA900D866B9 /* Frameworks */,
+				AA300010 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AA300002 /* AtlasApp */ = {
+			isa = PBXGroup;
+			children = (
+				AA100001 /* AtlasApp.swift */,
+				FE4077F22F6D87F900D866B9 /* GoogleService-Info.plist */,
+				AA100013 /* Info.plist */,
+				AA100012 /* Assets.xcassets */,
+				FEBA0A182F68912A00D5C116 /* emergency_siren.caf */,
+				FED10CF62F699C7D00AD6571 /* alert_tone.caf */,
+				FEBA0A1E2F6891CD00D5C116 /* dispatch_tone.caf */,
+				AA300003 /* Views */,
+				AA300004 /* Services */,
+				AA300005 /* Models */,
+			);
+			path = AtlasApp;
+			sourceTree = "<group>";
+		};
+		AA300003 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AA100007 /* OnboardingView.swift */,
+				AA100008 /* LoginView.swift */,
+				AA100009 /* MainView.swift */,
+				AA100010 /* WebContainerView.swift */,
+				AA100011 /* SettingsView.swift */,
+				AA100021 /* DashboardView.swift */,
+				AA100022 /* AlertsView.swift */,
+				AA100023 /* IncidentsView.swift */,
+				AA100024 /* FleetView.swift */,
+				AA100025 /* ChatView.swift */,
+				AA100026 /* WeatherView.swift */,
+				AA100027 /* AnalyticsView.swift */,
+				AA100028 /* EmergencyView.swift */,
+				AA100029 /* SensorsView.swift */,
+				AA100030 /* ContactsView.swift */,
+				AA100031 /* CalendarView.swift */,
+				AA100032 /* TravelView.swift */,
+				AA100033 /* AssetsView.swift */,
+				AA100034 /* InfrastructureView.swift */,
+				AA100035 /* PagerView.swift */,
+				AA100036 /* FederationView.swift */,
+				AA100037 /* AdminView.swift */,
+				AA100038 /* ExportView.swift */,
+				AA100039 /* SystemView.swift */,
+				AA100045 /* SystemSettingsView.swift */,
+				AA100040 /* AlarmGroupsView.swift */,
+				AA100044 /* VoiceChannelView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AA300004 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				AA100003 /* AuthService.swift */,
+				AA100004 /* WebSocketService.swift */,
+				AA100005 /* PushService.swift */,
+				AA100006 /* QRScanService.swift */,
+				AA100014 /* PermissionService.swift */,
+				AA100015 /* LocationService.swift */,
+				AA100019 /* AlertPollingService.swift */,
+				AA100020 /* NetworkService.swift */,
+				AA100041 /* FCMService.swift */,
+			AA100042 /* ThemeManager.swift */,
+				AA100043 /* VoiceChannelService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		AA300005 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				AA100002 /* AtlasModels.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		AA300010 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AA200001 /* AtlasApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FE4077F92F6D8AA900D866B9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AA400001 /* AtlasApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA600001 /* Build configuration list for PBXNativeTarget "AtlasApp" */;
+			buildPhases = (
+				AA500001 /* Sources */,
+				AA500002 /* Resources */,
+				FE4077F82F6D8A9F00D866B9 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE4077F72F6D89FA00D866B9 /* PBXTargetDependency */,
+				FE4077F52F6D89E400D866B9 /* PBXTargetDependency */,
+			);
+			name = AtlasApp;
+			productName = AtlasApp;
+			productReference = AA200001 /* AtlasApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AA700001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 2630;
+				ORGANIZATIONNAME = "Atlas GmbH";
+				TargetAttributes = {
+					AA400001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = AA600010 /* Build configuration list for PBXProject "AtlasApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = de;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				de,
+				en,
+				Base,
+			);
+			mainGroup = AA300001;
+			packageReferences = (
+				FE9E0E862F6D8776009D5549 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
+			productRefGroup = AA300010 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AA400001 /* AtlasApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AA500002 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000012 /* Assets.xcassets in Resources */,
+				FEBA0A192F68912A00D5C116 /* emergency_siren.caf in Resources */,
+				FE4077F32F6D87F900D866B9 /* GoogleService-Info.plist in Resources */,
+				FEBA0A1F2F6891CD00D5C116 /* dispatch_tone.caf in Resources */,
+				FED10CF72F699C7D00AD6571 /* alert_tone.caf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AA500001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA000001 /* AtlasApp.swift in Sources */,
+				AA000002 /* AtlasModels.swift in Sources */,
+				AA000003 /* AuthService.swift in Sources */,
+				AA000004 /* WebSocketService.swift in Sources */,
+				AA000005 /* PushService.swift in Sources */,
+				AA000006 /* QRScanService.swift in Sources */,
+				AA000007 /* OnboardingView.swift in Sources */,
+				AA000008 /* LoginView.swift in Sources */,
+				AA000009 /* MainView.swift in Sources */,
+				AA000010 /* WebContainerView.swift in Sources */,
+				AA000011 /* SettingsView.swift in Sources */,
+				AA000013 /* PermissionService.swift in Sources */,
+				AA000014 /* LocationService.swift in Sources */,
+				AA000018 /* AlertPollingService.swift in Sources */,
+				AA000020 /* NetworkService.swift in Sources */,
+				AA000021 /* DashboardView.swift in Sources */,
+				AA000022 /* AlertsView.swift in Sources */,
+				AA000023 /* IncidentsView.swift in Sources */,
+				AA000024 /* FleetView.swift in Sources */,
+				AA000025 /* ChatView.swift in Sources */,
+				AA000026 /* WeatherView.swift in Sources */,
+				AA000027 /* AnalyticsView.swift in Sources */,
+				AA000028 /* EmergencyView.swift in Sources */,
+				AA000029 /* SensorsView.swift in Sources */,
+				AA000030 /* ContactsView.swift in Sources */,
+				AA000031 /* CalendarView.swift in Sources */,
+				AA000032 /* TravelView.swift in Sources */,
+				AA000033 /* AssetsView.swift in Sources */,
+				AA000034 /* InfrastructureView.swift in Sources */,
+				AA000035 /* PagerView.swift in Sources */,
+				AA000036 /* FederationView.swift in Sources */,
+				AA000037 /* AdminView.swift in Sources */,
+				AA000038 /* ExportView.swift in Sources */,
+				AA000039 /* SystemView.swift in Sources */,
+				AA000045 /* SystemSettingsView.swift in Sources */,
+				AA000040 /* AlarmGroupsView.swift in Sources */,
+				AA000041 /* FCMService.swift in Sources */,
+				AA000042 /* ThemeManager.swift in Sources */,
+				AA000043 /* VoiceChannelService.swift in Sources */,
+				AA000044 /* VoiceChannelView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FE4077F52F6D89E400D866B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = FE4077F42F6D89E400D866B9 /* FirebaseCore */;
+		};
+		FE4077F72F6D89FA00D866B9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = FE4077F62F6D89FA00D866B9 /* FirebaseMessaging */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		AA601001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AtlasApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.atlasadmin.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AA601002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = AtlasApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = de.atlasadmin.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AA602001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = P57V6MGUPD;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+			};
+			name = Debug;
+		};
+		AA602002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = P57V6MGUPD;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AA600001 /* Build configuration list for PBXNativeTarget "AtlasApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA601001 /* Debug */,
+				AA601002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AA600010 /* Build configuration list for PBXProject "AtlasApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA602001 /* Debug */,
+				AA602002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FE9E0E862F6D8776009D5549 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FE4077F42F6D89E400D866B9 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE9E0E862F6D8776009D5549 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		FE4077F62F6D89FA00D866B9 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE9E0E862F6D8776009D5549 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		FE4077FA2F6D8AA900D866B9 /* FirebaseCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE9E0E862F6D8776009D5549 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCore;
+		};
+		FE4077FC2F6D8AB000D866B9 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FE9E0E862F6D8776009D5549 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = AA700001 /* Project object */;
+}

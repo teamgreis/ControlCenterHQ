@@ -6,12 +6,12 @@
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>Atlas AdminSysOP</title>
+  <title>ControlCenterHQ</title>
 
   <!-- Leaflet CSS -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <!-- App CSS -->
-  <link rel="stylesheet" href="/static/styles.css">
+  <link rel="stylesheet" href="/static/styles.css?v=2.8.1">
 
   <!-- Preconnect -->
   <link rel="preconnect" href="https://unpkg.com">
@@ -26,18 +26,19 @@
 <!-- ═══════════════════════════════════════════════════════════
      LOGIN SCREEN
 ════════════════════════════════════════════════════════════ -->
-<div id="login-screen">
+<div id="login-screen" class="hidden">
   <div class="login-card">
-    <h1 id="login-app-name">Atlas AdminSysOP</h1>
-    <p class="login-subtitle" id="login-subtitle">Operations Platform – © Felix Greis | Atlas GmbH 2026</p>
+    <h1 id="login-app-name">ControlCenterHQ</h1>
+    <p class="login-subtitle" id="login-subtitle">Operations Platform – © Felix Greis 2026</p>
 
     <div class="form-group">
       <label class="form-label" for="login-user" id="lbl-username">Username</label>
-      <input type="text" id="login-user" class="form-input" autocomplete="username" placeholder="admin">
+      <input type="text" id="login-user" class="form-input" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="admin">
     </div>
     <div class="form-group">
       <label class="form-label" for="login-pass" id="lbl-password">Password</label>
-      <input type="password" id="login-pass" class="form-input" autocomplete="current-password" placeholder="••••••••">
+      <!-- Password field injected by JS when login screen shown – browser has no pw field to autofill on page load -->
+      <div id="login-pass-container"></div>
     </div>
 
     <div id="login-error" class="hidden" style="color:var(--danger);font-size:13px;margin-bottom:12px;padding:8px 12px;background:rgba(239,68,68,0.1);border-radius:var(--radius-sm);border:1px solid rgba(239,68,68,0.3);"></div>
@@ -68,9 +69,9 @@
   <!-- ── SIDEBAR ─────────────────────────────────────────── -->
   <aside id="sidebar">
     <div class="sidebar-logo">
-      <div class="app-name" id="sidebar-app-name">Atlas AdminSysOP</div>
+      <div class="app-name" id="sidebar-app-name">ControlCenterHQ</div>
       <div class="org-name" id="sidebar-org-name">Loading...</div>
-      <div class="copyright">© Felix Greis | Atlas GmbH 2026</div>
+      <div class="copyright">© Felix Greis 2026</div>
     </div>
 
     <nav id="nav-menu">
@@ -82,6 +83,11 @@
       <a href="/static/manual.html" target="_blank" style="display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:var(--radius-sm);font-size:12px;color:var(--text-muted);text-decoration:none;margin-bottom:4px;transition:background 0.15s;" onmouseover="this.style.background='rgba(255,255,255,0.05)'" onmouseout="this.style.background=''">
         <span>📋</span> Benutzerhandbuch
       </a>
+      <!-- Lockdown button (owner only – injected by JS) -->
+      <div id="lockdown-control" class="hidden" style="margin-bottom:8px;">
+        <button id="lockdown-enable-btn" class="btn btn-danger btn-sm" style="width:100%;font-size:12px;" onclick="ATLAS.lockdown.enable()">🔒 Lockdown aktivieren</button>
+      </div>
+
       <!-- User card -->
       <div class="user-card" onclick="ATLAS.ui.showUserMenu()">
         <div class="user-avatar" id="user-avatar">?</div>
@@ -102,6 +108,13 @@
       <span>🚨</span>
       <span id="alert-banner-text">Critical alerts require attention</span>
       <span style="margin-left:auto;font-size:11px;opacity:0.8;">Click to view →</span>
+    </div>
+
+    <!-- Lockdown banner (visible only when system is in lockdown) -->
+    <div id="lockdown-banner" class="hidden" style="background:#7c1d1d;color:#fca5a5;padding:10px 20px;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:600;z-index:200;position:relative;">
+      <span>🔒</span>
+      <span>SYSTEM LOCKDOWN AKTIV – Nur der Owner hat Zugriff.</span>
+      <button id="lockdown-lift-btn" class="hidden btn btn-danger btn-sm" style="margin-left:auto;background:#991b1b;" onclick="ATLAS.lockdown.disable()">Lockdown aufheben</button>
     </div>
 
     <!-- Topbar -->
@@ -135,6 +148,15 @@
         <button class="icon-btn" onclick="ATLAS.ui.showThemePicker()" data-tooltip="Theme">🎨</button>
       </div>
     </header>
+
+    <!-- Update-Banner (hidden until update available) -->
+    <div id="update-banner" style="display:none;background:linear-gradient(90deg,#1a3a1a,#0f2a1a);border-bottom:1px solid #2d5a2d;padding:8px 16px;display:none;align-items:center;gap:12px;font-size:13px;color:#7dff9b;">
+      <span style="font-size:16px;">🆕</span>
+      <span id="update-banner-text">Neue Version verfügbar</span>
+      <span style="flex:1"></span>
+      <button onclick="ATLAS.updater.showDetails()" style="background:rgba(125,255,155,0.15);border:1px solid #2d5a2d;color:#7dff9b;padding:4px 12px;border-radius:6px;cursor:pointer;font-size:12px;">Details</button>
+      <button onclick="document.getElementById('update-banner').style.display='none'" style="background:none;border:none;color:#7dff9b;opacity:0.6;cursor:pointer;font-size:16px;line-height:1;">×</button>
+    </div>
 
     <!-- Main content -->
     <main id="main-content">
@@ -180,7 +202,7 @@
 ════════════════════════════════════════════════════════════ -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-<script src="/static/app.js"></script>
+<script src="/static/app.js?v=2.8.1"></script>
 <script src="/static/sw-register.js" defer></script>
 
 </body>

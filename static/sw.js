@@ -1,12 +1,12 @@
-// © Felix Greis | Atlas GmbH 2026 – All rights reserved.
-// Atlas AdminSysOP – Service Worker for Caching + Web Push Notifications
+// © Felix Greis 2026 – All rights reserved.
+// Atlas Control Center – Service Worker for Caching + Web Push Notifications
 // Supports: silent-mode bypass (critical), vibration patterns, sound via main thread
 
-const CACHE_NAME = 'atlas-adminsysop-v3';
+const CACHE_NAME = 'atlas-adminsysop-v6';
 const STATIC_ASSETS = [
   '/',
-  '/static/app.js',
-  '/static/styles.css',
+  '/static/app.js?v=2.8.1',
+  '/static/styles.css?v=2.8.1',
   '/static/sw-register.js'
 ];
 
@@ -110,12 +110,14 @@ self.addEventListener('push', event => {
           { action: 'dismiss', title: 'Dismiss' },
         ],
 
-    // Payload forwarded to click handler
+    // Payload forwarded to click handler.
+    // NOTE: Never store auth tokens in notification data – they are readable
+    // by the OS notification system.  The acknowledge action is handled by
+    // the main thread via postMessage once the window is focused.
     data: {
       url:      data.url || '/#/alerts',
       alertId:  data.id,
       severity: severity,
-      token:    data.token || null,
       timestamp: Date.now(),
     },
   };
@@ -123,7 +125,7 @@ self.addEventListener('push', event => {
   // ── Title with severity prefix ────────────────────────────────────────────
   const prefix = isCritical ? '🚨 CRITICAL – ' :
                  isWarning  ? '⚠️ Warning – '  : 'ℹ️ ';
-  const title = prefix + (data.title || 'Atlas AdminSysOP');
+  const title = prefix + (data.title || 'Atlas Control Center');
 
   event.waitUntil(
     self.registration.showNotification(title, options)
@@ -139,6 +141,7 @@ self.addEventListener('push', event => {
           });
         });
       })
+      .catch(err => console.warn('[SW] Push notification failed:', err))
   );
 });
 
@@ -154,14 +157,29 @@ self.addEventListener('notificationclick', event => {
 
   if (action === 'dismiss') return;
 
-  // Acknowledge action: fire API call then navigate
-  if (action === 'ack' && alertId && notifData.token) {
+  // Acknowledge action: delegate to the main thread which holds the auth token.
+  // The SW never stores the token; instead it sends a message to all open
+  // windows so the authenticated tab can perform the API call.
+  if (action === 'ack' && alertId) {
     event.waitUntil(
-      fetch(`/api/alerts/${alertId}/acknowledge`, {
-        method: 'POST',
-        headers: { 'Authorization': `Bearer ${notifData.token}` },
-      }).catch(() => {/* offline – will sync later */})
-       .then(() => _focusOrOpen(targetUrl, alertId))
+      self.clients
+        .matchAll({ type: 'window', includeUncontrolled: true })
+        .then(clients => {
+          let handled = false;
+          for (const client of clients) {
+            if (client.url.startsWith(self.location.origin)) {
+              client.postMessage({ type: 'ACK_ALERT', alertId });
+              client.focus();
+              handled = true;
+              break;
+            }
+          }
+          // If no window open, open the app and it will ack on load
+          if (!handled && self.clients.openWindow) {
+            return self.clients.openWindow(`${targetUrl}?ack=${alertId}`);
+          }
+        })
+        .catch(err => console.warn('[SW] Ack delegation failed:', err))
     );
     return;
   }
@@ -204,28 +222,26 @@ self.addEventListener('sync', event => {
 });
 
 async function syncPendingAcks() {
+  // Background sync for pending acknowledges.
+  // Tokens are no longer stored in the SW / IndexedDB for security reasons.
+  // Instead, when the app comes back online the main thread will re-check
+  // unacknowledged alerts and sync them using its in-memory session token.
+  // This function notifies any open windows to trigger that re-sync.
   try {
-    const db   = await openDB();
-    const tx   = db.transaction('pendingAcks', 'readwrite');
-    const store = tx.objectStore('pendingAcks');
-    const all  = await storeGetAll(store);
-    for (const item of all) {
-      try {
-        const resp = await fetch(`/api/alerts/${item.alertId}/acknowledge`, {
-          method: 'POST',
-          headers: { 'Authorization': `Bearer ${item.token}` },
-        });
-        if (resp.ok) store.delete(item.id);
-      } catch (e) { /* retry later */ }
+    const clients = await self.clients.matchAll({ type: 'window', includeUncontrolled: true });
+    for (const client of clients) {
+      client.postMessage({ type: 'SYNC_ACKS' });
     }
-  } catch (e) { /* IndexedDB not available */ }
+  } catch (e) { /* no clients available */ }
 }
 
 // ── Message from main thread ──────────────────────────────────────────────────
 self.addEventListener('message', event => {
   const msg = event.data || {};
   if (msg.type === 'SKIP_WAITING') self.skipWaiting();
-  if (msg.type === 'CACHE_INVALIDATE') caches.delete(CACHE_NAME);
+  if (msg.type === 'CACHE_INVALIDATE') {
+    event.waitUntil(caches.delete(CACHE_NAME));
+  }
 });
 
 // ── IndexedDB helpers ─────────────────────────────────────────────────────────

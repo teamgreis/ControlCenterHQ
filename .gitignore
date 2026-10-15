@@ -1,0 +1,29 @@
+# Secrets & persönliche Daten – NIEMALS committen
+config.json
+fcm_service_account.json
+*.db
+*.db-shm
+*.db-wal
+*.db-journal
+atlas.db.backup-*
+
+# Laufzeit-Artefakte
+.venv/
+__pycache__/
+*.pyc
+.ruff_cache/
+.claude/
+server.log
+server.pid
+.cchq_integrity
+
+# OS-Müll
+.DS_Store
+*.rsrc
+
+# Backups
+.update_backup/
+.update_tmp/
+sounds/
+certs/
+uploads/

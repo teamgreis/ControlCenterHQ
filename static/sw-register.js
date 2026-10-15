@@ -1,5 +1,5 @@
-// © Felix Greis | Atlas GmbH 2026 – All rights reserved.
-// Atlas AdminSysOP – Service Worker Registration + Push Subscription Manager
+// © Felix Greis 2026 – All rights reserved.
+// Atlas Control Center – Service Worker Registration + Push Subscription Manager
 
 (function () {
   'use strict';
@@ -7,6 +7,7 @@
   window.AtlasSW = {
     registration: null,
     subscription: null,
+    _messageListenerAttached: false,
     supported: ('serviceWorker' in navigator && 'PushManager' in window),
 
     // ── Register Service Worker ────────────────────────────────────────────
@@ -35,7 +36,11 @@
         });
 
         // Listen for messages from SW (sound requests, navigate events)
-        navigator.serviceWorker.addEventListener('message', e => this._onMessage(e));
+        // Guard: only attach once to avoid duplicate listeners on re-register
+        if (!this._messageListenerAttached) {
+          navigator.serviceWorker.addEventListener('message', e => this._onMessage(e));
+          this._messageListenerAttached = true;
+        }
 
         // Try to restore existing subscription
         await this._restoreSubscription();
@@ -179,7 +184,11 @@
     // ── Show local notification (in-app, no server push needed) ───────────
     async showLocalNotification(title, body, options = {}) {
       if (!this.registration) return false;
-      const perm = await Notification.requestPermission().catch(()=>'denied');
+      // Only request permission if not yet granted – avoids repeated prompts
+      let perm = Notification.permission;
+      if (perm !== 'granted') {
+        perm = await Notification.requestPermission().catch(() => 'denied');
+      }
       if (perm !== 'granted') return false;
       try {
         await this.registration.showNotification(title, {
@@ -290,7 +299,9 @@
           const data = await resp.json();
           return { status: base, ...data };
         }
-      } catch (e) {}
+      } catch (e) {
+        console.warn('[SW] getDetailedStatus failed:', e);
+      }
       return { status: base };
     },
   };

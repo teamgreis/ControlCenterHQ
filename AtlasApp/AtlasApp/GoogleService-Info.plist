@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyAYwRKUtgb5lZdszZ89uwBFFgGOgSuhNQY</string>
+	<key>GCM_SENDER_ID</key>
+	<string>232986117043</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>de.atlasadmin.app</string>
+	<key>PROJECT_ID</key>
+	<string>atlas-adminsysop</string>
+	<key>STORAGE_BUCKET</key>
+	<string>atlas-adminsysop.firebasestorage.app</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:232986117043:ios:a2659315b07ef345db81c6</string>
+</dict>
+</plist>
