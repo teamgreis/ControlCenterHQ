@@ -2,11 +2,11 @@
 // Atlas Control Center – Service Worker for Caching + Web Push Notifications
 // Supports: silent-mode bypass (critical), vibration patterns, sound via main thread
 
-const CACHE_NAME = 'atlas-adminsysop-v6';
+const CACHE_NAME = 'atlas-adminsysop-v7';
 const STATIC_ASSETS = [
   '/',
-  '/static/app.js?v=2.8.1',
-  '/static/styles.css?v=2.8.1',
+  '/static/app.js?v=2.9.0',
+  '/static/styles.css?v=2.9.0',
   '/static/sw-register.js'
 ];
 

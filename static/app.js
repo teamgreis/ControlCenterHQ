@@ -6325,6 +6325,14 @@ ATLAS.settingsPage = {
             <div id="lic-activate-error" style="color:var(--danger);font-size:12px;margin-top:6px;min-height:16px;"></div>
           </div>` : ''}
 
+          ${ATLAS.state.user?.role === 'owner' ? `
+          <div class="card" id="lic-admin-card">
+            <div class="card-title">🔑 Lizenzverwaltung <span style="font-size:11px;color:var(--text-muted);font-weight:400;">(Eigentümer)</span></div>
+            <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;">Lizenzkeys für Kunden erstellen, verwalten und widerrufen. Kundenprogramme prüfen Keys über <code style="font-family:monospace;">POST /api/license/validate</code> auf cchq.queerbase.eu.</p>
+            <div id="lic-admin-list" style="margin-bottom:12px;"></div>
+            <button class="btn btn-primary btn-sm w-full" onclick="ATLAS.settingsPage.showCreateLicenseDialog()">➕ Neue Lizenz erstellen</button>
+          </div>` : ''}
+
           <div class="card">
             <div class="card-title">ℹ️ About ControlCenterHQ</div>
             <div style="font-size:13px;display:flex;flex-direction:column;gap:8px;">
@@ -6350,6 +6358,7 @@ ATLAS.settingsPage = {
         </div>
       </div>`;
     if (isAdmin) { this.loadLicense(); this.loadServerConfig(); }
+    if (ATLAS.state.user?.role === 'owner') this.loadLicenseAdmin();
   },
 
   async loadLicense() {
@@ -6418,6 +6427,136 @@ ATLAS.settingsPage = {
     const hint = document.getElementById('lic-key-hint');
     const total = segLengths.reduce((a,b)=>a+b,0);
     if (hint) hint.style.color = raw.length === total ? 'var(--success)' : 'var(--text-muted)';
+  },
+
+  // ── Lizenzverwaltung (Eigentümer) ────────────────────────────────────────
+  async loadLicenseAdmin() {
+    const el = document.getElementById('lic-admin-list');
+    if (!el) return;
+    try {
+      const [lics, stats] = await Promise.all([
+        ATLAS.api.get('/api/licenses').catch(()=>({licenses:[]})),
+        ATLAS.api.get('/api/licenses/stats').catch(()=>null),
+      ]);
+      const L = lics.licenses || [];
+      if (!L.length) {
+        el.innerHTML = `<div style="font-size:12px;color:var(--text-muted);padding:8px 0;">Noch keine Lizenzen erstellt.</div>`;
+        return;
+      }
+      const tierColors = { PRO: '#22c55e', STANDARD: '#3b82f6' };
+      const esc = ATLAS.ui.esc;
+      el.innerHTML = `
+        ${stats ? `<div style="display:flex;gap:8px;margin-bottom:10px;flex-wrap:wrap;font-size:11px;">
+          <span style="background:var(--accent-dim);padding:2px 8px;border-radius:10px;">Gesamt: <b>${stats.total}</b></span>
+          <span style="background:var(--success-dim,#1a2e22);padding:2px 8px;border-radius:10px;">Aktiv: <b>${stats.active}</b></span>
+          <span style="background:var(--danger-dim,#2e1a1a);padding:2px 8px;border-radius:10px;">Widerrufen: <b>${stats.revoked}</b></span>
+          <span style="background:var(--warn-dim,#2e2a1a);padding:2px 8px;border-radius:10px;">Abgelaufen: <b>${stats.expired}</b></span>
+        </div>` : ''}
+        ${L.map(l => {
+          const days = l.days_remaining;
+          const expired = l.expires_at && days === 0;
+          const revoked = l.status !== 'active';
+          const badge = revoked
+            ? `<span style="color:#ef4444;font-weight:600;">● widerrufen</span>`
+            : expired
+            ? `<span style="color:#f59e0b;font-weight:600;">● abgelaufen</span>`
+            : `<span style="color:#22c55e;font-weight:600;">● aktiv</span>`;
+          return `<div style="border:1px solid var(--border);border-radius:8px;padding:10px;margin-bottom:8px;">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;">
+              <div>
+                <span style="font-family:monospace;font-weight:600;letter-spacing:1px;">${esc(l.key_display)}</span>
+                <span style="display:inline-block;margin-left:6px;padding:1px 8px;border-radius:10px;font-size:10px;font-weight:700;background:${tierColors[l.tier]||'#6b7280'}22;color:${tierColors[l.tier]||'#6b7280'};">${esc(l.tier)}</span>
+                ${badge}
+              </div>
+              <div style="display:flex;gap:4px;flex-wrap:wrap;">
+                <button class="btn btn-secondary btn-sm" style="font-size:11px;padding:2px 8px;" onclick="ATLAS.settingsPage.showLicenseActivations(${l.id})">Geräte (${l.activations}/${l.max_activations})</button>
+                ${revoked
+                  ? `<button class="btn btn-primary btn-sm" style="font-size:11px;padding:2px 8px;" onclick="ATLAS.settingsPage.editLicenseStatus(${l.id},'active')">Reaktivieren</button>`
+                  : `<button class="btn btn-warning btn-sm" style="font-size:11px;padding:2px 8px;" onclick="ATLAS.settingsPage.editLicenseStatus(${l.id},'revoked')">Widerrufen</button>`}
+                <button class="btn btn-danger btn-sm" style="font-size:11px;padding:2px 8px;" onclick="ATLAS.settingsPage.deleteLicense(${l.id})">Löschen</button>
+              </div>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:6px;font-size:11px;color:var(--text-muted);flex-wrap:wrap;">
+              ${l.customer_name ? `<span>👤 ${esc(l.customer_name)}</span>` : ''}
+              ${l.customer_email ? `<span>✉️ ${esc(l.customer_email)}</span>` : ''}
+              ${l.expires_at ? `<span>📅 ${esc(l.expires_at)}${!revoked && !expired && days!=null ? ` (${days}d)` : ''}</span>` : '<span>📅 kein Ablauf</span>'}
+              <span>🔗 ${l.activations}/${l.max_activations} Aktivierungen</span>
+            </div>
+          </div>`;
+        }).join('')}`;
+    } catch(e) {
+      el.innerHTML = `<div style="color:var(--danger);font-size:12px;">Fehler beim Laden: ${esc(e.message||'')}</div>`;
+    }
+  },
+
+  async showCreateLicenseDialog() {
+    const tier = prompt('Tier: "PRO" (unbegrenzt) oder "STANDARD" (10 Nutzer)?', 'STANDARD');
+    if (!tier) return;
+    const t = tier.toUpperCase();
+    if (t !== 'PRO' && t !== 'STANDARD') { alert('Ungültiger Tier – nur PRO oder STANDARD.'); return; }
+    const customer = prompt('Kundenname (optional):', '') || '';
+    const email = prompt('Kunden-E-Mail (optional):', '') || '';
+    const expiry = prompt('Ablaufdatum YYYY-MM-DD (leer = kein Ablauf):', '') || '';
+    const acts = prompt('Max. Aktivierungen (1-100):', '3') || '3';
+    try {
+      const r = await ATLAS.api.post('/api/licenses', {
+        tier: t, customer_name: customer, customer_email: email,
+        expires_at: expiry.trim() || null, max_activations: parseInt(acts) || 3,
+      });
+      if (r.ok && r.key) {
+        alert(`✅ Lizenz erstellt!\n\nKey: ${r.key}\n\nDiesen Key jetzt kopieren – er wird nur EINMAL angezeigt!`);
+        this.loadLicenseAdmin();
+      } else {
+        alert('Fehler: ' + (r.detail || JSON.stringify(r)));
+      }
+    } catch(e) { alert('Fehler: ' + (e.message||'')); }
+  },
+
+  async editLicenseStatus(lid, status) {
+    const action = status === 'revoked' ? 'widerrufen' : 'reaktivieren';
+    if (!confirm(`Lizenz wirklich ${action}?`)) return;
+    try {
+      await ATLAS.api.put(`/api/licenses/${lid}`, { status });
+      this.loadLicenseAdmin();
+    } catch(e) { alert('Fehler: ' + (e.message||'')); }
+  },
+
+  async deleteLicense(lid) {
+    if (!confirm('Lizenz UNWIDERRUFLICH löschen? Alle Aktivierungen werden ebenfalls entfernt.')) return;
+    try {
+      await ATLAS.api.delete(`/api/licenses/${lid}`);
+      this.loadLicenseAdmin();
+    } catch(e) { alert('Fehler: ' + (e.message||'')); }
+  },
+
+  async showLicenseActivations(lid) {
+    try {
+      const d = await ATLAS.api.get(`/api/licenses/${lid}/activations`);
+      const esc = ATLAS.ui.esc;
+      const list = d.activations.length
+        ? d.activations.map(a =>
+            `<div style="display:flex;justify-content:space-between;gap:8px;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;">
+              <div><b>${esc(a.device_name || a.device_id)}</b><br><span style="color:var(--text-muted);font-size:11px;">ID: ${esc(a.device_id)} · v${esc(a.app_version||'?')} · ${esc(a.ip||'?')}</span></div>
+              <button class="btn btn-danger btn-sm" style="font-size:10px;padding:2px 6px;" onclick="ATLAS.settingsPage.releaseActivation(${lid},${a.id})">Freigeben</button>
+            </div>`).join('')
+        : '<div style="font-size:12px;color:var(--text-muted);">Keine Aktivierungen.</div>';
+      const w = document.createElement('div');
+      w.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,.6);display:flex;align-items:center;justify-content:center;z-index:9999;';
+      w.innerHTML = `<div style="background:var(--surface-1,#1a1f2e);border-radius:12px;padding:20px;max-width:520px;width:90%;max-height:80vh;overflow:auto;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">
+          <h3 style="margin:0;">🔗 Aktivierungen (${d.activations.length}/${d.max_activations})</h3>
+          <button class="btn btn-secondary btn-sm" onclick="this.closest('div[style*=fixed]').remove()">✕</button>
+        </div>${list}</div>`;
+      document.body.appendChild(w);
+    } catch(e) { alert('Fehler: ' + (e.message||'')); }
+  },
+
+  async releaseActivation(lid, aid) {
+    if (!confirm('Gerät freigeben? Das Gerät kann sich danach neu aktivieren.')) return;
+    try {
+      await ATLAS.api.delete(`/api/licenses/${lid}/activations/${aid}`);
+      this.showLicenseActivations(lid);
+    } catch(e) { alert('Fehler: ' + (e.message||'')); }
   },
 
   _toggleLicKeyVisibility() {

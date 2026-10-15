@@ -40,19 +40,102 @@ _LIC_HASHES = {
                               "travel","weather","inventory","knowledge","requests","user_management"]}),
 }
 
+# ─── License Key Management ──────────────────────────────────────────────────
+# Keys are generated (CCHQ-TIER-YYYY-XX-XXXXX), stored ONLY as PBKDF2 hashes,
+# and can carry an expiry date, a customer, and an activation limit.
+# Offline fallback keys (above) remain valid for existing installations.
+
+_LIC_TIERS = {
+    "PRO":      {"all": True,  "max_users": 9999, "modules": "__all__"},
+    "STANDARD": {"all": False, "max_users": 10,
+                 "modules": ["command_control","alert_system","communication","data_logging",
+                             "fleet_management","navigation","pager","scheduler","calendar",
+                             "travel","weather","inventory","knowledge","requests","user_management"]},
+}
+_LIC_ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789"  # no I, O, 0, 1 (unambiguous)
+
+def _lic_checksum(body: str) -> str:
+    """Simple checksum char over the key body (mod 32 over the alphabet)."""
+    total = sum(_LIC_ALPHABET.index(c) for c in body if c in _LIC_ALPHABET)
+    return _LIC_ALPHABET[total % len(_LIC_ALPHABET)]
+
+def generate_license_key(tier: str = "STANDARD") -> str:
+    """Generate a new license key: CCHQ-<TIER3>-<YYYY>-<XX>-<XXXXX-C>.
+    The last char is a checksum over the body for typo detection."""
+    tier_code = {"PRO": "PRO", "STANDARD": "STD"}.get(tier.upper(), "STD")
+    year = str(datetime.now().year)
+    rnd = "".join(secrets.choice(_LIC_ALPHABET) for _ in range(7))
+    body = f"{tier_code}{year}{rnd}"
+    return f"CCHQ-{tier_code}-{year}-{rnd[:2]}-{rnd[2:]}{_lic_checksum(body)}"
+
+def _mask_key(key: str) -> str:
+    """Mask a license key for display: CCHQ-PRO-2026-AB-CDEFGH → ****CDEFGH."""
+    if not key or len(key) < 5:
+        return "****"
+    return "****" + key[-5:]
+
+def _get_license_row(key: str):
+    """Look up a license row by key (hashed). Returns sqlite3.Row or None."""
+    if not key:
+        return None
+    conn = get_db()
+    try:
+        h = _hash_license_key(key)
+        return conn.execute("SELECT * FROM licenses WHERE key_hash=?", (h,)).fetchone()
+    except Exception:
+        return None
+    finally:
+        conn.close()
+
+def _license_is_effective(row) -> bool:
+    """A DB license counts as valid only when active and not expired."""
+    if not row or row["status"] != "active":
+        return False
+    exp = row["expires_at"]
+    if exp:
+        try:
+            if datetime.fromisoformat(exp) < datetime.now():
+                return False
+        except ValueError:
+            pass
+    return True
+
 def _hash_license_key(key: str) -> str:
     dk = hashlib.pbkdf2_hmac('sha256', key.strip().encode(), _LIC_SALT, _LIC_ITERATIONS)
     return base64.b64encode(dk).decode()
 
 def validate_license_key(key: str) -> dict:
-    """Validate a license key. Returns {'valid':bool,'tier':str,'features':dict}."""
+    """Validate a license key. Returns {'valid':bool,'tier':str,'features':dict,
+    'expires_at':str|None,'reason':str}.
+
+    Resolution order:
+      1. DB-generated license (licenses table) – respects status + expiry
+      2. Hardcoded offline keys (_LIC_HASHES) – for existing installs
+    """
     if not key:
         return {"valid": False, "tier": None, "features": {}}
+
+    # 1. DB-managed license
+    try:
+        row = _get_license_row(key)
+        if row is not None:
+            if not _license_is_effective(row):
+                reason = "revoked" if row["status"] != "active" else "expired"
+                return {"valid": False, "tier": None, "features": {}, "reason": reason}
+            tier = row["tier"]
+            features = dict(_LIC_TIERS.get(tier, _LIC_TIERS["STANDARD"]))
+            return {"valid": True, "tier": tier, "features": features,
+                    "expires_at": row["expires_at"], "customer": row["customer_name"]}
+    except Exception:
+        pass  # DB not ready yet (first boot) – fall through to offline keys
+
+    # 2. Hardcoded offline keys
     h = _hash_license_key(key)
     for tier, (stored_hash, features) in _LIC_HASHES.items():
         if hmac.compare_digest(h, stored_hash):
-            return {"valid": True, "tier": tier, "features": features}
-    return {"valid": False, "tier": None, "features": {}}
+            return {"valid": True, "tier": tier, "features": features,
+                    "expires_at": None, "offline": True}
+    return {"valid": False, "tier": None, "features": {}, "reason": "unknown"}
 
 def get_current_license() -> dict:
     """Load and validate the license from config."""
@@ -781,6 +864,32 @@ def init_db():
         ip TEXT,
         user_id INTEGER,
         ts TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+    CREATE TABLE IF NOT EXISTS licenses (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        key_hash TEXT NOT NULL UNIQUE,
+        key_display TEXT NOT NULL DEFAULT '',
+        tier TEXT NOT NULL DEFAULT 'STANDARD',
+        customer_name TEXT NOT NULL DEFAULT '',
+        customer_email TEXT NOT NULL DEFAULT '',
+        notes TEXT NOT NULL DEFAULT '',
+        status TEXT NOT NULL DEFAULT 'active',
+        expires_at TEXT,
+        max_activations INTEGER NOT NULL DEFAULT 3,
+        created_by INTEGER REFERENCES users(id),
+        created_at TEXT NOT NULL DEFAULT (datetime('now')),
+        updated_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+    CREATE TABLE IF NOT EXISTS license_activations (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        license_id INTEGER NOT NULL REFERENCES licenses(id) ON DELETE CASCADE,
+        device_id TEXT NOT NULL,
+        device_name TEXT NOT NULL DEFAULT '',
+        app_version TEXT NOT NULL DEFAULT '',
+        ip TEXT,
+        first_seen TEXT NOT NULL DEFAULT (datetime('now')),
+        last_seen TEXT NOT NULL DEFAULT (datetime('now')),
+        UNIQUE(license_id, device_id)
     );
     CREATE TABLE IF NOT EXISTS health_checks (
         id INTEGER PRIMARY KEY CHECK (id=1),
@@ -2346,6 +2455,7 @@ app.mount("/static", StaticFiles(directory=str(static_path)), name="static")
 # Activated by POST /api/system/lockdown (owner only), deactivated by DELETE.
 LOCKDOWN_MODE: bool = False
 LOCKDOWN_EXEMPT = {"/api/auth/login", "/api/setup/status", "/api/setup/complete",
+                   "/api/license/validate",
                    "/", "/api/info"}
 
 # ─── Global API Rate Limiter ──────────────────────────────────────────────────
@@ -2383,7 +2493,8 @@ async def security_middleware(request: Request, call_next):
 
     # ── License enforcement (API paths only, exempt: auth + license + setup) ──
     _LICENSE_EXEMPT = {"/api/auth/login", "/api/auth/logout", "/api/setup/status",
-                       "/api/setup/complete", "/api/license", "/api/license/check", "/api/info"}
+                       "/api/setup/complete", "/api/license", "/api/license/check",
+                       "/api/license/validate", "/api/info"}
     if (path.startswith("/api/") and
         path not in _LICENSE_EXEMPT and
         not path.startswith("/api/license") and
@@ -10699,6 +10810,254 @@ async def deactivate_license(user: dict = Depends(require_admin)):
         json.dump(cfg, f, indent=2)
     log_action(user["id"], "license_deactivated", {"from_tier": old_lic.get("tier")})
     return {"ok": True}
+
+# ─── License Administration (Owner-only) ─────────────────────────────────────
+
+def require_owner(user: dict = Depends(get_current_user)):
+    """Dependency: only the owner role may manage licenses."""
+    if user.get("role") != "owner":
+        raise HTTPException(403, "Nur der Eigentümer kann Lizenzen verwalten")
+    return user
+
+@app.get("/api/licenses")
+async def list_licenses(user: dict = Depends(require_admin)):
+    """List all licenses with activation counts. Keys are masked."""
+    conn = get_db()
+    try:
+        rows = conn.execute("""
+            SELECT l.id, l.key_display, l.tier, l.customer_name, l.customer_email,
+                   l.notes, l.status, l.expires_at, l.max_activations,
+                   l.created_at,
+                   (SELECT COUNT(*) FROM license_activations a WHERE a.license_id = l.id) AS activations
+            FROM licenses l ORDER BY l.created_at DESC
+        """).fetchall()
+        out = []
+        for r in rows:
+            d = dict(r)
+            d["days_remaining"] = None
+            if d["expires_at"]:
+                try:
+                    delta = datetime.fromisoformat(d["expires_at"]) - datetime.now()
+                    d["days_remaining"] = max(0, delta.days)
+                except ValueError:
+                    pass
+            out.append(d)
+        return {"licenses": out, "tiers": {k: {"max_users": v["max_users"]} for k, v in _LIC_TIERS.items()}}
+    finally:
+        conn.close()
+
+@app.post("/api/licenses")
+async def create_license(request: Request, user: dict = Depends(require_owner)):
+    """Generate a new license key. The plaintext key is returned ONCE."""
+    body = await request.json()
+    tier = (body.get("tier") or "STANDARD").upper()
+    if tier not in _LIC_TIERS:
+        raise HTTPException(400, f"Unbekannter Tier: {tier}")
+    expires_at = (body.get("expires_at") or "").strip() or None
+    if expires_at:
+        try:
+            datetime.fromisoformat(expires_at)
+        except ValueError:
+            raise HTTPException(400, "Ablaufdatum im Format YYYY-MM-DD angeben")
+    max_activations = int(body.get("max_activations", 3))
+    if max_activations < 1 or max_activations > 100:
+        raise HTTPException(400, "Aktivierungen müssen zwischen 1 und 100 liegen")
+
+    key = generate_license_key(tier)
+    key_hash = _hash_license_key(key)
+    conn = get_db()
+    try:
+        conn.execute("""
+            INSERT INTO licenses (key_hash, key_display, tier, customer_name, customer_email,
+                                  notes, expires_at, max_activations, created_by)
+            VALUES (?,?,?,?,?,?,?,?,?)
+        """, (key_hash, _mask_key(key), tier, body.get("customer_name", "").strip()[:200],
+              body.get("customer_email", "").strip()[:200], body.get("notes", "").strip()[:1000],
+              expires_at, max_activations, user["id"]))
+        conn.commit()
+        new_id = conn.execute("SELECT last_insert_rowid()").fetchone()[0]
+    finally:
+        conn.close()
+    log_action(user["id"], "license_created", {"id": new_id, "tier": tier})
+    return {"ok": True, "id": new_id, "key": key, "masked": _mask_key(key)}
+
+@app.put("/api/licenses/{lid}")
+async def update_license(lid: int, request: Request, user: dict = Depends(require_owner)):
+    """Update customer data, expiry, activation limit, or revoke/reactivate."""
+    body = await request.json()
+    conn = get_db()
+    try:
+        row = conn.execute("SELECT * FROM licenses WHERE id=?", (lid,)).fetchone()
+        if not row:
+            raise HTTPException(404, "Lizenz nicht gefunden")
+        fields, vals = [], []
+        for col in ("customer_name", "customer_email", "notes"):
+            if col in body:
+                fields.append(f"{col}=?"); vals.append(str(body[col]).strip()[:1000])
+        if "expires_at" in body:
+            exp = (body["expires_at"] or "").strip() or None
+            if exp:
+                try: datetime.fromisoformat(exp)
+                except ValueError: raise HTTPException(400, "Ablaufdatum im Format YYYY-MM-DD")
+            fields.append("expires_at=?"); vals.append(exp)
+        if "max_activations" in body:
+            ma = int(body["max_activations"])
+            if ma < 1 or ma > 100: raise HTTPException(400, "Aktivierungen 1-100")
+            fields.append("max_activations=?"); vals.append(ma)
+        if "status" in body:
+            if body["status"] not in ("active", "revoked"):
+                raise HTTPException(400, "Status muss 'active' oder 'revoked' sein")
+            fields.append("status=?"); vals.append(body["status"])
+        if fields:
+            vals.append(lid)
+            conn.execute(f"UPDATE licenses SET {', '.join(fields)}, updated_at=datetime('now') WHERE id=?", vals)
+            conn.commit()
+    finally:
+        conn.close()
+    log_action(user["id"], "license_updated", {"id": lid})
+    return {"ok": True}
+
+@app.delete("/api/licenses/{lid}")
+async def delete_license(lid: int, user: dict = Depends(require_owner)):
+    """Delete a license and all its activations."""
+    conn = get_db()
+    try:
+        row = conn.execute("SELECT tier FROM licenses WHERE id=?", (lid,)).fetchone()
+        if not row:
+            raise HTTPException(404, "Lizenz nicht gefunden")
+        conn.execute("DELETE FROM license_activations WHERE license_id=?", (lid,))
+        conn.execute("DELETE FROM licenses WHERE id=?", (lid,))
+        conn.commit()
+    finally:
+        conn.close()
+    log_action(user["id"], "license_deleted", {"id": lid, "tier": row["tier"]})
+    return {"ok": True}
+
+@app.get("/api/licenses/{lid}/activations")
+async def list_license_activations(lid: int, user: dict = Depends(require_admin)):
+    """List device activations for a license."""
+    conn = get_db()
+    try:
+        row = conn.execute("SELECT id, key_display, max_activations FROM licenses WHERE id=?", (lid,)).fetchone()
+        if not row:
+            raise HTTPException(404, "Lizenz nicht gefunden")
+        acts = conn.execute("""
+            SELECT id, device_id, device_name, app_version, ip, first_seen, last_seen
+            FROM license_activations WHERE license_id=? ORDER BY last_seen DESC
+        """, (lid,)).fetchall()
+        return {"license_id": lid, "key_display": row["key_display"],
+                "max_activations": row["max_activations"],
+                "activations": [dict(a) for a in acts]}
+    finally:
+        conn.close()
+
+@app.delete("/api/licenses/{lid}/activations/{aid}")
+async def release_license_activation(lid: int, aid: int, user: dict = Depends(require_owner)):
+    """Release one device activation (frees a slot for a new device)."""
+    conn = get_db()
+    try:
+        conn.execute("DELETE FROM license_activations WHERE id=? AND license_id=?", (aid, lid))
+        conn.commit()
+    finally:
+        conn.close()
+    log_action(user["id"], "license_activation_released", {"license_id": lid, "activation_id": aid})
+    return {"ok": True}
+
+# ─── Public License Validation (for client programs) ─────────────────────────
+# Rate-limited like the login endpoint: 30 validations per IP per minute.
+
+_lic_validate_attempts: dict[str, list[float]] = {}
+_LIC_VALIDATE_MAX = 30
+_LIC_VALIDATE_WINDOW = 60
+
+def _check_license_validate_rate_limit(ip: str) -> None:
+    now = time.time()
+    attempts = [t for t in _lic_validate_attempts.get(ip, []) if now - t < _LIC_VALIDATE_WINDOW]
+    _lic_validate_attempts[ip] = attempts
+    if len(attempts) >= _LIC_VALIDATE_MAX:
+        raise HTTPException(429, "Too many validation requests. Please wait before trying again.")
+    attempts.append(now)
+
+@app.post("/api/license/validate")
+async def license_validate(request: Request):
+    """PUBLIC: validate a license key from an external client program.
+    Body: {key, device_id?, device_name?, app_version?}
+    On success registers/updates the device activation (enforces max_activations).
+    Returns features + tier so the client can unlock modules."""
+    client_ip = request.client.host if request.client else "unknown"
+    _check_license_validate_rate_limit(client_ip)
+    body = await request.json()
+    key = (body.get("key") or "").strip()
+    device_id = (body.get("device_id") or "").strip()[:128]
+    device_name = (body.get("device_name") or "").strip()[:200]
+    app_version = (body.get("app_version") or "").strip()[:32]
+
+    result = validate_license_key(key)
+    if not result["valid"]:
+        return {"valid": False, "reason": result.get("reason", "invalid")}
+
+    # DB licenses track activations; offline fallback keys don't
+    row = _get_license_row(key)
+    activation_info = None
+    if row is not None:
+        conn = get_db()
+        try:
+            if device_id:
+                existing = conn.execute(
+                    "SELECT id FROM license_activations WHERE license_id=? AND device_id=?",
+                    (row["id"], device_id)).fetchone()
+                if existing:
+                    conn.execute(
+                        "UPDATE license_activations SET last_seen=datetime('now'), ip=?,"
+                        " device_name=?, app_version=? WHERE id=?",
+                        (client_ip, device_name or device_name, app_version, existing["id"]))
+                else:
+                    count = conn.execute(
+                        "SELECT COUNT(*) AS c FROM license_activations WHERE license_id=?",
+                        (row["id"],)).fetchone()["c"]
+                    if count >= row["max_activations"]:
+                        return {"valid": False, "reason": "activation_limit_reached",
+                                "activations_used": count,
+                                "max_activations": row["max_activations"]}
+                    conn.execute(
+                        "INSERT INTO license_activations (license_id, device_id, device_name,"
+                        " app_version, ip) VALUES (?,?,?,?,?)",
+                        (row["id"], device_id, device_name, app_version, client_ip))
+                conn.commit()
+            used = conn.execute(
+                "SELECT COUNT(*) AS c FROM license_activations WHERE license_id=?",
+                (row["id"],)).fetchone()["c"]
+            activation_info = {"activations_used": used, "max_activations": row["max_activations"]}
+        finally:
+            conn.close()
+
+    resp = {
+        "valid": True,
+        "tier": result["tier"],
+        "features": result["features"],
+        "expires_at": result.get("expires_at"),
+    }
+    if activation_info:
+        resp.update(activation_info)
+    return resp
+
+@app.get("/api/licenses/stats")
+async def license_stats(user: dict = Depends(require_admin)):
+    """Summary counters for the admin dashboard."""
+    conn = get_db()
+    try:
+        total = conn.execute("SELECT COUNT(*) AS c FROM licenses").fetchone()["c"]
+        active = conn.execute("SELECT COUNT(*) AS c FROM licenses WHERE status='active'").fetchone()["c"]
+        expired = conn.execute(
+            "SELECT COUNT(*) AS c FROM licenses WHERE status='active' AND expires_at IS NOT NULL"
+            " AND expires_at < ?", (datetime.now().isoformat(),)).fetchone()["c"]
+        by_tier = {r["tier"]: r["c"] for r in conn.execute(
+            "SELECT tier, COUNT(*) AS c FROM licenses GROUP BY tier").fetchall()}
+        acts = conn.execute("SELECT COUNT(*) AS c FROM license_activations").fetchone()["c"]
+        return {"total": total, "active": active, "expired": expired,
+                "revoked": total - active, "by_tier": by_tier, "total_activations": acts}
+    finally:
+        conn.close()
 
 @app.get("/api/inventory/{iid}/checkout")
 async def get_item_checkouts(iid: int, user: dict = Depends(get_current_user)):
